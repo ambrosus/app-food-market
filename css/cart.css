@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+body {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1280px;
+  min-height: 100vh;
+  background: #ccc;
+}
+
+.products {
+  padding: 30px 69px;
+  background: #f9f9f9;
+}
+
+.product {
+  position: relative;
+  width: 263px;
+  border-radius: 2px;
+  background: white;
+  overflow: hidden;
+  margin: 10px 15px;
+  -webkit-box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.15), 0 0 10px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.15), 0 0 10px -2px rgba(0, 0, 0, 0.15);
+  float: left;
+}
+
+.product:nth-child(4n-3) {
+  margin-left: 0;
+}
+
+.product:nth-child(4n) {
+  margin-right: 0;
+}
+
+.product:nth-child(-n+4) {
+  margin-top: 0;
+}
+
+.product__info {
+  padding: 13px 20px 20px 20px;
+}
+
+.product__name {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: block;
+  background: white;
+  border-radius: 0 3px 3px 0;
+  font-size: 12px;
+  padding: 4.5px 11px;
+  color: #cea400;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+}
+
+.product__title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 0 14px 0;
+  color: #0d0e04;
+  font-family: 'Muli', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.product__span--gray {
+  color: #9d9d9d;
+  font-size: 13px;
+  display: block;
+  text-align: left;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  margin-bottom: 13px;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+}
+
+.product__span {
+  color: #0d0e04;
+  font-size: 15px;
+  display: block;
+  text-align: right;
+  -ms-flex-preferred-size: 50%;
+  flex-basis: 50%;
+  margin-bottom: 13px;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.product__button--gray {
+  border: 1px solid #e0e0e0;
+  padding: 0 14px;
+  line-height: 37px;
+  display: block;
+  width: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 115px;
+  float: left;
+  font-size: 15px;
+  border-radius: 2px;
+  color: #9d9d9d;
+  text-align: center;
+  margin-top: 5px;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+}
+
+.product__button--gray span, .product__button--yellow span {
+  vertical-align: -1px;
+}
+
+.product__button--yellow {
+  border: 1px solid #efc518;
+  background: #f8c600;
+  padding: 0 15px;
+  line-height: 37px;
+  display: block;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 98px;
+  float: right;
+  font-size: 15px;
+  border-radius: 2px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 5px;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  font-weight: 700;
+}
+
+span.product__icon {
+  margin-right: 6px;
+  font-size: 20px;
+  vertical-align: -4px;
+}
+
+.product__button--gray:hover {
+  cursor: pointer;
+}
+
+.product__button--yellow:hover {
+  cursor: pointer;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.pagination__number, .pagination__arrow, .pagination__number--active {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 30px;
+  line-height: 30px;
+  display: block;
+  text-align: center;
+  float: right;
+  border-radius: 2px;
+  color: black;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.pagination__arrow {
+  border: 1px solid #e0e0e0;
+  line-height: 28px;
+}
+
+.pagination__arrow:first-child {
+  margin-right: 10px;
+}
+
+.pagination__arrow:last-child {
+  margin-left: 10px;
+}
+
+.pagination__number--active {
+  background: #e0e0e0;
+  font-weight: bold;
+}
+
+.pagination__number {
+  color: #636363;
+}

@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -8,13 +9,23 @@ module.exports = {
         index: "./src/index.html",
     },
 
-	output: {
-		filename: '[name].js',
-		path: __dirname + "/dist/"
-	},
+    output: {
+        filename: '[name].js',
+        path: __dirname + "/dist/"
+    },
 
-	module: {
-		rules: [
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: "file-loader?name=/public/images/[name].[ext]"
+            },
             {
                 test: /\.html$/,
                 loader: "file-loader?name=[name].[ext]",
@@ -23,35 +34,35 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
-                query  :{
-                    presets:['react','es2015']
+                query: {
+                    presets: ['react', 'es2015']
                 }
             },
-			{
-				test: /\.(scss|css)$/,
+            {
+                test: /\.(scss|css)$/,
 
-				use: ExtractTextPlugin.extract({
-					use: [
-						{
-							loader: 'css-loader',
-							options: {
-								sourceMap: true
-							}
-						},
-						{
-							loader: 'sass-loader',
-							options: {
-								sourceMap: true
-							}
-						}
-					],
-					fallback: 'style-loader'
-				})
-			}
-		]
-	},
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true
+                            }
+                        }
+                    ],
+                    fallback: 'style-loader'
+                })
+            }
+        ]
+    },
 
-	plugins: [
-		new ExtractTextPlugin('styles.[contentHash].css')
-	]
+    plugins: [
+        new ExtractTextPlugin('styles.css')
+    ]
 };

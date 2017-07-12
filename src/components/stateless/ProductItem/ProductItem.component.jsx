@@ -3,15 +3,30 @@ import image from "../../../../static/images/fish.png";
 import styles from './ProductItem.css';
 
 export default class ProductItem extends Component {
+
+    static propTypes = {
+        name: React.PropTypes.string,
+        price: React.PropTypes.string,
+        seller: React.PropTypes.string,
+        title: React.PropTypes.string
+    };
+
+    static defaultProps = {
+        name: 'Tuna',
+        price: '€20 / kg',
+        title: 'Nord atlantic tuna',
+        seller: 'Riverscott'
+    };
+
     render() {
         return (<article className="product">
             <img src={image} width="263" height="180" alt=""/>
-            <span className="product__name">Tuna</span>
+            <span className="product__name">{ this.props.name }</span>
             <div className="product__info">
-                <h1 className="product__title">Lorem ipsum Dolor sit amet</h1>
+                <h1 className="product__title">{ this.props.title }</h1>
                 <div className="flex">
-                    <span className="product__span--gray">Price:</span><span className="product__span">€25 / kg</span>
-                    <span className="product__span--gray">Seller:</span><span className="product__span">Johnston Ltd.</span>
+                    <span className="product__span--gray">Price:</span><span className="product__span">{ this.props.price }</span>
+                    <span className="product__span--gray">Seller:</span><span className="product__span">{ this.props.seller }</span>
                 </div>
                 <a href="more.html" className="product__button--gray"><span>More details</span></a>
                 <a href="buy.html" className="product__button--yellow"><span className="icon-basket-loaded product__icon"

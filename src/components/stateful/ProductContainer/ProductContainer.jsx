@@ -5,13 +5,6 @@ require('./ProductContainer.scss');
 export default class ProductContainer extends Component {
     render() {
         return (<div className="container">
-            <ProductItem
-                name="Salmon"
-                price="€25/kg"
-                seller="Jan Kowalski"
-                title="Best salmon in the world"
-                image={'/static/images/tuna.png'}
-            />
             <ProductItem name="Ale"
                          price="€17/kg"
                          seller="Jan Kowalski"
@@ -45,6 +38,7 @@ export default class ProductContainer extends Component {
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"/>
+
         </div>)
     }
 }

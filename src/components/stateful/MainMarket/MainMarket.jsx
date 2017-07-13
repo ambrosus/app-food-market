@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ProductItem from "../../stateless/ProductItem/ProductItem.jsx";
-require('./MainMarket.css');
+require('./MainMarket.scss');
 
 export default class MainMarket extends Component {
     render() {
@@ -10,13 +10,13 @@ export default class MainMarket extends Component {
                 price="€25/kg"
                 seller="Jan Kowalski"
                 title="Best salmon in the world"
-                image={'/public/images/tuna.png'}
+                image={'/static/images/tuna.png'}
             />
             <ProductItem name="Ale"
                          price="€17/kg"
                          seller="Jan Kowalski"
                          title="Best ale in the world"
-                         image={'/public/images/anchovies.png'}/>
+                         image={'/static/images/anchovies.png'}/>
             <ProductItem name="Stockfish"
                          price="€18/kg"
                          seller="Jan Kowalski"
@@ -29,22 +29,22 @@ export default class MainMarket extends Component {
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"
-                         image={'/public/images/markel.png'}/>
+                         image={'/static/images/markel.png'}/>
             <ProductItem name="Trice"
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"
-                         image={'/public/images/markel.png'}/>
+                         image={'/static/images/markel.png'}/>
             <ProductItem name="Trice"
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"
-                         image={'/public/images/markel.png'}/>
+                         image={'/static/images/markel.png'}/>
             <ProductItem name="Trice"
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"
-                         image={'/public/images/markel.png'}/>
+                         image={'/static/images/markel.png'}/>
         </div>)
     }
 }

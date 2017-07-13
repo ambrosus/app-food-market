@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button.jsx";
-require('./ProductItem.css');
+require('./ProductItem.scss');
 
 export default class ProductItem extends Component {
 

@@ -39,25 +39,12 @@ module.exports = {
                 }
             },
             {
-                test: /\.(scss|css)$/,
-
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true
-                            }
-                        }
-                    ],
-                    fallback: 'style-loader'
-                })
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ],
             }
         ]
     },

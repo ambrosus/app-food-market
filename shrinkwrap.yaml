@@ -17,8 +17,10 @@ devDependencies:
   file-loader: 0.11.2
   jsx-loader: 0.13.2
   node-sass: 4.5.3
+  postcss-loader: 2.0.6
   prop-types: 15.5.10
   sass-loader: 6.0.6
+  sass-resources-loader: 1.2.1
   style-loader: 0.18.2
   url-loader: 0.5.9
   webpack: 3.2.0
@@ -1310,6 +1312,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cosmiconfig/2.1.3:
+    dependencies:
+      is-directory: 0.3.1
+      js-yaml: 3.9.0
+      minimist: 1.2.0
+      object-assign: 4.1.1
+      os-homedir: 1.0.2
+      parse-json: 2.2.0
+      require-from-string: 1.2.1
+    dev: true
+    resolution:
+      integrity: sha1-lSdx6w3dwcs/ovb75RpSLpOz7go=
   /create-ecdh/4.0.0:
     dependencies:
       bn.js: 4.11.7
@@ -1718,6 +1732,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-/cpRzuYTOJXjyI1TXOSdv/YqRjM=
+  /esprima/4.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-oftTcaMu/EGrEIu904mWteKIv8vMuOgGYo7EhVJJN00R/EED9DCua/xxHRdYnKtcECzVg7xOWhflvJMnqcFZjw==
   /esrecurse/4.2.0:
     dependencies:
       estraverse: 4.2.0
@@ -2325,6 +2343,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-VAVy0096wxGfj3bDDLwbHgN6/74=
+  /is-directory/0.3.1:
+    dev: true
+    resolution:
+      integrity: sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
   /is-dotfile/1.0.3:
     dev: true
     resolution:
@@ -2475,6 +2497,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-XJZ93YN6m/3KXy3oQlOr6KHAO4A=
+  /js-yaml/3.9.0:
+    dependencies:
+      argparse: 1.0.9
+      esprima: 4.0.0
+    dev: true
+    resolution:
+      integrity: sha512-0LoUNELX4S+iofCT8f4uEHIiRBR+c2AINyC8qRWfC6QNruLtxVZRJaPcu/xwMgFIgDxF25tGHaDjvxzJCNE9yw==
   /jsbn/0.1.1:
     dev: true
     optional: true
@@ -3214,6 +3243,38 @@ packages:
     dev: true
     resolution:
       integrity: sha1-bYWGJTTXNaxCDkqFgG4fXUKG2Ew=
+  /postcss-load-config/1.2.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+      postcss-load-options: 1.2.0
+      postcss-load-plugins: 2.3.0
+    dev: true
+    resolution:
+      integrity: sha1-U56a/J3chiASHr+djDZz4M5Q0oo=
+  /postcss-load-options/1.2.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+    dev: true
+    resolution:
+      integrity: sha1-sJixVZ3awt8EvAuzdfmaXP4rbYw=
+  /postcss-load-plugins/2.3.0:
+    dependencies:
+      cosmiconfig: 2.1.3
+      object-assign: 4.1.1
+    dev: true
+    resolution:
+      integrity: sha1-dFdoEWWZrKLwCfrUJrABdQSdjZI=
+  /postcss-loader/2.0.6:
+    dependencies:
+      loader-utils: 1.1.0
+      postcss: 6.0.6
+      postcss-load-config: 1.2.0
+      schema-utils: 0.3.0
+    dev: true
+    resolution:
+      integrity: sha512-HIq7yy1hh9KI472Y38iSRV4WupZUNy6zObkxQM/ZuInoaE2+PyX4NcO6jjP5HG5mXL7j5kcNEl0fAG4Kva7O9w==
   /postcss-merge-idents/2.1.7:
     dependencies:
       has: 1.0.1
@@ -3688,6 +3749,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-jGStX9MNqxyXbiNE/+f3kqam30I=
+  /require-from-string/1.2.1:
+    dev: true
+    resolution:
+      integrity: sha1-UpyczvJzgK3+yaL5ZbZJu+5jZBg=
   /require-main-filename/1.0.1:
     dev: true
     resolution:
@@ -3737,6 +3802,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-c3/Zc+iW+qqDip6kXPYLEgsAu2lf4xz0EZDplB7EmSUMda12U1sGJPetH55B/j9eu0bTtKzKlNPWWyYC7wFNyQ==
+  /sass-resources-loader/1.2.1:
+    dependencies:
+      async: 2.5.0
+      chalk: 1.1.3
+      glob: 7.1.2
+      loader-utils: 1.1.0
+    dev: true
+    resolution:
+      integrity: sha1-eKNAokQ/2KjAHlgchatDEGQeMWg=
   /sax/0.5.8:
     resolution:
       integrity: sha1-1HLbIo6zMcJQaw6MFVJK25OdEsE=
@@ -4471,10 +4545,12 @@ specifiers:
   jsx-loader: ^0.13.2
   node-sass: ^4.5.3
   normalize: ^0.3.1
+  postcss-loader: ^2.0.6
   prop-types: ^15.5.10
   react: ^15.6.1
   react-dom: ^15.6.1
   sass-loader: ^6.0.6
+  sass-resources-loader: ^1.2.1
   simple-line-icons: ^2.4.1
   style-loader: ^0.18.2
   uglifyjs-webpack-plugin: ^0.4.6

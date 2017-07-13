@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainMarket from './stateful/MainMarket/MainMarket.component';
+import MainMarket from './stateful/MainMarket/MainMarket';
 
 export default class RootComponent extends Component {
     render() {

@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import image from "../../../../static/images/fish.png";
 import styles from './ProductItem.css';
 
 export default class ProductItem extends Component {
@@ -8,7 +7,8 @@ export default class ProductItem extends Component {
         name: React.PropTypes.string,
         price: React.PropTypes.string,
         seller: React.PropTypes.string,
-        title: React.PropTypes.string
+        title: React.PropTypes.string,
+        image: React.PropTypes.string,
     };
 
     static defaultProps = {
@@ -20,7 +20,7 @@ export default class ProductItem extends Component {
 
     render() {
         return (<article className="product">
-            <img src={image} width="263" height="180" alt=""/>
+            <img src={this.props.image} width="263" height="180"/>
             <span className="product__name">{ this.props.name }</span>
             <div className="product__info">
                 <h1 className="product__title">{ this.props.title }</h1>

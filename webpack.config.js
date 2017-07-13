@@ -23,6 +23,14 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
+                loader: 'url-loader?limit=10000'
+            },
+            {
+                test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/,
+                loader: 'file-loader'
+            },
+            {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loader: "file-loader?name=/public/images/[name].[ext]"
             },

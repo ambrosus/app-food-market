@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import ProductItem from "../../stateless/ProductItem/ProductItem.jsx";
-require('./MainMarket.scss');
+require('./ProductContainer.scss');
 
-export default class MainMarket extends Component {
+export default class ProductContainer extends Component {
     render() {
         return (<div className="container">
             <ProductItem

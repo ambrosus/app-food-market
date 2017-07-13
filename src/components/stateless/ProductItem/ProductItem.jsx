@@ -20,7 +20,7 @@ export default class ProductItem extends Component {
         price: '€20 / kg',
         title: 'Nord atlantic tuna',
         seller: 'Riverscott',
-        image: 'http://via.placeholder.com/263x180/10/0',
+        image: '/static/images/placeholder.png',
         moreDetailsAction: () => {
             console.warn('Warning: More details action is not defined')
         },

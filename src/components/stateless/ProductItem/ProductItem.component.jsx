@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import styles from './ProductItem.css';
+require('./ProductItem.css');
 
 export default class ProductItem extends Component {
 

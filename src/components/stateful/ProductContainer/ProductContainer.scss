@@ -1,12 +1,11 @@
 $container-color: #f9f9f9;
 
 .container {
+  width: 100%;
   background-color: $container-color;
-  padding: 40px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
-  width: 1142px;
+  justify-content: flex-start;
   min-height: 100vh;
 }

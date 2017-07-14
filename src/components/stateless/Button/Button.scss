@@ -1,0 +1,21 @@
+@mixin button-special($border-color, $background-color, $text-color, $height) {
+  line-height: $height;
+  height: $height;
+  vertical-align: middle;
+  padding: 0 15px;
+  border: 1px solid $border-color;
+  background-color: $background-color;
+  box-sizing: border-box;
+  font-size: 15px;
+  border-radius: 2px;
+  color: $text-color;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  font-weight: 700;
+}
+
+.button-icon-default {
+  margin-right: 6px;
+  font-size: 20px;
+  vertical-align: -4px;
+}

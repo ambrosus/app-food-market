@@ -1,3 +1,5 @@
+@import '../Button/Button.scss';
+
 $container-shadow: rgba(0, 0, 0, 0.15);
 $product-name-color: #000;
 $product-seller-color: #000;
@@ -20,6 +22,7 @@ $more-details-color: #9d9d9d;
   box-shadow: 0 0 10px -2px $container-shadow, 0 0 10px -2px $container-shadow;
   float: left;
 
+
   &__icon {
     margin-right: 6px;
     font-size: 20px;
@@ -31,50 +34,23 @@ $more-details-color: #9d9d9d;
   }
 
   &__more-details-button {
-    border: 1px solid $more-details-border;
-    padding: 0 14px;
-    line-height: 37px;
-    display: block;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 115px;
-    float: left;
-    font-size: 15px;
-    border-radius: 2px;
-    color: $more-details-color;
-    text-align: center;
-    margin-top: 5px;
-    text-decoration: none;
-    font-family: 'Muli', sans-serif;
-    font-weight: 400;
-
+    @include button-special($more-details-border, 0, $more-details-color, 50px);
     &:hover {
       cursor: pointer;
     }
   }
 
   &__buy-button {
-    border: 1px solid $buy-button-border;
-    background: $buy-button-background-color;
-    padding: 0 15px;
-    line-height: 37px;
-    display: block;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 98px;
-    float: right;
-    font-size: 15px;
-    border-radius: 2px;
-    color: $buy-button-text-color;
-    text-align: center;
-    margin-top: 5px;
-    text-decoration: none;
-    font-family: 'Muli', sans-serif;
-    font-weight: 700;
-
+    @include button-special($buy-button-background-color, $buy-button-border, $buy-button-text-color, 50px);
     &:hover {
       cursor: pointer;
     }
+  }
+
+  &__button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
   &__name {

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Market</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/MarketHeader.css">
+  <link rel="stylesheet" href="css/simple-line-icons.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="breadcrumbs">
+    <span>Market</span>
+  </div>
+  <div class="header-container">
+    <header class="header">
+      <h1 class="header__title">Market</h1>
+      <section class="header__filter">
+        <span class="select__name">Quality:</span>
+        <div class="fix">
+          <select name="quality">
+            <option selected="selected" value="premium">Premium</option><!-- &#xe604; .icon-arrow-down -->
+            <option value="premium2">Premium2</option>
+            <option value="premium3">Premium3</option>
+            <option value="premium4">Premium4</option>
+            <option value="premium5">Premium5</option>
+          </select>
+        </div>
+        <span class="select__name">Category:</span>
+        <div class="fix">
+          <select name="category">
+            <option selected="selected" value="Fish">Fish</option>
+            <option value="Fish2">Fish2</option>
+            <option value="Fish3">Fish3</option>
+            <option value="Fish4">Fish4</option>
+            <option value="Fish5">Fish5</option>
+          </select>
+        </div>
+      </section>
+      <div class="header__vertical-line"></div>
+      <a href="#" class="header__button--yellow">&nbsp;<span class="icon-plus offer-icon" aria-hidden="true"></span> <span>Create an offer</span></a>
+    </header>
+  </div>
+
+  <script>
+    $('select').each(function() {
+      var $this = $(this),
+        numberOfOptions = $(this).children('option').length;
+
+      $this.addClass('select-hidden');
+      $this.wrap('<div class="select"></div>');
+      $this.after('<div class="select-styled"></div>');
+
+      var $styledSelect = $this.next('div.select-styled');
+      $styledSelect.text($this.children('option').eq(0).text());
+
+      var $list = $('<ul />', {
+        'class': 'select-options'
+      }).insertAfter($styledSelect);
+
+      for (var i = 0; i < numberOfOptions; i++) {
+        $('<li />', {
+          text: $this.children('option').eq(i).text(),
+          rel: $this.children('option').eq(i).val()
+        }).appendTo($list);
+      }
+
+      var $listItems = $list.children('li');
+
+      $styledSelect.click(function(e) {
+        e.stopPropagation();
+        $('div.select-styled.active').not(this).each(function() {
+          $(this).removeClass('active').next('ul.select-options').hide();
+        });
+        $(this).toggleClass('active').next('ul.select-options').toggle();
+      });
+
+      $listItems.click(function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $list.hide();
+      });
+
+      $(document).click(function() {
+        $styledSelect.removeClass('active');
+        $list.hide();
+      });
+
+    });
+  </script>
+
+  <!-------------------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------------------->
+  <!-------------------------------------------------------------------------------------------->
+
+  <section class="products">
+    <article class="product">
+      <img src="img/fish.png" width="263" height="180" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="more.html" class="product__button--gray"><span>More details</span></a>
+        <a href="buy.html" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <article class="product">
+      <img src="img/fish.png" alt="">
+      <span class="product__name">Tuna</span>
+      <div class="product__info">
+        <h1 class="product__title">Lorem ipsum Dolor sit amet</h1>
+        <div class="flex">
+          <span class="product__span--gray">Price:</span><span class="product__span">€25 / kg</span>
+          <span class="product__span--gray">Seller:</span><span class="product__span">Johnston Ltd.</span>
+        </div>
+        <a href="#" class="product__button--gray"><span>More details</span></a>
+        <a href="#" class="product__button--yellow"><span class="icon-basket-loaded product__icon" aria-hidden="true"></span> <span>Buy</span></a>
+        <div style="clear: both"></div>
+      </div>
+    </article>
+
+    <div style="clear: both"></div>
+
+    <div class="pagination">
+      <a href="#" class="pagination__arrow">&lsaquo;</a>
+      <a href="#" class="pagination__number">1</a>
+      <a href="#" class="pagination__number">2</a>
+      <a href="#" class="pagination__number--active">3</a>
+      <a href="#" class="pagination__number">4</a>
+      <a href="#" class="pagination__number">5</a>
+      <a href="#" class="pagination__arrow">&rsaquo;</a>
+    </div>
+  </section>
+
+</body>
+
+</html>

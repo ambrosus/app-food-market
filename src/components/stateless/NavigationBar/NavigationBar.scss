@@ -1,0 +1,18 @@
+@import '../Button/Button';
+
+$create-offer-background-color: #f8c600;
+$create-offer-border-color: #efc518;
+$create-offer-text-color: #ffffff;
+$create-offer-height: 50px;
+
+.navigation {
+  height: 50px;
+  background-color: red;
+}
+
+.create-offer-button {
+  @include button-special($create-offer-background-color,
+          $create-offer-border-color,
+          $create-offer-text-color,
+          $create-offer-height);
+}

@@ -1,0 +1,8 @@
+$page-background-color: #f9f9f9;
+
+.page-container {
+  background-color: $page-background-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}

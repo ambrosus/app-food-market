@@ -38,7 +38,10 @@ export default class ProductContainer extends Component {
                          price="€19/kg"
                          seller="Jan Kowalski"
                          title="Best trice in the world"/>
-
+            <ProductItem name="Trice"
+                         price="€19/kg"
+                         seller="Jan Kowalski"
+                         title="Best trice in the world"/>
         </div>)
     }
 }

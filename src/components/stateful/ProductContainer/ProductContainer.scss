@@ -1,8 +1,12 @@
+$container-color: #f9f9f9;
+
 .container {
+  background-color: $container-color;
+  padding: 40px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   width: 1142px;
   min-height: 100vh;
 }

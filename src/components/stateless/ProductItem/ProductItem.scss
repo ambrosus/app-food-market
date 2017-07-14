@@ -1,9 +1,12 @@
 $container-shadow: rgba(0, 0, 0, 0.15);
 $product-name-color: #000;
 $product-seller-color: #000;
-$product-title-color: #cea400;
+$product-title-color: #0d0e04;
+$product-field-label: #9d9d9d;
+$product-field-value: #0d0e04;
 $buy-button-border: #efc518;
-$buy-button-text-color: #9d9d9d;
+$buy-button-text-color: #ffffff;
+$buy-button-background-color: #f8c600;
 $more-details-border: #e0e0e0;
 $more-details-color: #9d9d9d;
 
@@ -51,9 +54,8 @@ $more-details-color: #9d9d9d;
   }
 
   &__buy-button {
-
     border: 1px solid $buy-button-border;
-    background: #f8c600;
+    background: $buy-button-background-color;
     padding: 0 15px;
     line-height: 37px;
     display: block;
@@ -63,7 +65,7 @@ $more-details-color: #9d9d9d;
     float: right;
     font-size: 15px;
     border-radius: 2px;
-    color: #ffffff;
+    color: $buy-button-text-color;
     text-align: center;
     margin-top: 5px;
     text-decoration: none;
@@ -94,24 +96,35 @@ $more-details-color: #9d9d9d;
     overflow: hidden;
     white-space: nowrap;
     margin: 0 0 14px 0;
-    color: #0d0e04;
+    color: $product-title-color;
     font-family: 'Muli', sans-serif;
     font-size: 22px;
     font-weight: 400;
   }
 
-  &__span {
-    color: #0d0e04;
-    font-size: 15px;
-    display: block;
-    text-align: right;
-    flex-basis: 50%;
-    margin-bottom: 13px;
-    font-family: 'Muli', sans-serif;
-    font-weight: 400;
+  &__fields-container {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
 
-    &--gray {
-      color: #9d9d9d;
+  &__field {
+
+    &-value {
+      color: $product-field-value;
+      font-size: 15px;
+      display: block;
+      text-align: right;
+      flex-basis: 50%;
+      margin-bottom: 13px;
+      font-family: 'Muli', sans-serif;
+      font-weight: 400;
+    }
+
+    &-label {
+      color: $product-field-label;
       font-size: 13px;
       display: block;
       text-align: left;
@@ -121,12 +134,4 @@ $more-details-color: #9d9d9d;
       font-weight: 400;
     }
   }
-}
-
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
 }

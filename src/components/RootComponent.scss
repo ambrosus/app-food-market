@@ -1,6 +1,7 @@
+$page-background-color: #ccc;
+
 .root-container {
   display: flex;
-  padding-top: 10px;
   justify-content: space-around;
-  background-color: #f9f9f9;
+  background-color: $page-background-color;
 }

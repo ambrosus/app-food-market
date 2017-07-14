@@ -35,13 +35,14 @@ export default class ProductItem extends Component {
             <span className="product__name">{ this.props.name }</span>
             <div className="product__info">
                 <h1 className="product__title">{ this.props.title }</h1>
-                <div className="flex">
-                    <span className="product__span--gray">Price:</span><span
-                    className="product__span">{ this.props.price }</span>
-                    <span className="product__span--gray">Seller:</span><span
-                    className="product__span">{ this.props.seller }</span>
+                <div className="product__fields-container">
+                    <span className="product__field-label">Price:</span>
+                    <span className="product__field-value">{ this.props.price }</span>
+                    <span className="product__field-label">Seller:</span>
+                    <span className="product__field-value">{ this.props.seller }</span>
                 </div>
-                <Button className="product__more-details-button" onClick={this.props.moreDetailsAction}>More details</Button>
+                <Button className="product__more-details-button" onClick={this.props.moreDetailsAction}>More
+                    details</Button>
                 <Button className="product__buy-button" onClick={this.props.buyAction}>
                     <span className="icon-basket-loaded product__icon"/><span>Buy</span>
                 </Button>

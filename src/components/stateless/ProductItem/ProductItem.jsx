@@ -41,8 +41,8 @@ export default class ProductItem extends Component {
                     <span className="product__span--gray">Seller:</span><span
                     className="product__span">{ this.props.seller }</span>
                 </div>
-                <Button className="product__button--gray" onClick={this.props.moreDetailsAction}>More details</Button>
-                <Button className="product__button--yellow" onClick={this.props.buyAction}>
+                <Button className="product__more-details-button" onClick={this.props.moreDetailsAction}>More details</Button>
+                <Button className="product__buy-button" onClick={this.props.buyAction}>
                     <span className="icon-basket-loaded product__icon"/><span>Buy</span>
                 </Button>
                 <div style={{clear: 'both'}}></div>

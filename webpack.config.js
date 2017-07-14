@@ -30,8 +30,8 @@ module.exports = {
                 loader: 'file-loader?=name=/public/fonts/[name].[ext]'
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file-loader?name=/public/images/[name].[ext]"
+                test: /\.(jpe?g|png|gif)$/i,
+                loader: "file-loader?name=/static/images/[name].[ext]"
             },
             {
                 test: /\.html$/,

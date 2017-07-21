@@ -7,11 +7,18 @@
     letter-spacing: 0.52px;
     color: #002C87;
     display: inline;
+    margin-right: 50px;
     text-transform: uppercase;
-    padding-right: 50px;
 
     &:last-child {
-      padding-right: 0;
+      margin-right: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #20abfa;
+      padding-bottom: 15px;
+      border-bottom: 5px solid #20ABFA;
     }
   }
 }

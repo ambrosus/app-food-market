@@ -1,21 +1,33 @@
-@import '../Button/Button';
+@import '../Button/Button.scss';
 
 $create-offer-background-color: #f8c600;
 $create-offer-border-color: #efc518;
 $create-offer-text-color: #ffffff;
+$navigation-background-color: #ffffff;
 $height: 50px;
 
 .navigation {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   line-height: $height;
   height: $height;
-  background-color: red;
-}
+  background-color: $navigation-background-color;
 
-.create-offer-button {
-  @include button-special($create-offer-background-color,
-          $create-offer-border-color,
-          $create-offer-text-color,
-          $height);
+  &__title {
+    font-family: 'Muli', sans-serif;
+    font-size: 22px;
+    width: 100%;
+    color: #476cbb;
+  }
+
+  &__create-offer-button {
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    @include button-special($create-offer-background-color,
+            $create-offer-border-color,
+            $create-offer-text-color,
+            $height);
+  }
 }

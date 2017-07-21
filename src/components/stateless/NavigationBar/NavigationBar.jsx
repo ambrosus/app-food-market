@@ -6,8 +6,8 @@ export default class NavigationBar extends Component {
 
     render() {
         return (<div className="navigation">
-            <span>Market</span>
-            <Button className='create-offer-button'>
+            <span className="navigation__title">Market</span>
+            <Button className='navigation__create-offer-button'>
                 <span className="icon-basket-loaded button-icon-default"/><span>Create an offer</span>
             </Button>
         </div>)

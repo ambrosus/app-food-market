@@ -9,8 +9,10 @@ $product-field-value: #0d0e04;
 $buy-button-border: #002C87;
 $buy-button-text-color: #ffffff;
 $buy-button-background-color: #002C87;
+$buy-button-height: 40px;
 $more-details-border: #e0e0e0;
 $more-details-color: #002C87;
+$more-details-height: 40px;
 
 .product {
   position: relative;
@@ -34,14 +36,14 @@ $more-details-color: #002C87;
   }
 
   &__more-details-button {
-    @include button-special($more-details-border, 0, $more-details-color, 50px);
+    @include button-special($more-details-border, 0, $more-details-color, $more-details-height);
     &:hover {
       cursor: pointer;
     }
   }
 
   &__buy-button {
-    @include button-special($buy-button-background-color, $buy-button-border, $buy-button-text-color, 50px);
+    @include button-special($buy-button-background-color, $buy-button-border, $buy-button-text-color, $buy-button-height);
     &:hover {
       cursor: pointer;
     }

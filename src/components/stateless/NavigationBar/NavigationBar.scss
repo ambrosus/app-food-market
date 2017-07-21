@@ -6,12 +6,14 @@ $create-offer-button-height: 40px;
 $create-offer-button-text-color: #ffffff;
 $navigation-background-color: #ffffff;
 $navigation-bar-height: 91px;
+$navigation-bar-padding: 0 42px;
 
 .navigation {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  padding: $navigation-bar-padding;
   line-height: $navigation-bar-height;
   height: $navigation-bar-height;
   background-color: $navigation-background-color;
@@ -24,8 +26,6 @@ $navigation-bar-height: 91px;
   }
 
   &__create-offer-button {
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
     @include button-special(
                     $create-offer-button-border-color,
                     $create-offer-button-background-color,

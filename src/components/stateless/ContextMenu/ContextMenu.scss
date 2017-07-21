@@ -1,0 +1,17 @@
+.context-menu {
+  display: flex;
+
+  &__element {
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.52px;
+    color: #002C87;
+    display: inline;
+    text-transform: uppercase;
+    padding-right: 50px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}

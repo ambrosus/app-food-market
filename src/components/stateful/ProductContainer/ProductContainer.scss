@@ -6,6 +6,6 @@ $container-color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   min-height: 100vh;
 }

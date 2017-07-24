@@ -10,7 +10,6 @@ const doInitWeb3 = () => {
 const web3Status = (state = {init: false}, action) => {
     switch (action.type) {
         case 'INIT_WEB3':
-            console.log('INIT_WEB3')
             var web3Handle = doInitWeb3();
             return {init: typeof web3Handle !== 'undefined', web3: web3Handle};
         default:

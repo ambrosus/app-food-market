@@ -1,6 +1,6 @@
 var delay = require('timeout-as-promise');
 
-const WEB3_LOAD_TIMEOUT = 1000;
+const WEB3_LOAD_TIMEOUT = 3000;
 
 
 export const sendTransaction = (to, value) => {
@@ -53,6 +53,8 @@ export const initWeb3 = () => {
 
 export function waitForWeb3() {
   return function (dispatch) {
+    //if (typeof web3 !== 'undefined')
+    //  return; 
     return delay(WEB3_LOAD_TIMEOUT)
       .then(json =>
         dispatch(initWeb3())

@@ -9,6 +9,7 @@ import TopContainer from "./stateful/TopContainer/TopContainer.jsx";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import marketApp from "../redux/reducers/index";
+import getAllOffers from "../redux/actions/MarketAction.js";
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
@@ -18,7 +19,8 @@ export default class RootComponent extends Component {
             <Router>
                 <PageContainer>
                     <TopContainer/>
-                    <Route exact path="/" component={MarketPage}/>
+                    <Route exact path="/" component={MarketPage} 
+                        onEnter={store.dispatch(getAllOffers('0x335d7cb39b2ef2fc0c24045658543ca2daad70e4'))}/>
                     <Route exact path="/orders" component={OrdersPage}/>
                     <Route exact path="/profile" component={ProfilePage}/>
                     <Route exact path="/create-offer" component={CreateOfferPage}/>

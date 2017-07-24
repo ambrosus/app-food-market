@@ -6,7 +6,9 @@ dependencies:
   normalize.css: 7.0.0
   react: 15.6.1
   react-dom: 15.6.1
+  react-redux: 5.0.5
   react-router-dom: 4.1.2
+  redux: 3.7.2
   simple-line-icons: 2.4.1
   uglifyjs-webpack-plugin: 0.4.6
 devDependencies:
@@ -3851,6 +3853,9 @@ packages:
       fs-ext: github.com/baudehlo/node-fs-ext/808593cfc6da4912d48ed0579e06b8e058b10a7e
     resolution:
       integrity: sha1-DnBf+jRQs9GDBlF5fKzAzQ80qOA=
+  /lodash-es/4.17.4:
+    resolution:
+      integrity: sha1-3MHXVS4VCgZABzupyzHXDwMpUOc=
   /lodash.assign/4.2.0:
     dev: true
     resolution:
@@ -5323,6 +5328,17 @@ packages:
       prop-types: 15.5.10
     resolution:
       integrity: sha1-LLDtQZEDjlPCCes6eaI+Kkz5lHA=
+  /react-redux/5.0.5:
+    dependencies:
+      create-react-class: 15.6.0
+      hoist-non-react-statics: 1.2.0
+      invariant: 2.2.2
+      lodash: 4.17.4
+      lodash-es: 4.17.4
+      loose-envify: 1.3.1
+      prop-types: 15.5.10
+    resolution:
+      integrity: sha1-+OjHsjlCJXblLWt9sGQ5RpvphGo=
   /react-router-dom/4.1.2:
     dependencies:
       history: 4.6.3
@@ -5445,6 +5461,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-WiAL+S4ON3UXUv5FsKszD9S2vpk=
+  /redux/3.7.2:
+    dependencies:
+      lodash: 4.17.4
+      lodash-es: 4.17.4
+      loose-envify: 1.3.1
+      symbol-observable: 1.0.4
+    resolution:
+      integrity: sha512-pNqnf9q1hI5HHZRBkj3bAngGZW/JMCmexDlOxw4XagXY2o1327nHH54LoTjiPJ0gizoqPDRqWyX/00g0hD6w+A==
   /regenerate/1.3.2:
     resolution:
       integrity: sha1-0ZQcZ7rUN+G+dkM63Vs4X5WxkmA=
@@ -6172,6 +6196,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-n1dyQTlSE1xv779Ar+ak+qiLS7U=
+  /symbol-observable/1.0.4:
+    resolution:
+      integrity: sha1-Kb9hXUqnEhvdiYsi1LP5vE4qoD0=
   /tapable/0.2.6:
     dev: true
     resolution:
@@ -6888,7 +6915,9 @@ specifiers:
   prop-types: ^15.5.10
   react: ^15.6.1
   react-dom: ^15.6.1
+  react-redux: ^5.0.5
   react-router-dom: ^4.1.2
+  redux: ^3.7.2
   sass-loader: ^6.0.6
   sass-resources-loader: ^1.2.1
   simple-line-icons: ^2.4.1

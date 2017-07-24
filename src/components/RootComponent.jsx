@@ -7,6 +7,7 @@ import CreateOfferPage from "./stateful/pages/CreateOfferPage/CreateOfferPage.js
 import TopContainer from "./stateful/TopContainer/TopContainer.jsx";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import marketApp from '../redux/reducers/index';
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {

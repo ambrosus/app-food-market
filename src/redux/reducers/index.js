@@ -1,7 +1,7 @@
 import thunkMiddleware from 'redux-thunk'
 import { combineReducers } from 'redux';
 import { createStore, applyMiddleware } from 'redux'
-import { waitForWeb3 } from '../actions/Action.js';
+import { connectToWeb3 } from '../actions/Action.js';
 import getAllOffers from '../actions/MarketAction.js';
 import transactionsStatus from './TransactionsStatusReducer.js';
 import web3Status from './web3Status.js';
@@ -14,7 +14,7 @@ const store = createStore(combineReducers({
     }),
     applyMiddleware(thunkMiddleware));
 
-store.dispatch(waitForWeb3());
+store.dispatch(connectToWeb3());
 
 window.store = store;
 

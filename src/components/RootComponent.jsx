@@ -12,7 +12,6 @@ require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
     render() {
-    	let store = createStore(marketApp);
         return (
         <Provider store={store}>
             <Router>

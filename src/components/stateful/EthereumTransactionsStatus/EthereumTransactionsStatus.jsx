@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { statusAddPendingTransaction } from '../../../redux/actions/Action.js';
+import { sendTransaction } from '../../../redux/actions/Action.js';
 import TransactionsStatus from '../../stateless/TransactionsStatus/TransactionsStatus.jsx';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onClick: () => {
-            dispatch(statusAddPendingTransaction("0x", "Adding item", "/dupa"));
+            dispatch(sendTransaction(web3.eth.defaultAccount, 1000));
         }
     }
 }

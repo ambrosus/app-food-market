@@ -18,6 +18,14 @@ $navigation-bar-padding: 0 34px;
   height: $navigation-bar-height;
   background-color: $navigation-background-color;
 
+  &__link {
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
   &__title {
     font-family: 'Muli', sans-serif;
     font-size: 22px;
@@ -31,7 +39,8 @@ $navigation-bar-padding: 0 34px;
 
   &__create-offer-button {
     width: 100%;
-    max-width: 250px;
+    max-width: 350px;
+
     @include button-special(
                     $create-offer-button-border-color,
                     $create-offer-button-background-color,

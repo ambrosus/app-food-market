@@ -21,7 +21,7 @@ export default class RootComponent extends Component {
                     <Route exact path="/" component={MarketPage}/>
                     <Route exact path="/orders" component={OrdersPage}/>
                     <Route exact path="/profile" component={CreateOfferPage}/>
-                    <Route exact path="/createOffer" component={CreateOfferPage}/>
+                    <Route exact path="/create-offer" component={CreateOfferPage}/>
                 </PageContainer>
             </Router>
         </Provider>)

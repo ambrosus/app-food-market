@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'; 
 import transactionsStatus from './TransactionsStatusReducer.js';
+import offers from './OffersReducer.js';
 
-const marketApp = combineReducers({
-    transactionsStatus
+const marketReducer = combineReducers({
+    transactionsStatus,
+    offers
 });
 
-export default marketApp;
+export default marketReducer;

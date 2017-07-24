@@ -33,7 +33,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "ambrosus": "^0.1.0",
+    "ambrosus": "^0.1.3",
     "font-awesome": "^4.7.0",
     "normalize": "^0.3.1",
     "normalize.css": "^7.0.0",
@@ -41,6 +41,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "simple-line-icons": "^2.4.1"
   }
 }

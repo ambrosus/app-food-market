@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductContainer from './stateful/ProductContainer/ProductContainer.jsx';
+import Market from './stateful/Market.js';
 import NavigationBar from './stateless/NavigationBar/NavigationBar.jsx';
 import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
 import { Provider } from 'react-redux';
@@ -23,7 +24,7 @@ export default class RootComponent extends Component {
                         <hr className="line" />
                     </Header>
                     <NavigationBar/>
-                    <ProductContainer/>
+                    <Market/>
                 </PageContainer>
         	</Provider>)
     }

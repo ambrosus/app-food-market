@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import ProductItem from "../../stateless/ProductItem/ProductItem.jsx";
+
 require('./ProductContainer.scss');
 
-export default class ProductContainer extends Component {
+/*export default class ProductContainer extends Component {
     render() {
         return (<div className="container">
             <ProductItem name="Ale"
@@ -44,4 +45,23 @@ export default class ProductContainer extends Component {
                          title="Best trice in the world"/>
         </div>)
     }
-}
+}*/
+
+const ProductContainer = ({offers}) => {
+  if (!offers)
+    return null;
+  return (
+    <div className="container">
+      {offers.map((offer) => 
+        <ProductItem 
+            name={offer.name}
+            price={'€'+offer.pricePerUnit/100.0+'/kg'}
+            seller={offer.seller.slice(0,10)+'...'}
+            title={'The best ' + offer.name + ' in the world'} 
+            />)
+    }
+    </div>
+  );
+};
+
+export default ProductContainer;

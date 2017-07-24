@@ -12,6 +12,7 @@ class CreateOfferPage extends Component {
                 <Button className="navigation__cancel-button">Cancel</Button>
                 <Button className="navigation__save-button">Save</Button>
             </NavigationBar>
+
             <TextField label="Name of object"/>
         </div>)
     }

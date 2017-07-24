@@ -1,6 +1,11 @@
 .context-menu {
   display: flex;
 
+  &__link {
+    color: #002C87;
+    text-decoration: none;
+  }
+
   &__element {
     font-family: 'Muli', sans-serif;
     font-weight: bold;
@@ -19,6 +24,11 @@
       color: #20abfa;
       padding-bottom: 15px;
       border-bottom: 5px solid #20ABFA;
+    }
+
+    &:visited {
+      color: #002C87;
+      text-decoration: none;
     }
   }
 }

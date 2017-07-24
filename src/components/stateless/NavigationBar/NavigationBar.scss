@@ -5,8 +5,8 @@ $create-offer-button-border-color: #002C87;
 $create-offer-button-height: 40px;
 $create-offer-button-text-color: #ffffff;
 $navigation-background-color: #ffffff;
-$navigation-bar-height: 91px;
-$navigation-bar-padding: 0 42px;
+$navigation-bar-height: 50px;
+$navigation-bar-padding: 0 34px;
 
 .navigation {
   display: flex;
@@ -25,7 +25,13 @@ $navigation-bar-padding: 0 42px;
     color: #476cbb;
   }
 
+  &__category-selector {
+    margin-right: 30px;
+  }
+
   &__create-offer-button {
+    width: 100%;
+    max-width: 250px;
     @include button-special(
                     $create-offer-button-border-color,
                     $create-offer-button-background-color,

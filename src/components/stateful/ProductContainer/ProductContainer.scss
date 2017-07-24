@@ -1,6 +1,18 @@
 $container-color: #ffffff;
 
 .container {
+
+  &:before {
+    content: "";
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 10px;
+    width: 95%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+  }
+
   width: 100%;
   background-color: $container-color;
   display: flex;

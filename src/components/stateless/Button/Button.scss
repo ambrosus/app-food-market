@@ -1,18 +1,22 @@
-@mixin button-special($border-color, $background-color, $text-color, $height) {
+@mixin button($text-color, $background-color, $height) {
+  cursor: pointer;
   line-height: $height;
   height: $height;
   vertical-align: middle;
   padding: 0 15px;
-  border: 1px solid $border-color;
   background-color: $background-color;
   box-sizing: border-box;
   font-size: 15px;
-  border-radius: 2px;
   color: $text-color;
   text-align: center;
   font-family: 'Muli', sans-serif;
   font-weight: 700;
   white-space: nowrap
+}
+
+@mixin border($color, $size:0px, $type:solid, $radius:0px) {
+  border: $size $type $color;
+  border-radius: $radius;
 }
 
 .button-icon-default {

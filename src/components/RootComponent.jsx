@@ -3,17 +3,15 @@ import ProductContainer from './stateful/ProductContainer/ProductContainer.jsx';
 import NavigationBar from './stateless/NavigationBar/NavigationBar.jsx';
 import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
 import { Provider } from 'react-redux';
-import marketApp from '../redux/reducers/index.js';
-import { createStore } from 'redux';
+import store from '../redux/reducers/index.js';
+
 import Header from "./stateless/Header/Header.jsx";
 import ContextMenu from './stateless/ContextMenu/ContextMenu.jsx';
 require('./RootComponent.scss');
 
 
-
 export default class RootComponent extends Component {
     render() {
-    	let store = createStore(marketApp);
         return (
 			<Provider store={store}>
                 <PageContainer>

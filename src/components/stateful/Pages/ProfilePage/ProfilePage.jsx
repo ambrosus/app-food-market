@@ -1,9 +1,10 @@
 import React, {Component} from "react";
+import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 
-let OrdersPage = () => (
+let ProfilePage = () => (
     <div>
         <NavigationBar title="Profile"/>
     </div>
 );
 
-export default OrdersPage;
+export default ProfilePage;

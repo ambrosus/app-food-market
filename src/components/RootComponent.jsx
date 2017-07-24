@@ -1,10 +1,10 @@
-import React, {Component} from "react";
-import ProductContainer from "./stateful/ProductContainer/ProductContainer.jsx";
-import NavigationBar from "./stateless/NavigationBar/NavigationBar.jsx";
-import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
-import Header from "./stateless/Header/Header.jsx";
-import ContextMenu from "./stateless/ContextMenu/ContextMenu.jsx";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import React, {Component} from "react";
+import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
+import MarketPage from "./stateful/pages/MarketPage/MarketPage.jsx";
+import OrdersPage from "./stateful/pages/OrdersPage/OrdersPage.jsx";
+import CreateOfferPage from "./stateful/pages/CreateOfferPage/CreateOfferPage.jsx";
+import TopContainer from "./stateful/TopContainer/TopContainer.jsx";
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
@@ -12,28 +12,13 @@ export default class RootComponent extends Component {
         return (
             <Router>
                 <PageContainer>
-                    <Header>
-                        <img className="logo" src="/static/images/logotype.png"/>
-                        <ContextMenu/>
-                        <hr className="line"/>
-                    </Header>
-                    <Route exact path="/" component={main}/>
-                    <Route path="/orders" component={orders}/>
+                    <TopContainer/>
+                    <Route exact path="/" component={MarketPage}/>
+                    <Route exact path="/orders" component={OrdersPage}/>
+                    <Route exact path="/profile" component={CreateOfferPage}/>
+                    <Route exact path="/createOffer" component={CreateOfferPage}/>
                 </PageContainer>
             </Router>
         )
     }
 };
-
-let main = () => (
-    <div>
-        <NavigationBar/>
-        <ProductContainer/>
-    </div>
-);
-
-let orders = () => (
-    <div>
-        <ProductContainer/>
-    </div>
-);

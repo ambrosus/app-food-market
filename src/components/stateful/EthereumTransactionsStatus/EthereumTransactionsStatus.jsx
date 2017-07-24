@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { sendTransaction } from '../../../redux/actions/Action.js';
+import { sendTransaction } from '../../../redux/actions/TransactionAction.js';
 import TransactionsStatus from '../../stateless/TransactionsStatus/TransactionsStatus.jsx';
 
 const mapStateToProps = (state, ownProps) => {

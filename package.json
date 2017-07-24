@@ -33,7 +33,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "ambrosus": "^0.1.0",
+    "ambrosus": "^0.1.4",
     "font-awesome": "^4.7.0",
     "normalize": "^0.3.1",
     "normalize.css": "^7.0.0",

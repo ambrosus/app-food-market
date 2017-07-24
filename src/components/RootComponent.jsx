@@ -5,10 +5,9 @@ import MarketPage from "./stateful/Pages/MarketPage/MarketPage.jsx";
 import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage.jsx";
 import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage.jsx";
 import CreateOfferPage from "./stateful/Pages/CreateOfferPage/CreateOfferPage.jsx";
-import TopContainer from "./stateful/TopContainer/TopContainer.jsx";
+import HeaderContainer from "./stateful/HeaderContainer/HeaderContainer.jsx";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import store from "../redux/reducers/index";
+import store from '../redux/reducers/index.js';
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
@@ -17,7 +16,7 @@ export default class RootComponent extends Component {
         <Provider store={store}>
             <Router>
                 <PageContainer>
-                    <TopContainer/>
+                    <HeaderContainer/>
                     <Route exact path="/" component={MarketPage}/>
                     <Route exact path="/orders" component={OrdersPage}/>
                     <Route exact path="/profile" component={ProfilePage}/>

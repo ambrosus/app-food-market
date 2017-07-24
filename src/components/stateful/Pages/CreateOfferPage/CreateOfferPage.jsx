@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom";
 import Button from "../../../stateless/Button/Button.jsx";
+import TextField from "../../../stateless/TextField/TextField.jsx";
 require("./CreateOfferPage.scss");
 
 class CreateOfferPage extends Component {
@@ -11,6 +12,7 @@ class CreateOfferPage extends Component {
                 <Button className="navigation__cancel-button">Cancel</Button>
                 <Button className="navigation__save-button">Save</Button>
             </NavigationBar>
+            <TextField label="Name of object"/>
         </div>)
     }
 }

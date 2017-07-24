@@ -3,7 +3,7 @@ import Header from '../../stateless/Header/Header.jsx';
 import ContextMenu from '../../stateless/ContextMenu/ContextMenu.jsx';
 import EthereumTransactionsStatus from '../../stateful/EthereumTransactionsStatus/EthereumTransactionsStatus.jsx';
 
-let TopContainer = () => (
+let HeaderContainer = () => (
     <Header>
         <img className="logo" src="/static/images/logotype.png"/>
 		<EthereumTransactionsStatus/>
@@ -12,4 +12,4 @@ let TopContainer = () => (
     </Header>
 );
 
-export default TopContainer;
+export default HeaderContainer;

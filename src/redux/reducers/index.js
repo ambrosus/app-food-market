@@ -13,6 +13,4 @@ const store = createStore(combineReducers({
 
 store.dispatch(waitForWeb3());
 
-window.store = store;
-
 export default store;

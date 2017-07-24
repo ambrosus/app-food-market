@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
-import ProductContainer from "../../ProductContainer/ProductContainer.jsx";
+import ProductContainer from "../../../stateless/ProductContainer/ProductContainer.jsx";
 import TextField from "../../../stateless/TextField/TextField.jsx";
 import Button from "../../../stateless/Button/Button.jsx";
 

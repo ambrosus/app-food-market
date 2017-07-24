@@ -5,11 +5,15 @@ import MarketPage from "./stateful/pages/MarketPage/MarketPage.jsx";
 import OrdersPage from "./stateful/pages/OrdersPage/OrdersPage.jsx";
 import CreateOfferPage from "./stateful/pages/CreateOfferPage/CreateOfferPage.jsx";
 import TopContainer from "./stateful/TopContainer/TopContainer.jsx";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
     render() {
+    	let store = createStore(marketApp);
         return (
+        <Provider store={store}>
             <Router>
                 <PageContainer>
                     <TopContainer/>
@@ -19,6 +23,6 @@ export default class RootComponent extends Component {
                     <Route exact path="/createOffer" component={CreateOfferPage}/>
                 </PageContainer>
             </Router>
-        )
+        </Provider>)
     }
 };

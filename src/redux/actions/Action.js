@@ -1,3 +1,8 @@
-/**
- * Created by konrad-szalwinski on 21/07/2017.
- */
+export const statusAddPendingTransaction = (tx, caption, url) => {
+    return {
+        type: 'STATUS_ADD_PENDING_TRANSACTION',
+        status: 'pending',
+        tx, caption,
+        url
+    };
+};

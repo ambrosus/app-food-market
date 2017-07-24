@@ -38,13 +38,12 @@ $navigation-bar-padding: 0 34px;
   }
 
   &__create-offer-button {
+
+    @include button($create-offer-button-text-color,
+            $create-offer-button-background-color,
+            $create-offer-button-height);
+
     width: 100%;
     max-width: 350px;
-
-    @include button-special(
-                    $create-offer-button-border-color,
-                    $create-offer-button-background-color,
-                    $create-offer-button-text-color,
-                    $create-offer-button-height);
   }
 }

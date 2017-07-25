@@ -1,27 +1,37 @@
+$label-text-color: #002C87;
+$field-height: 50px;
+
 $underline-color: rgba(0,44,135,0.15);
 $placeholder-color: rgba(32,171,250,0.42);
-$field-name-color: rgba(0,44,135,0.4);
 
-.field-name {
+:local(.label) {
+  display: block;
   font-family: 'Muli', sans-serif;
-  color: $field-name-color;
+  color: $label-text-color;
+  font-weight: bold;
   font-size: 13px;
-  padding-right: 10px;
+  padding-bottom: 10px;
 
   &::after {
     content: ":"
   }
 }
 
-.text-field {
+:local(.input) {
+  display: flex;
+  color: #002C87;
+  border: 1px solid #002C87;
+  flex-direction: column;
+  padding-left: 14px;
   font-family: 'Muli', sans-serif;
-  color: #20abfa;
-  font-size: 15px;
-  outline: none;
-  background-color: transparent;
-  border: 0 none;
-  border-bottom: 1px solid $underline-color;
-  padding: 3px 3px;
+  font-size: 28px;
+  width: 750px;
+  height: 50px;
+
+  &:focus {
+    border: 1px solid #002C87;
+    outline: none;
+  }
 
   &::placeholder {
     content: 'Fish';

@@ -1,15 +1,15 @@
 import React, {Component} from "react";
-import Header from '../../stateless/Header/Header.jsx';
-import ContextMenu from '../../stateless/ContextMenu/ContextMenu.jsx';
-import EthereumTransactionsStatus from '../../stateful/EthereumTransactionsStatus/EthereumTransactionsStatus.jsx';
+import ContextMenu from "../../stateless/ContextMenu/ContextMenu.jsx";
+import EthereumTransactionsStatus from "../../stateful/EthereumTransactionsStatus/EthereumTransactionsStatus.jsx";
+require('./HeaderContainer.scss');
 
-let HeaderContainer = () => (
-    <Header>
-        <img className="logo" src="/static/images/logotype.png"/>
-		<EthereumTransactionsStatus/>
-        <ContextMenu/>
-        <hr className="line"/>
-    </Header>
-);
-
-export default HeaderContainer;
+export default class HeaderContainer extends Component {
+    render() {
+        return (<div className="header">
+            <img className="logo" src="/static/images/logotype.png"/>
+            <EthereumTransactionsStatus/>
+            <ContextMenu/>
+            <hr className="line"/>
+        </div>)
+    }
+}

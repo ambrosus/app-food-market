@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { statusAddPendingTransaction } from '../../../redux/actions/Action.js';
+import { statusAddPendingTransaction } from '../../../redux/actions/TransactionStatusAction.js';
 
 
 export default class TransactionsStatus extends Component {

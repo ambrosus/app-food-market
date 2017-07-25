@@ -22,9 +22,17 @@
   justify-content: center;
 }
 
+:local(.label) {
+  font-family: 'Muli', sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  color: #002C87;
+}
+
 :local(.imageContainer) {
   width: 360px;
   height: 276px;
+  margin-right: 28px;
   border: 1px solid rgba(0,44,135,0.31);
 }
 
@@ -33,17 +41,19 @@
   height: 276px;
   flex-direction: column;
   justify-content: center;
+  align-content: space-between;
 }
 
 :local(.container) {
-  width: 750px;
+  width: 762px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 :local(.column) {
-  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 :local(.element) {

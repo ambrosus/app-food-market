@@ -4,6 +4,7 @@ import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
 import Button from "../../../stateless/Button/Button.jsx";
 import TextField from "../../../stateless/TextField/TextField.jsx";
+import SearchField from "../../../stateless/SearchField/SearchField.jsx";
 import styles from "./CreateOfferPage.scss";
 
 class CreateOfferPage extends Component {
@@ -26,9 +27,9 @@ class CreateOfferPage extends Component {
                         </div>
                     </div>
                     <div className={styles.column}>
-                        <TextField className={styles.element} label="Package weight"/>
+                        <SearchField className={styles.label} label="Package weight"/>
+                        <SearchField className={styles.label} label="Price per package (€)"/>
                         <TextField className={styles.element} label="Category"/>
-                        <TextField className={styles.element} label="Price per package (€)"/>
                     </div>
                 </div>
             </div>

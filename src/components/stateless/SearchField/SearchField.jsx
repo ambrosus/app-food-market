@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-require('./SearchField.scss');
+import styles from './SearchField.scss';
 
 export default class SearchField extends Component {
 
     render() {
         return (<div {...this.props}>
-            <span className="field-name">{ this.props.label }</span>
-            <input placeholder={ this.props.placeholder } type="text" className="text-field"/>
+            <span className={styles.label}>{ this.props.label }</span>
+            <input placeholder={ this.props.placeholder } type="text" className={styles.textField}/>
             <div className="text-line"/>
         </div>)
     }

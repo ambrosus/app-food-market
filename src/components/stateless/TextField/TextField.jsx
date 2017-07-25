@@ -1,13 +1,12 @@
 import React, {Component} from "react";
-require('./TextField.scss');
+import styles from "./TextField.scss";
 
 export default class TextField extends Component {
 
     render() {
         return (<div {...this.props}>
-            <span className="field-name">{ this.props.label }</span>
-            <input placeholder={ this.props.placeholder } type="text" className="text-field"/>
-            <div className="text-line"/>
+            <span className={styles.label}>{ this.props.label }</span>
+            <input className={styles.input} placeholder={ this.props.placeholder } type="text"/>
         </div>)
     }
 }

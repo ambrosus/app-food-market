@@ -1,27 +1,25 @@
 import {statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction} from './TransactionStatusAction.js';
 
+
 const CHECK_TRANSACTION_STATUS_TIME = 1000;
 
-export const sendTransaction = (to, value) => {
+export const executeEthereumTransaction = (promise, caption, url) => {
   return function (dispatch) {
-      var args = {to, value};
-      web3.eth.sendTransaction(args, (e, r) => { 
-        if (e) {
-          dispatch(statusAddFailedTransaction("","Random transaction", e));
-        } else {
-          dispatch(statusAddPendingTransaction(r, "Random transaction", "/"));
-          dispatch(watchPendingTransaction(r, "Random transaction", "/"));
-        }
+      promise.then((tx) => { 
+        dispatch(statusAddPendingTransaction(tx, caption, url));
+        dispatch(watchPendingTransaction(tx, caption, url));
+      }).catch((reason) => {
+        dispatch(statusAddFailedTransaction("", caption, reason));
       });
   }  
 }
 
-export const watchPendingTransaction = (tx, label, url) => {
+export const watchPendingTransaction = (tx, caption, url) => {
 
   function checkStatus(tx, dispatch) {
     web3.eth.getTransaction(tx, function(error, transaction) {
       if (transaction.blockHash) {
-        dispatch(statusAddSuccessTransaction(tx));
+        dispatch(statusAddSuccessTransaction(tx, caption, url));
       } else {
         setTimeout(checkStatus, CHECK_TRANSACTION_STATUS_TIME);
       }

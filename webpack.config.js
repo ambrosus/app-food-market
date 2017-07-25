@@ -49,10 +49,20 @@ module.exports = {
                 }
             },
             {
+                test: /\.css$/,
+                loader: 'css-loader',
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
-                    'css-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: false,
+                            localIdentName: '[name]__[local]--[hash:base64:5]'
+                        }
+                    },
                     'sass-loader'
                 ],
             }

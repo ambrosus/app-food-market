@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import { sendTransaction } from '../../../redux/actions/TransactionAction.js';
+import { executeEthereumTransaction } from '../../../redux/actions/TransactionAction.js';
 import TransactionsStatus from '../../stateless/TransactionsStatus/TransactionsStatus.jsx';
+const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {
     return state["transactionsStatus"];
@@ -9,7 +10,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onClick: () => {
-            dispatch(sendTransaction(web3.eth.defaultAccount, 1000));
+			const promisifedSendTransaction = promisify(web3.eth.sendTransaction)      
+			var args = {to: web3.eth.defaultAccount, value: 1000};
+			dispatch(executeEthereumTransaction(promisifedSendTransaction(args), "Test transaction", "url"));
         }
     }
 }

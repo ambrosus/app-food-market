@@ -26,7 +26,6 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
             };
 
         case 'STATUS_ADD_SUCCESS_TRANSACTION':
-            console.log("suck!");
             return {
                 success: [...state.success, {
                     status: 'success',

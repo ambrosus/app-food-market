@@ -1,0 +1,30 @@
+$underline-color: rgba(0,44,135,0.15);
+$placeholder-color: rgba(32,171,250,0.42);
+$field-name-color: rgba(0,44,135,0.4);
+
+.field-name {
+  font-family: 'Muli', sans-serif;
+  color: $field-name-color;
+  font-size: 13px;
+  padding-right: 10px;
+
+  &::after {
+    content: ":"
+  }
+}
+
+.text-field {
+  font-family: 'Muli', sans-serif;
+  color: #20abfa;
+  font-size: 15px;
+  outline: none;
+  background-color: transparent;
+  border: 0 none;
+  border-bottom: 1px solid $underline-color;
+  padding: 3px 3px;
+
+  &::placeholder {
+    content: 'Fish';
+    color: $placeholder-color;
+  }
+}

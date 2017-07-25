@@ -6,10 +6,12 @@ import getAllOffers from '../actions/MarketAction.js';
 import transactionsStatus from './TransactionsStatusReducer.js';
 import web3Status from './web3Status.js';
 import offers from './OffersReducer.js';
+import address from './ContractsReducer.js';
 
 const store = createStore(combineReducers({
         transactionsStatus,
         offers,
+        address,
         web3Status
     }),
     applyMiddleware(thunkMiddleware));

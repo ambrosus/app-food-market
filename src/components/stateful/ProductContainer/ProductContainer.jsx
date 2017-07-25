@@ -5,7 +5,6 @@ require('./ProductContainer.scss');
 
 
 const ProductContainer = ({offers}) => {
-  console.log(offers)
   if (!offers)
     return null;
   if (typeof offers === 'string'){

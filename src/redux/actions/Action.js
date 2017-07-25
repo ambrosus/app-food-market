@@ -23,7 +23,7 @@ export const waitForWeb3 = async () => {
 export function connectToWeb3() {
   
   return async function (dispatch) {
-    await wait();
+    await waitForWeb3();
     return dispatch(initWeb3());      
   }
 }

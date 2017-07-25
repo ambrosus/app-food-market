@@ -4,6 +4,8 @@ const offers = (state = [], action) => {
       return 'Loading...';
     case 'RECEIVE_OFFERS':
       return action.offers;
+    case 'NEW_ADDRESS':
+      return 'Market address: ' + action.address
     default:
       return state;
   }

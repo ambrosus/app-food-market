@@ -1,4 +1,4 @@
-import Ambrosus from 'ambrosus'
+import Ambrosus from 'ambrosus';
 
 const doInitWeb3 = () => {
     if (typeof web3 !== 'undefined') {
@@ -6,18 +6,10 @@ const doInitWeb3 = () => {
     }
 };
 
-export const initWeb3 = (state = {init: false}, action) => {
-    switch (action.type) {
-        case 'INIT_WEB3':
-            return doInitWeb3();
-        default:
-            return state;
-    }
-};
-
 export const initAmbrosus = (state = null, action) => {
     switch (action.type) {
-        case 'INIT_AMBROSUS':            
+        case 'INIT_AMBROSUS': 
+            doInitWeb3();
             Ambrosus.setProvider(web3.currentProvider);
             return Ambrosus;
         default:

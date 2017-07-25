@@ -1,14 +1,18 @@
-var delay = require('timeout-as-promise');
+import retry_delay from '../../utils/retry_delay.js';
+import Ambrosus from 'ambrosus';
 
-const WEB3_LOAD_TIMEOUT = 1000;
+window.Ambrosus3 = Ambrosus;
+
+const WEB3_RETRY_TIME = 200;
+const WEB3_RETRIES = 200;
 
 export function initializeBlockchain() {
   return function (dispatch) {
-    return delay(WEB3_LOAD_TIMEOUT)
-      .then(json =>
-        dispatch({ type: 'INIT_WEB3' })        
-      ).then(json =>
-        dispatch({ type: 'INIT_AMBROSUS' })
+    
+    return retry_delay(() => (typeof web3 === 'undefined'), WEB3_RETRY_TIME, WEB3_RETRIES)
+      .then(() => {
+          return dispatch({ type: 'INIT_AMBROSUS' });
+        }
       )
   }
 }

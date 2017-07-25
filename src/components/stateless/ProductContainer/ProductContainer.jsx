@@ -8,15 +8,14 @@ require('./ProductContainer.scss');
 class ProductContainer extends Component {
 
   componentDidMount() {
-    this.props.onMount(this.props.address);
+    this.props.onMount(this.props.market.address);
   }
 
   render() {
-    var offers = this.props.offers;
-    if (!offers)
-      return null;
-    if (typeof offers === 'string'){
-      return (<div>{offers}</div>)
+    var offers = this.props.market.offers;
+    
+    if (this.props.market.status != null){
+      return (<p>{this.props.market.status}</p>)
     }
     return (
       <div className="container">

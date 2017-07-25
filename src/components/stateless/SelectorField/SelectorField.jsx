@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import styles from './SearchField.scss';
+import styles from './SelectorField.scss';
 
-export default class SearchField extends Component {
+export default class SelectorField extends Component {
 
     render() {
         return (<div {...this.props}>

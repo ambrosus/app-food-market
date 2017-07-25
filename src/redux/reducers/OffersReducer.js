@@ -1,10 +1,11 @@
 const offers = (state = [], action) => {
   switch (action.type) {
-    case 'REQUEST_OFFERS':
+    case 'FETCH_OFFERS_REQUEST':
+    case 'CREATE_MARKET_REQUEST':
       return 'Loading...';
     case 'RECEIVE_OFFERS':
       return action.offers;
-    case 'NEW_ADDRESS':
+    case 'CREATE_MARKET_RESPONSE':
       return 'Market address: ' + action.address
     default:
       return state;

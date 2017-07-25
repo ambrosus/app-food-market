@@ -26,6 +26,7 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
             };
 
         case 'STATUS_ADD_SUCCESS_TRANSACTION':
+            console.log("suck!");
             return {
                 success: [...state.success, {
                     status: 'success',
@@ -34,7 +35,7 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
                     url: action.url
                 }],
                 failed: state.failed,
-                pending: state.pending
+                pending: state.pending.filter((transaction) => transaction.tx != action.tx)
             };
 
         default:

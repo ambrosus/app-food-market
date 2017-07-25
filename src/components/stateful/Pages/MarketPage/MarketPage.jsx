@@ -6,18 +6,7 @@ import Market from "../../Market.js";
 import TextField from "../../../stateless/TextField/TextField.jsx";
 import Button from "../../../stateless/Button/Button.jsx";
 
-
 class MarketPage extends Component {
-
-    constructor(props) {
-      super(props);
-    }
-
-    componentDidMount() {
-      console.log(this);
-      this.props.onMount();
-    }
-
     render(){
         return (
             <div>

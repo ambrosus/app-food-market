@@ -8,7 +8,6 @@ import CreateOfferPage from "./stateful/Pages/CreateOfferPage/CreateOfferPage.js
 import HeaderContainer from "./stateful/HeaderContainer/HeaderContainer.jsx";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
-import getAllOffers from "../redux/actions/MarketAction.js";
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
@@ -18,9 +17,7 @@ export default class RootComponent extends Component {
                 <Router>
                     <PageContainer>
                         <HeaderContainer/>
-                        {/*<Route exact path="/" component={MarketPage} {()=>store.dispatch(getAllOffers(store.getState().address))}/>*/}
-                        <Route exact path="/" render={(props) => 
-                            <MarketPage onMount={()=>store.dispatch(getAllOffers(store.getState().address))}/>} />
+                        <Route exact path="/" component={MarketPage}/>
                         <Route exact path="/orders" component={OrdersPage}/>
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/create-offer" component={CreateOfferPage}/>

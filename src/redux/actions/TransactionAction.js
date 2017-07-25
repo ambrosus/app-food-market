@@ -1,5 +1,7 @@
 import {statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction} from './TransactionStatusAction.js';
 
+const CHECK_TRANSACTION_STATUS_TIME = 1000;
+
 export const sendTransaction = (to, value) => {
   return function (dispatch) {
       var args = {to, value};
@@ -15,8 +17,19 @@ export const sendTransaction = (to, value) => {
 }
 
 export const watchPendingTransaction = (tx, label, url) => {
+
+  function checkStatus(tx, dispatch) {
+    web3.eth.getTransaction(tx, function(error, transaction) {
+      if (transaction.blockHash) {
+        dispatch(statusAddSuccessTransaction(tx));
+      } else {
+        setTimeout(checkStatus, CHECK_TRANSACTION_STATUS_TIME);
+      }
+    });
+  }
+
   return function (dispatch) {
-    console.log("watch:", tx, label, url);
+    checkStatus(tx, dispatch);
   }
 }
 

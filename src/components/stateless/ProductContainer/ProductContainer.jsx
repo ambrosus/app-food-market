@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import ProductItem from "../../stateless/ProductItem/ProductItem.jsx";
-
+import ProductItem from "../ProductItem/ProductItem.jsx";
 require('./ProductContainer.scss');
 
 

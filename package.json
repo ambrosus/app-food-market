@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "ambrosus": "^0.1.6",
+    "es6-promisify": "^5.0.0",
     "font-awesome": "^4.7.0",
     "normalize": "^0.3.1",
     "normalize.css": "^7.0.0",

@@ -1,4 +1,5 @@
 import { retry_delay } from "./InitializeAction.js";
+import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => {
   return {
@@ -27,11 +28,11 @@ const marketCreated = (marketContract) => {
 }
 
 export const createMarket = () => {
-  var Ambrosus = global.Ambrosus;
 
   return async function(dispatch) {
       dispatch(requestNewMarket());
-      retry_delay(() => typeof Ambrosus.MarketContract.currentProvider == 'undefined').then(async () => {
+      retry_delay(() => typeof Ambrosus.MarketContract.currentProvider == 'undefined' || web3.eth.accounts.length==0)
+      .then(async () => {
         const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
         const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
         const market = await marketRepo.create(web3.eth.accounts[0]);
@@ -41,7 +42,6 @@ export const createMarket = () => {
 }
 
 export const getAllOffers = (address) => {
-  var Ambrosus = global.Ambrosus;
 
   return async function(dispatch) {
       dispatch(requestAllOffers());

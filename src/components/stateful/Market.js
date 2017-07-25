@@ -4,8 +4,8 @@ import getAllOffersOrCreateMarket from "../../redux/actions/MarketAction.js";
 
 const mapStateToProps = state => {
   return {
-    offers: state.offers,
-    address: state.address,
+    offers: state.market.offers,
+    address: state.market.address,
   };
 };
 

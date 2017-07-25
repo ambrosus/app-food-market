@@ -16,17 +16,30 @@
   width: 750px;
 }
 
-:local(.image) {
+:local(.verticalContainer) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+:local(.imageContainer) {
   width: 360px;
   height: 276px;
-  border: 1px solid #002C87;
+  border: 1px solid rgba(0,44,135,0.31);
+}
+
+:local(.horizontalContainer) {
+  display: flex;
+  height: 276px;
+  flex-direction: column;
+  justify-content: center;
 }
 
 :local(.container) {
+  width: 750px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 750px;
 }
 
 :local(.column) {

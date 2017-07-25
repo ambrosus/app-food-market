@@ -1,16 +1,58 @@
 @import '../../../stateless/Button/Button.scss';
 
-.navigation {
+:local(.cancelButton) {
+  @include button(#002C87, #ffffff, 40px);
+  @include border(#002c87, 1px);
+  width: 200px;
+  margin: 0 20px;
+}
 
-  &__cancel-button {
-    @include button(#002C87, #ffffff, 40px);
-    @include border(#002c87, 1px);
-    width: 200px;
-    margin: 0 20px;
-  }
+:local(.saveButton) {
+  @include button(#ffffff, #002c87, 40px);
+  width: 200px;
+}
 
-  &__save-button {
-    @include button(#ffffff, #002c87, 40px);
-    width: 200px;
-  }
+:local(.name) {
+  width: 750px;
+}
+
+:local(.verticalContainer) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+:local(.label) {
+  font-family: 'Muli', sans-serif;
+  font-weight: bolder;
+  font-size: 15px;
+  color: #002C87;
+}
+
+:local(.imageContainer) {
+  width: 360px;
+  height: 276px;
+  margin-right: 28px;
+  border: 1px solid rgba(0,44,135,0.31);
+}
+
+:local(.horizontalContainer) {
+  display: flex;
+  height: 276px;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-between;
+}
+
+:local(.container) {
+  width: 762px;
+  display: flex;
+  flex-direction: row;
+}
+
+:local(.column) {
+}
+
+:local(.element) {
+  padding-bottom: 15px;
 }

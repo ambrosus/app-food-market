@@ -2,7 +2,7 @@ import Ambrosus from 'ambrosus'
 
 const doInitWeb3 = () => {
     if (typeof web3 !== 'undefined') {
-        return new Web3(web3.currentProvider);
+        return window.web3 = new Web3(web3.currentProvider);
     }
 };
 

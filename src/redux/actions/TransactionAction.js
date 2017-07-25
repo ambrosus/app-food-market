@@ -18,10 +18,11 @@ export const watchPendingTransaction = (tx, caption, url) => {
 
   function checkStatus(tx, dispatch) {
     web3.eth.getTransaction(tx, function(error, transaction) {
+      console.log(error, transaction);
       if (transaction.blockHash) {
         dispatch(statusAddSuccessTransaction(tx, caption, url));
       } else {
-        setTimeout(checkStatus, CHECK_TRANSACTION_STATUS_TIME);
+        setTimeout(() => checkStatus(tx, dispatch), CHECK_TRANSACTION_STATUS_TIME);
       }
     });
   }

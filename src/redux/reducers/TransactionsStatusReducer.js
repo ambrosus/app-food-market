@@ -1,3 +1,5 @@
+let nextId = 0;
+
 const transactionsStatus = (state = {pending: [], success: [], failed: []}, action) => {
     switch (action.type) {
 
@@ -5,6 +7,7 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
             return {
                 pending: [...state.pending, {
                     status: 'pending',
+                    key: (nextId++).toString(),
                     tx: action.tx,
                     caption: action.caption,
                     url: action.url
@@ -17,6 +20,7 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
             return {
                 failed: [...state.failed, {
                     status: 'failed',
+                    key: (nextId++).toString(),
                     tx: action.tx,
                     caption: action.caption,
                     errorMessage: action.errorMessage
@@ -29,6 +33,7 @@ const transactionsStatus = (state = {pending: [], success: [], failed: []}, acti
             return {
                 success: [...state.success, {
                     status: 'success',
+                    key: (nextId++).toString(),
                     tx: action.tx,
                     caption: action.caption,
                     url: action.url

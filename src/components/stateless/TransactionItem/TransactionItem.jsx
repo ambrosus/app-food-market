@@ -21,4 +21,5 @@ export default class TransactionItem extends Component {
     render() {
         return ( < li > {this.props.status} {this.props.caption} ({ this.props.tx.substring(0,8)+"..." }) </li>);
     }
+
 }

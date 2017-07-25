@@ -9,14 +9,15 @@
   font-size: 13px;
   display: table-cell;
   padding-right: 20px;
-  color: rgba(0,44,135,0.4);
+  color: rgba(0, 44, 135, 0.4);
   &:after {
-    content:":"
+    content: ":"
   }
 }
 
 :local(.value) {
   font-size: 15px;
   display: table-cell;
-  color: rgba(0,44,135,1);
+  text-align: right;
+  color: rgba(0, 44, 135, 1);
 }

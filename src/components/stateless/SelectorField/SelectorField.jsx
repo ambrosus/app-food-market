@@ -5,8 +5,23 @@ export default class SelectorField extends Component {
 
     render() {
         return (<div {...this.props}>
-            <span className={styles.label}>{ this.props.label }</span>
-            <input placeholder={ this.props.placeholder } type="text" className={styles.textField}/>
+            <span>{ this.props.label }</span>
+            <select className={styles.select}>
+                <option>Channel catfish</option>
+                <option>Char</option>
+                <option>Cherry salmon</option>
+                <option>Chimaera</option>
+                <option>Pilchard</option>
+                <option>Pilot fish</option>
+                <option>Pineapplefish</option>
+                <option>Pineconefish</option>
+                <option>Pink salmon</option>
+                <option>Píntano</option>
+                <option>Pipefish</option>
+                <option>Piranha</option>
+                <option>Pirarucu</option>
+            </select>
         </div>)
     }
 }
+

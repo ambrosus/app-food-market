@@ -1,27 +1,37 @@
 $underline-color: rgba(0,44,135,0.15);
 $placeholder-color: rgba(32,171,250,0.42);
-$field-name-color: rgba(0,44,135,0.4);
+
+$value-color: rgba(0,44,135,0.4);
+$label-color: #002c87;
+
+:local(.row) {
+  display: table-row;
+  height: 60px;
+}
 
 :local(.label) {
+  display: table-cell;
   font-family: 'Muli', sans-serif;
-  color: $field-name-color;
-  font-size: 13px;
-  padding-right: 10px;
+  color: $label-color;
+  font-size: 15px;
+  padding-right: 46px;
 
   &::after {
     content: ":"
   }
 }
 
-:local(.textField) {
+:local(.value) {
+  padding-left: 9px;
+  display: table-cell;
+  width: 127px;
   font-family: 'Muli', sans-serif;
-  color: #20abfa;
-  font-size: 15px;
+  color: #002C87;
+  border: 1px solid #002c87;
+  border-radius:2px;
+  font-size: 16px;
+  height: 40px;
   outline: none;
-  background-color: transparent;
-  border: 0 none;
-  border-bottom: 1px solid $underline-color;
-  padding: 3px 3px;
 
   &::placeholder {
     content: 'Fish';

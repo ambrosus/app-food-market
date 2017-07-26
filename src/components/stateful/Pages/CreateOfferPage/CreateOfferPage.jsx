@@ -9,6 +9,8 @@ import styles from "./CreateOfferPage.scss";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
 import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
+import FileProcessor from 'react-file-processor';
+
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -35,7 +37,24 @@ class CreateOfferPage extends Component {
         return result;
     }
 
+    handleClick(e) {
+        console.log(this.refs)
+        this.refs.myFileInput.chooseFile();
+    }
+
+    handleFileSelect(e, files) {
+        this.image = files[0];
+
+        var reader = new FileReader();
+        reader.onload = (event) => {
+          this.refs.image.src = event.target.result;
+        };
+        reader.readAsDataURL(files[0]);
+    }
+
     render() {
+        const self = this;
+
         return (<div>
                 <NavigationBar title="Create new offer">
                     <Button className={styles.cancelButton}>Cancel</Button>
@@ -43,6 +62,7 @@ class CreateOfferPage extends Component {
                         onClick={(e)=>{
                             this.props.onAdd(
                                 this.getOfferData(),
+                                this.image,
                                 this.props.address)
                         }}>Save</Button>
                 </NavigationBar>
@@ -51,14 +71,19 @@ class CreateOfferPage extends Component {
                         inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
-                            <div className={styles.imageContainer}>
-                                <div className={styles.verticalContainer}>
-                                    <div className={styles.horizontalContainer}>
-                                        <img className={styles.image}
-                                             src="./static/images/icon-image.png"/>
+                            <FileProcessor
+                                ref="myFileInput"
+                                onFileSelect={(e, f)=>this.handleFileSelect(e,f)}>
+                                <div className={styles.imageContainer} onClick={()=>this.handleClick()}>
+                                    <div className={styles.verticalContainer}>
+                                        <div className={styles.horizontalContainer}>
+                                            <img className={styles.image} 
+                                                 src="./static/images/icon-image.png"
+                                                 ref="image"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </FileProcessor>
                         </div>
                         <div className={styles.column}>
                             <SelectorField/>

@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button.jsx";
+import IPFSUploader from 'ipfs-image-web-upload';
+import IPFS from 'ipfs';
 require('./ProductItem.scss');
 
 export default class ProductItem extends Component {
@@ -29,9 +31,20 @@ export default class ProductItem extends Component {
         },
     };
 
+    componentDidMount(){
+        if (!this.props.hash)
+            return;
+        var ipfs = new IPFS();
+        ipfs.on('ready', () => {
+            var uploader = new IPFSUploader(ipfs);
+
+            uploader.loadImage(this.refs.image, this.props.hash);
+        });
+    }
+
     render() {
         return (<article className="product">
-            <img src={this.props.image} width="263" height="180"/>
+            <img src={this.props.image} width="263" height="180" ref="image"/>
             <span className="product__name">{ this.props.name }</span>
             <div className="product__info">
                 <h1 className="product__title">{ this.props.title }</h1>

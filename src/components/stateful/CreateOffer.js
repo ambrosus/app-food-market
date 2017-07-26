@@ -4,6 +4,8 @@ import getAllOffersOrCreateMarket from "../../redux/actions/MarketAction.js";
 import { executeEthereumTransaction } from '../../redux/actions/TransactionAction.js';
 import { createMarket } from '../../redux/actions/MarketAction.js';
 import Ambrosus from 'ambrosus';
+import IPFSUploader from 'ipfs-image-web-upload';
+import IPFS from 'ipfs';
 
 const mapStateToProps = state => {
   return {
@@ -11,15 +13,35 @@ const mapStateToProps = state => {
   };
 };
 
+const uploadToIPFS = async (ipfs, image) => {
+  const uploader = new IPFSUploader(ipfs);
+  return await uploader.uploadBlob(image);
+}
+
+const dispatchTransaction = async (dispatch, offer, address) => {
+  const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+  dispatch(executeEthereumTransaction(
+    (async () => (await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] })).transactionHash)(),
+    'Creating offer', '/'));
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAdd: async (offer, address) => {
+    onAdd: async (offer, image, address) => {
       if (Ambrosus == null)
         return;
-      const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-      dispatch(executeEthereumTransaction(
-        (async () => (await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] })).transactionHash)(),
-        'Creating offer', '/'));
+      if (image){
+        var ipfs = new IPFS();
+        ipfs.on('ready', async () => {
+          console.log('ipfs')
+          offer.imageHash = await uploadToIPFS(ipfs, image);
+          dispatchTransaction(dispatch, offer, address);       
+        });
+      }
+      else
+      {
+        dispatchTransaction(dispatch, offer, address);
+      }
     }
   }
 }

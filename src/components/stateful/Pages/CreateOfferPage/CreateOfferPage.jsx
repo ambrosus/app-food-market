@@ -24,14 +24,15 @@ const parameters = [
 class CreateOfferPage extends Component {
     constructor(props){
         super(props);
-        this.offer = {};
+        this.formFields = {};
     }
     
-    extractData() {
-        for (let i in this.offer){
-            this.offer[i] = this.offer[i].value;
+    getOfferData() {
+        var result = {};
+        for (let i in this.formFields){
+            result[i] = this.formFields[i].value;
         }
-        return this.offer;
+        return result;
     }
 
     render() {
@@ -41,14 +42,13 @@ class CreateOfferPage extends Component {
                     <Button className={styles.saveButton}
                         onClick={(e)=>{
                             this.props.onAdd(
-                                this.extractData(),
-                                this.props.address,
-                                this.props.ambrosus)
+                                this.getOfferData(),
+                                this.props.address)
                         }}>Save</Button>
                 </NavigationBar>
                 <div className={styles.top}>
                     <TextField className={classNames(styles.name, styles.element)} label="Name of object" 
-                        inputRef={el => this.offer.name = el}/>
+                        inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <div className={styles.imageContainer}>
@@ -63,8 +63,8 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <SelectorField/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)" />
-                                <InputField label="Price per package (€)" inputRef={el => this.offer.pricePerUnit = el}/>
+                                <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
+                                <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>
                             </div>
                             <AttributeValueFieldContainer>
                                 { parameters.map((element, index) => (

@@ -19,8 +19,9 @@ class ProductContainer extends Component {
     }
     return (
       <div className="container">
-        {offers.map((offer) => 
+        {offers.map((offer, index) => 
           <ProductItem 
+              key={index}
               name={offer.name}
               price={'€'+offer.pricePerUnit/100.0+'/kg'}
               seller={offer.seller.slice(0,10)+'...'}

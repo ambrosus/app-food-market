@@ -3,3 +3,11 @@
   font-size: 13px;
   color: #002c87;
 }
+
+@mixin border() {
+
+}
+
+@mixin border-focus() {
+  color: #F8C600;
+}

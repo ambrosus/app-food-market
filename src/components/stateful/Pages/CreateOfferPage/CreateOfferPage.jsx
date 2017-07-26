@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import classNames from "classnames";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
@@ -50,8 +49,7 @@ class CreateOfferPage extends Component {
                 </NavigationBar>
                 <div className={styles.top}>
                     <Label className={styles.label} text="Name of object:"/>
-                    <TextField className={classNames(styles.name, styles.element)}
-                        inputRef={el => this.formFields.name = el}/>
+                    <TextField className={styles.textField} inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <div className={styles.imageContainer}>

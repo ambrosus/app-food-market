@@ -3,7 +3,7 @@
 
 :local(.cancelButton) {
   @include button(#002C87, #ffffff, 40px);
-  @include border(#002c87, 1px);
+  @include button-border(#002c87, 1px);
   width: 200px;
   margin: 0 20px;
 }
@@ -19,6 +19,11 @@
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
   width: 200px;
+}
+
+:local(.textField) {
+  border-color: red;
+  margin-bottom: 15px;
 }
 
 :local(.paragraph) {
@@ -76,8 +81,4 @@
   width: 762px;
   display: flex;
   flex-direction: row;
-}
-
-:local(.element) {
-  padding-bottom: 15px;
 }

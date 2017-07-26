@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ProductContainer from '../stateless/ProductContainer/ProductContainer.jsx';
-import getAllOffersOrCreateMarket from "../../redux/actions/MarketAction.js";
+import ProductContainer from '../../stateless/ProductContainer/ProductContainer.jsx';
+import getAllOffersOrCreateMarket from "../../../redux/actions/MarketAction.js";
 
 const mapStateToProps = state => {
   return {

@@ -22,14 +22,33 @@ const parameters = [
 ];
 
 class CreateOfferPage extends Component {
+    constructor(props){
+        super(props);
+        this.formFields = {};
+    }
+    
+    getOfferData() {
+        var result = {};
+        for (let i in this.formFields){
+            result[i] = this.formFields[i].value;
+        }
+        return result;
+    }
+
     render() {
         return (<div>
                 <NavigationBar title="Create new offer">
                     <Button className={styles.cancelButton}>Cancel</Button>
-                    <Button className={styles.saveButton}>Save</Button>
+                    <Button className={styles.saveButton}
+                        onClick={(e)=>{
+                            this.props.onAdd(
+                                this.getOfferData(),
+                                this.props.address)
+                        }}>Save</Button>
                 </NavigationBar>
                 <div className={styles.top}>
-                    <TextField className={classNames(styles.name, styles.element)} label="Name of object"/>
+                    <TextField className={classNames(styles.name, styles.element)} label="Name of object" 
+                        inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <div className={styles.imageContainer}>
@@ -44,8 +63,8 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <SelectorField/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)"/>
-                                <InputField label="Price per package (€)"/>
+                                <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
+                                <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>
                             </div>
                             <AttributeValueFieldContainer>
                                 { parameters.map((element, index) => (

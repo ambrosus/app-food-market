@@ -1,14 +1,15 @@
 import React, {Component} from "react";
 import classNames from "classnames";
+import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
 import Button from "../../../stateless/Button/Button.jsx";
 import TextField from "../../../stateless/TextField/TextField.jsx";
+import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
 import InputField from "../../../stateless/InputField/InputField.jsx";
-import styles from "./CreateOfferPage.scss";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
-import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
+import Label from "../../../stateless/Label/Label.jsx";
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -22,11 +23,12 @@ const parameters = [
 ];
 
 class CreateOfferPage extends Component {
+
     constructor(props){
         super(props);
         this.formFields = {};
     }
-    
+
     getOfferData() {
         var result = {};
         for (let i in this.formFields){
@@ -47,7 +49,7 @@ class CreateOfferPage extends Component {
                         }}>Save</Button>
                 </NavigationBar>
                 <div className={styles.top}>
-                    <TextField className={classNames(styles.name, styles.element)} label="Name of object" 
+                    <TextField className={classNames(styles.name, styles.element)} label="Name of object"
                         inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
@@ -61,12 +63,21 @@ class CreateOfferPage extends Component {
                             </div>
                         </div>
                         <div className={styles.column}>
-                            <SelectorField/>
+                            <Label className={styles.label} text="Category:"/>
+                            <SelectorField className={styles.selector}
+                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"/>
                             <div className={styles.table}>
                                 <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
                                 <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>
                             </div>
-                            <AttributeValueFieldContainer>
+                            <Label className={styles.label} text="Quality standard:"/>
+                            <SelectorField className={styles.selector} options={[
+                                {value: 'Low'},
+                                {value: 'Medium'},
+                                {value: 'Good'},
+                                {value: 'Excellent'}]} label="Category"/>
+                            <span className={styles.paragraph }>or <a href="/#/">create custom requirements</a> for quality</span>
+                            <AttributeValueFieldContainer className={styles.properties}>
                                 { parameters.map((element, index) => (
                                     <AttributeValueField key={index} field={element.field} value={element.value}/>)
                                 ) }

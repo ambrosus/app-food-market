@@ -1,4 +1,5 @@
 @import '../../../stateless/Button/Button.scss';
+@import '../../../stateless/shared.scss';
 
 :local(.cancelButton) {
   @include button(#002C87, #ffffff, 40px);
@@ -11,9 +12,17 @@
   width: 762px;
 }
 
+:local(.selector) {
+  margin: 10px 0 !important;
+}
+
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
   width: 200px;
+}
+
+:local(.paragraph) {
+  @include font();
 }
 
 :local(.column) {
@@ -33,8 +42,8 @@
   display: table-cell;
 }
 
-:local(.value) {
-  display: table-cell;
+:local(.properties) {
+  margin-top: 20px;
 }
 
 :local(.verticalContainer) {
@@ -44,17 +53,14 @@
 }
 
 :local(.label) {
-  font-family: 'Muli', sans-serif;
-  font-weight: bolder;
-  font-size: 15px;
-  color: #002C87;
+  margin-bottom: 10px !important;
 }
 
 :local(.imageContainer) {
   width: 360px;
   height: 276px;
   margin-right: 28px;
-  border: 1px solid rgba(0,44,135,0.31);
+  border: 1px solid rgba(0, 44, 135, 0.31);
 }
 
 :local(.horizontalContainer) {

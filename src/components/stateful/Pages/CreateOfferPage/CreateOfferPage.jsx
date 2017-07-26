@@ -22,7 +22,18 @@ const parameters = [
 ];
 
 class CreateOfferPage extends Component {
+    constructor(props){
+        super(props);
+        this.offer = {};
+    }
     
+    extractData() {
+        for (let i in this.offer){
+            this.offer[i] = this.offer[i].value;
+        }
+        return this.offer;
+    }
+
     render() {
         return (<div>
                 <NavigationBar title="Create new offer">
@@ -30,14 +41,14 @@ class CreateOfferPage extends Component {
                     <Button className={styles.saveButton}
                         onClick={(e)=>{
                             this.props.onAdd(
-                                this.name.value,
+                                this.extractData(),
                                 this.props.address,
                                 this.props.ambrosus)
                         }}>Save</Button>
                 </NavigationBar>
                 <div className={styles.top}>
                     <TextField className={classNames(styles.name, styles.element)} label="Name of object" 
-                        inputRef={el => this.name = el}/>
+                        inputRef={el => this.offer.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <div className={styles.imageContainer}>
@@ -52,8 +63,8 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <SelectorField/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)"/>
-                                <InputField label="Price per package (€)"/>
+                                <InputField label="Package weight (kg)" />
+                                <InputField label="Price per package (€)" inputRef={el => this.offer.pricePerUnit = el}/>
                             </div>
                             <AttributeValueFieldContainer>
                                 { parameters.map((element, index) => (

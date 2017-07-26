@@ -7,13 +7,34 @@
   margin: 0 20px;
 }
 
+:local(.top) {
+  width: 762px;
+}
+
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
   width: 200px;
 }
 
+:local(.column) {
+}
+
 :local(.name) {
   width: 750px;
+}
+
+:local(.table) {
+  display: table;
+  width: 100%;
+  margin: 15px 0;
+}
+
+:local(.field) {
+  display: table-cell;
+}
+
+:local(.value) {
+  display: table-cell;
 }
 
 :local(.verticalContainer) {
@@ -48,10 +69,6 @@
   width: 762px;
   display: flex;
   flex-direction: row;
-}
-
-:local(.column) {
-
 }
 
 :local(.element) {

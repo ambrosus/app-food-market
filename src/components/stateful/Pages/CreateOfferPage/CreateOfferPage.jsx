@@ -21,13 +21,21 @@ const parameters = [
 ];
 
 class CreateOfferPage extends Component {
+    
     render() {
         return (<div>
                 <NavigationBar title="Create new offer">
                     <Button className={styles.cancelButton}>Cancel</Button>
-                    <Button className={styles.saveButton}>Save</Button>
+                    <Button className={styles.saveButton}
+                        onClick={(e)=>{
+                            this.props.onAdd(
+                                this.name.value,
+                                this.props.address,
+                                this.props.ambrosus)
+                        }}>Save</Button>
                 </NavigationBar>
-                <TextField className={classNames(styles.name, styles.element)} label="Name of object"/>
+                <TextField className={classNames(styles.name, styles.element)} label="Name of object" 
+                    inputRef={el => this.name = el} />
                 <div className={styles.container}>
                     <div className={styles.column}>
                         <div className={styles.imageContainer}>

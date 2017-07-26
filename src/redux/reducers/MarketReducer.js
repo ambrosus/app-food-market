@@ -4,7 +4,7 @@ const market = (state = {offers: [], address: '', status: 'No market'}, action) 
       return {...state, status: 'Loading...'};
     case 'CREATE_MARKET_REQUEST':
       return {...state, status: 'Creating market...'};
-    case 'RECEIVE_OFFERS':
+    case 'FETCH_OFFERS_RESPONSE':
       return {...state, offers: action.offers, status: null};
     case 'CREATE_MARKET_RESPONSE':
       return {...state, address: action.address, status: 'Market address: ' + action.address};

@@ -1,4 +1,5 @@
-import retry_delay from '../../utils/retry_delay.js';
+import { wait_for_ambrosus } from '../../utils/wait_for_ambrosus.js';
+import { executeEthereumTransaction } from './TransactionAction.js'; 
 import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => {
@@ -31,13 +32,15 @@ export const createMarket = () => {
 
   return async function(dispatch) {
       dispatch(requestNewMarket());
-      retry_delay(() => typeof Ambrosus.MarketContract.currentProvider == 'undefined' || web3.eth.accounts.length==0)
-      .then(async () => {
-        const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-        const market = await marketRepo.create(web3.eth.accounts[0]);
-        dispatch(marketCreated(market.marketContract));
-      });
+      await wait_for_ambrosus();     
+      const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+      dispatch(executeEthereumTransaction(
+        (async () => {
+          const market = await marketRepo.create(web3.eth.accounts[0]);
+          dispatch(marketCreated(market.marketContract));
+          return market.marketContract.transactionHash;
+        })(),
+        'Creating market', '/'));      
     };
 }
 
@@ -45,7 +48,7 @@ export const getAllOffers = (address) => {
 
   return async function(dispatch) {
       dispatch(requestAllOffers());
-      await retry_delay(() => typeof Ambrosus.MarketContract.currentProvider == 'undefined');
+      await wait_for_ambrosus()
       const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
       const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
       const market = await marketRepo.fromAddress(address);

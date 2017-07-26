@@ -1,4 +1,4 @@
-import retry_delay from '../../utils/retry_delay.js';
+import { retry_delay } from '../../utils/retry_delay.js';
 import Ambrosus from 'ambrosus';
 
 window.Ambrosus3 = Ambrosus;

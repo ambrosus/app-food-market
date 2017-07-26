@@ -6,10 +6,6 @@ export default class TextField extends Component {
     render() {
         return (<div {...this.props}>
             <input className={styles.input} placeholder={ this.props.placeholder } type="text"/>
-        let {inputRef, ...otherProps} = this.props;
-        return (<div {...otherProps}>
-            <span className={styles.label}>{ this.props.label }</span>
-            <input className={styles.input} placeholder={ this.props.placeholder } type="text" ref={this.props.inputRef}/>
         </div>)
     }
 }

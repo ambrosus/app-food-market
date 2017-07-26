@@ -13,7 +13,7 @@
 }
 
 :local(.selector) {
-  margin: 10px 0 !important;
+  margin: 0 0 10px !important;
 }
 
 :local(.saveButton) {
@@ -26,6 +26,7 @@
 }
 
 :local(.column) {
+  width: 50%;
 }
 
 :local(.name) {

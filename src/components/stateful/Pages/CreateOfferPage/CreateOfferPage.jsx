@@ -30,7 +30,7 @@ class CreateOfferPage extends Component {
     }
 
     getOfferData() {
-        var result = {};
+        let result = {};
         for (let i in this.formFields){
             result[i] = this.formFields[i].value;
         }
@@ -49,7 +49,8 @@ class CreateOfferPage extends Component {
                         }}>Save</Button>
                 </NavigationBar>
                 <div className={styles.top}>
-                    <TextField className={classNames(styles.name, styles.element)} label="Name of object"
+                    <Label className={styles.label} text="Name of object:"/>
+                    <TextField className={classNames(styles.name, styles.element)}
                         inputRef={el => this.formFields.name = el}/>
                     <div className={styles.container}>
                         <div className={styles.column}>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
-import Market from "../../Market.js";
+import Market from "../../Market/Market.js";
 import SearchField from "../../../stateless/SearchField/SearchField.jsx";
 import Button from "../../../stateless/Button/Button.jsx";
 

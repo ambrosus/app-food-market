@@ -1,6 +1,5 @@
 $underline-color: rgba(0,44,135,0.15);
 $placeholder-color: rgba(32,171,250,0.42);
-
 $value-color: rgba(0,44,135,0.4);
 $label-color: #002c87;
 
@@ -22,9 +21,7 @@ $label-color: #002c87;
 }
 
 :local(.value) {
-  padding-left: 9px;
   display: table-cell;
-  width: 127px;
   font-family: 'Muli', sans-serif;
   color: #002C87;
   border: 1px solid #002c87;

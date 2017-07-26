@@ -17,7 +17,6 @@
 }
 
 :local(.column) {
-  margin-left: auto;
 }
 
 :local(.name) {
@@ -26,6 +25,8 @@
 
 :local(.table) {
   display: table;
+  width: 100%;
+  margin: 15px 0;
 }
 
 :local(.field) {

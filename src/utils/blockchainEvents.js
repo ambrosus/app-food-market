@@ -12,7 +12,7 @@ export const web3Loaded = async () => {
 }; 
 
 export const transactionMined = (tx, wait_time = TRANSACTION_WAIT_TIME, maxRetries = TRANSACTION_RETRIES) => {
-	var retries = 0;
+	let retries = 0;
 	return new Promise((resolve, reject) => {
 		web3.eth.getTransaction(tx, function(error, transaction) {
 		  if (error) {
@@ -20,7 +20,7 @@ export const transactionMined = (tx, wait_time = TRANSACTION_WAIT_TIME, maxRetri
 		  } else if (transaction.blockHash) {
 		  	resolve(transaction);
 		  } else if (retries >= maxRetries) {
-		  	var timeout = wait_time * maxRetries / 1000;
+		  	let timeout = wait_time * maxRetries / 1000;
 			reject(`Transaction ${tx} timeouted after ${timeout}`);
 		  } else {
 		  	retries++;

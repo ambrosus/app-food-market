@@ -1,84 +1,52 @@
 @import '../../../stateless/Button/Button.scss';
 @import '../../../stateless/shared.scss';
 
-:local(.cancelButton) {
-  @include button(#002C87, #ffffff, 40px);
-  @include button-border(#002c87, 1px);
-  width: 200px;
-  margin: 0 20px;
-}
-
-:local(.top) {
-  width: 762px;
-}
-
-:local(.selector) {
-  margin: 0 0 10px !important;
-}
-
-:local(.saveButton) {
-  @include button(#ffffff, #002c87, 40px);
-  width: 200px;
-}
-
-:local(.textField) {
-  margin-bottom: 15px;
-}
-
-:local(.paragraph) {
+:root {
   @include font();
 }
 
-:local(.column) {
-  width: 50%;
-}
-
-:local(.name) {
-  width: 750px;
-}
-
-:local(.table) {
-  display: table;
-  width: 100%;
-  margin: 15px 0;
-}
-
-:local(.field) {
-  display: table-cell;
-}
-
-:local(.properties) {
-  margin-top: 20px;
-}
-
-:local(.verticalContainer) {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-:local(.label) {
-  margin-bottom: 10px !important;
-}
-
-:local(.imageContainer) {
-  width: 360px;
-  height: 276px;
-  margin-right: 28px;
-  border: 1px solid rgba(0, 44, 135, 0.31);
-  cursor: pointer;
-}
-
-:local(.horizontalContainer) {
-  display: flex;
-  height: 276px;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-between;
-}
-
 :local(.container) {
-  width: 762px;
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+:local(.column) {
+  display: flex;
+  height: 100vh;
+  padding: 30px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  border-left: 1px solid rgba(0,44,135,0.1);
+}
+
+:local(.requirementsColumn) {
+  flex: 1;
+}
+
+:local(.typeColumn) {
+  flex: 2;
+}
+
+:local(.summaryColumn) {
+  flex: 1;
+  border: 0;
+  background-color: rgba(32,171,250,0.2);
+}
+
+:local(.title) {
+  font-weight: 100;
+  font-size: 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 20px;
+}
+
+:local(.image) {
+  object-fit: cover;
+  display: inline-block;
+}
+
+:local(.requirements) {
+  margin: 40px auto 0 auto;
 }

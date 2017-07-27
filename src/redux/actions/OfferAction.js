@@ -1,7 +1,9 @@
+import { withRouter } from 'react-router';
 import IPFSUploader from 'ipfs-image-web-upload';
 import IPFS from 'ipfs';
 import Ambrosus from 'ambrosus';
 import { executeEthereumTransaction } from './TransactionAction.js';
+import { transactionMined } from '../../utils/blockchainEvents.js';
 
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -9,28 +11,33 @@ const uploadToIPFS = async (ipfs, image) => {
   return await uploader.uploadBlob(image);
 }
 
-export const createOffer = (offer, image, marketAddress) => {
+export const createOffer = (offer, image, marketAddress, history) => {
   return async function(dispatch) {
       if (image) {
         var ipfs = new IPFS();
         ipfs.on('ready', async () => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
-          dispatch(doCreateOffer(offer, marketAddress));
+          dispatch(doCreateOffer(offer, marketAddress, history));
         });
-      }
-      else
-      {
-        dispatch(doCreateOffer(offer, marketAddress));
+      } else {
+        dispatch(doCreateOffer(offer, marketAddress, history));
       }
   };
 }
 
-export const doCreateOffer = (offer, address) => {  
+export const doCreateOffer = (offer, address, history) => {  
   return async function(dispatch) {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);    
     dispatch(executeEthereumTransaction(
-      (async () => (await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] })).transactionHash)(),
+      (async () => {
+        var market = await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] });
+        transactionMined(market.transactionHash).then( () => {
+          history.push('/market');
+        });
+        return market.transactionHash;
+      })(),
       'Creating offer', '/')
-    );    
+    );
+    
   }
 }

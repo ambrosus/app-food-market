@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onAdd: (offer, image, marketAddress) => {
-          dispatch(createOffer(offer, image, marketAddress));
+          dispatch(createOffer(offer, image, marketAddress, ownProps.history));
       }
     }
 }

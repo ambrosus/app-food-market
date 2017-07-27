@@ -4,6 +4,7 @@ import HeaderContainer from "./stateful/HeaderContainer/HeaderContainer.jsx";
 import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
 import WelcomePage from "./stateful/Pages/WelcomePage/WelcomePage.jsx";
 import MarketPage from "./stateful/Pages/MarketPage/MarketPage.jsx";
+import CreatingMarketContainer from "./stateful/Pages/CreatingMarketPage/CreatingMarketContainer.js";
 import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage.jsx";
 import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage.jsx";
 import CreateOfferPage from "./stateful/Pages/CreateOfferPage/CreateOfferPage.jsx";
@@ -20,7 +21,7 @@ export default class RootComponent extends Component {
                     <PageContainer>
                         <HeaderContainer/>
                         <Route exact path="/" component={WelcomePage}/>
-                        <Route exact path="/market" component={MarketPage}/>
+                        <Route exact path="/create_market" component={CreatingMarketContainer}/>
                         <Route exact path="/market/:id" component={MarketPage}/>
                         <Route exact path="/orders" component={OrdersPage}/>
                         <Route exact path="/profile" component={ProfilePage}/>

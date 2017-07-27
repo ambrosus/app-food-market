@@ -9,6 +9,7 @@ export const executeEthereumTransaction = (promise, caption, url) => {
         dispatch(statusAddPendingTransaction(tx, caption, url));
         dispatch(watchPendingTransaction(tx, caption, url));
       }).catch((reason) => {
+        console.log(reason);
         dispatch(statusAddFailedTransaction("", caption, reason));
       });
   }  
@@ -18,7 +19,9 @@ export const watchPendingTransaction = (tx, caption, url) => {
 
   function checkStatus(tx, dispatch) {
     web3.eth.getTransaction(tx, function(error, transaction) {
-      if (transaction.blockHash) {
+      if (error) {
+        dispatch(statusAddFailedTransaction("", caption, error));
+      } else if (transaction.blockHash) {
         dispatch(statusAddSuccessTransaction(tx, caption, url));
       } else {
         setTimeout(() => checkStatus(tx, dispatch), CHECK_TRANSACTION_STATUS_TIME);

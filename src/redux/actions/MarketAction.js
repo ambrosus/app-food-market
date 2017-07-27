@@ -43,6 +43,13 @@ export const createMarketFailed = (reason) => {
   }
 }
 
+export const gotoMarket = (address) => {
+  return {
+    type: 'GOTO_MARKET',
+    address
+  }
+}
+
 export const createMarket = () => {
   return async function(dispatch) {
       dispatch(requestNewMarket());

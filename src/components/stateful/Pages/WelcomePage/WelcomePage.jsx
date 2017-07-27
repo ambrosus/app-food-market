@@ -3,7 +3,7 @@ import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import { Link } from 'react-router-dom';
 import Button from "../../../stateless/Button/Button.jsx";
 import InputField from "../../../stateless/InputField/InputField.jsx";
-
+import TextField from "../../../stateless/TextField/TextField.jsx";
 
 class WelcomePage extends Component {
     
@@ -13,15 +13,17 @@ class WelcomePage extends Component {
             <NavigationBar title="Welcome">        
                 <Link className="navigation__link" to="/create-market">
                 	<Button className='navigation__create-offer-button'>
-                    	<span className="icon-basket-loaded button-icon-default"/>Create new market
+                    	Create new market
                     </Button>
                 </Link>
             </NavigationBar>        
     		
-    		<h1> Go to exisiting market: </h1>
+    		<h1> Enter address of a market: </h1>
 
-    		<InputField label="Market address" />
-    		<Link className="context-menu__link" to="/market/">Go</Link>		
+    		<TextField label="Market address" inputRef={el => this.addressField = el}/> 
+            <br/>
+            <br/>
+            <Button className='navigation__create-offer-button' onClick={ (e) => this.props.goOnClick(this.addressField.value) }> Go </Button>
         </div>)
     }
 }

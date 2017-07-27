@@ -1,37 +1,14 @@
-$underline-color: rgba(0,44,135,0.15);
-$placeholder-color: rgba(32,171,250,0.42);
-$field-name-color: rgba(0,44,135,0.4);
-
-:local(.label) {
-  font-family: 'Muli', sans-serif;
-  color: $field-name-color;
-  font-size: 13px;
-  padding-right: 10px;
-
-  &::after {
-    content: ":"
-  }
-}
-
 :local(.select) {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  background: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
-  background-position: 100% 50%;
-  background-repeat: no-repeat;
-
   font-family: 'Muli', sans-serif;
-  color: #20abfa;
+  color: #002c87;
   width: 100%;
   font-size: 15px;
   outline: none;
   height: 40px;
+  padding-left: 10px;
   line-height: 40px;
   border-radius: 0;
-  background-color: transparent;
-
-  &::placeholder {
-    content: 'Fish';
-    color: $placeholder-color;
-  }
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  background: transparent url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>") no-repeat 100% 50%;
 }

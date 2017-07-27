@@ -3,6 +3,7 @@ import ProductItem from "../ProductItem/ProductItem.jsx";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
 
+
 require('./ProductContainer.scss');
 
 
@@ -41,6 +42,7 @@ class ProductContainer extends Component {
               price={'€'+offer.pricePerUnit/100.0+'/kg'}
               seller={offer.seller.slice(0,10)+'...'}
               title={'The best ' + offer.name + ' in the world'} 
+              hash={offer.imageHash}
               />)
       }
       </div>

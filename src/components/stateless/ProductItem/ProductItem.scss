@@ -40,7 +40,7 @@ $more-details-height: 40px;
 
   &__more-details-button {
     @include button($more-details-text-color, #ffffff, $more-details-height);
-    @include border(#e0e0e0, 1px, solid);
+    @include button-border(#e0e0e0, 1px, solid);
     &:hover {
       cursor: pointer;
     }

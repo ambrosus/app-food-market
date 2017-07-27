@@ -14,7 +14,7 @@
   white-space: nowrap
 }
 
-@mixin border($color, $size:0px, $type:solid, $radius:0px) {
+@mixin button-border($color, $size:0px, $type:solid, $radius:0px) {
   border: $size $type $color;
   border-radius: $radius;
 }

@@ -50,7 +50,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'css-loader',
+                loader: ['style?sourceMap','css-loader?modules&importLoaders=1']
             },
             {
                 test: /\.scss$/,

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import styles from "./CreateOfferPage.scss";
+import styles from "./ProductPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
 import Button from "../../../stateless/Button/Button.jsx";
@@ -42,9 +42,11 @@ class CreateOfferPage extends Component {
     }
 
     onFileSelect(e, files) {
-        if (!files[0]) return;
+        if (!files[0])
+            return;
+
         this.image = files[0];
-        let reader = new FileReader();
+        var reader = new FileReader();
         reader.onload = (event) => {
           this.refs.image.src = event.target.result;
         };
@@ -53,7 +55,16 @@ class CreateOfferPage extends Component {
 
     render() {
         return (<div>
-                <NavigationBar title="Create an offer"/>
+                <NavigationBar title="Create new offer">
+                    <Button className={styles.cancelButton}>Cancel</Button>
+                    <Button className={styles.saveButton}
+                        onClick={(e)=>{
+                            this.props.onAdd(
+                                this.getOfferData(),
+                                this.image,
+                                this.props.address)
+                        }}>Save</Button>
+                </NavigationBar>
                 <div className={styles.top}>
                     <Label className={styles.label} text="Name of object:"/>
                     <TextField className={styles.textField} inputRef={el => this.formFields.name = el}/>

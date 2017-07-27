@@ -3,6 +3,7 @@ import ContextMenu from "../../stateless/ContextMenu/ContextMenu.jsx";
 import EthereumTransactionList from '../../stateful/EthereumTransactionList/EthereumTransactionList.jsx';
 import EthereumTransactionsStatus from "../../stateful/EthereumTransactionsStatus/EthereumTransactionsStatus.jsx";
 import { Link } from "react-router-dom"
+import Breadcrumbs from "../../stateless/Breadcrumbs/Breadcrumbs.jsx";
 require('./HeaderContainer.scss');
 
 export default class HeaderContainer extends Component {
@@ -15,6 +16,7 @@ export default class HeaderContainer extends Component {
             <EthereumTransactionsStatus/>
             <ContextMenu/>
             <hr className="line"/>
+            <Breadcrumbs/>
         </div>)
     }
 }

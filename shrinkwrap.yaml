@@ -1,17 +1,21 @@
 dependencies:
-  ambrosus: 0.1.6
+  ambrosus: 0.1.10
   babel-core: 6.25.0
   babel-preset-es2015: 6.24.1
   classnames: 2.2.5
   es6-promisify: 5.0.0
   font-awesome: 4.7.0
+  ipfs: 0.25.1
+  ipfs-image-web-upload: 1.0.3
   normalize: 0.3.1
   normalize.css: 7.0.0
   prop-types: 15.5.10
   react: 15.6.1
   react-dom: 15.6.1
+  react-file-processor: 0.0.2
   react-redux: 5.0.5
   react-router-dom: 4.1.2
+  react-select: 1.0.0-rc.5
   redux: 3.7.2
   redux-thunk: 2.2.0
   simple-line-icons: 2.4.1
@@ -32,6 +36,7 @@ devDependencies:
   node-sass: 4.5.3
   postcss-loader: 2.0.6
   react-css-modules: 4.5.2
+  react-styleable: 3.2.0
   sass-loader: 6.0.6
   sass-resources-loader: 1.2.1
   style-loader: 0.18.2
@@ -72,7 +77,7 @@ packages:
       integrity: sha1-iHr1TO7lx/RDBGGXHsQAxh0JrLs=
   /accepts/1.3.3:
     dependencies:
-      mime-types: 2.1.15
+      mime-types: 2.1.16
       negotiator: 0.6.1
     resolution:
       integrity: sha1-w8p0NJOGSMPg2cHjKN1otiLChMo=
@@ -129,14 +134,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
-  /ambrosus/0.1.6:
+  /ambrosus/0.1.10:
     dependencies:
       ethereumjs-util: 5.1.2
-      ipfs: github.com/ipfs/js-ipfs/a5e75e02cca28337d3f91a711c6a27758c2ead96
-      truffle-contract: 2.0.3
-      web3: 0.19.1
+      ipfs: github.com/ipfs/js-ipfs/07228a022bff4d9630132c649d92017c3e7f1a68
+      truffle-contract: 2.0.4
+      web3: 1.0.0-beta.12
     resolution:
-      integrity: sha512-1Z8buYcL68pOyc4arXlmUvQCQMLBXUuoUGaoezXkopebtEY7aK/gKYOWwWDjrZvBhUw9KjpmtKlYatXYhj3OpQ==
+      integrity: sha512-apeZPmzw8EdhygeYUC1sqOn9FEAI3kTcpmKU4M2riLOH7NgT7pmqsDPs2Z8FuJ+gjJjkMFnhlczVAiWtCbsVHw==
   /amdefine/1.0.1:
     resolution:
       integrity: sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
@@ -167,11 +172,11 @@ packages:
   /ansi-styles/2.2.1:
     resolution:
       integrity: sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
-  /ansi-styles/3.1.0:
+  /ansi-styles/3.2.0:
     dependencies:
       color-convert: 1.9.0
     resolution:
-      integrity: sha1-CcIC1ckX7CMYjKpcnLkXnNlUd1A=
+      integrity: sha512-NnSOmMEYtVR2JVMIGTzynRkkaxtiq1xnFBcdQD/DnNCYPoEPsVJhM98BDyaoNOQIi7p4okdi3E27eN7GQbsUug==
   /anymatch/1.3.0:
     dependencies:
       arrify: 1.0.1
@@ -333,7 +338,7 @@ packages:
       babel-helpers: 6.24.1
       babel-messages: 6.23.0
       babel-register: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -352,7 +357,7 @@ packages:
   /babel-generator/6.25.0:
     dependencies:
       babel-messages: 6.23.0
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
       detect-indent: 4.0.0
       jsesc: 1.3.0
@@ -388,7 +393,7 @@ packages:
   /babel-helper-call-delegate/6.24.1:
     dependencies:
       babel-helper-hoist-variables: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
     resolution:
@@ -396,7 +401,7 @@ packages:
   /babel-helper-define-map/6.24.1:
     dependencies:
       babel-helper-function-name: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
       lodash: 4.17.4
     resolution:
@@ -421,7 +426,7 @@ packages:
   /babel-helper-function-name/6.24.1:
     dependencies:
       babel-helper-get-function-arity: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -429,25 +434,25 @@ packages:
       integrity: sha1-00dbjAPtmCQqJbSDUasYOZ01gKk=
   /babel-helper-get-function-arity/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-j3eCqpNAfEHTqlCQj4mwMbG2hT0=
   /babel-helper-hoist-variables/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-HssnaJydJVE+rbyZFKc/VAi+enY=
   /babel-helper-optimise-call-expression/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-96E0J7qfc/j0+pk8VKl4gtEkQlc=
   /babel-helper-regex/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
       lodash: 4.17.4
     resolution:
@@ -466,7 +471,7 @@ packages:
     dependencies:
       babel-helper-optimise-call-expression: 6.24.1
       babel-messages: 6.23.0
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -474,7 +479,7 @@ packages:
       integrity: sha1-v22/5Dk40XNpohPKiov3S2qQqxo=
   /babel-helpers/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
     resolution:
       integrity: sha1-NHHenK7DiOXIUOWX5Yom3fN2ArI=
@@ -488,12 +493,12 @@ packages:
       integrity: sha1-uHE0yLEuPkwqlOBUYIW8aAorhIg=
   /babel-messages/6.23.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-8830cDhYA1sqKVHG7F7fbGLyYw4=
   /babel-plugin-check-es2015-constants/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-NRV7EBQm/S/9PaP3XH0ekYNbv4o=
   /babel-plugin-syntax-async-functions/6.13.0:
@@ -597,17 +602,17 @@ packages:
       integrity: sha1-eIAT2PjGtSIr33s0Q5Df13Vp4k0=
   /babel-plugin-transform-es2015-arrow-functions/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-RSaSy3EdX3ncf4XkQM5BufJE0iE=
   /babel-plugin-transform-es2015-block-scoped-functions/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-u8UbSflk1wy42OC5ToICRs46YUE=
   /babel-plugin-transform-es2015-block-scoping/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -621,7 +626,7 @@ packages:
       babel-helper-optimise-call-expression: 6.24.1
       babel-helper-replace-supers: 6.24.1
       babel-messages: 6.23.0
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -629,49 +634,49 @@ packages:
       integrity: sha1-WkxYpQyclGHlZLSyo7+ryXolhNs=
   /babel-plugin-transform-es2015-computed-properties/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
     resolution:
       integrity: sha1-b+Ko0WiV1WNPTNmZttNICjCBWbM=
   /babel-plugin-transform-es2015-destructuring/6.23.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-mXux8auWf2gtKwh2/jWNYOdlxW0=
   /babel-plugin-transform-es2015-duplicate-keys/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-c+s9MQypaePvnskcU3QabxV2Qj4=
   /babel-plugin-transform-es2015-for-of/6.23.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-9HyVsrYT3x0+zC/bdXNiPHUkhpE=
   /babel-plugin-transform-es2015-function-name/6.24.1:
     dependencies:
       babel-helper-function-name: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-g0yJhTvDaxrw86TF26qU/Y6sqos=
   /babel-plugin-transform-es2015-literals/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-T1SgLWzWbPkVKAAZox0xklN3yi4=
   /babel-plugin-transform-es2015-modules-amd/6.24.1:
     dependencies:
       babel-plugin-transform-es2015-modules-commonjs: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
     resolution:
       integrity: sha1-Oz5UAXI5hC1tGcMBHEvS8AoA0VQ=
   /babel-plugin-transform-es2015-modules-commonjs/6.24.1:
     dependencies:
       babel-plugin-transform-strict-mode: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-types: 6.25.0
     resolution:
@@ -679,28 +684,28 @@ packages:
   /babel-plugin-transform-es2015-modules-systemjs/6.24.1:
     dependencies:
       babel-helper-hoist-variables: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
     resolution:
       integrity: sha1-/4mhQrkRmpBhlfXxBuzzBdlAfSM=
   /babel-plugin-transform-es2015-modules-umd/6.24.1:
     dependencies:
       babel-plugin-transform-es2015-modules-amd: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
     resolution:
       integrity: sha1-rJl+YoXNGO1hdq22B9YCNErThGg=
   /babel-plugin-transform-es2015-object-super/6.24.1:
     dependencies:
       babel-helper-replace-supers: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-JM72muIcuDp/hgPa0CH1cusnj40=
   /babel-plugin-transform-es2015-parameters/6.24.1:
     dependencies:
       babel-helper-call-delegate: 6.24.1
       babel-helper-get-function-arity: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-template: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
@@ -708,36 +713,36 @@ packages:
       integrity: sha1-V6w1GrScrxSpfNE7CfZv3wpiXys=
   /babel-plugin-transform-es2015-shorthand-properties/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-JPh11nIch2YbvZmkYi5R8U3jiqA=
   /babel-plugin-transform-es2015-spread/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-1taKmfia7cRTbIGlQujdnxdG+NE=
   /babel-plugin-transform-es2015-sticky-regex/6.24.1:
     dependencies:
       babel-helper-regex: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-AMHNsaynERLN8M9hJsLta0V8zbw=
   /babel-plugin-transform-es2015-template-literals/6.22.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-qEs0UPfp+PH2g51taH2oS7EjbY0=
   /babel-plugin-transform-es2015-typeof-symbol/6.23.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
     resolution:
       integrity: sha1-3sCfHN3/lLUqxz1QXITfWdzOs3I=
   /babel-plugin-transform-es2015-unicode-regex/6.24.1:
     dependencies:
       babel-helper-regex: 6.24.1
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       regexpu-core: 2.0.0
     resolution:
       integrity: sha1-04sS9C6nMj9yk4fxinxa4frrNek=
@@ -812,7 +817,7 @@ packages:
       integrity: sha1-uNowWtQ8PJm0hI5P5AN7dw0jxBg=
   /babel-plugin-transform-strict-mode/6.24.1:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
     resolution:
       integrity: sha1-1fr3qleKZbvlkc9e2uBKDGcCB1g=
@@ -899,7 +904,7 @@ packages:
   /babel-register/6.24.1:
     dependencies:
       babel-core: 6.25.0
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       core-js: 2.4.1
       home-or-tmp: 2.0.0
       lodash: 4.17.4
@@ -911,11 +916,18 @@ packages:
     dependencies:
       core-js: 2.4.1
       regenerator-runtime: 0.10.5
+    dev: true
     resolution:
       integrity: sha1-CpSJ8UTecO+zzkMArM2zKeL8VDs=
+  /babel-runtime/6.25.0:
+    dependencies:
+      core-js: 2.4.1
+      regenerator-runtime: 0.10.5
+    resolution:
+      integrity: sha1-M7mOql1IK7AajRqmtDetKwGuxBw=
   /babel-template/6.25.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-traverse: 6.25.0
       babel-types: 6.25.0
       babylon: 6.17.4
@@ -926,7 +938,7 @@ packages:
     dependencies:
       babel-code-frame: 6.22.0
       babel-messages: 6.23.0
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
       babylon: 6.17.4
       debug: 2.6.8
@@ -937,7 +949,7 @@ packages:
       integrity: sha1-IldJfi/NGbie3BPEyROB+VEklvE=
   /babel-types/6.25.0:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       esutils: 2.0.2
       lodash: 4.17.4
       to-fast-properties: 1.0.3
@@ -1010,9 +1022,6 @@ packages:
   /bignumber.js/3.0.1:
     resolution:
       integrity: sha1-gHZS0Q453jfp40lyR+3HmLt0b3Y=
-  /bignumber.js/4.0.2:
-    resolution:
-      integrity: sha1-LR3DfuWWiGfs6pC22k0W5oYI0h0=
   /binary-extensions/1.8.0:
     dev: true
     resolution:
@@ -1113,7 +1122,7 @@ packages:
   /brfs/1.4.3:
     dependencies:
       quote-stream: 1.0.2
-      resolve: 1.3.3
+      resolve: 1.4.0
       static-module: 1.4.0
       through2: 2.0.3
     resolution:
@@ -1315,9 +1324,9 @@ packages:
       integrity: sha1-qBFcVeSnAv5NFQq9OHKCKn4J/Jg=
   /chalk/2.0.1:
     dependencies:
-      ansi-styles: 3.1.0
+      ansi-styles: 3.2.0
       escape-string-regexp: 1.0.5
-      supports-color: 4.2.0
+      supports-color: 4.2.1
     resolution:
       integrity: sha512-Mp+FXEI+FrwY/XYV45b2YD3E8i3HwnEAoFcM0qlZzq/RZ9RwWitt2Y/c7cqRAz70U7hfekqx6qNYthuKFO6K0g==
   /chokidar/1.7.0:
@@ -1428,12 +1437,16 @@ packages:
       integrity: sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
   /color-convert/1.9.0:
     dependencies:
-      color-name: 1.1.2
+      color-name: 1.1.3
     resolution:
       integrity: sha1-Gsz5fdc5uYO/mU1W/sj5WFNkG3o=
   /color-name/1.1.2:
+    dev: true
     resolution:
       integrity: sha1-XIq3K2S9IhXWF66VWeuxSEdc+Y0=
+  /color-name/1.1.3:
+    resolution:
+      integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
   /color-string/0.3.0:
     dependencies:
       color-name: 1.1.2
@@ -1784,7 +1797,7 @@ packages:
       integrity: sha1-rLniIaThe9sHbpBlfEK5PjcmzwY=
   /create-react-class/15.6.0:
     dependencies:
-      fbjs: 0.8.12
+      fbjs: 0.8.14
       loose-envify: 1.3.1
       object-assign: 4.1.1
     resolution:
@@ -1958,7 +1971,7 @@ packages:
       interface-datastore: 0.3.0
       level-js: 2.2.4
       leveldown: 1.7.2
-      levelup: 1.3.8
+      levelup: 1.3.9
       mkdirp: 0.5.1
       pull-glob: 1.0.6
       pull-stream: 3.6.0
@@ -1971,7 +1984,7 @@ packages:
       interface-datastore: 0.3.0
       level-js: 2.2.4
       leveldown: 1.7.2
-      levelup: 1.3.8
+      levelup: 1.3.9
       pull-stream: 3.6.0
     resolution:
       integrity: sha1-MYulZF2fjWzgUdJh5sPF+B/d+DE=
@@ -2628,6 +2641,17 @@ packages:
       ua-parser-js: 0.7.14
     resolution:
       integrity: sha1-ELXZL3bUVXX9Y6IX1OoCvqL47QQ=
+  /fbjs/0.8.14:
+    dependencies:
+      core-js: 1.2.7
+      isomorphic-fetch: 2.2.1
+      loose-envify: 1.3.1
+      object-assign: 4.1.1
+      promise: 7.3.1
+      setimmediate: 1.0.5
+      ua-parser-js: 0.7.14
+    resolution:
+      integrity: sha1-0dviviVMNakeCfMfnNUKQLKg7Rw=
   /figures/2.0.0:
     dependencies:
       escape-string-regexp: 1.0.5
@@ -3296,7 +3320,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-HgOlL9rYOou7KyXL9JmLTP/NPew=
-  /ipfs-api/14.1.0:
+  /ipfs-api/14.1.1:
     dependencies:
       async: 2.5.0
       bs58: 4.0.1
@@ -3310,7 +3334,7 @@ packages:
       ipfs-unixfs: 0.1.12
       ipld-dag-pb: 0.11.0
       is-ipfs: 0.3.0
-      isstream: 0.1.2
+      is-stream: 1.1.0
       lru-cache: 4.1.1
       multiaddr: 2.3.0
       multihashes: 0.4.5
@@ -3319,7 +3343,7 @@ packages:
       once: 1.4.0
       peer-id: 0.9.0
       peer-info: 0.10.0
-      promisify-es6: 1.0.2
+      promisify-es6: 1.0.3
       pump: 1.0.2
       qs: 6.5.0
       readable-stream: 2.3.3
@@ -3327,7 +3351,7 @@ packages:
       streamifier: 0.1.1
       tar-stream: 1.5.4
     resolution:
-      integrity: sha1-sYopOPVFrMPgWwdvXQyefxxw980=
+      integrity: sha1-lOArKSp6JE8O0vyZ8lYFTP1oAh0=
   /ipfs-bitswap/0.15.0:
     dependencies:
       async: 2.5.0
@@ -3360,6 +3384,9 @@ packages:
       cids: 0.4.2
     resolution:
       integrity: sha1-/qSrvHoI9eFzNwQ0glA0tnjuuNA=
+  /ipfs-image-web-upload/1.0.3:
+    resolution:
+      integrity: sha512-OGjhVLlQ2AP2Fm0JbNvtYZHEI4ae4LK5wlLJy7mMi8L4mbLJB9nWaKO8NA5t8KSpcwSkpTD8dGAEt2UmZusagw==
   /ipfs-multipart/0.1.0:
     dependencies:
       content: 3.0.5
@@ -3420,6 +3447,73 @@ packages:
       protocol-buffers: 3.2.1
     resolution:
       integrity: sha1-R/SFd2/Qhh1w4Xcf2rjk61zu3DM=
+  /ipfs/0.25.1:
+    dependencies:
+      async: 2.5.0
+      bl: 1.2.1
+      boom: 5.2.0
+      cids: 0.5.1
+      debug: 2.6.8
+      fsm-event: 2.1.0
+      glob: 7.1.2
+      hapi: 16.5.0
+      hapi-set-header: 1.0.2
+      hoek: 4.2.0
+      ipfs-api: 14.1.1
+      ipfs-bitswap: 0.15.0
+      ipfs-block: 0.6.0
+      ipfs-block-service: 0.12.0
+      ipfs-multipart: 0.1.0
+      ipfs-repo: 0.17.0
+      ipfs-unixfs: 0.1.12
+      ipfs-unixfs-engine: 0.22.0
+      ipld-resolver: 0.13.0
+      is-ipfs: 0.3.0
+      is-stream: 1.1.0
+      joi: 10.6.0
+      libp2p: 0.11.0
+      libp2p-floodsub: 0.11.0
+      libp2p-kad-dht: 0.4.1
+      libp2p-mdns: 0.8.0
+      libp2p-multiplex: 0.4.4
+      libp2p-railing: 0.6.1
+      libp2p-secio: 0.7.1
+      libp2p-swarm: 0.31.0
+      libp2p-tcp: 0.10.2
+      libp2p-webrtc-star: 0.12.0
+      libp2p-websockets: 0.10.1
+      lodash.flatmap: 4.5.0
+      lodash.get: 4.4.2
+      lodash.sortby: 4.7.0
+      lodash.values: 4.3.0
+      mafmt: 2.1.8
+      mkdirp: 0.5.1
+      multiaddr: 2.3.0
+      multihashes: 0.4.5
+      once: 1.4.0
+      path-exists: 3.0.0
+      peer-book: 0.5.0
+      peer-id: 0.9.0
+      peer-info: 0.10.0
+      promisify-es6: 1.0.3
+      pull-file: 1.0.0
+      pull-paramap: 1.2.2
+      pull-pushable: 2.1.1
+      pull-sort: 1.0.1
+      pull-stream: 3.6.0
+      pull-stream-to-stream: 1.3.4
+      pull-zip: 2.0.1
+      read-pkg-up: 2.0.0
+      readable-stream: 2.3.3
+      safe-buffer: 5.1.1
+      stream-to-pull-stream: 1.7.2
+      tar-stream: 1.5.4
+      temp: 0.8.3
+      through2: 2.0.3
+      update-notifier: 2.2.0
+      yargs: 8.0.2
+    resolution:
+      integrity: sha1-ugOmfEJSywkDzgc4GVs2vyJ6YE8=
   /ipld-dag-cbor/0.11.1:
     dependencies:
       async: 2.5.0
@@ -3704,6 +3798,7 @@ packages:
     resolution:
       integrity: sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
   /isstream/0.1.2:
+    dev: true
     resolution:
       integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
   /items/2.1.1:
@@ -3942,9 +4037,9 @@ packages:
       yargs: 8.0.2
     resolution:
       integrity: sha1-Sacv5w4Grr/X6iPvsqtBq+YOvuo=
-  /level-codec/6.1.0:
+  /level-codec/7.0.0:
     resolution:
-      integrity: sha1-9d8KmVgvdtrEOFUVGrb05NDWAEU=
+      integrity: sha1-x1W2jQ1E/6Cxy6BEuPgaVaFK05s=
   /level-errors/1.0.4:
     dependencies:
       errno: 0.1.4
@@ -3983,17 +4078,17 @@ packages:
       prebuild-install: 2.2.1
     resolution:
       integrity: sha1-XjRnuyfuJGpKe429j7KxYgam64s=
-  /levelup/1.3.8:
+  /levelup/1.3.9:
     dependencies:
       deferred-leveldown: 1.2.1
-      level-codec: 6.1.0
+      level-codec: 7.0.0
       level-errors: 1.0.4
       level-iterator-stream: 1.3.1
       prr: 1.0.1
-      semver: 5.1.1
+      semver: 5.4.1
       xtend: 4.0.1
     resolution:
-      integrity: sha1-+0QsSI776hBD9+uZKaeSp0+9HaY=
+      integrity: sha512-VVGHfKIlmw8w1XqpGOAGwq6sZm2WwWLmlDcULkKWQXEA5EopA8OBNJ2Ck2v6bdk8HeEZSbCSEgzXadyQFm76sQ==
   /libp2p-crypto-secp256k1/0.2.2:
     dependencies:
       async: 2.5.0
@@ -4480,7 +4575,7 @@ packages:
       async: 1.5.2
       ethereumjs-util: 4.5.0
       level-ws: 0.0.0
-      levelup: 1.3.8
+      levelup: 1.3.9
       memdown: 1.2.4
       readable-stream: 2.3.3
       rlp: 2.0.0
@@ -4517,6 +4612,7 @@ packages:
     resolution:
       integrity: sha1-SmL7HUKTPAVYOYL0xxb2+55sbT0=
   /mime-db/1.27.0:
+    dev: true
     resolution:
       integrity: sha1-gg9XIpa70g7CXtVeW13oaeVDbrE=
   /mime-db/1.29.0:
@@ -4525,8 +4621,14 @@ packages:
   /mime-types/2.1.15:
     dependencies:
       mime-db: 1.27.0
+    dev: true
     resolution:
       integrity: sha1-pOv1BkCUVpI3uM9wBGd20J/JKu0=
+  /mime-types/2.1.16:
+    dependencies:
+      mime-db: 1.29.0
+    resolution:
+      integrity: sha1-K4WKUuXs1RbbiXrCvodIeDBpjiM=
   /mime/1.3.4:
     dev: true
     resolution:
@@ -4791,7 +4893,7 @@ packages:
     dependencies:
       hosted-git-info: 2.5.0
       is-builtin-module: 1.0.0
-      semver: 5.3.0
+      semver: 5.4.1
       validate-npm-package-license: 3.0.1
     resolution:
       integrity: sha512-9jjUFbTPfEy3R/ad/2oNbKtW9Hgovl5O1FvFWKkKblNXoN/Oou6+9+KKohPK13Yc3/TyunyWhJp6gvRNR/PPAw==
@@ -5501,15 +5603,21 @@ packages:
       asap: 2.0.6
     resolution:
       integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==
-  /promisify-es6/1.0.2:
+  /promisify-es6/1.0.3:
     resolution:
-      integrity: sha1-Ywk1U+Ob5QNtdXtFX7k9FV2ktYk=
+      integrity: sha512-N9iVG+CGJsI4b4ZGazjwLnxErD2d9Pe4DPvvXSxYA9tFNu8ymXME4Qs5HIQ0LMJpNM7zj+m0NlNnNeqFpKzqnA==
   /prop-types/15.5.10:
     dependencies:
-      fbjs: 0.8.12
+      fbjs: 0.8.14
       loose-envify: 1.3.1
     resolution:
       integrity: sha1-J5ffwxJhguOpXj37suiT3ddFYVQ=
+  /prop-types/15.5.8:
+    dependencies:
+      fbjs: 0.8.14
+    dev: true
+    resolution:
+      integrity: sha1-a3suFBCDvjjIWVqlH8VXdccZk5Q=
   /protocol-buffers-schema/3.3.1:
     resolution:
       integrity: sha1-rRURQYd8aviChkeFGvZqDbaSdfU=
@@ -5773,6 +5881,15 @@ packages:
       prop-types: 15.5.10
     resolution:
       integrity: sha1-LLDtQZEDjlPCCes6eaI+Kkz5lHA=
+  /react-file-processor/0.0.2:
+    resolution:
+      integrity: sha1-/wnmEjpVMYFq03ONT6AWv/aktl8=
+  /react-input-autosize/1.1.4:
+    dependencies:
+      create-react-class: 15.6.0
+      prop-types: 15.5.10
+    resolution:
+      integrity: sha1-y8RQctQITdxXgG2447NOZEuDZqw=
   /react-redux/5.0.5:
     dependencies:
       create-react-class: 15.6.0
@@ -5803,6 +5920,21 @@ packages:
       warning: 3.0.0
     resolution:
       integrity: sha512-VyM87OP+GkijVkkOXJw39A9fKtFelLoZYYDxtELhpZefjYatxI2SUxZcImo/9Tv52rR9UnNJBPSBpVRQMdvi8A==
+  /react-select/1.0.0-rc.5:
+    dependencies:
+      classnames: 2.2.5
+      create-react-class: 15.6.0
+      prop-types: 15.5.10
+      react-input-autosize: 1.1.4
+    resolution:
+      integrity: sha1-nTFvJSsa3Dct21zfHxGca3z9tdY=
+  /react-styleable/3.2.0:
+    dependencies:
+      invariant: 2.2.2
+      prop-types: 15.5.8
+    dev: true
+    resolution:
+      integrity: sha512-IFgBuVAFgKnXsO72jPne9UsfhoC+oB/EL+MAlP5w7tPmZS5XRpXgfwOFrHd2GoG0SN7jwE8/kUqUsFO28koguw==
   /react/15.6.1:
     dependencies:
       create-react-class: 15.6.0
@@ -5927,7 +6059,7 @@ packages:
       integrity: sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
   /regenerator-transform/0.9.11:
     dependencies:
-      babel-runtime: 6.23.0
+      babel-runtime: 6.25.0
       babel-types: 6.25.0
       private: 0.1.7
     resolution:
@@ -6036,11 +6168,11 @@ packages:
   /resolve-pathname/2.1.0:
     resolution:
       integrity: sha1-6DWIAbhrg7F1YNTjw4LXrvIQCUQ=
-  /resolve/1.3.3:
+  /resolve/1.4.0:
     dependencies:
       path-parse: 1.0.5
     resolution:
-      integrity: sha1-ZVkHw0aahoDcLeOidaj91paR8OU=
+      integrity: sha512-aW7sVKPufyHqOmyyLzg/J+8606v5nevBgaliIlV7nUpVMsDnoBGV/cbSLNjZAg9q0Cfd/+easKVKQ8vOu8fn1Q==
   /restore-cursor/2.0.0:
     dependencies:
       onetime: 2.0.1
@@ -6181,10 +6313,8 @@ packages:
       semver: 5.4.1
     resolution:
       integrity: sha1-S7uEN8jTfksM8aaP1ybsbWRdbTY=
-  /semver/5.1.1:
-    resolution:
-      integrity: sha1-oykqNz5vPgeY2gsgZBuanFvEfhk=
   /semver/5.3.0:
+    dev: true
     resolution:
       integrity: sha1-myzl094C0XxgEq0yaqa00M9U+U8=
   /semver/5.4.1:
@@ -6668,8 +6798,14 @@ packages:
   /supports-color/4.2.0:
     dependencies:
       has-flag: 2.0.0
+    dev: true
     resolution:
       integrity: sha512-Ts0Mu/A1S1aZxEJNG88I4Oc9rcZSBFNac5e27yh4j2mqbhZSSzR1Ah79EYwSn9Zuh7lrlGD2cVGzw1RKGzyLSg==
+  /supports-color/4.2.1:
+    dependencies:
+      has-flag: 2.0.0
+    resolution:
+      integrity: sha512-qxzYsob3yv6U+xMzPrv170y8AwGP7i74g+pbixCfD6rgso8BscLT2qXIuz6TpOaiJZ3mFgT5O9lyT9nMU4LfaA==
   /svgo/0.7.2:
     dependencies:
       coa: 1.0.4
@@ -6831,14 +6967,14 @@ packages:
       crypto-js: 3.1.9-1
     resolution:
       integrity: sha1-Xp0gvQvyon/pQxB0gknUhO7kmWE=
-  /truffle-contract/2.0.3:
+  /truffle-contract/2.0.4:
     dependencies:
       ethjs-abi: 0.1.8
       truffle-blockchain-utils: 0.0.3
       truffle-contract-schema: 0.0.5
       web3: 0.20.1
     resolution:
-      integrity: sha1-+r5cG27XwjWR/Reew4Pnilbpmvw=
+      integrity: sha1-wjxOr2Y5eSe6uHUbZ0FJw/i5M+s=
   /tty-browserify/0.0.0:
     dev: true
     resolution:
@@ -7069,15 +7205,6 @@ packages:
       defaults: 1.0.3
     resolution:
       integrity: sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=
-  /web3/0.19.1:
-    dependencies:
-      bignumber.js: 4.0.2
-      crypto-js: 3.1.8
-      utf8: 2.1.2
-      xhr2: 0.1.4
-      xmlhttprequest: 1.8.0
-    resolution:
-      integrity: sha1-52PVsRB8S8JKvU+MvuG6Nlnm6zE=
   /web3/0.20.1:
     dependencies:
       bignumber.js: github.com/frozeman/bignumber.js-nolookahead/57692b3ecfc98bbdd6b3a516cb2353652ea49934
@@ -7092,6 +7219,11 @@ packages:
       lerna: 2.0.0
     resolution:
       integrity: sha1-KYO5XBdfbeUwaJ+JQX1M+uqj1Dw=
+  /web3/1.0.0-beta.12:
+    dependencies:
+      lerna: 2.0.0
+    resolution:
+      integrity: sha1-hCO8OXiQLkeN32KlPk8jHechTCY=
   /webpack-dev-middleware/1.11.0:
     dependencies:
       memory-fs: 0.4.1
@@ -7391,7 +7523,7 @@ packages:
   github.com/frozeman/bignumber.js-nolookahead/57692b3ecfc98bbdd6b3a516cb2353652ea49934:
     resolution:
       tarball: 'https://codeload.github.com/frozeman/bignumber.js-nolookahead/tar.gz/57692b3ecfc98bbdd6b3a516cb2353652ea49934'
-  github.com/ipfs/js-ipfs/a5e75e02cca28337d3f91a711c6a27758c2ead96:
+  github.com/ipfs/js-ipfs/07228a022bff4d9630132c649d92017c3e7f1a68:
     dependencies:
       async: 2.5.0
       bl: 1.2.1
@@ -7403,7 +7535,7 @@ packages:
       hapi: 16.5.0
       hapi-set-header: 1.0.2
       hoek: 4.2.0
-      ipfs-api: 14.1.0
+      ipfs-api: 14.1.1
       ipfs-bitswap: 0.15.0
       ipfs-block: 0.6.0
       ipfs-block-service: 0.12.0
@@ -7413,7 +7545,7 @@ packages:
       ipfs-unixfs-engine: 0.22.0
       ipld-resolver: 0.13.0
       is-ipfs: 0.3.0
-      isstream: 0.1.2
+      is-stream: 1.1.0
       joi: 10.6.0
       libp2p: 0.11.0
       libp2p-floodsub: 0.11.0
@@ -7439,7 +7571,7 @@ packages:
       peer-book: 0.5.0
       peer-id: 0.9.0
       peer-info: 0.10.0
-      promisify-es6: 1.0.2
+      promisify-es6: 1.0.3
       pull-file: 1.0.0
       pull-paramap: 1.2.2
       pull-pushable: 2.1.1
@@ -7457,7 +7589,7 @@ packages:
       update-notifier: 2.2.0
       yargs: 8.0.2
     resolution:
-      tarball: 'https://codeload.github.com/ipfs/js-ipfs/tar.gz/a5e75e02cca28337d3f91a711c6a27758c2ead96'
+      tarball: 'https://codeload.github.com/ipfs/js-ipfs/tar.gz/07228a022bff4d9630132c649d92017c3e7f1a68'
   github.com/ipfs/webrtcsupport/0669f576582c53a3a42aa5ac014fcc5966809615:
     resolution:
       tarball: 'https://codeload.github.com/ipfs/webrtcsupport/tar.gz/0669f576582c53a3a42aa5ac014fcc5966809615'
@@ -7472,7 +7604,7 @@ packages:
 registry: 'https://registry.npmjs.org/'
 shrinkwrapVersion: 3
 specifiers:
-  ambrosus: ^0.1.6
+  ambrosus: ^0.1.8
   babel-core: ^6.25.0
   babel-loader: ^7.1.1
   babel-plugin-transform-decorators-legacy: ^1.3.4
@@ -7487,6 +7619,8 @@ specifiers:
   extract-text-webpack-plugin: ^3.0.0
   file-loader: ^0.11.2
   font-awesome: ^4.7.0
+  ipfs: ^0.25.0
+  ipfs-image-web-upload: ^1.0.3
   jsx-loader: ^0.13.2
   node-sass: ^4.5.3
   normalize: ^0.3.1
@@ -7496,8 +7630,11 @@ specifiers:
   react: ^15.6.1
   react-css-modules: ^4.5.2
   react-dom: ^15.6.1
+  react-file-processor: 0.0.2
   react-redux: ^5.0.5
   react-router-dom: ^4.1.2
+  react-select: ^1.0.0-rc.5
+  react-styleable: ^3.1.0
   redux: ^3.7.2
   redux-thunk: ^2.2.0
   sass-loader: ^6.0.6

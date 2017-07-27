@@ -1,0 +1,37 @@
+@import '../../../stateless/Button/Button';
+@import '../../../stateless/shared.scss';
+
+$create-offer-button-background-color: #002C87;
+$create-offer-button-border-color: #002C87;
+$create-offer-button-height: 40px;
+$create-offer-button-text-color: #ffffff;
+
+:local(.selector) {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 170px;
+}
+
+.navigation {
+
+  &__link {
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  &__category-selector {
+    margin-right: 30px;
+  }
+
+  &__create-offer-button {
+    @include button($create-offer-button-text-color,
+            $create-offer-button-background-color,
+            $create-offer-button-height);
+
+    width: 100%;
+    max-width: 350px;
+  }
+}

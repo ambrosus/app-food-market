@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import CreateOfferPage from '../Pages/CreateOfferPage/CreateOfferPage.jsx';
-import { executeEthereumTransaction } from '../../../redux/actions/TransactionAction.js';
 import { createOffer } from '../../../redux/actions/OfferAction.js';
-import Ambrosus from 'ambrosus';
 
 const mapStateToProps = state => {
   return {
@@ -16,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           dispatch(createOffer(offer, image, marketAddress, ownProps.history));
       }
     }
-}
+};
 
 const CreateOffer = connect(mapStateToProps, mapDispatchToProps)(CreateOfferPage);
 

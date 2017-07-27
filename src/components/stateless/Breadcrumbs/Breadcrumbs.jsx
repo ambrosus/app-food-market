@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
-require('./Breadcrumbs.scss');
+import cx from 'classnames';
+import styles from './Breadcrumbs.scss';
 
 export default class Breadcrumbs extends Component {
 
     render() {
-        return (<div className="breadcrumbs">Market > Fish > Champion</div>)
+        return (<div className={cx(styles.breadcrumbs, this.props.className)}>Market > Fish > Champion</div>)
     }
 }

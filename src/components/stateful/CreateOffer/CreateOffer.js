@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import CreateOfferPage from './Pages/CreateOfferPage/CreateOfferPage.jsx';
-import getAllOffersOrCreateMarket from "../../redux/actions/MarketAction.js";
-import { executeEthereumTransaction } from '../../redux/actions/TransactionAction.js';
-import { createMarket } from '../../redux/actions/MarketAction.js';
+import CreateOfferPage from '../Pages/CreateOfferPage/CreateOfferPage.jsx';
+import getAllOffersOrCreateMarket from "../../../redux/actions/MarketAction.js";
+import { executeEthereumTransaction } from '../../../redux/actions/TransactionAction.js';
+import { createMarket } from '../../../redux/actions/MarketAction.js';
 import Ambrosus from 'ambrosus';
 import IPFSUploader from 'ipfs-image-web-upload';
 import IPFS from 'ipfs';

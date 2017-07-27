@@ -38,13 +38,14 @@ class CreateOfferPage extends Component {
     }
 
     handleClick(e) {
-        console.log(this.refs)
         this.refs.myFileInput.chooseFile();
     }
 
     handleFileSelect(e, files) {
-        this.image = files[0];
+        if (!files[0])
+            return;
 
+        this.image = files[0];
         var reader = new FileReader();
         reader.onload = (event) => {
           this.refs.image.src = event.target.result;
@@ -53,8 +54,6 @@ class CreateOfferPage extends Component {
     }
 
     render() {
-        const self = this;
-
         return (<div>
                 <NavigationBar title="Create new offer">
                     <Button className={styles.cancelButton}>Cancel</Button>

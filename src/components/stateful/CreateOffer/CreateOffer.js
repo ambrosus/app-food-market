@@ -18,7 +18,7 @@ const uploadToIPFS = async (ipfs, image) => {
   return await uploader.uploadBlob(image);
 }
 
-const dispatchTransaction = async (dispatch, offer, address) => {
+const dispatchCreateOffer = async (dispatch, offer, address) => {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
   dispatch(executeEthereumTransaction(
     (async () => (await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] })).transactionHash)(),
@@ -27,19 +27,19 @@ const dispatchTransaction = async (dispatch, offer, address) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAdd: async (offer, image, address) => {
+    onAdd: async (offer, image, marketAddress) => {
       if (Ambrosus == null)
         return;
       if (image){
         var ipfs = new IPFS();
         ipfs.on('ready', async () => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
-          dispatchTransaction(dispatch, offer, address);       
+          dispatchCreateOffer(dispatch, offer, marketAddress);       
         });
       }
       else
       {
-        dispatchTransaction(dispatch, offer, address);
+        dispatchCreateOffer(dispatch, offer, marketAddress);
       }
     }
   }

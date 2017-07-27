@@ -37,11 +37,11 @@ class CreateOfferPage extends Component {
         return result;
     }
 
-    handleClick(e) {
+    onImageClick(e) {
         this.refs.myFileInput.chooseFile();
     }
 
-    handleFileSelect(e, files) {
+    onFileSelect(e, files) {
         if (!files[0])
             return;
 
@@ -72,8 +72,8 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <FileProcessor
                                 ref="myFileInput"
-                                onFileSelect={(e, f)=>this.handleFileSelect(e,f)}>
-                                <div className={styles.imageContainer} onClick={()=>this.handleClick()}>
+                                onFileSelect={(e, f)=>this.onFileSelect(e,f)} >
+                                <div className={styles.imageContainer} onClick={()=>this.onImageClick()}>
                                     <div className={styles.verticalContainer}>
                                         <div className={styles.horizontalContainer}>
                                             <img className={styles.image} 

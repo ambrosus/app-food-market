@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, findDOMNode} from "react";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
@@ -10,7 +10,9 @@ import AttributeValueFieldContainer from "../../../stateless/AttributeValueField
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
 import FileProcessor from 'react-file-processor';
 import Label from "../../../stateless/Label/Label.jsx";
-
+import validation from 'react-validation-mixin';
+import strategy from 'joi-validation-strategy'; 
+import Joi from 'joi';
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -27,7 +29,22 @@ class CreateOfferPage extends Component {
 
     constructor(props){
         super(props);
+        this.validatorTypes = {
+          name: Joi.string().alphanum().min(3).max(30).required(),
+          price: Joi.number(),
+          weight: Joi.number()
+        };
+        this.getValidatorData = this.getValidatorData.bind(this);
+
         this.formFields = {};
+    }
+
+    getValidatorData() {
+      return {
+        name: this.formFields.name.value,
+        price: this.formFields.pricePerUnit.value,
+        weight: this.formFields.packageWeight.value
+      };
     }
 
     getOfferData() {
@@ -68,7 +85,9 @@ class CreateOfferPage extends Component {
                 </NavigationBar>
                 <div className={styles.top}>
                     <Label className={styles.label} text="Name of object:"/>
-                    <TextField className={styles.textField} inputRef={el => this.formFields.name = el}/>
+                    <TextField className={styles.textField} inputRef={el => this.formFields.name = el}
+                                    validate={this.props.handleValidation('name')}
+                                    error={this.props.getValidationMessages('name')}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <FileProcessor
@@ -91,8 +110,12 @@ class CreateOfferPage extends Component {
                                            options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"
                                            inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
-                                <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>
+                                <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}
+                                    onBlur={this.props.handleValidation('weight')}
+                                    error={this.props.getValidationMessages('weight')}/>
+                                <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}
+                                    onBlur={this.props.handleValidation('price')}
+                                    error={this.props.getValidationMessages('price')}/>
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>
                             <SelectorField className={styles.selector} options={[
@@ -114,5 +137,5 @@ class CreateOfferPage extends Component {
     }
 }
 
-export default CreateOfferPage;
+export default validation(strategy)(CreateOfferPage);
 

@@ -13,6 +13,12 @@ module.exports = {
         path: __dirname + "/dist/"
     },
 
+    node: {
+        net: 'empty',
+        dns: 'empty'
+    },
+
+
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         historyApiFallback: {

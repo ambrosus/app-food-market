@@ -10,7 +10,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMount: (address) => { dispatch(getAllOffers(address)) }
+    onMount: (address) => { 
+    	if (address) {
+    		dispatch(getAllOffers(address));
+    	}
+    }
   }
 }
 

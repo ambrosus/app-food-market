@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ProductItem from "../ProductItem/ProductItem.jsx";
 import PropTypes from 'prop-types';
 
+
 require('./ProductContainer.scss');
 
 
@@ -13,7 +14,6 @@ class ProductContainer extends Component {
 
   render() {
     var offers = this.props.market.offers;
-    
     if (this.props.market.status != null){
       return (<p>{this.props.market.status}</p>)
     }
@@ -26,6 +26,7 @@ class ProductContainer extends Component {
               price={'€'+offer.pricePerUnit/100.0+'/kg'}
               seller={offer.seller.slice(0,10)+'...'}
               title={'The best ' + offer.name + ' in the world'} 
+              hash={offer.imageHash}
               />)
       }
       </div>

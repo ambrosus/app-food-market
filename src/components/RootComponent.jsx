@@ -7,7 +7,7 @@ import MarketPage from "./stateful/Pages/MarketPage/MarketPage.jsx";
 import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage.jsx";
 import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage.jsx";
 import CreateOfferPage from "./stateful/Pages/CreateOfferPage/CreateOfferPage.jsx";
-import CreateOffer from "./stateful/CreateOffer.js";
+import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
 require("./RootComponent.scss");

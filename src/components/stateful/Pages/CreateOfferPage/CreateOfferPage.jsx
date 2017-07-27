@@ -9,6 +9,7 @@ import AttributeValueFieldContainer from "../../../stateless/AttributeValueField
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
 import FileProcessor from "react-file-processor";
 import Label from "../../../stateless/Label/Label.jsx";
+import Button from "../../../stateless/Button/Button.jsx";
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},

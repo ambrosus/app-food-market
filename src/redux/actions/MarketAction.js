@@ -93,12 +93,3 @@ export const getAllOffers = (address) => {
       dispatch(receiveAllOffers(offers));
     };
 }
-
-export const getAllOffersOrCreateMarket = (address) => {
-  if (address === '') {
-    return createMarket();
-  }
-  else
-    return getAllOffers(address);
-};
-

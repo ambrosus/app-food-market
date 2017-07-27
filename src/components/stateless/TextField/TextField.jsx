@@ -1,13 +1,12 @@
 import React, {Component} from "react";
 import styles from "./TextField.scss";
+import cx from "classnames";
 
 export default class TextField extends Component {
-    
+
     render() {
-        let {inputRef, ...otherProps} = this.props;
-        return (<div {...otherProps}>
-            <span className={styles.label}>{ this.props.label }</span>
-            <input className={styles.input} placeholder={ this.props.placeholder } type="text" ref={this.props.inputRef}/>
-        </div>)
+        return (<input className={cx(styles.input, this.props.className)}
+                       placeholder={ this.props.placeholder }
+                       ref={this.props.inputRef} type="text"/>)
     }
 }

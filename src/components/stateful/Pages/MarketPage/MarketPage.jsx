@@ -1,16 +1,26 @@
-import { Link } from "react-router-dom"
+import {Link} from "react-router-dom";
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import Market from "../../Market/Market.js";
-import SearchField from "../../../stateless/SearchField/SearchField.jsx";
+import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
 import Button from "../../../stateless/Button/Button.jsx";
+import Label from "../../../stateless/Label/Label.jsx";
 
 let MarketPage = () => (
     <div>
         <NavigationBar title="Market">
-            <SearchField label="Quality" placeholder="Premium" className="navigation__category-selector"/>
-            <SearchField label="Category" placeholder="Fish" className="navigation__category-selector"/>
-            <Link className="navigation__link" to="/create-offer"><Button className='navigation__create-offer-button'>
+            <Label text="Quality"/>
+            <SelectorField options={[
+                {value: 'Poor'},
+                {value: 'Good'}]
+            } label="Category"/>
+            <Label text="Categories"/>
+            <SelectorField options={[
+                {value: 'Poor'},
+                {value: 'Good'}]
+            } label="Category"/>
+            <Link className="navigation__link" to="/create-offer"><Button
+                className='navigation__create-offer-button'>
                 <span className="icon-basket-loaded button-icon-default"/>Create an offer</Button>
             </Link>
         </NavigationBar>

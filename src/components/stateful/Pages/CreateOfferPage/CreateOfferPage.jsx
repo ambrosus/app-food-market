@@ -2,13 +2,12 @@ import React, {Component} from "react";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
-import Button from "../../../stateless/Button/Button.jsx";
 import TextField from "../../../stateless/TextField/TextField.jsx";
 import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
 import InputField from "../../../stateless/InputField/InputField.jsx";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
-import FileProcessor from 'react-file-processor';
+import FileProcessor from "react-file-processor";
 import Label from "../../../stateless/Label/Label.jsx";
 
 const parameters = [
@@ -24,14 +23,14 @@ const parameters = [
 
 class CreateOfferPage extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.formFields = {};
     }
 
     getOfferData() {
         let result = {};
-        for (let i in this.formFields){
+        for (let i in this.formFields) {
             result[i] = this.formFields[i].value;
         }
         return result;
@@ -46,7 +45,7 @@ class CreateOfferPage extends Component {
         this.image = files[0];
         let reader = new FileReader();
         reader.onload = (event) => {
-          this.refs.image.src = event.target.result;
+            this.refs.image.src = event.target.result;
         };
         reader.readAsDataURL(files[0]);
     }
@@ -71,11 +70,11 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <FileProcessor
                                 ref="myFileInput"
-                                onFileSelect={(e, f)=>this.onFileSelect(e,f)} >
-                                <div className={styles.imageContainer} onClick={()=>this.onImageClick()}>
+                                onFileSelect={(e, f) => this.onFileSelect(e, f)}>
+                                <div className={styles.imageContainer} onClick={() => this.onImageClick()}>
                                     <div className={styles.verticalContainer}>
                                         <div className={styles.horizontalContainer}>
-                                            <img className={styles.image} 
+                                            <img className={styles.image}
                                                  src="./static/images/icon-image.png"
                                                  ref="image"/>
                                         </div>
@@ -88,8 +87,10 @@ class CreateOfferPage extends Component {
                             <SelectorField className={styles.selector}
                                            options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
-                                <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>
+                                <InputField label="Package weight (kg)"
+                                            inputRef={el => this.formFields.packageWeight = el}/>
+                                <InputField label="Price per package (€)"
+                                            inputRef={el => this.formFields.pricePerUnit = el}/>
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>
                             <SelectorField className={styles.selector} options={[

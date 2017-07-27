@@ -6,7 +6,7 @@ export default class SelectorField extends Component {
 
     render() {
         return (<div>
-            <select className={cx(styles.select, this.props.className)}>
+            <select className={cx(styles.select, this.props.className)} ref={this.props.inputRef}>
                 { this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
             </select>
         </div>)

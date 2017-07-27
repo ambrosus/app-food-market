@@ -88,7 +88,8 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <Label className={styles.label} text="Category:"/>
                             <SelectorField className={styles.selector}
-                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"/>
+                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"
+                                           inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
                                 <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}/>
                                 <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}/>

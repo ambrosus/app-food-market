@@ -38,10 +38,10 @@ class ProductContainer extends Component {
         {offers.map((offer, index) => 
           <ProductItem 
               key={index}
-              name={offer.name}
+              category={offer.category}
               price={'€'+offer.pricePerUnit/100.0+'/kg'}
               seller={offer.seller.slice(0,10)+'...'}
-              title={'The best ' + offer.name + ' in the world'} 
+              title={offer.name} 
               hash={offer.imageHash}
               />)
       }

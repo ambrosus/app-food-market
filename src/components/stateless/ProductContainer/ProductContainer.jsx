@@ -41,7 +41,7 @@ class ProductContainer extends Component {
               name={offer.name}
               price={'€'+offer.pricePerUnit/100.0+'/kg'}
               seller={offer.seller.slice(0,10)+'...'}
-              title={'The best ' + offer.name + ' in the world'} 
+              title={offer.name} 
               hash={offer.imageHash}
               />)
       }

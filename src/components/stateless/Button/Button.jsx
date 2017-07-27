@@ -1,19 +1,10 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-require('./Button.scss');
+import React, {Component} from "react";
+import cx from "classnames";
+import styles from "./Button.scss";
 
 export default class Button extends Component {
 
-    static propTypes = {
-        label: PropTypes.string
-    };
-
-    static defaultProps = {
-        label: 'Default'
-    };
-
     render() {
-        return (
-            <div className="button" {...this.props}>{this.props.children}</div>)
+        return (<div className={cx(styles.button, this.props.className)}>{this.props.children}</div>)
     }
 }

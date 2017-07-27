@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
 import Label from "../../../stateless/Label/Label.jsx";
+import Button from "../../../stateless/Button/Button.jsx";
 
 const requirements = [
     {field: 'Anti-Biotics Free', value: 'Yes'},
@@ -19,7 +20,6 @@ const parameters = [
     {field: 'Origin', value: 'Norway'},
     {field: 'Seller', value: 'Johnston Ltd.'},
 ];
-
 
 const summary = [
     {field: 'Status', value: 'In Progress'},
@@ -38,6 +38,7 @@ class ProductPage extends Component {
         return (<div className={styles.container}>
                 <div className={cx(styles.column, styles.requirementsColumn)}>
                     <img className={styles.image} src="./static/images/fish.png"/>
+                    <Label className={styles.subtitle} text="Requirements" />
                     <AttributeValueFieldContainer className={styles.requirements}>
                         { requirements.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
@@ -59,6 +60,8 @@ class ProductPage extends Component {
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
                         ) }
                     </AttributeValueFieldContainer>
+                    <Button className={styles.approvePayment}>Approve payment</Button>
+                    <Button className={styles.reimburse}>Reimbursed</Button>
                 </div>
             </div>
         )

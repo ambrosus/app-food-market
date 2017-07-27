@@ -1,9 +1,22 @@
-@mixin button($text-color, $background-color, $height) {
+@import "./../shared";
+
+:local(.button) {
+  @include font();
+  font-weight: bold;
+  background-color: #002C87;
   cursor: pointer;
-  line-height: $height;
-  height: $height;
-  vertical-align: middle;
+  box-sizing: border-box;
+  text-align: center;
   padding: 0 15px;
+  font-size: 15px;
+  color: #ffffff;
+  height: 40px;
+  line-height: 40px;
+  white-space: nowrap
+}
+
+@mixin button($text-color, $background-color, $height) {
+  vertical-align: middle;
   background-color: $background-color;
   box-sizing: border-box;
   font-size: 15px;
@@ -12,6 +25,11 @@
   font-family: 'Muli', sans-serif;
   font-weight: 700;
   white-space: nowrap
+}
+
+@mixin button-height($height) {
+  line-height: $height;
+  height: $height;
 }
 
 @mixin button-border($color, $size:0px, $type:solid, $radius:0px) {

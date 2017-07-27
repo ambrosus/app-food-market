@@ -55,16 +55,6 @@ class CreateOfferPage extends Component {
 
     render() {
         return (<div>
-                <NavigationBar title="Create new offer">
-                    <Button className={styles.cancelButton}>Cancel</Button>
-                    <Button className={styles.saveButton}
-                            onClick={(e) => {
-                                this.props.onAdd(
-                                    this.getOfferData(),
-                                    this.image,
-                                    this.props.address)
-                            }}>Save</Button>
-                </NavigationBar>
                 <div className={styles.top}>
                     <Label className={styles.label} text="Name of object:"/>
                     <TextField className={styles.textField} inputRef={el => this.formFields.name = el}/>

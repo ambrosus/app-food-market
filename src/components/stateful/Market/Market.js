@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import ProductContainer from '../../stateless/ProductContainer/ProductContainer.jsx';
 import { getAllOffers } from "../../../redux/actions/MarketAction.js";
+import { gotoMarket } from "../../../redux/actions/MarketAction.js";
+import * as Cookies from "js-cookie";
 
 const mapStateToProps = state => {
   return {
@@ -11,9 +13,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onMount: (address) => { 
-    	if (address) {
-    		dispatch(getAllOffers(address));
-    	}
+      if (address) {
+        dispatch(getAllOffers(address));
+      } else {        
+        var addressFromCookies = Cookies.get('market_address', address);      
+        if (addressFromCookies) {
+          dispatch(gotoMarket(addressFromCookies));
+          dispatch(getAllOffers(addressFromCookies));
+        }
+      }
+
     }
   }
 }

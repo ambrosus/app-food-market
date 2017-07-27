@@ -13,7 +13,7 @@ const market = (state = {offers: [], address: '', status: 'No market'}, action) 
     case 'CREATE_MARKET_FAILED':
       return {...state, status: 'Unable to create market'};      
     case 'GOTO_MARKET':
-      return {address: action.address, offers: []};
+      return {address: action.address, offers: [], status: "Loading..."};
     default:
       return state;
   }

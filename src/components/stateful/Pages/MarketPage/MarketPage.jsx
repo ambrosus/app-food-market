@@ -3,14 +3,15 @@ import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import Market from "../../Market/Market.js";
 import SearchField from "../../../stateless/SearchField/SearchField.jsx";
+import Button from "../../../stateless/Button/Button.jsx";
 
 let MarketPage = () => (
     <div>
         <NavigationBar title="Market">
             <SearchField label="Quality" placeholder="Premium" className="navigation__category-selector"/>
             <SearchField label="Category" placeholder="Fish" className="navigation__category-selector"/>
-            <Link className="navigation__link" to="/create-offer">
-                Create an offer
+            <Link className="navigation__link" to="/create-offer"><Button className='navigation__create-offer-button'>
+                <span className="icon-basket-loaded button-icon-default"/>Create an offer</Button>
             </Link>
         </NavigationBar>
         <Market/>

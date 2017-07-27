@@ -11,7 +11,7 @@ class WelcomePage extends Component {
         return (
         <div>
             <NavigationBar title="Welcome">        
-                <Link className="navigation__link" to="/create_market">
+                <Link className="navigation__link" to="/create-market">
                 	<Button className='navigation__create-offer-button'>
                     	<span className="icon-basket-loaded button-icon-default"/>Create new market
                     </Button>

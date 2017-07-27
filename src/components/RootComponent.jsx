@@ -21,8 +21,8 @@ export default class RootComponent extends Component {
                     <PageContainer>
                         <HeaderContainer/>
                         <Route exact path="/" component={WelcomePage}/>
-                        <Route exact path="/create_market" component={CreatingMarketContainer}/>
-                        <Route exact path="/market/:id" component={MarketPage}/>
+                        <Route exact path="/create-market" component={CreatingMarketContainer}/>
+                        <Route exact path="/market" component={MarketPage}/>
                         <Route exact path="/orders" component={OrdersPage}/>
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/create-offer" component={CreateOffer}/>

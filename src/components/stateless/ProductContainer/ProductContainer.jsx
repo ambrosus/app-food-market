@@ -14,15 +14,21 @@ class ProductContainer extends Component {
 
   render() {
     var offers = this.props.market.offers;
-    
-    if (this.props.market.status != null){
-      return (<p>{this.props.market.status}</p>)
+    if (!this.props.market.address) {
+      return (<p>Opsss.. No market yet.
+                &nbsp;
+                <Link className="navigation__link" to="/create-market">
+                   Create
+                </Link>
+                &nbsp; one.
+              </p>)
     } else if (this.props.market.offers.length == 0) {
       return (<p>There are no offers on the market yet. 
-                <Link className="navigation__link" to="/create-offer"><Button className='navigation__create-offer-button'>
-                   <span className="icon-basket-loaded button-icon-default"/>Create</Button>
+                &nbsp;
+                <Link className="navigation__link" to="/create-offer">
+                   Create
                 </Link>
-                first.
+                &nbsp; first.
               </p>)
     }
 

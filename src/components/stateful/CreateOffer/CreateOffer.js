@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch) => {
       if (image){
         var ipfs = new IPFS();
         ipfs.on('ready', async () => {
-          console.log('ipfs')
           offer.imageHash = await uploadToIPFS(ipfs, image);
           dispatchTransaction(dispatch, offer, address);       
         });

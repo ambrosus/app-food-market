@@ -5,11 +5,11 @@ import {Link} from "react-router-dom";
 import Button from "../../../stateless/Button/Button.jsx";
 import TextField from "../../../stateless/TextField/TextField.jsx";
 import InputField from "../../../stateless/InputField/InputField.jsx";
-import styles from "./CreateOfferPage.scss";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
 import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
 import FileProcessor from 'react-file-processor';
+import styles from "./CreateOfferPage.scss";
 
 
 const parameters = [

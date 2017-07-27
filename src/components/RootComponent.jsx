@@ -7,7 +7,7 @@ import WelcomePage from "./stateful/Pages/WelcomePage/WelcomePage.jsx";
 import CreatingMarketContainer from "./stateful/Pages/CreatingMarketPage/CreatingMarketContainer.js";
 import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage.jsx";
 import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage.jsx";
-import CreateOfferPage from "./stateful/Pages/CreateOfferPage/CreateOfferPage.jsx";
+import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
 import ProductPage from "./stateful/Pages/ProductPage/ProductPage.jsx";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
@@ -26,7 +26,7 @@ export default class RootComponent extends Component {
                         <Route exact path="/orders" component={OrdersPage}/>
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/product-page" component={ProductPage}/>
-                        <Route exact path="/create-offer" component={CreateOfferPage}/>
+                        <Route exact path="/create-offer" component={CreateOffer}/>
                     </PageContainer>
                 </Router>
             </Provider>)

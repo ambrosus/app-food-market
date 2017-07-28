@@ -13,9 +13,6 @@ import Label from "../../../stateless/Label/Label.jsx";
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy'; 
 import Button from "../../../stateless/Button/Button.jsx";
-import Label from "../../../stateless/Label/Label";
-import Button from "../../../stateless/Button/Button";
-
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},

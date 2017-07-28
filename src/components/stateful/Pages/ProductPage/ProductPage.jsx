@@ -35,33 +35,34 @@ class ProductPage extends Component {
         this.formFields = {};
     }
 
+
     render() {
         return (<div className={styles.container}>
-                <div className={cx(styles.column, styles.requirementsColumn)}>
+                <div className={styles.requirementsColumn}>
                     <img className={styles.image} src="./static/images/fish.png"/>
-                    <Label className={styles.subtitle} text="Requirements" />
+                    <Label className={styles.subtitle} text="Requirements"/>
                     <AttributeValueFieldContainer className={styles.requirements}>
-                        { requirements.map((element, index) => (
+                        {requirements.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
-                        ) }
+                        )}
                     </AttributeValueFieldContainer>
                 </div>
-                <div className={cx(styles.column, styles.typeColumn)}>
+                <div className={styles.typeColumn}>
                     <Label className={styles.title} text="Champion"/>
                     <AttributeValueFieldContainer className={styles.requirements}>
-                        { parameters.map((element, index) => (
+                        {parameters.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
-                        ) }
+                        )}
                     </AttributeValueFieldContainer>
                     <Label className={styles.subtitle} text="Measurements"/>
-                   <MeasurementList/>
+                    <MeasurementList/>
                 </div>
                 <div className={cx(styles.column, styles.summaryColumn)}>
                     <Label className={styles.title} text="Summary"/>
                     <AttributeValueFieldContainer className={styles.requirements}>
-                        { summary.map((element, index) => (
+                        {summary.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
-                        ) }
+                        )}
                     </AttributeValueFieldContainer>
                     <Button className={styles.approvePayment}>Approve payment</Button>
                     <Button className={styles.reimburse}>Reimbursed</Button>

@@ -1,5 +1,50 @@
 @import '../../../stateless/Button/Button.scss';
 
+@mixin margin {
+  margin: 20px 0;
+}
+
+@mixin column {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  border-left: 1px solid rgba(0,44,135,0.1);
+}
+
+:local(.requirements) {
+  margin-bottom: 50px;
+}
+
+:local(.requirementsColumn) {
+  @include column();
+  flex: 1;
+}
+
+:local(.typeColumn) {
+  @include column();
+  flex: 2;
+}
+
+:local(.summaryColumn) {
+  @include column();
+  flex: 1;
+  border: 0;
+  background-color: rgba(32,171,250,0.2);
+}
+
+:local(.reimburse) {
+  @include margin();
+  background-color: #ffffff;
+  color: #002C87;
+  border: 1px solid rgba(0,44,135,0.4);
+}
+
+:local(.approvePayment) {
+  @include margin();
+}
+
 :local(.title) {
   font-weight: 100;
   font-size: 28px;
@@ -10,7 +55,7 @@
 
 :local(.subtitle) {
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 :local(.container) {
@@ -19,40 +64,8 @@
   flex-wrap: nowrap;
 }
 
-:local(.column) {
-  display: flex;
-  padding: 30px;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  border-left: 1px solid rgba(0,44,135,0.1);
-}
-
-:local(.requirementsColumn) {
-  flex: 1;
-}
-
-:local(.typeColumn) {
-  flex: 2;
-}
-
-:local(.summaryColumn) {
-  flex: 1;
-  border: 0;
-  background-color: rgba(32,171,250,0.2);
-}
-
-:local(.reimburse) {
-  background-color: #ffffff;
-  color: #002C87;
-  border: 1px solid rgba(0,44,135,0.4);
-}
-
 :local(.image) {
   object-fit: cover;
   display: inline-block;
   padding-bottom: 40px;
-}
-
-:local(.requirements) {
 }

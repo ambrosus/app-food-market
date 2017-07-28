@@ -21,7 +21,7 @@ export default class TransactionList extends Component {
             <ul>
                 {this.props.pending.map(item => <TransactionItem key={ item.key } status="pending" tx={ item.tx } caption={ item.caption } />)}
                 {this.props.success.map(item => <TransactionItem key={ item.key } status="success" tx={ item.tx } caption={ item.caption } />)}
-                {this.props.failed.map(item => <TransactionItem key={ item.key } status="failed" tx={ item.tx } caption={ item.caption } />)}
+                {this.props.failed.map(item => <TransactionItem key={ item.key } status="failed" tx={ item.tx } caption={ item.caption } errorMessage={item.errorMessage.toString()}/>)}
             </ul> 
             </div>);
     }

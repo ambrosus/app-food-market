@@ -1,15 +1,15 @@
 import React, {Component} from "react";
 import styles from "./CreateOfferPage.scss";
-import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
+import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import {Link} from "react-router-dom";
-import TextField from "../../../stateless/TextField/TextField.jsx";
-import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
-import InputField from "../../../stateless/InputField/InputField.jsx";
-import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
-import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
+import TextField from "../../../stateless/TextField/TextField";
+import SelectorField from "../../../stateless/SelectorField/SelectorField";
+import InputField from "../../../stateless/InputField/InputField";
+import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
+import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField";
 import FileProcessor from "react-file-processor";
-import Label from "../../../stateless/Label/Label.jsx";
-import Button from "../../../stateless/Button/Button.jsx";
+import Label from "../../../stateless/Label/Label";
+import Button from "../../../stateless/Button/Button";
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},

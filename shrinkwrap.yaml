@@ -7,6 +7,7 @@ dependencies:
   font-awesome: 4.7.0
   ipfs: 0.25.1
   ipfs-image-web-upload: 1.0.3
+  js-cookie: 2.1.4
   normalize: 0.3.1
   normalize.css: 7.0.0
   prop-types: 15.5.10
@@ -3816,6 +3817,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-8OgK4DmkvWVLXygfyT8EqRSn/M4=
+  /js-cookie/2.1.4:
+    resolution:
+      integrity: sha1-2k7FA4ZvFJ0WTPJfV57zEBUCXY0=
   /js-sha3/0.3.1:
     resolution:
       integrity: sha1-hhIoAhQvCChQKg0d7h2V4lO7AkM=
@@ -7621,6 +7625,7 @@ specifiers:
   font-awesome: ^4.7.0
   ipfs: ^0.25.0
   ipfs-image-web-upload: ^1.0.3
+  js-cookie: ^2.1.4
   jsx-loader: ^0.13.2
   node-sass: ^4.5.3
   normalize: ^0.3.1

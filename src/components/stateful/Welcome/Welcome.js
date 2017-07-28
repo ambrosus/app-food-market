@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import WelcomePage from "../Pages/WelcomePage/WelcomePage.jsx";
+import WelcomePage from "../Pages/WelcomePage/WelcomePage";
 import { gotoMarket } from "../../../redux/actions/MarketAction.js";
 import * as Cookies from "js-cookie";
 

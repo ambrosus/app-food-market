@@ -22,6 +22,10 @@ module.exports = {
         port: 9000
     },
 
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
+
     module: {
         rules: [
             {

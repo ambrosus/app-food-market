@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Button from "../Button/Button.jsx";
+import Button from "../Button/Button";
 import IPFSUploader from 'ipfs-image-web-upload';
 import IPFS from 'ipfs';
 require('./ProductItem.scss');

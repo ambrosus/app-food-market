@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { executeEthereumTransaction } from '../../../redux/actions/TransactionAction.js';
-import TransactionsStatus from '../../stateless/TransactionsStatus/TransactionsStatus.jsx';
+import TransactionsStatus from '../../stateless/TransactionsStatus/TransactionsStatus';
 const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProductItem from "../ProductItem/ProductItem.jsx";
+import ProductItem from "../ProductItem/ProductItem";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
 

@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
+import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import { Link } from 'react-router-dom';
-import Button from "../../../stateless/Button/Button.jsx";
-import InputField from "../../../stateless/InputField/InputField.jsx";
-import TextField from "../../../stateless/TextField/TextField.jsx";
+import Button from "../../../stateless/Button/Button";
+import InputField from "../../../stateless/InputField/InputField";
+import TextField from "../../../stateless/TextField/TextField";
 
 class WelcomePage extends Component {
     

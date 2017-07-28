@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ProductContainer from '../../stateless/ProductContainer/ProductContainer.jsx';
+import ProductContainer from '../../stateless/ProductContainer/ProductContainer';
 import { getAllOffers } from "../../../redux/actions/MarketAction.js";
 import { gotoMarket } from "../../../redux/actions/MarketAction.js";
 import * as Cookies from "js-cookie";

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateOfferPage from '../Pages/CreateOfferPage/CreateOfferPage.jsx';
+import CreateOfferPage from '../Pages/CreateOfferPage/CreateOfferPage';
 import { createOffer } from '../../../redux/actions/OfferAction.js';
 
 const mapStateToProps = state => {

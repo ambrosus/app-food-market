@@ -1,5 +1,26 @@
 @import '../shared.scss';
 
-:local(.breadcrumbs) {
+:local(.header) {
   @include font();
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
 }
+
+:local(.icon) {
+  padding-right: 10px;
+}
+
+:local(.container) {
+  margin-bottom: 20px;
+}
+
+:local(.title) {
+  font-size: 18px;
+}
+
+:local(.date) {
+  margin-left: auto;
+  opacity: 0.4;
+}
+

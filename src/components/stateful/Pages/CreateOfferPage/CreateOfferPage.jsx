@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { createBrowserHistory } from "history";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
 import {Link} from "react-router-dom";
@@ -47,7 +46,6 @@ class CreateOfferPage extends Component {
         this.getValidatorData = this.getValidatorData.bind(this);
 
         this.formFields = {};
-        this.history = createBrowserHistory();
     }
 
     getValidatorData() {
@@ -79,6 +77,7 @@ class CreateOfferPage extends Component {
         };
         reader.readAsDataURL(files[0]);
     }
+
     onSaveClick() {
         this.props.validate((err) => {
             if (err)
@@ -94,7 +93,7 @@ class CreateOfferPage extends Component {
         return (<div>
                 <NavigationBar title="Create an offer">
                     <Button className={styles.cancelButton}
-                            onClick={ this.history.goBack }>Cancel</Button>       
+                            onClick={ this.props.history.goBack }>Cancel</Button>       
                     <Button className={styles.saveButton}
                             onClick={()=>this.onSaveClick()}>Save</Button>
                 </NavigationBar>      

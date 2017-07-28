@@ -4,7 +4,7 @@
   @include font();
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 23px;
 }
 
 :local(.icon) {
@@ -17,6 +17,7 @@
 
 :local(.title) {
   font-size: 18px;
+  line-height: 36px;
 }
 
 :local(.date) {

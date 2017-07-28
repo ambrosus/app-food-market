@@ -6,7 +6,7 @@ import TextField from "../../../stateless/TextField/TextField";
 import SelectorField from "../../../stateless/SelectorField/SelectorField";
 import InputField from "../../../stateless/InputField/InputField";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField";
+import AttributeValueField from "../../../stateless/AttributeValueFieldContainer/AttributeValueField";
 import FileProcessor from "react-file-processor";
 import Label from "../../../stateless/Label/Label.jsx";
 import validation from 'react-validation-mixin';

@@ -17,6 +17,4 @@ const store = createStore(combineReducers({
 
 store.dispatch(initializeBlockchain());
 
-window.store = store;
-
 export default store;

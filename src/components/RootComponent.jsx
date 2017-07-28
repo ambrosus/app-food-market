@@ -1,17 +1,17 @@
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 import React, {Component} from "react";
-import HeaderContainer from "./stateful/HeaderContainer/HeaderContainer.jsx";
-import PageContainer from "./stateless/PageContainer/PageContainer.jsx";
-import MarketPage from "./stateful/Pages/MarketPage/MarketPage.jsx";
+import HeaderContainer from "./stateful/HeaderContainer/HeaderContainer";
+import PageContainer from "./stateless/PageContainer/PageContainer";
+import MarketPage from "./stateful/Pages/MarketPage/MarketPage";
 import Welcome from "./stateful/Welcome/Welcome.js";
 import CreatingMarketContainer from "./stateful/Pages/CreatingMarketPage/CreatingMarketContainer.js";
-import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage.jsx";
-import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage.jsx";
+import OrdersPage from "./stateful/Pages/OrdersPage/OrdersPage";
+import ProfilePage from "./stateful/Pages/ProfilePage/ProfilePage";
 import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
-import ProductPage from "./stateful/Pages/ProductPage/ProductPage.jsx";
+import ProductPage from "./stateful/Pages/ProductPage/ProductPage";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
-require("./RootComponent.scss");
+import styles from "./RootComponent.scss";
 
 export default class RootComponent extends Component {
     render() {

@@ -2,10 +2,11 @@ import React, {Component} from "react";
 import styles from "./ProductPage.scss";
 import cx from "classnames";
 import {Link} from "react-router-dom";
-import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer.jsx";
-import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField.jsx";
-import Label from "../../../stateless/Label/Label.jsx";
-import Button from "../../../stateless/Button/Button.jsx";
+import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
+import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField";
+import Label from "../../../stateless/Label/Label";
+import Button from "../../../stateless/Button/Button";
+import MeasurementList from "../../../stateless/MeasurementList/MeasurementList";
 
 const requirements = [
     {field: 'Anti-Biotics Free', value: 'Yes'},
@@ -52,6 +53,8 @@ class ProductPage extends Component {
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
                         ) }
                     </AttributeValueFieldContainer>
+                    <Label className={styles.subtitle} text="Measurements"/>
+                   <MeasurementList/>
                 </div>
                 <div className={cx(styles.column, styles.summaryColumn)}>
                     <Label className={styles.title} text="Summary"/>

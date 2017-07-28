@@ -6,7 +6,7 @@ export default class InputField extends Component {
         return (<div className={styles.row}>
             <span className={styles.label}>{ this.props.label }</span>
             <input placeholder={ this.props.placeholder } type="text" className={styles.value} ref={this.props.inputRef}
-              onBlur={this.props.onBlur}
+              onChange={this.props.validate}
             />
             <span>{this.props.error}</span>
         </div>)

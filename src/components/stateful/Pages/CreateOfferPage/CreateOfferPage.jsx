@@ -11,8 +11,7 @@ import AttributeValueField from "../../../stateless/AttributeValueField/Attribut
 import FileProcessor from 'react-file-processor';
 import Label from "../../../stateless/Label/Label.jsx";
 import validation from 'react-validation-mixin';
-import strategy from 'joi-validation-strategy'; 
-import Joi from 'joi';
+import strategy from 'react-validatorjs-strategy'; 
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -27,24 +26,32 @@ const parameters = [
 
 class CreateOfferPage extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.validatorTypes = {
-          name: Joi.string().alphanum().min(3).max(30).required(),
-          price: Joi.number(),
-          weight: Joi.number()
-        };
+        this.validatorTypes = strategy.createSchema(
+            {
+                name: "required|min:3|max:30",
+                price: "numeric",
+                weight: "numeric"
+            }, 
+            {
+                "required.name": "You must specify the product name",
+                "min.name": "Name must be not shorter than 3",
+                "max.name": "Name must be not longer than 30",
+                "numeric": "This is not a number",
+            }
+        );
         this.getValidatorData = this.getValidatorData.bind(this);
 
         this.formFields = {};
     }
 
     getValidatorData() {
-      return {
-        name: this.formFields.name.value,
-        price: this.formFields.pricePerUnit.value,
-        weight: this.formFields.packageWeight.value
-      };
+        return {
+            name: this.formFields.name.value,
+            price: this.formFields.pricePerUnit.value,
+            weight: this.formFields.packageWeight.value
+        };
     }
 
     getOfferData() {
@@ -111,10 +118,10 @@ class CreateOfferPage extends Component {
                                            inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
                                 <InputField label="Package weight (kg)" inputRef={el => this.formFields.packageWeight = el}
-                                    onBlur={this.props.handleValidation('weight')}
+                                    validate={this.props.handleValidation('weight')}
                                     error={this.props.getValidationMessages('weight')}/>
                                 <InputField label="Price per package (€)" inputRef={el => this.formFields.pricePerUnit = el}
-                                    onBlur={this.props.handleValidation('price')}
+                                    validate={this.props.handleValidation('price')}
                                     error={this.props.getValidationMessages('price')}/>
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>

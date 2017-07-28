@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom';
 import Button from "../../../stateless/Button/Button";
 import InputField from "../../../stateless/InputField/InputField";
 import TextField from "../../../stateless/TextField/TextField";
+import { createBrowserHistory } from "history";
+
 
 class WelcomePage extends Component {
     
     render() {
+        window.his1 = createBrowserHistory();
+        window.his2 = this.props.history;
         return (
         <div>
             <NavigationBar title="Welcome">        

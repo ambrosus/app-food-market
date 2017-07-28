@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import React, {Component} from "react";
-import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
+import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import Market from "../../Market/Market.js";
-import SelectorField from "../../../stateless/SelectorField/SelectorField.jsx";
-import Button from "../../../stateless/Button/Button.jsx";
-import Label from "../../../stateless/Label/Label.jsx";
+import SelectorField from "../../../stateless/SelectorField/SelectorField";
+import Button from "../../../stateless/Button/Button";
+import Label from "../../../stateless/Label/Label";
 import styles from './MarketPage.scss';
 
 let MarketPage = () => (

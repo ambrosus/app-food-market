@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button.jsx";
 import { loadImage } from "../../../utils/load_from_ipfs.js";
-
 require('./ProductItem.scss');
 
 export default class ProductItem extends Component {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreatingMarketPage from './CreatingMarketPage.jsx';
+import CreatingMarketPage from './CreatingMarketPage';
 import { createMarket } from "../../../../redux/actions/MarketAction.js";
 import Ambrosus from 'ambrosus';
 

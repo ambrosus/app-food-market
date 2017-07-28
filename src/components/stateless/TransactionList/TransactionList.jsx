@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import TransactionItem from "../TransactionItem/TransactionItem.jsx";
+import TransactionItem from "../TransactionItem/TransactionItem";
 
 export default class TransactionList extends Component {
 

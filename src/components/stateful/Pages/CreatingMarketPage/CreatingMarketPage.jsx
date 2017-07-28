@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import NavigationBar from "../../../stateless/NavigationBar/NavigationBar.jsx";
-import Button from "../../../stateless/Button/Button.jsx";
+import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
+import Button from "../../../stateless/Button/Button";
 import { Link } from 'react-router-dom';
 
 class CreatingMarketPage extends Component {

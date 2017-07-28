@@ -1,0 +1,59 @@
+@import '../../../stateless/Button/Button.scss';
+
+:local(.title) {
+  font-weight: 100;
+  font-size: 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+:local(.subtitle) {
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+:local(.container) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+:local(.column) {
+  display: flex;
+  height: 100vh;
+  padding: 30px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  border-left: 1px solid rgba(0,44,135,0.1);
+}
+
+:local(.requirementsColumn) {
+  flex: 1;
+}
+
+:local(.typeColumn) {
+  flex: 2;
+}
+
+:local(.summaryColumn) {
+  flex: 1;
+  border: 0;
+  background-color: rgba(32,171,250,0.2);
+}
+
+:local(.reimburse) {
+  background-color: #ffffff;
+  color: #002C87;
+  border: 1px solid rgba(0,44,135,0.4);
+}
+
+:local(.image) {
+  object-fit: cover;
+  display: inline-block;
+  padding-bottom: 40px;
+}
+
+:local(.requirements) {
+}

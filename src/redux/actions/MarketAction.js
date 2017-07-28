@@ -2,7 +2,6 @@ import { wait_for_ambrosus } from '../../utils/wait_for_ambrosus.js';
 import { executeEthereumTransaction } from './TransactionAction.js'; 
 import Ambrosus from 'ambrosus';
 
-
 const requestAllOffers = () => {
   return {
     type: 'FETCH_OFFERS_REQUEST',
@@ -40,6 +39,13 @@ export const createMarketFailed = (reason) => {
   return {
     type: 'CREATE_MARKET_FAILED',
     reason
+  }
+}
+
+export const gotoMarket = (address) => {
+  return {
+    type: 'GOTO_MARKET',
+    address
   }
 }
 

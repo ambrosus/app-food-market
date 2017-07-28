@@ -1,6 +1,11 @@
-.header {
+:local(.header) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+:local(.breadcrumbs) {
+  padding-top: 15px;
 }

@@ -19,6 +19,7 @@ export default class ProductItem extends Component {
 
     static defaultProps = {
         name: 'Tuna',
+        category: 'Fish',
         price: '€20 / kg',
         title: 'Nord atlantic tuna',
         seller: 'Riverscott',
@@ -45,7 +46,7 @@ export default class ProductItem extends Component {
     render() {
         return (<article className="product">
             <img src={this.props.image} width="263" height="180" ref="image"/>
-            <span className="product__name">{ this.props.name }</span>
+            <span className="product__name">{ this.props.category }</span>
             <div className="product__info">
                 <h1 className="product__title">{ this.props.title }</h1>
                 <div className="product__fields-container">

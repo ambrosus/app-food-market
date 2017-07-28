@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { createBrowserHistory } from "history";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import {Link} from "react-router-dom";
@@ -8,8 +9,13 @@ import InputField from "../../../stateless/InputField/InputField";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField";
 import FileProcessor from "react-file-processor";
+import Label from "../../../stateless/Label/Label.jsx";
+import validation from 'react-validation-mixin';
+import strategy from 'react-validatorjs-strategy'; 
+import Button from "../../../stateless/Button/Button.jsx";
 import Label from "../../../stateless/Label/Label";
 import Button from "../../../stateless/Button/Button";
+
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -26,7 +32,33 @@ class CreateOfferPage extends Component {
 
     constructor(props) {
         super(props);
+        this.validatorTypes = strategy.createSchema(
+            // Rules
+            {
+                name: "required|min:3|max:30",
+                price: "numeric",
+                weight: "numeric"
+            }, 
+            // Messages
+            {
+                "required.name": "You must specify the product name",
+                "min.name": "Name must be not shorter than 3",
+                "max.name": "Name must be not longer than 30",
+                "numeric": "This is not a number",
+            }
+        );
+        this.getValidatorData = this.getValidatorData.bind(this);
+
         this.formFields = {};
+        this.history = createBrowserHistory();
+    }
+
+    getValidatorData() {
+        return {
+            name: this.formFields.name.value,
+            price: this.formFields.pricePerUnit.value,
+            weight: this.formFields.packageWeight.value
+        };
     }
 
     getOfferData() {
@@ -50,23 +82,32 @@ class CreateOfferPage extends Component {
         };
         reader.readAsDataURL(files[0]);
     }
+    onSaveClick() {
+        this.props.validate((err) => {
+            if (err)
+                return;
+            this.props.onAdd(
+              this.getOfferData(),
+              this.image,
+              this.props.address);
+        });
+    }
 
     render() {
         return (<div>
                 <NavigationBar title="Create an offer">
-                    <Button className={styles.cancelButton}>Cancel</Button>       
-                    <Button className={styles.saveButton}     
-                     onClick={(e)=>{       
-                         this.props.onAdd(     
-                             this.getOfferData(),      
-                             this.image,       
-                             this.props.address)       
-                     }}>Save</Button>      
+                    <Button className={styles.cancelButton}
+                            onClick={ this.history.goBack }>Cancel</Button>       
+                    <Button className={styles.saveButton}
+                            onClick={()=>this.onSaveClick()}>Save</Button>
                 </NavigationBar>      
 
                 <div className={styles.top}>
                     <Label className={styles.label} text="Name of object:"/>
-                    <TextField className={styles.textField} inputRef={el => this.formFields.name = el}/>
+                    <TextField className={styles.textField} 
+                               inputRef={el => this.formFields.name = el}
+                               validate={this.props.handleValidation('name')}
+                               error={this.props.getValidationMessages('name')}/>
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <FileProcessor
@@ -86,12 +127,17 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <Label className={styles.label} text="Category:"/>
                             <SelectorField className={styles.selector}
-                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"/>
+                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"
+                                           inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
                                 <InputField label="Package weight (kg)"
-                                            inputRef={el => this.formFields.packageWeight = el}/>
+                                            inputRef={el => this.formFields.packageWeight = el}
+                                            validate={this.props.handleValidation('weight')}
+                                            error={this.props.getValidationMessages('weight')}/>
                                 <InputField label="Price per package (€)"
-                                            inputRef={el => this.formFields.pricePerUnit = el}/>
+                                            inputRef={el => this.formFields.pricePerUnit = el}
+                                            validate={this.props.handleValidation('price')}
+                                            error={this.props.getValidationMessages('price')}/>
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>
                             <SelectorField className={styles.selector} options={[
@@ -113,5 +159,5 @@ class CreateOfferPage extends Component {
     }
 }
 
-export default CreateOfferPage;
+export default validation(strategy)(CreateOfferPage);
 

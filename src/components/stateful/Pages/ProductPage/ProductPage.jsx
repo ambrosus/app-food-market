@@ -7,6 +7,7 @@ import AttributeValueField from "../../../stateless/AttributeValueField/Attribut
 import Label from "../../../stateless/Label/Label";
 import Button from "../../../stateless/Button/Button";
 import MeasurementList from "../../../stateless/MeasurementList/MeasurementList";
+import { loadImage } from "../../../../utils/load_from_ipfs.js";
 
 const requirements = [
     {field: 'Anti-Biotics Free', value: 'Yes'},
@@ -30,25 +31,36 @@ const summary = [
 
 class ProductPage extends Component {
 
-    constructor(props) {
-        super(props);
-        this.formFields = {};
+    static defaultProps = {
+        offer: {
+            name: 'Tuna',
+            category: 'Fish',
+            pricePerUnit: '€20 / kg',
+            name: 'Nord atlantic tuna',
+            seller: 'Riverscott',
+        },
+    };
+
+    componentDidMount() {
+        loadImage(this.refs.image, this.props.offer.imageHash);
     }
 
 
     render() {
         return (<div className={styles.container}>
-                <div className={styles.requirementsColumn}>
-                    <img className={styles.image} src="./static/images/fish.png"/>
-                    <Label className={styles.subtitle} text="Requirements"/>
+                <div className={cx(styles.column, styles.requirementsColumn)}>
+                    <img className={styles.image} src="./static/images/placeholder.png" ref="image"/>
+                    <Label className={styles.subtitle} text="Requirements" />
                     <AttributeValueFieldContainer className={styles.requirements}>
                         {requirements.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)
                         )}
                     </AttributeValueFieldContainer>
                 </div>
+                <div className={cx(styles.column, styles.typeColumn)}>
+                    <Label className={styles.title} text={this.props.offer.name}/>
                 <div className={styles.typeColumn}>
-                    <Label className={styles.title} text="Champion"/>
+                    <Label className={styles.title} text={this.props.offer.name}/>
                     <AttributeValueFieldContainer className={styles.requirements}>
                         {parameters.map((element, index) => (
                             <AttributeValueField key={index} field={element.field} value={element.value}/>)

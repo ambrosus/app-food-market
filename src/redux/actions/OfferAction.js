@@ -41,3 +41,10 @@ export const doCreateOffer = (offer, address, history) => {
     
   }
 }
+
+export const selectOffer = (offer) => {
+  return {
+    type: 'SELECT_OFFER',
+    offer
+  }
+}

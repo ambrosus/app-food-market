@@ -10,11 +10,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    qualityChange: (filter) => dispatch(updateFilter('quality', filter === 'None' ? undefined : filter)),
-    categoryChange: (filter) => dispatch(updateFilter('category', filter === 'None' ? undefined : filter)),
+    qualityChange: (filter) => dispatch(updateFilter('quality', filter == 'None' ? undefined : filter)),
+    categoryChange: (filter) => dispatch(updateFilter('category', filter == 'None' ? undefined : filter)),
     dispose: () => dispatch(resetFilter()),
   }
-};
+}
 
 const FilteredMarketPage = connect(mapStateToProps, mapDispatchToProps)(MarketPage);
 

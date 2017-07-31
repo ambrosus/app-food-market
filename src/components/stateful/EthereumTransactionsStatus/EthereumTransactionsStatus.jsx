@@ -5,7 +5,7 @@ const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {
     return state["transactionsStatus"];
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -15,11 +15,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(executeEthereumTransaction(promisifedSendTransaction(args), "Test transaction", "url"));
         }
     }
-};
+}
 
 const EthereumTransactionsStatus = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TransactionsStatus);
+)(TransactionsStatus)
 
 export default EthereumTransactionsStatus;

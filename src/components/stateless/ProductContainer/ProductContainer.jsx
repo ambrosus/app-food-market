@@ -23,7 +23,12 @@ class ProductContainer extends Component {
                 </Link>
                 &nbsp; one.
               </p>)
-    } else if (this.props.market.offers.length == 0) {
+    } else if (this.props.market.status == 'Loading'){
+      return (
+          <img className="spinner" src="./static/images/Eclipse.svg"/>
+        )
+    } 
+    else if (this.props.market.offers.length == 0) {
       return (<p>There are no offers on the market yet. 
                 &nbsp;
                 <Link className="navigation__link" to="/create-offer">
@@ -32,7 +37,6 @@ class ProductContainer extends Component {
                 &nbsp; first.
               </p>)
     }
-
     return (
       <div className="container">
         { offers.filter((offer) => {

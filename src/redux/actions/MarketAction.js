@@ -1,115 +1,92 @@
 import { wait_for_ambrosus } from '../../utils/wait_for_ambrosus.js';
-import { executeEthereumTransaction } from './TransactionAction.js'; 
+import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
 import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => {
-  return {
-    type: 'FETCH_OFFERS_REQUEST',
-  };
+    return {
+        type: 'FETCH_OFFERS_REQUEST',
+    };
 };
 
 const receiveAllOffers = (offers) => {
-  return {
-    type: 'FETCH_OFFERS_RESPONSE',
-    offers
-  };
+    return {
+        type: 'FETCH_OFFERS_RESPONSE',
+        offers
+    };
 };
 
 const requestNewMarket = () => {
-  return {
-    type: 'CREATE_MARKET_REQUEST',
-  };
+    return {
+        type: 'CREATE_MARKET_REQUEST',
+    };
 };
 
 const createMarketResponse = (marketContract) => {
-  return {
-    type: 'CREATE_MARKET_RESPONSE',
-    address: marketContract.address
-  }
+    return {
+        type: 'CREATE_MARKET_RESPONSE',
+        address: marketContract.address
+    }
 }
 
 export const createMarketSuccess = (address) => {
-  return {
-    type: 'CREATE_MARKET_SUCCESS',
-    address
-  }
+    return {
+        type: 'CREATE_MARKET_SUCCESS',
+        address
+    }
 }
 
 export const createMarketFailed = (reason) => {
-  return {
-    type: 'CREATE_MARKET_FAILED',
-    reason
-  }
+    return {
+        type: 'CREATE_MARKET_FAILED',
+        reason
+    }
 }
 
 export const gotoMarket = (address) => {
-  return {
-    type: 'GOTO_MARKET',
-    address
-  }
+    return {
+        type: 'GOTO_MARKET',
+        address
+    }
 }
 
-export const updateFilter = (key, value) => {
-  return {
-    type: 'FILTER_UPDATE',
-    key,
-    value
-  }
-}
 
-export const resetFilter = () =>{
-  return {
-    type: 'FILTER_RESET'
-  }
+function createMarketContract(callback) {
+    let MarketContract = web3.eth.contract(Ambrosus.marketArtifacts.abi);
+    var tx_args = {
+        from: web3.eth.accounts[0],
+        gas: 500000,
+        data: Ambrosus.marketArtifacts.unlinked_binary
+    };
+    MarketContract.new(tx_args, callback);
 }
 
 export const createMarket = () => {
-  return async function(dispatch) {
-      dispatch(requestNewMarket());
-      await wait_for_ambrosus();     
-      
-      const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-      dispatch(executeEthereumTransaction(
-        (async () => {
-          const market = await marketRepo.create(web3.eth.accounts[0]);
-          dispatch(createMarketResponse(market.marketContract));
-          dispatch(waitForMarketToBeCreated(market.marketContract.transactionHash, dispatch));
-          return market.marketContract.transactionHash;
-        })(),
-        'Creating market', '/'));      
+    return async function(dispatch) {
+        dispatch(requestNewMarket());
+        await wait_for_ambrosus();
+
+        createMarketContract(function(err, myContract) {
+            if (err) {
+                dispatch(statusAddFailedTransaction("", "Creating contract", err));
+            } else if (!myContract.address) {
+                dispatch(statusAddPendingTransaction(myContract.transactionHash, "Creating contract", "ads"));
+                dispatch(createMarketResponse(myContract));
+            } else {
+                dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
+                dispatch(createMarketSuccess(myContract.address));
+            }
+        });
     };
 }
 
-const CHECK_TRANSACTION_STATUS_TIME = 1000;
-
-export const waitForMarketToBeCreated = (tx, dispatch) => {   
-  return async function(dispatch) {
-    web3.eth.getTransaction(tx, function(error, transaction) {
-      if (error) {
-        dispatch(createMarketFailed(error));
-      } else if (transaction.blockHash) {
-        web3.eth.getTransactionReceipt(tx, function(error, transactionReceipt) {
-          if (error) {
-            dispatch(createMarketFailed(error));
-          } else {
-            dispatch(createMarketSuccess(transactionReceipt.contractAddress));
-          }
-        });        
-      } else {
-        setTimeout(() => waitForMarketToBeCreated(tx, dispatch), CHECK_TRANSACTION_STATUS_TIME);
-      }
-    });
-  }
-}
-
 export const getAllOffers = (address) => {
-  return async function(dispatch) {      
-      dispatch(requestAllOffers());
-      await wait_for_ambrosus()
-      const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-      const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-      const market = await marketRepo.fromAddress(address);
-      var offers = await offerRepo.getAllFromMarket(market);
-      dispatch(receiveAllOffers(offers));
+    return async function(dispatch) {
+        dispatch(requestAllOffers());
+        await wait_for_ambrosus()
+        const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+        const market = await marketRepo.fromAddress(address);
+        var offers = await offerRepo.getAllFromMarket(market);
+        dispatch(receiveAllOffers(offers));
     };
 }

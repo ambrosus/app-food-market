@@ -24,7 +24,7 @@ export const transactionMined = (tx, wait_time = TRANSACTION_WAIT_TIME, maxRetri
 			reject(`Transaction ${tx} timeouted after ${timeout}`);
 		  } else {
 		  	retries++;
-		    setTimeout(() => waitForMarketToBeCreated(tx, dispatch), TRANSACTION_WAIT_TIME);
+		    setTimeout(() => transactionMined(tx, dispatch), TRANSACTION_WAIT_TIME);
 		  }
 		});
 	});

@@ -65,7 +65,7 @@ export const resetFilter = () =>{
 
 function createMarketContract(callback) {
     let MarketContract = web3.eth.contract(Ambrosus.marketArtifacts.abi);
-    var tx_args = {
+    let tx_args = {
         from: web3.eth.accounts[0],
         gas: 500000,
         data: Ambrosus.marketArtifacts.unlinked_binary
@@ -99,7 +99,7 @@ export const getAllOffers = (address) => {
       const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
       const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
       const market = await marketRepo.fromAddress(address);
-      var offers = await offerRepo.getAllFromMarket(market);
+      let offers = await offerRepo.getAllFromMarket(market);
       dispatch(receiveAllOffers(offers));
     };
 }

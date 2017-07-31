@@ -10,9 +10,10 @@ import ProfilePage from "./stateless/specific/Pages/ProfilePage/ProfilePage";
 import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
 import Product from "./stateful/Product/Product.js";
 import {Provider} from "react-redux";
-import store from "../redux/reducers/index.js";
+import store from "../redux/stores/store";
 import BalanceTooLowModal from "./stateless/specific/BalanceTooLowModal/BalanceTooLowModal";
-import { BrowserHistory } from 'react-history';
+import {BrowserHistory} from 'react-history';
+
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {

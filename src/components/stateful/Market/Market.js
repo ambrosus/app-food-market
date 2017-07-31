@@ -6,7 +6,7 @@ import { selectOffer } from "../../../redux/actions/OfferAction.js";
 import * as Cookies from "js-cookie";
 
 const isFilterMatch = (offer, filters) => {
-  var keys = Object.keys(filters).filter((key) => filters[key]);
+  let keys = Object.keys(filters).filter((key) => filters[key]);
   return keys.every((key) => offer[key] == filters[key]);
 }
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
       if (address) {
         dispatch(getAllOffers(address));
       } else {
-        var addressFromCookies = Cookies.get('market_address', address);
+        let addressFromCookies = Cookies.get('market_address', address);
         if (addressFromCookies) {
           dispatch(gotoMarket(addressFromCookies));
           dispatch(getAllOffers(addressFromCookies));

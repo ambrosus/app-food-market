@@ -14,7 +14,7 @@ class ProductContainer extends Component {
   }
 
   render() {
-    var offers = this.props.offers;
+    let offers = this.props.offers;
     if (!this.props.market.address) {
       return (<p>Opsss.. No market yet.
                 &nbsp;

@@ -27,7 +27,7 @@ export const doCreateOffer = (offer, address, history) => {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);    
     dispatch(executeEthereumTransaction(
       (async () => {
-        var market = await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] });
+        let market = await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] });
         transactionMined(market.transactionHash).then( () => {
           history.push('/market');
         });

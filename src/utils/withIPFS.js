@@ -1,6 +1,6 @@
 import IPFS from 'ipfs';
 
-var ipfs = null;
+let ipfs = null;
 
 export const withIPFS = (callback) => {
   if (ipfs == null){

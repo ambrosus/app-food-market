@@ -1,8 +1,4 @@
-import { waitForWeb3 } from '../../utils/wait_for_web3.js';
-import Ambrosus from 'ambrosus';
-
-const WEB3_RETRY_TIME = 200;
-const WEB3_RETRIES = 200;
+import { waitForWeb3 } from '../../utils/waitForWeb3';
 
 export function initializeBlockchain() {
   return async function (dispatch) {

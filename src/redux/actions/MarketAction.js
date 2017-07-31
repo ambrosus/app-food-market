@@ -1,5 +1,5 @@
-import { waitForAmbrosus } from '../../utils/wait_for_ambrosus.js';
-import { executeEthereumTransaction } from './TransactionAction.js'; 
+import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
+import { executeEthereumTransaction } from './TransactionAction';
 import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => {

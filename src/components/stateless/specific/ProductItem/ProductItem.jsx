@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Button from "../../generic/Button/Button.jsx";
-import { loadImage } from "../../../../utils/load_from_ipfs.js";
+import Button from "../../generic/Button/Button";
+import { loadImage } from "../../../../utils/loadFromIPFS";
 import {Link} from "react-router-dom";
 require('./ProductItem.scss');
 

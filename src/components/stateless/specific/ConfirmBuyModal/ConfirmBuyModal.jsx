@@ -24,16 +24,13 @@ const mapDispatchToProps = (dispatch) => {
 class ConfirmBuyModal extends Component {
 
     static defaultProps = {
+        visible: false,
         onCancel: () => {
             console.info('onCancel not defined in ', ConfirmBuyModal)
         },
         onConfirm: () => {
             console.info('onConfirm not defined in ', ConfirmBuyModal)
         }
-    };
-
-    static defaultProps = {
-        visible: false
     };
 
     static propTypes = {

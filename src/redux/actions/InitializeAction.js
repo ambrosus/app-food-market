@@ -8,7 +8,6 @@ const WEB3_RETRIES = 200;
 
 export function initializeBlockchain() {
   return function (dispatch) {
-    
     return retry_delay(() => (typeof web3 === 'undefined'), WEB3_RETRY_TIME, WEB3_RETRIES)
       .then(() => {
           return dispatch({ type: 'INIT_AMBROSUS' });

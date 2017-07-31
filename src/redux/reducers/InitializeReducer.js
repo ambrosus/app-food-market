@@ -6,7 +6,7 @@ const doInitWeb3 = () => {
     }
 };
 
-export const initAmbrosus = (state = null, action) => {
+export const ambrosus = (state = null, action) => {
     switch (action.type) {
         case 'INIT_AMBROSUS': 
             doInitWeb3();

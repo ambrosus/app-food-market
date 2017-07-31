@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./ConfirmBuyModal.scss";
-import Label from "../Label/Label";
-import Button from "../Button/Button";
+import Label from "../generic/Label/Label";
+import Button from "../generic/Button/Button";
 import AttributeValueFieldContainer from "../AttributeValueFieldContainer/AttributeValueFieldContainer";
 
 export default class ConfirmBuyModal extends Component {

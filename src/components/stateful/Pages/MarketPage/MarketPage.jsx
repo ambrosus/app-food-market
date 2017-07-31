@@ -2,9 +2,9 @@ import {Link} from "react-router-dom";
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import Market from "../../Market/Market.js";
-import SelectorField from "../../../stateless/SelectorField/SelectorField";
-import Button from "../../../stateless/Button/Button";
-import Label from "../../../stateless/Label/Label";
+import SelectorField from "../../../stateless/generic/SelectorField/SelectorField";
+import Button from "../../../stateless/generic/Button/Button";
+import Label from "../../../stateless/generic/Label/Label";
 import styles from './MarketPage.scss';
 
 class MarketPage extends Component {

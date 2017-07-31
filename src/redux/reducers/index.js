@@ -2,13 +2,13 @@ import thunkMiddleware from 'redux-thunk'
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {initializeBlockchain} from '../actions/InitializeAction.js';
 import transactionsStatus from './TransactionsStatusReducer.js';
-import {initAmbrosus, initWeb3} from './InitializeReducer.js';
+import {ambrosus, initWeb3} from './InitializeReducer.js';
 import market from './MarketReducer.js';
 import offer from './OfferReducer.js';
 
 const store = createStore(combineReducers({
         transactionsStatus,
-        ambrosus: initAmbrosus,
+        ambrosus,
         market,
         offer
     }),

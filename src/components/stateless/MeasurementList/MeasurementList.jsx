@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import AttributeValueFieldContainer from "../AttributeValueFieldContainer/AttributeValueFieldContainer";
-import Label from "../Label/Label";
+import Label from "../generic/Label/Label";
 import styles from './MeasurementList.scss';
 
 export default class MeasurementList extends Component {

@@ -1,10 +1,9 @@
 import React, {Component} from "react";
 import styles from "./ProductPage.scss";
 import cx from "classnames";
-import {Link} from "react-router-dom";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import Label from "../../../stateless/Label/Label";
-import Button from "../../../stateless/Button/Button";
+import Label from "../../../stateless/generic/Label/Label";
+import Button from "../../../stateless/generic/Button/Button";
 import MeasurementList from "../../../stateless/MeasurementList/MeasurementList";
 import { loadImage } from "../../../../utils/load_from_ipfs.js";        
 

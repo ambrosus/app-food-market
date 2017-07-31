@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import ContextMenu from "../../stateless/ContextMenu/ContextMenu";
+import ContextMenu from "../ContextMenu/ContextMenu";
 import EthereumTransactionList from "../../stateful/EthereumTransactionList/EthereumTransactionList";
 import EthereumTransactionsStatus from "../../stateful/EthereumTransactionsStatus/EthereumTransactionsStatus";
 import {Link} from "react-router-dom";
-import Breadcrumbs from "../../stateless/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import styles from './HeaderContainer.scss';
 
 export default class HeaderContainer extends Component {

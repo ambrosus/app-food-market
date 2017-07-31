@@ -11,7 +11,7 @@ import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
 import Product from "./stateful/Product/Product.js";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
-import ConfirmBuyModal from "./stateless/specific/ConfirmBuyModal/ConfirmBuyModal";
+import BalanceTooLowModal from "./stateless/specific/BalanceTooLowModal/BalanceTooLowModal";
 import { BrowserHistory } from 'react-history';
 require("./RootComponent.scss");
 
@@ -29,7 +29,7 @@ export default class RootComponent extends Component {
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/product-info" component={Product}/>
                         <Route exact path="/create-offer" component={CreateOffer}/>
-                        <Route exact path="/modal" component={ConfirmBuyModal}/>
+                        <Route exact path="/modal" component={BalanceTooLowModal}/>
                     </PageContainer>
                 </Router>
             </Provider>)

@@ -4,6 +4,10 @@
   color: #002c87;
 }
 
+@mixin link() {
+  color: #20ABFA;
+}
+
 @mixin border-focus() {
   color: #F8C600;
 }

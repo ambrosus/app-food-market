@@ -5,7 +5,7 @@ import * as Cookies from "js-cookie";
 
 const mapStateToProps = (state, ownProps) => {
     return state["market"];
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -15,11 +15,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             ownProps.history.push("market");
         }
     }
-}
+};
 
 const Welcome = connect(
     mapStateToProps,
     mapDispatchToProps
-)(WelcomePage)
+)(WelcomePage);
 
 export default Welcome;

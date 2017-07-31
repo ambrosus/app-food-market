@@ -6,10 +6,6 @@ const WEB3_RETRIES = 20;
 const TRANSACTION_WAIT_TIME = 1000;
 const TRANSACTION_RETRIES = 1200; //20 MIN
 
-export const web3Loaded = async () => {
-  return await waitForAmbrosus();
-}; 
-
 export const transactionMined = (tx, wait_time = TRANSACTION_WAIT_TIME, maxRetries = TRANSACTION_RETRIES) => {
 	let retries = 0;
 	return new Promise((resolve, reject) => {

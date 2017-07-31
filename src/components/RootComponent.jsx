@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import React, {Component} from "react";
 import HeaderContainer from "./stateless/specific/HeaderContainer/HeaderContainer";
 import PageContainer from "./stateless/specific/PageContainer/PageContainer";
@@ -12,14 +12,14 @@ import Product from "./stateful/Product/Product.js";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
 import ConfirmBuyModal from "./stateless/specific/ConfirmBuyModal/ConfirmBuyModal";
-
+import { BrowserHistory } from 'react-history';
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
+                <Router history={BrowserHistory}>
                     <PageContainer>
                         <HeaderContainer/>
                         <Route exact path="/" component={Welcome}/>

@@ -5,7 +5,6 @@ import { executeEthereumTransaction } from './TransactionAction.js';
 import { transactionMined } from '../../utils/blockchainEvents.js';
 import { withIPFS } from '../../utils/with_ipfs.js';
 
-
 const uploadToIPFS = async (ipfs, image) => {
   const uploader = new IPFSUploader(ipfs);
   return await uploader.uploadBlob(image);

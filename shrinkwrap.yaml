@@ -14,12 +14,16 @@ dependencies:
   react: 15.6.1
   react-dom: 15.6.1
   react-file-processor: 0.0.2
+  react-history: 0.18.2
   react-redux: 5.0.5
+  react-router: 4.1.2
   react-router-dom: 4.1.2
+  react-router-redux: 4.0.8
   react-select: 1.0.0-rc.5
   react-validation-mixin: 5.4.0
   react-validatorjs-strategy: 0.2.1
   redux: 3.7.2
+  redux-devtools-extension: 2.13.2
   redux-thunk: 2.2.0
   simple-line-icons: 2.4.1
   timeout-as-promise: 1.0.0
@@ -5899,6 +5903,11 @@ packages:
   /react-file-processor/0.0.2:
     resolution:
       integrity: sha1-/wnmEjpVMYFq03ONT6AWv/aktl8=
+  /react-history/0.18.2:
+    dependencies:
+      history: 4.6.3
+    resolution:
+      integrity: sha1-tv6XB1Fgav4AOcGoKLqHZt6Vj2o=
   /react-input-autosize/1.1.4:
     dependencies:
       create-react-class: 15.6.0
@@ -5924,6 +5933,9 @@ packages:
       react-router: 4.1.2
     resolution:
       integrity: sha512-CU6pFlpfvIj/xi36rZAbUiN0x39241q+d5bAfJJLtlEqlM62F3zgyv5aERH9zesmKqyDBBp2kd85rkq9Mo/iNQ==
+  /react-router-redux/4.0.8:
+    resolution:
+      integrity: sha1-InQDWWtRUeGCN32rg1tdRfD4BU4=
   /react-router/4.1.2:
     dependencies:
       history: 4.6.3
@@ -6071,6 +6083,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-WiAL+S4ON3UXUv5FsKszD9S2vpk=
+  /redux-devtools-extension/2.13.2:
+    resolution:
+      integrity: sha1-4Pmo6N/KfBe+kscSSVijuU6ykR0=
   /redux-thunk/2.2.0:
     resolution:
       integrity: sha1-5hWhbha0ehmlFXZhM9Hj6Zt4UuU=
@@ -7666,13 +7681,17 @@ specifiers:
   react-css-modules: ^4.5.2
   react-dom: ^15.6.1
   react-file-processor: 0.0.2
+  react-history: ^0.18.2
   react-redux: ^5.0.5
+  react-router: latest
   react-router-dom: ^4.1.2
+  react-router-redux: ^4.0.8
   react-select: ^1.0.0-rc.5
   react-styleable: ^3.1.0
   react-validation-mixin: ^5.4.0
   react-validatorjs-strategy: ^0.2.1
   redux: ^3.7.2
+  redux-devtools-extension: ^2.13.2
   redux-thunk: ^2.2.0
   sass-loader: ^6.0.6
   sass-resources-loader: ^1.2.1

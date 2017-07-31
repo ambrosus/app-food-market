@@ -1,0 +1,27 @@
+@import '../../shared';
+
+:local(.header) {
+  @include font();
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 23px;
+}
+
+:local(.icon) {
+  padding-right: 10px;
+}
+
+:local(.container) {
+  margin-bottom: 20px;
+}
+
+:local(.title) {
+  font-size: 18px;
+  line-height: 36px;
+}
+
+:local(.date) {
+  margin-left: auto;
+  opacity: 0.4;
+}
+

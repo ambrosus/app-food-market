@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TransactionList from '../../stateless/TransactionList/TransactionList';
+import TransactionList from '../../stateless/specific/TransactionList/TransactionList';
 
 const mapStateToProps = (state, ownProps) => {
     return state["transactionsStatus"];

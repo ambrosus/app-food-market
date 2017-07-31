@@ -11,7 +11,8 @@ import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
 import Product from "./stateful/Product/Product.js";
 import {Provider} from "react-redux";
 import store from "../redux/reducers/index.js";
-import styles from "./RootComponent.scss";
+
+require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
     render() {

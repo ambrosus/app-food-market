@@ -11,6 +11,7 @@ export default class ContextMenu extends Component {
                 <li className="context-menu__element"><Link className="context-menu__link" to="/market">Market</Link></li>
                 <li className="context-menu__element"><Link className="context-menu__link" to="/orders">Orders</Link></li>
                 <li className="context-menu__element"><Link className="context-menu__link" to="/profile">Profile</Link></li>
+                <li className="context-menu__element"><Link className="context-menu__link" to="/modal">Modal</Link></li>
             </ul>
         </div>)
     }

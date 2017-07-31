@@ -6,13 +6,17 @@ import AttributeValueFieldContainer from "../../../stateless/AttributeValueField
 import Label from "../../../stateless/Label/Label";
 import Button from "../../../stateless/Button/Button";
 import MeasurementList from "../../../stateless/MeasurementList/MeasurementList";
+import { loadImage } from "../../../../utils/load_from_ipfs.js";        
 
 
 class ProductPage extends Component {
 
     constructor(props) {
         super(props);
-        this.formFields = {};
+    }
+
+    componentDidMount() {
+        loadImage(this.refs.image, this.props.offer.imageHash);
     }
 
     render() {
@@ -39,12 +43,12 @@ class ProductPage extends Component {
 
         return (<div className={styles.container}>
                 <div className={styles.requirementsColumn}>
-                    <img className={styles.image} src="./static/images/fish.png"/>
+                    <img className={styles.image} src="./static/images/fish.png" ref="image"/>
                     <Label className={styles.subtitle} text="Requirements"/>
                     <AttributeValueFieldContainer options={requirements} className={styles.requirements} />
                 </div>
                 <div className={styles.typeColumn}>
-                    <Label className={styles.title} text="Champion"/>
+                    <Label className={styles.title} text={this.props.offer.name}/>
                     <AttributeValueFieldContainer options={parameters} className={styles.requirements}/>
                     <Label className={styles.subtitle} text="Measurements"/>
                     <MeasurementList/>

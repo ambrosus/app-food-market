@@ -49,6 +49,20 @@ export const gotoMarket = (address) => {
   }
 }
 
+export const updateFilter = (key, value) => {
+  return {
+    type: 'FILTER_UPDATE',
+    key,
+    value
+  }
+}
+
+export const resetFilter = () =>{
+  return {
+    type: 'FILTER_RESET'
+  }
+}
+
 export const createMarket = () => {
   return async function(dispatch) {
       dispatch(requestNewMarket());

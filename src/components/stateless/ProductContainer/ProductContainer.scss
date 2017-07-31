@@ -16,5 +16,5 @@ $container-color: #ffffff;
   top: 50%;
   left: 50%;
   margin-right: -50%;
-  transform: scale(0.5) translate(-50%, -50%);
+  transform: scale(0.5, 0.5) translate(-50%, -50%);
 }

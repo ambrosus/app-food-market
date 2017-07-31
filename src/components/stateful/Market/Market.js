@@ -8,6 +8,7 @@ import * as Cookies from "js-cookie";
 const mapStateToProps = state => {
   return {
     market: state.market,
+    filter: state.market.filter,
   };
 };
 

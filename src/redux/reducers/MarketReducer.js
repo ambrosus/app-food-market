@@ -1,4 +1,4 @@
-const market = (state = {offers: [], address: '', status: 'No market'}, action) => {
+const market = (state = {offers: [], address: '', status: 'No market', filter: {}}, action) => {
   switch (action.type) {
     case 'FETCH_OFFERS_REQUEST':
       return {...state, status: 'Loading...'};
@@ -13,7 +13,12 @@ const market = (state = {offers: [], address: '', status: 'No market'}, action) 
     case 'CREATE_MARKET_FAILED':
       return {...state, status: 'Unable to create market'};      
     case 'GOTO_MARKET':
-      return {address: action.address, offers: [], status: "Loading..."};
+      return {...state, address: action.address, offers: [], status: "Loading...", filter: {}};
+    case 'FILTER_UPDATE':
+      return {...state, filter: 
+        {...state.filter, [action.key]: action.value=='None' ? undefined : action.value}};
+    case 'FILTER_RESET':
+      return {...state, filter: {}};
     default:
       return state;
   }

@@ -35,12 +35,19 @@ class ProductContainer extends Component {
 
     return (
       <div className="container">
-        {offers.map((offer, index) => 
-          <ProductItem 
-              key={index}
-              offer={offer}
-              moreDetailsAction={this.props.moreDetailsAction}
-              />)
+        { offers.filter((o)=>{
+                  for (var i in this.props.filter){
+                    if (o[i]!=this.props.filter[i])
+                      return false;
+                  }
+                  return true;
+                })
+                .map((offer, index) => 
+                  <ProductItem 
+                      key={index}
+                      offer={offer}
+                      moreDetailsAction={this.props.moreDetailsAction}
+                      />)
       }
       </div>
     );

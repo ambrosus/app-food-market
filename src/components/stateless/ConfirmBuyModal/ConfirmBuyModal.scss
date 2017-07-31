@@ -15,15 +15,24 @@
   @include font();
   font-weight: 100;
   font-size: 28px;
+  margin-bottom: 20px;
+}
+
+:local(.table) {
+  margin: 0 auto;
+  text-align: left;
+}
+
+:local(.description) {
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
 :local(.upper) {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  width: 100%;
-  padding: 43px 162px;
+  text-align: center;
+  padding: 43px 20px 20px 20px;
 }
 
 :local(.buttons) {

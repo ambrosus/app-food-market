@@ -1,18 +1,18 @@
 import React, {Component} from "react";
-import { createBrowserHistory } from "history";
 import styles from "./CreateOfferPage.scss";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import {Link} from "react-router-dom";
-import TextField from "../../../stateless/TextField/TextField";
-import SelectorField from "../../../stateless/SelectorField/SelectorField";
-import InputField from "../../../stateless/InputField/InputField";
+import TextField from "../../../stateless/generic/TextField/TextField";
+import SelectorField from "../../../stateless/generic/SelectorField/SelectorField";
+import InputField from "../../../stateless/generic/InputField/InputField";
 import AttributeValueFieldContainer from "../../../stateless/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import AttributeValueField from "../../../stateless/AttributeValueField/AttributeValueField";
+import AttributeValueField from "../../../stateless/AttributeValueFieldContainer/AttributeValueField";
 import FileProcessor from "react-file-processor";
-import Label from "../../../stateless/Label/Label.jsx";
+import Label from "../../../stateless/generic/Label/Label.jsx";
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy'; 
-import Button from "../../../stateless/Button/Button.jsx";
+import Button from "../../../stateless/generic/Button/Button.jsx";
+
 
 const parameters = [
     {field: 'Origin', value: 'Norway'},
@@ -47,7 +47,6 @@ class CreateOfferPage extends Component {
         this.getValidatorData = this.getValidatorData.bind(this);
 
         this.formFields = {};
-        this.history = createBrowserHistory();
     }
 
     getValidatorData() {
@@ -79,6 +78,7 @@ class CreateOfferPage extends Component {
         };
         reader.readAsDataURL(files[0]);
     }
+
     onSaveClick() {
         this.props.validate((err) => {
             if (err)
@@ -94,7 +94,7 @@ class CreateOfferPage extends Component {
         return (<div>
                 <NavigationBar title="Create an offer">
                     <Button className={styles.cancelButton}
-                            onClick={ this.history.goBack }>Cancel</Button>       
+                            onClick={ this.props.history.goBack }>Cancel</Button>       
                     <Button className={styles.saveButton}
                             onClick={()=>this.onSaveClick()}>Save</Button>
                 </NavigationBar>      

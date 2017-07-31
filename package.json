@@ -55,6 +55,7 @@
     "react-validation-mixin": "^5.4.0",
     "react-validatorjs-strategy": "^0.2.1",
     "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
     "simple-line-icons": "^2.4.1",
     "timeout-as-promise": "^1.0.0",

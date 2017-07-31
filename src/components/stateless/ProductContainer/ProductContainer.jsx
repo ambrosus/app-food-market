@@ -14,7 +14,7 @@ class ProductContainer extends Component {
   }
 
   render() {
-    var offers = this.props.market.offers;
+    var offers = this.props.offers;
     if (!this.props.market.address) {
       return (<p>Opsss.. No market yet.
                 &nbsp;
@@ -23,7 +23,12 @@ class ProductContainer extends Component {
                 </Link>
                 &nbsp; one.
               </p>)
-    } else if (this.props.market.offers.length == 0) {
+    } else if (this.props.market.status == 'Loading'){
+      return (
+          <img className="spinner" src="./static/images/spinner.svg"/>
+      );
+    } 
+    else if (this.props.market.offers.length == 0) {
       return (<p>There are no offers on the market yet. 
                 &nbsp;
                 <Link className="navigation__link" to="/create-offer">
@@ -32,18 +37,14 @@ class ProductContainer extends Component {
                 &nbsp; first.
               </p>)
     }
-
     return (
       <div className="container">
-        {offers.map((offer, index) => 
-          <ProductItem 
-              key={index}
-              category={offer.category}
-              price={'€'+offer.pricePerUnit/100.0+'/kg'}
-              seller={offer.seller.slice(0,10)+'...'}
-              title={offer.name} 
-              hash={offer.imageHash}
-              />)
+        { offers.map((offer, index) => 
+                  <ProductItem 
+                      key={index}
+                      offer={offer}
+                      moreDetailsAction={this.props.moreDetailsAction}
+                      />)
       }
       </div>
     );

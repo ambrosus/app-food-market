@@ -1,9 +1,9 @@
 import { withRouter } from 'react-router';
 import IPFSUploader from 'ipfs-image-web-upload';
-import IPFS from 'ipfs';
 import Ambrosus from 'ambrosus';
 import { executeEthereumTransaction } from './TransactionAction.js';
 import { transactionMined } from '../../utils/blockchainEvents.js';
+import { withIPFS } from '../../utils/with_ipfs.js';
 
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -14,8 +14,7 @@ const uploadToIPFS = async (ipfs, image) => {
 export const createOffer = (offer, image, marketAddress, history) => {
   return async function(dispatch) {
       if (image) {
-        var ipfs = new IPFS();
-        ipfs.on('ready', async () => {
+        withIPFS(async (ipfs) => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
           dispatch(doCreateOffer(offer, marketAddress, history));
         });
@@ -39,5 +38,12 @@ export const doCreateOffer = (offer, address, history) => {
       'Creating offer', '/')
     );
     
+  }
+}
+
+export const selectOffer = (offer) => {
+  return {
+    type: 'SELECT_OFFER',
+    offer
   }
 }

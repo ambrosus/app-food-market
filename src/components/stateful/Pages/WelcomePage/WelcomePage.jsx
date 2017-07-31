@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import NavigationBar from "../../../stateless/NavigationBar/NavigationBar";
 import { Link } from 'react-router-dom';
-import Button from "../../../stateless/Button/Button";
-import InputField from "../../../stateless/InputField/InputField";
-import TextField from "../../../stateless/TextField/TextField";
+import Button from "../../../stateless/generic/Button/Button";
+import InputField from "../../../stateless/generic/InputField/InputField";
+import TextField from "../../../stateless/generic/TextField/TextField";
 import { createBrowserHistory } from "history";
 
 

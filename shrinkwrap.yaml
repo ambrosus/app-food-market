@@ -17,6 +17,8 @@ dependencies:
   react-redux: 5.0.5
   react-router-dom: 4.1.2
   react-select: 1.0.0-rc.5
+  react-validation-mixin: 5.4.0
+  react-validatorjs-strategy: 0.2.1
   redux: 3.7.2
   redux-thunk: 2.2.0
   simple-line-icons: 2.4.1
@@ -140,7 +142,7 @@ packages:
       ethereumjs-util: 5.1.2
       ipfs: github.com/ipfs/js-ipfs/07228a022bff4d9630132c649d92017c3e7f1a68
       truffle-contract: 2.0.4
-      web3: 1.0.0-beta.12
+      web3: 1.0.0-beta.13
     resolution:
       integrity: sha512-apeZPmzw8EdhygeYUC1sqOn9FEAI3kTcpmKU4M2riLOH7NgT7pmqsDPs2Z8FuJ+gjJjkMFnhlczVAiWtCbsVHw==
   /amdefine/1.0.1:
@@ -4397,6 +4399,9 @@ packages:
   /lodash.includes/4.3.0:
     resolution:
       integrity: sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=
+  /lodash.isempty/4.4.0:
+    resolution:
+      integrity: sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
   /lodash.isequalwith/4.4.0:
     resolution:
       integrity: sha1-Jmcm3dUo+FTyH06pigZWBuD7xrA=
@@ -4435,6 +4440,9 @@ packages:
   /lodash.repeat/4.1.0:
     resolution:
       integrity: sha1-/H3oEx2MisB+S0n3T/6CnR8r7EQ=
+  /lodash.result/4.5.2:
+    resolution:
+      integrity: sha1-y0Wyf7kU6qjY7m8M57KHC4fLcKo=
   /lodash.set/4.3.2:
     resolution:
       integrity: sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
@@ -5877,6 +5885,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-FmulkfO1u9EXRaxPIUOsH8k1cMA=
+  /react-display-name/0.2.0:
+    resolution:
+      integrity: sha1-Dh9whuRaMtB3ZN817TL/FvEll5A=
   /react-dom/15.6.1:
     dependencies:
       fbjs: 0.8.12
@@ -5939,6 +5950,22 @@ packages:
     dev: true
     resolution:
       integrity: sha512-IFgBuVAFgKnXsO72jPne9UsfhoC+oB/EL+MAlP5w7tPmZS5XRpXgfwOFrHd2GoG0SN7jwE8/kUqUsFO28koguw==
+  /react-validation-mixin/5.4.0:
+    dependencies:
+      invariant: 2.2.2
+      lodash.flatten: 4.4.0
+      lodash.get: 4.4.2
+      lodash.isempty: 4.4.0
+      lodash.result: 4.5.2
+      lodash.values: 4.3.0
+      react-display-name: 0.2.0
+    resolution:
+      integrity: sha1-yhz9vdQMod5r5WpWhGqVb92jSb8=
+  /react-validatorjs-strategy/0.2.1:
+    dependencies:
+      validatorjs: 3.9.0
+    resolution:
+      integrity: sha1-6l+GeP0kC0cgQL4eSdonsPdE6Us=
   /react/15.6.1:
     dependencies:
       create-react-class: 15.6.0
@@ -7146,6 +7173,9 @@ packages:
       spdx-expression-parse: 1.0.4
     resolution:
       integrity: sha1-KAS6vnEq0zeUWaz74kdGqywwP7w=
+  /validatorjs/3.9.0:
+    resolution:
+      integrity: sha1-9t5/Kd6mPrNpSx+KJG9ovmQ2gKU=
   /value-equal/0.2.1:
     resolution:
       integrity: sha1-wiCjBDYfzmmU277ao8fhobiVhx0=
@@ -7223,11 +7253,11 @@ packages:
       lerna: 2.0.0
     resolution:
       integrity: sha1-KYO5XBdfbeUwaJ+JQX1M+uqj1Dw=
-  /web3/1.0.0-beta.12:
+  /web3/1.0.0-beta.13:
     dependencies:
       lerna: 2.0.0
     resolution:
-      integrity: sha1-hCO8OXiQLkeN32KlPk8jHechTCY=
+      integrity: sha1-GXyqrwB5HJC4AYFhvlDC2SZ1pMQ=
   /webpack-dev-middleware/1.11.0:
     dependencies:
       memory-fs: 0.4.1
@@ -7608,7 +7638,7 @@ packages:
 registry: 'https://registry.npmjs.org/'
 shrinkwrapVersion: 3
 specifiers:
-  ambrosus: ^0.1.8
+  ambrosus: ^0.1.10
   babel-core: ^6.25.0
   babel-loader: ^7.1.1
   babel-plugin-transform-decorators-legacy: ^1.3.4
@@ -7640,6 +7670,8 @@ specifiers:
   react-router-dom: ^4.1.2
   react-select: ^1.0.0-rc.5
   react-styleable: ^3.1.0
+  react-validation-mixin: ^5.4.0
+  react-validatorjs-strategy: ^0.2.1
   redux: ^3.7.2
   redux-thunk: ^2.2.0
   sass-loader: ^6.0.6

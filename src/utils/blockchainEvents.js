@@ -1,5 +1,3 @@
-import { waitForAmbrosus } from './wait_for_ambrosus.js';
-
 const WEB3_WAIT_TIME = 500;
 const WEB3_RETRIES = 20;
 

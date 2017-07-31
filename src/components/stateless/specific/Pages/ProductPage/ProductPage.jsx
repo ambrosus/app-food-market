@@ -3,16 +3,10 @@ import styles from "./ProductPage.scss";
 import cx from "classnames";
 import AttributeValueFieldContainer from "../../AttributeValueFieldContainer/AttributeValueFieldContainer";
 import Label from "../../../generic/Label/Label";
-import Button from "../../../generic/Button/Button";
 import MeasurementList from "../../MeasurementList/MeasurementList";
-import { loadImage } from "../../../../../utils/load_from_ipfs.js";
-
+import {loadImage} from "../../../../../utils/loadFromIPFS";
 
 class ProductPage extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         loadImage(this.refs.image, this.props.offer.imageHash);
@@ -29,22 +23,22 @@ class ProductPage extends Component {
         ];
 
         const parameters = [
-            {field: 'Product', value: 'Atlantic Salmon'},
-            {field: 'Origin', value: 'Norway'},
-            {field: 'Seller', value: 'Johnston Ltd.'},
+            {field: 'Category', value: this.props.offer.category},
+            {field: 'Seller', value: this.props.offer.seller},
         ];
 
         const summary = [
-            {field: 'Status', value: 'In Progress'},
-            {field: 'Role', value: 'Buyer'},
-            {field: 'Packages', value: '120 Pounds'},
+            {field: 'Price', value: `€ ${this.props.offer.pricePerUnit / 100.0} /kg`},
+            {field: 'Price per package', value: `€${this.props.offer.pricePerPackage / 100.0}`},
+            {field: 'Per package', value: `${this.props.offer.packageWeight / 100.0} kg`},
         ];
 
         return (<div className={styles.container}>
                 <div className={styles.requirementsColumn}>
-                    <img className={styles.image} src="./static/images/fish.png" ref="image"/>
+                    <img className={styles.image} src="./static/images/placeholder.png"
+                         srcSet="./static/images/placeholder.png 2x" ref="image"/>
                     <Label className={styles.subtitle} text="Requirements"/>
-                    <AttributeValueFieldContainer options={requirements} className={styles.requirements} />
+                    <AttributeValueFieldContainer options={requirements} className={styles.requirements}/>
                 </div>
                 <div className={styles.typeColumn}>
                     <Label className={styles.title} text={this.props.offer.name}/>
@@ -53,10 +47,8 @@ class ProductPage extends Component {
                     <MeasurementList/>
                 </div>
                 <div className={cx(styles.column, styles.summaryColumn)}>
-                    <Label className={styles.title} text="Summary"/>
+                    <Label className={styles.title} text="Buy product"/>
                     <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
-                    <Button className={styles.approvePayment}>Approve payment</Button>
-                    <Button className={styles.reimburse}>Reimbursed</Button>
                 </div>
             </div>
         )

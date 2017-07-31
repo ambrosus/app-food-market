@@ -1,5 +1,5 @@
-import { wait_for_ambrosus } from '../../utils/wait_for_ambrosus.js';
 import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
+import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => {
@@ -49,7 +49,6 @@ export const gotoMarket = (address) => {
     }
 }
 
-
 function createMarketContract(callback) {
     let MarketContract = web3.eth.contract(Ambrosus.marketArtifacts.abi);
     var tx_args = {
@@ -63,7 +62,7 @@ function createMarketContract(callback) {
 export const createMarket = () => {
     return async function(dispatch) {
         dispatch(requestNewMarket());
-        await wait_for_ambrosus();
+        await waitForAmbrosus();
 
         createMarketContract(function(err, myContract) {
             if (err) {
@@ -80,13 +79,13 @@ export const createMarket = () => {
 }
 
 export const getAllOffers = (address) => {
-    return async function(dispatch) {
-        dispatch(requestAllOffers());
-        await wait_for_ambrosus()
-        const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-        const market = await marketRepo.fromAddress(address);
-        var offers = await offerRepo.getAllFromMarket(market);
-        dispatch(receiveAllOffers(offers));
+  return async function(dispatch) {      
+      dispatch(requestAllOffers());
+      await waitForAmbrosus()
+      const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+      const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+      const market = await marketRepo.fromAddress(address);
+      var offers = await offerRepo.getAllFromMarket(market);
+      dispatch(receiveAllOffers(offers));
     };
 }

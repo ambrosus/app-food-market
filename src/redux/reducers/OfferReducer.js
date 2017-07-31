@@ -5,6 +5,6 @@ const offer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default offer;

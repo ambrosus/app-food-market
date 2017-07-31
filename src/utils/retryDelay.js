@@ -10,7 +10,7 @@ export const retry_delay = (predicate, retry_time = DEFAULT_RETRY_TIME, retires 
       await delay(retry_time);
       i++;
     }
-    if (i==retires){      
+    if (i===retires){
       reject();
     }
     resolve();

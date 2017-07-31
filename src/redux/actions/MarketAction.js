@@ -49,6 +49,20 @@ export const gotoMarket = (address) => {
     }
 }
 
+export const updateFilter = (key, value) => {
+  return {
+    type: 'FILTER_UPDATE',
+    key,
+    value
+  }
+}
+
+export const resetFilter = () =>{
+  return {
+    type: 'FILTER_RESET'
+  }
+}
+
 function createMarketContract(callback) {
     let MarketContract = web3.eth.contract(Ambrosus.marketArtifacts.abi);
     var tx_args = {

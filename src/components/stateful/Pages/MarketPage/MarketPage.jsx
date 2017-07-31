@@ -10,7 +10,7 @@ import styles from './MarketPage.scss';
 class MarketPage extends Component {
 
     componentWillUnmount() {
-        this.props.dispose();
+        //this.props.dispose();
     }
 
     render() {
@@ -22,14 +22,16 @@ class MarketPage extends Component {
                         {value: 'None'},
                         {value: 'Poor'},
                         {value: 'Good'}]
-                    } label="Quality" onChange={this.props.qualityChange}/>
+                    } label="Quality" onChange={this.props.qualityChange}
+                    value={this.props.filter.quality}/>
                     <Label text="Categories:"/>
                     <SelectorField className={styles.selector} options={[
                         {value: 'None'},
                         {value: 'Catfish'},
                         {value: 'Shrimps'}]
                     } label="Category"
-                      onChange={this.props.categoryChange}/>
+                      onChange={this.props.categoryChange}
+                      value={this.props.filter.category}/>
                     <Link className="navigation__link" to="/create-offer"><Button
                         className='navigation__create-offer-button'>
                         <span className="icon-basket-loaded button-icon-default"/>Create an offer</Button>

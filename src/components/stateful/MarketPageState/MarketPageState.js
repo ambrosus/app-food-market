@@ -4,6 +4,7 @@ import { updateFilter, resetFilter } from "../../../redux/actions/MarketAction.j
 
 const mapStateToProps = state => {
   return {
+    filter: state.market.filter
   };
 };
 

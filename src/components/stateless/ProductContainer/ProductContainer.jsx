@@ -14,7 +14,7 @@ class ProductContainer extends Component {
   }
 
   render() {
-    var offers = this.props.market.offers;
+    var offers = this.props.offers;
     if (!this.props.market.address) {
       return (<p>Opsss.. No market yet.
                 &nbsp;
@@ -25,7 +25,7 @@ class ProductContainer extends Component {
               </p>)
     } else if (this.props.market.status == 'Loading'){
       return (
-          <img className="spinner" src="./static/images/Eclipse.svg"/>
+          <img className="spinner" src="./static/images/spinner.svg"/>
         )
     } 
     else if (this.props.market.offers.length == 0) {
@@ -39,14 +39,7 @@ class ProductContainer extends Component {
     }
     return (
       <div className="container">
-        { offers.filter((offer) => {
-                  for (var i in this.props.filter){
-                    if (this.props.filter[i] && offer[i] != this.props.filter[i])
-                      return false;
-                  }
-                  return true;
-                })
-                .map((offer, index) => 
+        { offers.map((offer, index) => 
                   <ProductItem 
                       key={index}
                       offer={offer}

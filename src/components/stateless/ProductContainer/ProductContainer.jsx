@@ -35,9 +35,9 @@ class ProductContainer extends Component {
 
     return (
       <div className="container">
-        { offers.filter((o)=>{
+        { offers.filter((offer) => {
                   for (var i in this.props.filter){
-                    if (o[i]!=this.props.filter[i])
+                    if (this.props.filter[i] && offer[i] != this.props.filter[i])
                       return false;
                   }
                   return true;

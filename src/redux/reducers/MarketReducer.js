@@ -15,8 +15,7 @@ const market = (state = {offers: [], address: '', status: 'No market', filter: {
     case 'GOTO_MARKET':
       return {...state, address: action.address, offers: [], status: "Loading...", filter: {}};
     case 'FILTER_UPDATE':
-      return {...state, filter: 
-        {...state.filter, [action.key]: action.value=='None' ? undefined : action.value}};
+      return {...state, filter: {...state.filter, [action.key]: action.value}};
     case 'FILTER_RESET':
       return {...state, filter: {}};
     default:

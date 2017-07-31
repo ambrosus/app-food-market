@@ -1,4 +1,4 @@
-import { wait_for_ambrosus } from '../../utils/wait_for_ambrosus.js';
+import { waitForAmbrosus } from '../../utils/wait_for_ambrosus.js';
 import { executeEthereumTransaction } from './TransactionAction.js'; 
 import Ambrosus from 'ambrosus';
 
@@ -66,7 +66,7 @@ export const resetFilter = () =>{
 export const createMarket = () => {
   return async function(dispatch) {
       dispatch(requestNewMarket());
-      await wait_for_ambrosus();     
+      await waitForAmbrosus();     
       
       const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
       dispatch(executeEthereumTransaction(
@@ -105,7 +105,7 @@ export const waitForMarketToBeCreated = (tx, dispatch) => {
 export const getAllOffers = (address) => {
   return async function(dispatch) {      
       dispatch(requestAllOffers());
-      await wait_for_ambrosus()
+      await waitForAmbrosus()
       const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
       const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
       const market = await marketRepo.fromAddress(address);

@@ -26,7 +26,6 @@ class ProductPage extends Component {
 
         const parameters = [
             {field: 'Category', value: this.props.offer.category},
-            //{field: 'Origin', value: 'Norway'},
             {field: 'Seller', value: this.props.offer.seller},
         ];
 
@@ -51,8 +50,6 @@ class ProductPage extends Component {
                 <div className={cx(styles.column, styles.summaryColumn)}>
                     <Label className={styles.title} text="Buy product"/>
                     <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
-                    {/*<Button className={styles.approvePayment}>Approve payment</Button>
-                    <Button className={styles.reimburse}>Reimbursed</Button>*/}
                 </div>
             </div>
         )

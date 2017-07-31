@@ -1,4 +1,4 @@
-import { retry_delay } from './retry_delay.js';
+import { waitForAmbrosus } from './wait_for_ambrosus.js';
 
 const WEB3_WAIT_TIME = 500;
 const WEB3_RETRIES = 20;
@@ -7,8 +7,7 @@ const TRANSACTION_WAIT_TIME = 1000;
 const TRANSACTION_RETRIES = 1200; //20 MIN
 
 export const web3Loaded = async () => {
-  const predicate = () => typeof web3 !== 'undefined' || web3.eth.accounts.length == 0
-  return await retry_delay(predicate, WEB3_WAIT_TIME, WEB3_RETRIES);
+  return await waitForAmbrosus();
 }; 
 
 export const transactionMined = (tx, wait_time = TRANSACTION_WAIT_TIME, maxRetries = TRANSACTION_RETRIES) => {

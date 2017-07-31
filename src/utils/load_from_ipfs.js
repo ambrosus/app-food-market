@@ -1,13 +1,11 @@
 import IPFSUploader from 'ipfs-image-web-upload';
-import IPFS from 'ipfs';
+import { withIPFS } from './with_ipfs.js';
 
 export const loadImage = (domElement, imageHash) => {
   if (!imageHash)
     return;
-  var ipfs = new IPFS();
-  ipfs.on('ready', () => {
+  withIPFS((ipfs)=>{
     var uploader = new IPFSUploader(ipfs);
-
     uploader.loadImage(domElement, imageHash);
   });
 }

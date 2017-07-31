@@ -26,7 +26,7 @@ class ProductContainer extends Component {
     } else if (this.props.market.status == 'Loading'){
       return (
           <img className="spinner" src="./static/images/spinner.svg"/>
-        )
+      );
     } 
     else if (this.props.market.offers.length == 0) {
       return (<p>There are no offers on the market yet. 

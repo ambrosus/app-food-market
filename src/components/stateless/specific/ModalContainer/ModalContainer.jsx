@@ -18,8 +18,6 @@ const mapDispatchToProps = (dispatch) => {
 class ModalContainer extends Component {
     
     render() {    	
-        return (<BalanceTooLowModal/>);
-
         if (this.props.name == "ConfirmBuyModal")
             return (<ConfirmBuyModal/>);
     	else if (this.props.name == "BalanceTooLowModal")

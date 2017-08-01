@@ -51,17 +51,17 @@ export const gotoMarket = (address) => {
 }
 
 export const updateFilter = (key, value) => {
-  return {
-    type: 'FILTER_UPDATE',
-    key,
-    value
-  }
+    return {
+        type: 'FILTER_UPDATE',
+        key,
+        value
+    }
 }
 
-export const resetFilter = () =>{
-  return {
-    type: 'FILTER_RESET'
-  }
+export const resetFilter = () => {
+    return {
+        type: 'FILTER_RESET'
+    }
 }
 
 function createMarketContract(callback) {
@@ -74,7 +74,6 @@ function createMarketContract(callback) {
     MarketContract.new(tx_args, callback);
 }
 
-window.Ambrosus = Ambrosus;
 
 export const createMarket = () => {
     return async function(dispatch) {
@@ -91,19 +90,30 @@ export const createMarket = () => {
             dispatch(hideModal());
         }).catch((err) => {
             dispatch(statusAddFailedTransaction("", "Creating contract", err));
-            dispatch(showModal("ErrorModal", {reason: err}));
+            dispatch(showModal("ErrorModal", { reason: err }));
         });
     };
 }
 
 export const getAllOffers = (address) => {
-  return async function(dispatch) {      
-      dispatch(requestAllOffers());
-      await waitForAmbrosus()
-      const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-      const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-      const market = await marketRepo.fromAddress(address);
-      let offers = await offerRepo.getAllFromMarket(market);
-      dispatch(receiveAllOffers(offers));
+    return async function(dispatch) {
+        dispatch(requestAllOffers());
+        await waitForAmbrosus()
+        const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+        const market = await marketRepo.fromAddress(address);
+        window.market = market;
+        // offerRepo.create(getAllFromMarket(market)).then((offers) => {
+        //     receiveAllOffers(offers)
+        //     dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
+        // }).catch((err) => {
+        //     dispatch(showModal("ErrorModal", { reason: err }));
+        // });
+
+
+        let offers = await offerRepo.getAllFromMarket(market);
+
+        console.log("offers", offers);
+        dispatch(receiveAllOffers(offers));
     };
 }

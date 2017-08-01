@@ -38,7 +38,7 @@ class ErrorModal extends Component {
         onCancel: PropTypes.func,
         title: PropTypes.string,
         message: PropTypes.string,
-        reason: PropTypes.object
+        reason: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     };
 
     render() {

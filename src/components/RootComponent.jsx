@@ -18,7 +18,7 @@ require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
 
-    render() {        
+    render() {
         return (
             <Provider store={store}>
                 <Router history={BrowserHistory}>
@@ -30,7 +30,8 @@ export default class RootComponent extends Component {
                         <Route exact path="/orders" component={OrdersPage}/>
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/product-info" component={Product}/>
-                        <Route exact path="/create-offer" component={CreateOffer}/>                        
+                        <Route exact path="/create-offer" component={CreateOffer}/>
+                        <Route exact path="/modal" component={TransactionProgressModal}/>
                         <ModalContainer/>
                     </PageContainer>
                 </Router>

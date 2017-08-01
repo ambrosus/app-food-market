@@ -47,14 +47,6 @@
   padding: 20px;
 }
 
-:local(.confirm) {
-  width: 200px;
-}
-
-:local(.cancel) {
-  width: 200px;
-}
-
 :local(.lower) {
   box-sizing: border-box;
   background-color: white;
@@ -64,8 +56,16 @@
 }
 
 :local(.spinner) {
+  position: relative;
   display: block;
   margin: 30px auto;
+}
+
+:local(.icon) {
+  position: absolute;
+  top: 47px;
+  left: 11px;
+  transform: scale(0.5,0.5);
 }
 
 :local(.inner) {

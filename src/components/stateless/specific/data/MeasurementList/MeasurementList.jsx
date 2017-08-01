@@ -1,14 +1,9 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import Label from "../../../generic/Label/Label";
-import styles from './MeasurementList.scss';
+import Section from './Section';
 
 export default class MeasurementList extends Component {
 
     render() {
-
-        let index = 0;
 
         const inspection = [
             {field: 'Origin', value: 'Norway'},
@@ -20,39 +15,19 @@ export default class MeasurementList extends Component {
             {field: 'Weight', value: '20kg'},
         ];
 
-        const transport =  [
+        const transport = [
             {field: 'Temperature', value: '3.1 C (11:12)'},
         ];
 
-        const unloading =  [
+        const unloading = [
             {field: 'Weight', value: '20kg'},
         ];
 
         return <div>
-            <div className={styles.header}>
-                <img type="image/svg+xml" src="./static/images/rectangle.svg" className={styles.icon}/>
-                <Label className={styles.title} text="Inspection"/>
-                <Label className={styles.date} text="18 Feb 2017"/>
-            </div>
-            <AttributeValueFieldContainer options={inspection} className={styles.container}/>
-            <div className={styles.header}>
-                <img type="image/svg+xml" src="./static/images/rectangle.svg" className={styles.icon}/>
-                <Label className={styles.title} text="Loading"/>
-                <Label className={styles.date} text="18 Feb 2017"/>
-            </div>
-            <AttributeValueFieldContainer options={loading} className={styles.container} />
-            <div className={styles.header}>
-                <img type="image/svg+xml" src="./static/images/rectangle.svg" className={styles.icon}/>
-                <Label className={styles.title} text="Transport"/>
-                <Label className={styles.date} text="18 Feb 2017"/>
-            </div>
-            <AttributeValueFieldContainer options={transport} className={styles.container} />
-            <div className={styles.header}>
-                <img type="image/svg+xml" src="./static/images/rectangle.svg" className={styles.icon}/>
-                <Label className={styles.title} text="Unloading"/>
-                <Label className={styles.date} text="18 Feb 2017"/>
-            </div>
-            <AttributeValueFieldContainer options={unloading} className={styles.container} />
+            <Section options={inspection} label="Inspection" date="18 Feb 2017"/>
+            <Section options={loading} label="Loading" date="18 Feb 2017"/>
+            <Section options={transport} label="Transport" date="18 Feb 2017"/>
+            <Section options={unloading} label="Unloading" date="18 Feb 2017"/>
         </div>
     }
 }

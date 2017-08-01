@@ -43,8 +43,8 @@ class TransationProgressModal extends Component {
             {this.props.visible && (<div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
-                        <Label className={styles.title} text="Balance is too low"/>
-                        <div className={styles.description}>Transation takes a few minutes</div>
+                        <Label className={styles.title} text="Operation in progress"/>
+                        <div className={styles.description}>Operation might take up to a couple of minutes, be patient.</div>
                     </div>
                 </div>
             </div>)}
@@ -52,5 +52,5 @@ class TransationProgressModal extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceTooLowModal);
+export default connect(mapStateToProps, mapDispatchToProps)(TransationProgressModal);
 

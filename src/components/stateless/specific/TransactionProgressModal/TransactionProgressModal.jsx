@@ -8,7 +8,6 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
-        state: state.modal,
     };
 };
 
@@ -32,7 +31,6 @@ class TransactionProgressModal extends Component {
     };
 
     static propTypes = {
-        state: PropTypes.string,
         onCancel: PropTypes.func,
         onConfirm: PropTypes.func,
     };

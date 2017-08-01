@@ -1,7 +1,8 @@
-export function showModal(name) {
+export function showModal(name, args = {}) {
     return {
         type: "MODAL_SHOW",
-        name: name
+        name: name,
+        args: args
     }
 }
 

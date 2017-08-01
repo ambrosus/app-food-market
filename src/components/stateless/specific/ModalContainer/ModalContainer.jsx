@@ -1,12 +1,15 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
+import PropTypes from "prop-types";
 import BalanceTooLowModal from "../BalanceTooLowModal/BalanceTooLowModal";
+import ErrorModal from "../ErrorModal/ErrorModal";
 import TransactionProgressModal from "../TransactionProgressModal/TransactionProgressModal";
 import ConfirmBuyModal from "../ConfirmBuyModal/ConfirmBuyModal";
 
 const mapStateToProps = (state) => {
     return {
-        name: state.modal,
+        name: state.modal.name,
+        args: state.modal.args,
     };
 };
 
@@ -16,10 +19,17 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class ModalContainer extends Component {
-    
-    render() {    	
+
+    static propTypes = {
+        name: PropTypes.string,
+        args: PropTypes.object
+    };
+
+    render() {        
         if (this.props.name == "ConfirmBuyModal")
             return (<ConfirmBuyModal/>);
+        else if (this.props.name == "ErrorModal")
+            return (<ErrorModal/>);
     	else if (this.props.name == "BalanceTooLowModal")
     		return (<BalanceTooLowModal/>);
     	else if (this.props.name == "TransactionProgressModal")

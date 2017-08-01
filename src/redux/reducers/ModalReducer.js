@@ -1,9 +1,9 @@
-const modal = (defaultState = null, action) => {	
+const modal = (defaultState = {}, action) => {	
     switch (action.type) {
         case 'MODAL_SHOW':
-            return action.name;
+            return {name: action.name, args: action.args};
         case 'MODAL_HIDE':
-            return null;
+            return {};
     }
     return defaultState;
 };

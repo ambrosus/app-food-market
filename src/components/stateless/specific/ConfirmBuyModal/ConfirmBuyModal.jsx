@@ -10,7 +10,6 @@ import {showModal, hideModal} from '../../../../redux/actions/ModalAction';
 
 const mapStateToProps = (state) => {
     return {
-        state: state.modal,
     };
 };
 
@@ -34,7 +33,6 @@ class ConfirmBuyModal extends Component {
     };
 
     static propTypes = {
-        state: PropTypes.string,
         onCancel: PropTypes.func,
         onConfirm: PropTypes.func,
     };

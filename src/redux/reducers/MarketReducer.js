@@ -9,7 +9,7 @@ const market = (state = {offers: [], address: '', status: 'No market', filter: {
     case 'CREATE_MARKET_RESPONSE':
       return {...state, status: 'Loading'};
     case 'CREATE_MARKET_SUCCESS':
-      return {...state, address: action.address, status: 'Market address: ' + action.address};      
+      return {...state, address: action.address, status: 'Market address: ' + action.address};
     case 'CREATE_MARKET_FAILED':
       return {...state, status: 'Unable to create market'};      
     case 'GOTO_MARKET':

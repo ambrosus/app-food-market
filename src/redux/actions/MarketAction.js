@@ -74,23 +74,24 @@ function createMarketContract(callback) {
     MarketContract.new(tx_args, callback);
 }
 
+window.Ambrosus = Ambrosus;
+
 export const createMarket = () => {
     return async function(dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
-        createMarketContract(function(err, myContract) {
-            if (err) {
-                dispatch(statusAddFailedTransaction("", "Creating contract", err));
-                dispatch(showModal("ErrorModal", {reason: err}));
-            } else if (!myContract.address) {
-                dispatch(statusAddPendingTransaction(myContract.transactionHash, "Creating contract", "ads"));
-                dispatch(createMarketResponse(myContract));
-                dispatch(showModal("TransactionProgressModal"));
-            } else {
-                dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
-                dispatch(createMarketSuccess(myContract.address));
-                dispatch(hideModal());
-            }
+        var marketRepository = new Ambrosus.MarketRepository(Ambrosus.marketArtifacts);
+        marketRepository.create(web3.eth.accounts[0], (transactionHash) => {
+            dispatch(statusAddPendingTransaction(transactionHash, "Creating contract", "ads"));
+            dispatch(createMarketResponse(transactionHash));
+            dispatch(showModal("TransactionProgressModal"));
+        }).then((myContract) => {
+            dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
+            dispatch(createMarketSuccess(myContract.marketContract.address));
+            dispatch(hideModal());
+        }).catch((err) => {
+            dispatch(statusAddFailedTransaction("", "Creating contract", err));
+            dispatch(showModal("ErrorModal", {reason: err}));
         });
     };
 }

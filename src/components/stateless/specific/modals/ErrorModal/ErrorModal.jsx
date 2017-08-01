@@ -8,7 +8,6 @@ import {hideModal} from '../../../../../redux/actions/ModalAction';
 import {Link} from 'react-router-dom';
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         title: state.modal.args.title,
         message: state.modal.args.message,
@@ -18,7 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onCancel: () => dispatch(modelHide())
+        onCancel: () => dispatch(hideModal())
     }
 };
 

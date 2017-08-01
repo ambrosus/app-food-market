@@ -13,7 +13,7 @@ import {Provider} from "react-redux";
 import store from "../redux/stores/store";
 import ModalContainer from "./stateless/specific/ModalContainer/ModalContainer.jsx";
 import {BrowserHistory} from 'react-history';
-
+import TransactionProgressModal from "./stateless/specific/TransactionProgressModal/TransactionProgressModal";
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {

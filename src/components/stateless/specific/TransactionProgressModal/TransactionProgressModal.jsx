@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import cx from "classnames";
-import styles from "./TransationProgressModal.scss";
+import styles from "./TransactionProgressModal.scss";
 import Label from "../../generic/Label/Label";
 import {hideModal} from '../../../../redux/actions/ModalAction';
-import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -20,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-class TransationProgressModal extends Component {
+class TransactionProgressModal extends Component {
 
     static defaultProps = {
         state: null,
@@ -44,7 +43,8 @@ class TransationProgressModal extends Component {
                 <div className={styles.inner}>
                     <div className={styles.upper}>
                         <Label className={styles.title} text="Operation in progress"/>
-                        <div className={styles.description}>Operation might take up to a couple of minutes, be patient.</div>
+                        <img className={styles.spinner} src="./static/images/spinner.svg"/>
+                        <div className={styles.description}>This transaction can takes few minutes.</div>
                     </div>
                 </div>
             </div>
@@ -52,5 +52,5 @@ class TransationProgressModal extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransationProgressModal);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionProgressModal);
 

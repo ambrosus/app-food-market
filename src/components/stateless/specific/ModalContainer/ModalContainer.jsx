@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import BalanceTooLowModal from "../BalanceTooLowModal/BalanceTooLowModal";
-import TransationProgressModal from "../TransationProgressModal/TransationProgressModal";
+import TransactionProgressModal from "../TransactionProgressModal/TransactionProgressModal";
 import ConfirmBuyModal from "../ConfirmBuyModal/ConfirmBuyModal";
 
 const mapStateToProps = (state) => {
@@ -18,12 +18,14 @@ const mapDispatchToProps = (dispatch) => {
 class ModalContainer extends Component {
     
     render() {    	
+        return (<BalanceTooLowModal/>);
+
         if (this.props.name == "ConfirmBuyModal")
             return (<ConfirmBuyModal/>);
     	else if (this.props.name == "BalanceTooLowModal")
     		return (<BalanceTooLowModal/>);
-    	else if (this.props.name == "TransationProgressModal")
-    		return (<TransationProgressModal/>);
+    	else if (this.props.name == "TransactionProgressModal")
+    		return (<TransactionProgressModal/>);
     	else 
     		return null;
     }

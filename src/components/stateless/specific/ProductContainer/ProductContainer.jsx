@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import ProductItem from "../ProductItem/ProductItem";
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
-
-
 require('./ProductContainer.scss');
-
 
 class ProductContainer extends Component {
 
@@ -23,13 +19,13 @@ class ProductContainer extends Component {
                 </Link>
                 &nbsp; one.
               </p>)
-    } else if (this.props.market.status == 'Loading'){
+    } else if (this.props.market.status === 'Loading'){
       return (
           <img className="spinner" src="./static/images/spinner.svg"/>
       );
-    } 
-    else if (this.props.market.offers.length == 0) {
-      return (<p>There are no offers on the market yet. 
+    }
+    else if (this.props.market.offers.length === 0) {
+      return (<p>There are no offers on the market yet.
                 &nbsp;
                 <Link className="navigation__link" to="/create-offer">
                    Create
@@ -39,8 +35,8 @@ class ProductContainer extends Component {
     }
     return (
       <div className="container">
-        { offers.map((offer, index) => 
-                  <ProductItem 
+        { offers.map((offer, index) =>
+                  <ProductItem
                       key={index}
                       offer={offer}
                       moreDetailsAction={this.props.moreDetailsAction}
@@ -49,6 +45,6 @@ class ProductContainer extends Component {
       </div>
     );
   }
-};
+}
 
 export default ProductContainer;

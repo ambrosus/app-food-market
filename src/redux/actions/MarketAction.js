@@ -85,7 +85,7 @@ export const createMarket = () => {
             } else if (!myContract.address) {
                 dispatch(statusAddPendingTransaction(myContract.transactionHash, "Creating contract", "ads"));
                 dispatch(createMarketResponse(myContract));
-                dispatch(showModal("TransationProgressModal"));
+                dispatch(showModal("TransactionProgressModal"));
             } else {
                 dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
                 dispatch(createMarketSuccess(myContract.address));

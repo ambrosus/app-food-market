@@ -10,8 +10,6 @@ import { createBrowserHistory } from "history";
 class WelcomePage extends Component {
     
     render() {
-        window.his1 = createBrowserHistory();
-        window.his2 = this.props.history;
         return (
         <div>
             <NavigationBar title="Welcome">        

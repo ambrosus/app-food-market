@@ -38,24 +38,20 @@ class BalanceTooLowModal extends Component {
         onConfirm: PropTypes.func,
     };
 
-    onInit() {
-
-    }
-
     render() {
         return <div>
             {this.props.visible && (
                 <div onClick={this.props.onCancel} className={cx(styles.modal, this.props.className)}>
                     <div className={styles.inner}>
-                        <div className={styles.upper}>
-                            <Label className={styles.title} text="Balance is too low"/>
-                            <div className={styles.description}>You have not enough EUR tokens to proceed.
-                                You balance is: <strong>0 EUR</strong> tokens. Required amount is <strong>140
-                                    EUR</strong> tokens.
-                            </div>
-                            <div>Charge your account <Link className={styles.link} to="/market" href="#">here</Link>!
-                            </div>
-                        </div>
+                        <img src="./static/images/iconError.svg" className={styles.icon}/>
+                        <Label className={styles.title} text="Balance is too low"/>
+                        <p className={styles.description}>You have not enough EUR tokens to proceed.
+                            <br/>You balance is: <strong>0 EUR</strong> tokens. <br/>Required amount is <strong>140
+                                EUR</strong> tokens.<br/>
+                        </p>
+                        <p className={styles.description}>Charge your account <Link className={styles.link}
+                                                                                    to="/market"
+                                                                                    href="#">here</Link>!</p>
                     </div>
                 </div>)}
         </div>
@@ -63,4 +59,3 @@ class BalanceTooLowModal extends Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BalanceTooLowModal);
-

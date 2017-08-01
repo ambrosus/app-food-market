@@ -1,5 +1,5 @@
 dependencies:
-  ambrosus: 0.1.10
+  ambrosus: 0.1.19
   babel-core: 6.25.0
   babel-preset-es2015: 6.24.1
   classnames: 2.2.5
@@ -141,14 +141,15 @@ packages:
     dev: true
     resolution:
       integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
-  /ambrosus/0.1.10:
+  /ambrosus/0.1.19:
     dependencies:
+      es6-promisify: 5.0.0
       ethereumjs-util: 5.1.2
       ipfs: github.com/ipfs/js-ipfs/07228a022bff4d9630132c649d92017c3e7f1a68
-      truffle-contract: 2.0.4
+      truffle-contract: 2.0.5
       web3: 1.0.0-beta.13
     resolution:
-      integrity: sha512-apeZPmzw8EdhygeYUC1sqOn9FEAI3kTcpmKU4M2riLOH7NgT7pmqsDPs2Z8FuJ+gjJjkMFnhlczVAiWtCbsVHw==
+      integrity: sha512-55s5SS5bFXmirSca1ljYnbSm1VZcAm1sU5SJY28p0a1G59IC9wqzZRPJ1Z0JWaYL/cBcroKO5Bfy3Ow8ZWRFfw==
   /amdefine/1.0.1:
     resolution:
       integrity: sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
@@ -7013,14 +7014,14 @@ packages:
       crypto-js: 3.1.9-1
     resolution:
       integrity: sha1-Xp0gvQvyon/pQxB0gknUhO7kmWE=
-  /truffle-contract/2.0.4:
+  /truffle-contract/2.0.5:
     dependencies:
       ethjs-abi: 0.1.8
       truffle-blockchain-utils: 0.0.3
       truffle-contract-schema: 0.0.5
       web3: 0.20.1
     resolution:
-      integrity: sha1-wjxOr2Y5eSe6uHUbZ0FJw/i5M+s=
+      integrity: sha512-ItnN85wh4qVYPg6T4CpubI40c8dWEArtUcWcDoZ7xzj9DL7cwxqstJ0yRxyQIh4u8SRSlrOtm1dh0B7R8jtG+w==
   /tty-browserify/0.0.0:
     dev: true
     resolution:
@@ -7653,7 +7654,7 @@ packages:
 registry: 'https://registry.npmjs.org/'
 shrinkwrapVersion: 3
 specifiers:
-  ambrosus: ^0.1.10
+  ambrosus: ^0.1.12
   babel-core: ^6.25.0
   babel-loader: ^7.1.1
   babel-plugin-transform-decorators-legacy: ^1.3.4

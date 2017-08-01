@@ -102,18 +102,7 @@ export const getAllOffers = (address) => {
         const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
         const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
         const market = await marketRepo.fromAddress(address);
-        window.market = market;
-        // offerRepo.create(getAllFromMarket(market)).then((offers) => {
-        //     receiveAllOffers(offers)
-        //     dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
-        // }).catch((err) => {
-        //     dispatch(showModal("ErrorModal", { reason: err }));
-        // });
-
-
         let offers = await offerRepo.getAllFromMarket(market);
-
-        console.log("offers", offers);
         dispatch(receiveAllOffers(offers));
     };
 }

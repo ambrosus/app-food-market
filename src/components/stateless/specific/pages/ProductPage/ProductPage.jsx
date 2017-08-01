@@ -1,12 +1,25 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import styles from "./ProductPage.scss";
 import cx from "classnames";
 import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import Label from "../../../generic/Label/Label";
 import MeasurementList from "../../data/MeasurementList/MeasurementList";
 import {loadImage} from "../../../../../utils/loadFromIPFS";
+import BuyProduct from "./BuyProduct/BuyProduct";
+import SummaryApprovedProduct from "./SummaryApprovedProduct/SummaryApprovedProduct";
+import SummaryProduct from "./SummaryProduct/SummaryProduct";
 
 class ProductPage extends Component {
+
+    static defaultProps = {
+        sidebar: 'summary'
+    };
+
+    static propTypes = {
+        offer: PropTypes.object,
+        sidebar: PropTypes.string
+    };
 
     componentDidMount() {
         loadImage(this.refs.image, this.props.offer.imageHash);
@@ -27,12 +40,6 @@ class ProductPage extends Component {
             {field: 'Seller', value: this.props.offer.seller},
         ];
 
-        const summary = [
-            {field: 'Price', value: `€ ${this.props.offer.pricePerUnit / 100.0} /kg`},
-            {field: 'Price per package', value: `€${this.props.offer.pricePerPackage / 100.0}`},
-            {field: 'Per package', value: `${this.props.offer.packageWeight / 100.0} kg`},
-        ];
-
         return (<div className={styles.container}>
                 <div className={styles.requirementsColumn}>
                     <img className={styles.image} src="./static/images/placeholder.png"
@@ -47,8 +54,9 @@ class ProductPage extends Component {
                     <MeasurementList/>
                 </div>
                 <div className={cx(styles.column, styles.summaryColumn)}>
-                    <Label className={styles.title} text="Buy product"/>
-                    <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
+                    { this.props.sidebar === 'summary' && <SummaryProduct/> }
+                    { this.props.sidebar === 'progress' && <SummaryApprovedProduct/> }
+                    { this.props.sidebar === 'buy' && <BuyProduct/> }
                 </div>
             </div>
         )

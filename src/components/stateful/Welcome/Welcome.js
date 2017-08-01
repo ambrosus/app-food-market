@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import WelcomePage from "../../stateless/specific/pages/WelcomePage/WelcomePage";
-import { gotoMarket } from "../../../redux/actions/MarketAction.js";
+import {gotoMarket} from "../../../redux/actions/MarketAction.js";
 import * as Cookies from "js-cookie";
 
 const mapStateToProps = (state, ownProps) => {
     return state["market"];
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -15,11 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             ownProps.history.push("market");
         }
     }
-}
+};
 
-const Welcome = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(WelcomePage)
 
-export default Welcome;
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

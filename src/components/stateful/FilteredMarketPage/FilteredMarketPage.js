@@ -16,6 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const FilteredMarketPage = connect(mapStateToProps, mapDispatchToProps)(MarketPage);
-
-export default FilteredMarketPage;
+export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);

@@ -7,6 +7,4 @@ const mapStateToProps = state => {
   };
 };
 
-const Product = connect(mapStateToProps)(ProductPage);
-
-export default Product;
+export default connect(mapStateToProps)(ProductPage);

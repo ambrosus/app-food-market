@@ -4,26 +4,26 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./TransationProgressModal.scss";
 import Label from "../../generic/Label/Label";
-import {cancel, confirm} from '../../../../redux/actions/ModalActions';
+import {hideModal} from '../../../../redux/actions/ModalAction';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
-        visible: state.modal.visible,
+        state: state.modal,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConfirm: () => dispatch(confirm()),
-        onCancel: () => dispatch(cancel())
+        onConfirm: () => console.log("not yet implemented"),
+        onCancel: () => dispatch(hideModal())
     }
 };
 
 class TransationProgressModal extends Component {
 
     static defaultProps = {
-        visible: false,
+        state: null,
         onCancel: () => {
             console.info('onCancel not defined in ', TransationProgressModal)
         },
@@ -33,21 +33,21 @@ class TransationProgressModal extends Component {
     };
 
     static propTypes = {
-        visible: PropTypes.bool,
+        state: PropTypes.string,
         onCancel: PropTypes.func,
         onConfirm: PropTypes.func,
     };
 
     render() {
         return <div>
-            {this.props.visible && (<div className={cx(styles.modal, this.props.className)}>
+            <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
                         <Label className={styles.title} text="Operation in progress"/>
                         <div className={styles.description}>Operation might take up to a couple of minutes, be patient.</div>
                     </div>
                 </div>
-            </div>)}
+            </div>
         </div>
     }
 }

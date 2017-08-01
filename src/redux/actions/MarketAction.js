@@ -1,4 +1,5 @@
 import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
+import { showModal, hideModal } from './ModalAction.js';
 import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import Ambrosus from 'ambrosus';
 
@@ -77,16 +78,18 @@ export const createMarket = () => {
     return async function(dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
-
         createMarketContract(function(err, myContract) {
             if (err) {
                 dispatch(statusAddFailedTransaction("", "Creating contract", err));
+                dispatch(showModal("TransationProgressModal"));
             } else if (!myContract.address) {
                 dispatch(statusAddPendingTransaction(myContract.transactionHash, "Creating contract", "ads"));
                 dispatch(createMarketResponse(myContract));
+                dispatch(showModal("TransationProgressModal"));
             } else {
                 dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
                 dispatch(createMarketSuccess(myContract.address));
+                dispatch(hideModal());
             }
         });
     };

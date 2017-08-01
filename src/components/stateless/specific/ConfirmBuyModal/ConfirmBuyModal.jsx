@@ -6,18 +6,18 @@ import styles from "./ConfirmBuyModal.scss";
 import Label from "../../generic/Label/Label";
 import Button from "../../generic/Button/Button";
 import AttributeValueFieldContainer from "../AttributeValueFieldContainer/AttributeValueFieldContainer";
-import {cancel, confirm} from '../../../../redux/actions/ModalActions';
+import {showModal, hideModal} from '../../../../redux/actions/ModalAction';
 
 const mapStateToProps = (state) => {
     return {
-        visible: state.modal.visible,
+        state: state.modal,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConfirm: () => dispatch(confirm()),
-        onCancel: () => dispatch(cancel())
+        onConfirm: () => console.log("not yet implemented"),
+        onCancel: () => dispatch(hideModal())
     }
 };
 
@@ -34,14 +34,14 @@ class ConfirmBuyModal extends Component {
     };
 
     static propTypes = {
-        visible: PropTypes.bool,
+        state: PropTypes.string,
         onCancel: PropTypes.func,
         onConfirm: PropTypes.func,
     };
 
     render() {
         return (<div>
-            {this.props.visible && (<div className={cx(styles.modal, this.props.className)}>
+            <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
                         <Label className={styles.title} text="Confirm buy"/>
@@ -70,7 +70,8 @@ class ConfirmBuyModal extends Component {
                         </div>
                     </div>
                 </div>
-            </div>)}</div>)
+            </div>
+        </div>)
     }
 }
 

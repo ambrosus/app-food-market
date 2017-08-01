@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import TransactionProgressModal from "../../modals/TransactionProgressModal/TransactionProgressModal";
 import ConfirmBuyModal from "../../modals/ConfirmBuyModal/ConfirmBuyModal";
-import ErrorModal from "../../ErrorModal/ErrorModal";
+import ErrorModal from "../../modals/ErrorModal/ErrorModal";
 import BalanceTooLowModal from "../../modals/BalanceTooLowModal/BalanceTooLowModal";
 
 const mapStateToProps = (state) => {

@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styles from "./ErrorModal.scss";
-import Label from "../../generic/Label/Label";
-import {hideModal} from '../../../../redux/actions/ModalAction';
+import Label from "../../../generic/Label/Label";
+import {hideModal} from '../../../../../redux/actions/ModalAction';
 import {Link} from 'react-router-dom';
 
 const mapStateToProps = (state) => {

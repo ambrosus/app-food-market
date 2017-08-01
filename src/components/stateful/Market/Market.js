@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ProductContainer from '../../stateless/specific/ProductContainer/ProductContainer';
+import ProductContainer from '../../stateless/specific/containers/ProductContainer/ProductContainer';
 import { getAllOffers } from "../../../redux/actions/MarketAction.js";
 import { gotoMarket } from "../../../redux/actions/MarketAction.js";
 import { selectOffer } from "../../../redux/actions/OfferAction.js";

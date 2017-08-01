@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateOfferPage from '../../stateless/specific/Pages/CreateOfferPage/CreateOfferPage';
+import CreateOfferPage from '../../stateless/specific/pages/CreateOfferPage/CreateOfferPage';
 import { createOffer } from '../../../redux/actions/OfferAction.js';
 
 const mapStateToProps = state => {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MarketPage from '../../stateless/specific/Pages/MarketPage/MarketPage.jsx';
+import MarketPage from '../../stateless/specific/pages/MarketPage/MarketPage.jsx';
 import { updateFilter, resetFilter } from "../../../redux/actions/MarketAction.js";
 
 const mapStateToProps = state => {

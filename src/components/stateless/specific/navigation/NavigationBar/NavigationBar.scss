@@ -1,0 +1,30 @@
+@import '../../../generic/Button/Button';
+
+$create-offer-button-background-color: #002C87;
+$create-offer-button-border-color: #002C87;
+$create-offer-button-height: 40px;
+$create-offer-button-text-color: #ffffff;
+$navigation-background-color: #ffffff;
+$navigation-bar-height: 90px;
+$navigation-bar-padding: 0 0px;
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: $navigation-bar-padding;
+  line-height: $navigation-bar-height;
+  height: $navigation-bar-height;
+  background-color: $navigation-background-color;
+
+  &__title {
+    font-family: 'Muli', sans-serif;
+    font-size: 22px;
+    margin-right: auto;
+    color: #002C87;
+  }
+}

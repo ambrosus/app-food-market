@@ -11,10 +11,6 @@ $container-color: #ffffff;
 }
 
 .spinner {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: scale(0.5, 0.5) translate(-50%, -50%);
+  display: block;
+  margin: 0 auto;
 }

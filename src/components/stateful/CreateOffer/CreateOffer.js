@@ -16,6 +16,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-const CreateOffer = connect(mapStateToProps, mapDispatchToProps)(CreateOfferPage);
-
-export default CreateOffer;
+export default connect(mapStateToProps, mapDispatchToProps)(CreateOfferPage);

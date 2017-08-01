@@ -8,11 +8,11 @@ import * as Cookies from "js-cookie";
 const isFilterMatch = (offer, filters) => {
   let keys = Object.keys(filters).filter((key) => filters[key]);
   return keys.every((key) => offer[key] == filters[key]);
-}
+};
 
 const filteredOffers = (offers, filters) => {
   return offers.filter((offer) => isFilterMatch(offer, filters));
-}
+};
 
 
 const mapStateToProps = state => {
@@ -40,8 +40,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(selectOffer(offer));
     }
   }
-}
+};
 
-const Market = connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
-
-export default Market;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);

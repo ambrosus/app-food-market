@@ -3,6 +3,7 @@ import Ambrosus from 'ambrosus';
 import { executeEthereumTransaction } from './TransactionAction.js';
 import { transactionMined } from '../../utils/blockchainEvents.js';
 import { showModal, hideModal } from './ModalAction.js';
+import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -20,8 +21,7 @@ export const createOffer = (offer, image, marketAddress, history) => {
           dispatch(doCreateOffer(offer, marketAddress, history));
         });
       } else {
-        dispatch(doCreateOffer(offer, marketAddress, history));
-        
+        dispatch(doCreateOffer(offer, marketAddress, history));        
       }
   };
 };
@@ -29,17 +29,16 @@ export const createOffer = (offer, image, marketAddress, history) => {
 export const doCreateOffer = (offer, address, history) => {  
   return async function(dispatch) {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);    
-    dispatch(executeEthereumTransaction(
-      (async () => {
-        let market = await offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] });
-        transactionMined(market.transactionHash).then( () => {
-          history.push('/market');
-        });
-        return market.transactionHash;
-      })(),
-      'Creating offer', '/')
-    );
-    
+    offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
+      dispatch(statusAddPendingTransaction(transactionHash, "Creating offer", ""));
+      dispatch(showModal("TransactionProgressModal"));
+    }).then((myContract) => {
+      dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
+      dispatch(hideModal());
+      history.push('/market');
+    }).catch((reason) => {
+      dispatch(showModal("ErrorModal", { reason }));      
+    })
   }
 }
 

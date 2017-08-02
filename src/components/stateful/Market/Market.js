@@ -7,7 +7,7 @@ import * as Cookies from "js-cookie";
 
 const isFilterMatch = (offer, filters) => {
   let keys = Object.keys(filters).filter((key) => filters[key]);
-  return keys.every((key) => offer[key] == filters[key]);
+  return keys.every((key) => offer[key] === filters[key]);
 };
 
 const filteredOffers = (offers, filters) => {

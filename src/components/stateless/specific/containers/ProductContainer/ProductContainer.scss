@@ -1,12 +1,10 @@
-$container-color: #ffffff;
-
 .container {
   width: 100%;
-  background-color: $container-color;
+  background-color: #ffffff;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   min-height: 100vh;
 }
 

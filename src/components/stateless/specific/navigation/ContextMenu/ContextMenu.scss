@@ -1,34 +1,35 @@
-.context-menu {
-  display: flex;
 
-  &__link {
-    color: #002C87;
-    text-decoration: none;
+:local(.contextMenu) {
+  display: flex;
+}
+
+:local(.link) {
+  color: #002C87;
+  text-decoration: none;
+}
+
+:local(.element) {
+  font-family: 'Muli', sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.52px;
+  color: #002C87;
+  display: inline;
+  margin-right: 50px;
+  text-transform: uppercase;
+
+  &:last-child {
+    margin-right: 0;
   }
 
-  &__element {
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    letter-spacing: 0.52px;
+  &:hover {
+    cursor: pointer;
+    color: #20abfa;
+    padding-bottom: 15px;
+    border-bottom: 5px solid #20ABFA;
+  }
+
+  &:visited {
     color: #002C87;
-    display: inline;
-    margin-right: 50px;
-    text-transform: uppercase;
-
-    &:last-child {
-      margin-right: 0;
-    }
-
-    &:hover {
-      cursor: pointer;
-      color: #20abfa;
-      padding-bottom: 15px;
-      border-bottom: 5px solid #20ABFA;
-    }
-
-    &:visited {
-      color: #002C87;
-      text-decoration: none;
-    }
+    text-decoration: none;
   }
 }

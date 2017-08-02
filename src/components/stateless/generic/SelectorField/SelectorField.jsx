@@ -5,7 +5,8 @@ import styles from "./SelectorField.scss";
 export default class SelectorField extends Component {
 
     static defaultProps = {
-       onChange: () => { console.log('onChange is not defined')}
+       onChange: () => { console.log('onChange is not defined')},
+       options : []
     };
 
     render() {

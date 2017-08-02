@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
-import TransactionProgressModal from "../../modals/TransactionProgressModal/TransactionProgressModal";
 import ConfirmBuyModal from "../../modals/ConfirmBuyModal/ConfirmBuyModal";
 import ErrorModal from "../../modals/ErrorModal/ErrorModal";
 import BalanceTooLowModal from "../../modals/BalanceTooLowModal/BalanceTooLowModal";
+import TransactionProgressModal from "../../modals/TransactionProgressModal/TransactionProgressModal";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,8 +14,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-    }
+    return {}
 };
 
 class ModalContainer extends Component {

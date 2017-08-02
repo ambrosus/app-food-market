@@ -118,7 +118,7 @@ class CreateOfferPage extends Component {
                                     <div className={styles.verticalContainer}>
                                         <div className={styles.horizontalContainer}>
                                             <img className={styles.image}
-                                                 src="./static/images/icon-image.png"
+                                                 src="./static/images/iconImage.png"
                                                  ref="image"/>
                                         </div>
                                     </div>

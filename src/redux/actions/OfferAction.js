@@ -33,7 +33,7 @@ export const doCreateOffer = (offer, address, history) => {
       dispatch(statusAddPendingTransaction(transactionHash, "Creating offer", ""));
       dispatch(showModal("TransactionProgressModal"));
     }).then((myContract) => {
-      dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating contract", "ads"));
+      dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating offer", ""));
       dispatch(hideModal());
       history.push('/market');
     }).catch((reason) => {

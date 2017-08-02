@@ -90,6 +90,10 @@ class CreateOfferPage extends Component {
         });
     }
 
+    getCategories() {
+        return this.props.categories.map( (key) => { return {value: key } } )
+    }
+
     render() {
         return (<div>
                 <NavigationBar title="Create an offer">
@@ -124,7 +128,7 @@ class CreateOfferPage extends Component {
                         <div className={styles.column}>
                             <Label className={styles.label} text="Category:"/>
                             <SelectorField className={styles.selector}
-                                           options={[{value: 'Catfish'}, {value: 'Pineapplefish'}]} label="Category"
+                                           options={ this.getCategories() } label="Category"
                                            inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
                                 <InputField label="Package weight (kg)"

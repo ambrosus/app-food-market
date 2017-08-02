@@ -6,11 +6,27 @@ import SelectorField from "../../../generic/SelectorField/SelectorField";
 import Button from "../../../generic/Button/Button";
 import Label from "../../../generic/Label/Label";
 import styles from './MarketPage.scss';
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {}
+};
+
 
 class MarketPage extends Component {
 
-    componentWillUnmount() {
-        //this.props.dispose();
+    getCategories() {
+        return this.props.categories.map( (key) => { return {value: key } } )
+    }
+
+    getQualities() {
+        return [{value: 'None'}, {value: 'Poor'}, {value: 'Good'}];
     }
 
     render() {
@@ -18,18 +34,11 @@ class MarketPage extends Component {
             <div>
                 <NavigationBar title="Market">
                     <Label text="Quality:"/>
-                    <SelectorField className={styles.selector} options={[
-                        {value: 'None'},
-                        {value: 'Poor'},
-                        {value: 'Good'}]
-                    } label="Quality" onChange={this.props.qualityChange}
-                    value={this.props.filter.quality}/>
+                    <SelectorField className={styles.selector} options={ this.getQualities() } 
+                        label="Quality" onChange={this.props.qualityChange}
+                        value={this.props.filter.quality}/>
                     <Label text="Categories:"/>
-                    <SelectorField className={styles.selector} options={[
-                        {value: 'None'},
-                        {value: 'Catfish'},
-                        {value: 'Shrimps'}]
-                    } label="Category"
+                    <SelectorField className={styles.selector} options={ this.getCategories() } label="Category"
                       onChange={this.props.categoryChange}
                       value={this.props.filter.category}/>
                     <Link className="navigation__link" to="/create-offer"><Button
@@ -43,4 +52,4 @@ class MarketPage extends Component {
     }
 }
 
-export default MarketPage;
+export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);

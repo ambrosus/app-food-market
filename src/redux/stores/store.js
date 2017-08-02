@@ -7,12 +7,19 @@ import {ambrosus, initWeb3} from '../reducers/InitializeReducer.js';
 import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
 
+
+const CATEGORIES = ["Anchovies", "Markel", "Salmon", "Tuna", "Other"];
+const categories = (state = CATEGORIES, action) => {
+    return state;
+};
+
 const store = createStore(combineReducers({
         transactionsStatus,
         ambrosus,
         market,
         modal,
-        offer
+        offer,
+        categories
     }),
     compose(applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f

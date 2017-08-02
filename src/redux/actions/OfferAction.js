@@ -2,6 +2,7 @@ import IPFSUploader from 'ipfs-image-web-upload';
 import Ambrosus from 'ambrosus';
 import { executeEthereumTransaction } from './TransactionAction.js';
 import { transactionMined } from '../../utils/blockchainEvents.js';
+import { showModal, hideModal } from './ModalAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -12,12 +13,15 @@ const uploadToIPFS = async (ipfs, image) => {
 export const createOffer = (offer, image, marketAddress, history) => {
   return async function(dispatch) {
       if (image) {
+        dispatch(showModal("TransactionProgressModal"));
         withIPFS(async (ipfs) => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
+          dispatch(hideModal("TransactionProgressModal"));
           dispatch(doCreateOffer(offer, marketAddress, history));
         });
       } else {
         dispatch(doCreateOffer(offer, marketAddress, history));
+        
       }
   };
 };

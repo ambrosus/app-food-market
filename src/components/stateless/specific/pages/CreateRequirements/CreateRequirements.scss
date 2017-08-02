@@ -1,10 +1,6 @@
 @import '../../../shared';
 @import '../../../generic/Button/Button';
 
-:root {
-  @include font();
-}
-
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
   width: 200px;

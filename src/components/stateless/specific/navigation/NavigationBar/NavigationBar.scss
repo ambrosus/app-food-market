@@ -1,4 +1,5 @@
 @import '../../../generic/Button/Button';
+@import '../../../shared.scss';
 
 $create-offer-button-background-color: #002C87;
 $create-offer-button-border-color: #002C87;
@@ -8,7 +9,8 @@ $navigation-background-color: #ffffff;
 $navigation-bar-height: 90px;
 $navigation-bar-padding: 0 0px;
 
-.navigation {
+:local(.navigation) {
+  @include font();
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -20,11 +22,12 @@ $navigation-bar-padding: 0 0px;
   line-height: $navigation-bar-height;
   height: $navigation-bar-height;
   background-color: $navigation-background-color;
+}
 
-  &__title {
-    font-family: 'Muli', sans-serif;
-    font-size: 22px;
-    margin-right: auto;
-    color: #002C87;
-  }
+:local(.title) {
+  @include font();
+  font-family: 'Muli', sans-serif;
+  font-size: 22px;
+  margin-right: auto;
+  color: #002C87;
 }

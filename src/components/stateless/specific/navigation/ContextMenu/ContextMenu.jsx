@@ -10,7 +10,6 @@ export default class ContextMenu extends Component {
                 <li className={styles.element}><Link className={styles.link} to="/market">Market</Link></li>
                 <li className={styles.element}><Link className={styles.link} to="/orders">Orders</Link></li>
                 <li className={styles.element}><Link className={styles.link} to="/profile">Profile</Link></li>
-                <li className={styles.element}><Link className={styles.link} to="/product">Product</Link></li>
             </ul>
         </div>)
     }

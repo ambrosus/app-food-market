@@ -8,13 +8,13 @@ import CreatingMarketContainer from "./stateless/specific/pages/CreatingMarketPa
 import OrdersPage from "./stateless/specific/pages/OrdersPage/OrdersPage";
 import ProfilePage from "./stateless/specific/pages/ProfilePage/ProfilePage";
 import CreateOffer from "./stateful/CreateOffer/CreateOffer.js";
-import Product from "./stateful/Product/Product.js";
 import {Provider} from "react-redux";
 import store from "../redux/stores/store";
 import ModalContainer from "./stateless/specific/containers/ModalContainer/ModalContainer";
 import {BrowserHistory} from 'react-history';
 import CreateRequirements from "./stateless/specific/pages/CreateRequirements/CreateRequirements";
-require("./RootComponent.scss");
+import styles from "./RootComponent.scss";
+import Product from "./stateful/Product/Product";
 
 export default class RootComponent extends Component {
 

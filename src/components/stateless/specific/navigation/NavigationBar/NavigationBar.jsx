@@ -1,12 +1,11 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
-require('./NavigationBar.scss');
+import styles from './NavigationBar.scss';
 
 export default class NavigationBar extends Component {
     render() {
-        return (<div className="navigation">
-            <span className="navigation__title">{ this.props.title } </span>
-            { this.props. children }
+        return (<div className={styles.navigation}>
+            <span className={styles.title}>{this.props.title} </span>
+            {this.props.children}
         </div>)
     }
 }

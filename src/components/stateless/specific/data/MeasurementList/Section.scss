@@ -8,7 +8,22 @@
 }
 
 :local(.icon) {
+  position: relative;
   padding-right: 10px;
+  top: 5px;
+}
+
+:local(.arrow) {
+  position: absolute;
+  left: 8px;
+  top: 9px;
+}
+
+:local(.arrowRotated) {
+  transform: rotate(180deg);
+  position: absolute;
+  left: 8px;
+  top: 11px;
 }
 
 :local(.container) {

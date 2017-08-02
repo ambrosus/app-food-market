@@ -21,8 +21,14 @@ class Section extends Component {
     render() {
         return (<div>
             <div className={styles.header}>
-                <img onClick={this.action.bind(this)} type="image/svg+xml" src="./static/images/rectangle.svg"
-                     className={styles.icon}/>
+                <div className={styles.icon}>
+                    <img onClick={this.action.bind(this)} type="image/svg+xml" src="./static/images/rectangle.svg"/>
+                    {this.state.expanded ?
+                        <img onClick={this.action.bind(this)} type="image/svg+xml" src="./static/images/angleUp.svg"
+                             className={styles.arrowRotated}/> :
+                        <img onClick={this.action.bind(this)} type="image/svg+xml" src="./static/images/angleUp.svg"
+                             className={styles.arrow}/>}
+                </div>
                 <Label className={styles.title} text={this.props.label}/>
                 <Label className={styles.date} text={this.props.date}/>
             </div>

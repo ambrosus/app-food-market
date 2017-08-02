@@ -12,8 +12,6 @@ export default class HeaderContainer extends Component {
             <Link className="logo" to="/">
             	<img className="logo" src="/static/images/logotype.png"/>
             </Link>
-            <EthereumTransactionList/>
-            <EthereumTransactionsStatus/>
             <ContextMenu/>
             <hr className="line"/>
             <Breadcrumbs className={styles.breadcrumbs} />

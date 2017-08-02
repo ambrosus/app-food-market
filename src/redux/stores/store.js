@@ -8,7 +8,7 @@ import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
 
 
-const CATEGORIES = ["Anchovies", "Markel", "Salmon", "Tuna", "Other"];
+const CATEGORIES = ["All", "Anchovies", "Markel", "Salmon", "Tuna", "Other"];
 const categories = (state = CATEGORIES, action) => {
     return state;
 };

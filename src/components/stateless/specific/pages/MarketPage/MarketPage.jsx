@@ -26,7 +26,7 @@ class MarketPage extends Component {
     }
 
     getQualities() {
-        return [{value: 'None'}, {value: 'Poor'}, {value: 'Good'}];
+        return [{value: 'All'}, {value: 'Poor'}, {value: 'Good'}];
     }
 
     render() {

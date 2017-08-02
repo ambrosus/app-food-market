@@ -1,6 +1,10 @@
 @import '../../../shared';
 @import '../../../generic/Button/Button';
 
+:root {
+  @include font();
+}
+
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
   width: 200px;
@@ -34,6 +38,7 @@
 
 :local(.section) {
   font-size: 16px;
+  font-weight: 100;
 }
 
 :local(.selector) {
@@ -46,4 +51,5 @@
 
 :local(.qualityStandard) {
   width: 420px;
+  margin-bottom: 20px;
 }

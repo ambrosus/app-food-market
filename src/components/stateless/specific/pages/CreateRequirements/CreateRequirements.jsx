@@ -18,18 +18,18 @@ class CreateRequirements extends Component {
             </NavigationBar>
             <Label className={styles.label} text="Quality standard name:"/>
             <TextField className={styles.qualityStandard}/>
-            <Label text="Attributes" className={styles.section}/>
+            <Label text="Attributes:" className={styles.section}/>
             <div className={styles.list}>
                 <div className={styles.row}>
-                    <TextField />
-                    <SelectorField options={[{value: 'Range'}]} className={styles.selector}/>
+                    <TextField/>
+                    <SelectorField options={[{value: 'Range'}, {value: 'Boolean'}]} className={styles.selector}/>
                     <TextField className={styles.selector}/>
                     <TextField className={styles.selector}/>
                     <TextField className={styles.selector}/>
                 </div>
                 <div className={styles.row}>
-                    <TextField />
-                    <SelectorField options={[{value: 'Range'}]} className={styles.selector}/>
+                    <TextField/>
+                    <SelectorField options={[{value: 'Range'}, {value: 'Boolean'}]} className={styles.selector}/>
                     <TextField className={styles.selector}/>
                     <TextField className={styles.selector}/>
                     <TextField className={styles.selector}/>

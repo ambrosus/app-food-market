@@ -146,7 +146,7 @@ class CreateOfferPage extends Component {
                                 {value: 'Medium'},
                                 {value: 'Good'},
                                 {value: 'Excellent'}]} label="Category"/>
-                            <span className={styles.paragraph }>or <a href="/#/">create custom requirements</a> for quality</span>
+                            <span className={styles.paragraph }>or <Link to="create-requirements">create custom requirements</Link> for quality</span>
                             <AttributeValueFieldContainer className={styles.properties}>
                                 { parameters.map((element, index) => (
                                     <AttributeValueField key={index} field={element.field} value={element.value}/>)

@@ -61,7 +61,6 @@ export default class ProductItem extends Component {
                         <span className="icon-basket-loaded product__icon"/><span>Buy</span>
                     </Button>
                 </div>
-                <div style={{clear: 'both'}}></div>
             </div>
         </article>)
     }

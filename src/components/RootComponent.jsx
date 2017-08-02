@@ -13,7 +13,7 @@ import {Provider} from "react-redux";
 import store from "../redux/stores/store";
 import ModalContainer from "./stateless/specific/containers/ModalContainer/ModalContainer";
 import {BrowserHistory} from 'react-history';
-import TransactionProgressModal from "./stateless/specific/modals/TransactionProgressModal/TransactionProgressModal";
+import CreateRequirements from "./stateless/specific/pages/CreateRequirements/CreateRequirements";
 require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
@@ -32,7 +32,7 @@ export default class RootComponent extends Component {
                         <Route exact path="/product" component={Product}/>
                         <Route exact path="/product-info" component={Product}/>
                         <Route exact path="/create-offer" component={CreateOffer}/>
-                        <Route exact path="/modal" component={TransactionProgressModal}/>
+                        <Route exact path="/create-requirements" component={CreateRequirements}/>
                         <ModalContainer/>
                     </PageContainer>
                 </Router>

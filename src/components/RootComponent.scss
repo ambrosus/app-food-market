@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+@import './stateless/shared';
 
-.logo {
-  display:block;
-  width: 200px;
-  height: 34px;
-  margin-right: auto;
-}
-
-.line {
-  border: 0;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  width: 100%;
+:root {
+  @include font();
 }

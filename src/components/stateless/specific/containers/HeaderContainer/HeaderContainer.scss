@@ -6,6 +6,19 @@
   margin-bottom: 10px;
 }
 
+:local(.logo) {
+  display: block;
+  width: 200px;
+  height: 34px;
+  margin-right: auto;
+}
+
+:local(.line) {
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
 :local(.breadcrumbs) {
   padding-top: 15px;
 }

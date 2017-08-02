@@ -2,10 +2,13 @@
   -webkit-font-smoothing: antialiased;
   font-family: 'Muli', sans-serif;
   color: #002c87;
+  font-size: 15px;
+  font-weight: 100;
 }
 
 @mixin link() {
   color: #20ABFA;
+  text-decoration: none;
 }
 
 @mixin border-focus() {

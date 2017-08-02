@@ -18,7 +18,7 @@ $more-details-text-color: #002C87;
 $more-details-color: #002C87;
 $more-details-height: 40px;
 
-.product {
+:local(.product) {
   position: relative;
   width: 263px;
   border-radius: 2px;
@@ -27,16 +27,56 @@ $more-details-height: 40px;
   margin: 10px;
   box-shadow: 0 0 10px -2px $container-shadow, 0 0 10px -2px $container-shadow;
   float: left;
+}
 
-  &__icon {
-    margin-right: 6px;
-    font-size: 20px;
-    vertical-align: -4px;
-  }
+:local(.category) {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: block;
+  background: white;
+  border-radius: 0 3px 3px 0;
+  font-size: 12px;
+  padding: 4.5px 11px;
+  color: $product-title-color;
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+}
 
-  &__info {
-    padding: 13px 20px 20px 20px;
-  }
+:local(.info) {
+  padding: 13px 20px 20px 20px;
+}
+
+:local(.icon) {
+  margin-right: 6px;
+  font-size: 20px;
+  vertical-align: -4px;
+}
+
+:local(.title) {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 0 14px 0;
+  color: $product-title-color;
+  font-family: 'Muli', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+:local(.fieldsContainer) {
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+:local(.link) {
+  @include link();
+}
+
+.product {
 
   &__more-details-button {
     @include button($more-details-text-color, #ffffff, $more-details-height);
@@ -59,37 +99,8 @@ $more-details-height: 40px;
     justify-content: space-around;
   }
 
-  &__name {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    display: block;
-    background: white;
-    border-radius: 0 3px 3px 0;
-    font-size: 12px;
-    padding: 4.5px 11px;
-    color: $product-title-color;
-    font-family: 'Muli', sans-serif;
-    font-weight: 400;
-  }
-
-  &__title {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 0 14px 0;
-    color: $product-title-color;
-    font-family: 'Muli', sans-serif;
-    font-size: 22px;
-    font-weight: 400;
-  }
-
   &__fields-container {
-    display: flex;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+
   }  
 
   &__field {

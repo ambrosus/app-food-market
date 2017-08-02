@@ -34,6 +34,7 @@
 
 :local(.section) {
   font-size: 16px;
+  font-weight: 100;
 }
 
 :local(.selector) {
@@ -46,4 +47,5 @@
 
 :local(.qualityStandard) {
   width: 420px;
+  margin-bottom: 20px;
 }

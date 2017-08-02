@@ -9,12 +9,12 @@ import styles from './HeaderContainer.scss';
 export default class HeaderContainer extends Component {
     render() {
         return (<div className={styles.header}>
-            <Link className="logo" to="/">
-            	<img className="logo" src="/static/images/logotype.png"/>
+            <Link className={styles.logo} to="/">
+                <img className={styles.logo} src="/static/images/logotype.png"/>
             </Link>
             <ContextMenu/>
-            <hr className="line"/>
-            <Breadcrumbs className={styles.breadcrumbs} />
+            <hr className={styles.line}/>
+            <Breadcrumbs className={styles.breadcrumbs}/>
         </div>)
     }
 }

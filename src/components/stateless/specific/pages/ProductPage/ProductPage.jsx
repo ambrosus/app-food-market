@@ -49,7 +49,7 @@ class ProductPage extends Component {
                 </div>
                 <div className={styles.typeColumn}>
                     <Label className={styles.title} text={this.props.offer.name}/>
-                    <AttributeValueFieldContainer options={parameters} className={styles.requirements}/>
+                    <AttributeValueFieldContainer options={parameters} className={styles.info}/>
                     <Label className={styles.subtitle} text="Measurements"/>
                     <MeasurementList/>
                 </div>

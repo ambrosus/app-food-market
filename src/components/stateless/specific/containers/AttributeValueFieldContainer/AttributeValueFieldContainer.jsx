@@ -15,7 +15,7 @@ export default class AttributeValueFieldContainer extends Component {
     };
 
     render() {
-        return (<div {...this.props} className={cx(styles.container, this.props.className)}>
+        return (<div style={this.props.style} className={cx(styles.container, this.props.className)}>
             {this.props.options.map((element, index) => (
                 <AttributeValueField key={index} field={element.field} value={element.value}/>)
             )}</div>)

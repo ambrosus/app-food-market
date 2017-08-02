@@ -22,7 +22,6 @@ export default class ProductItem extends Component {
             name: 'Tuna',
             category: 'Fish',
             pricePerUnit: '€20 / kg',
-            name: 'Nord atlantic tuna',
             seller: 'Riverscott',
         },
         image: '/static/images/placeholder.png',

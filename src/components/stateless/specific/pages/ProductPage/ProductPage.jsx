@@ -26,7 +26,7 @@ class ProductPage extends Component {
     }
 
     render() {
-
+        
         const requirements = [
             {field: 'Anti-Biotics Free', value: 'Yes'},
             {field: 'Method of Fishing', value: 'Line'},

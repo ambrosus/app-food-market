@@ -37,6 +37,8 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     moreDetailsAction: (offer) => {
+      console.log("MArket");
+      console.log(offer);
       dispatch(selectOffer(offer));
     }
   }

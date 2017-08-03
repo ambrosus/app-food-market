@@ -21,6 +21,7 @@ export default class TransactionsStatus extends Component {
     render() {
         const notifications = [
             {
+                id: 1,
                 status: TransactionNotification.APPROVED,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
@@ -28,6 +29,7 @@ export default class TransactionsStatus extends Component {
                 isRead: true
             },
             {
+                id: 2,
                 status: TransactionNotification.PENDING,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
@@ -35,6 +37,7 @@ export default class TransactionsStatus extends Component {
                 isRead: false
             },
             {
+                id: 3,
                 status: TransactionNotification.NOT_APPROVED,
                 type: 'Created New Requirement',
                 address: '0x31a998d51f26c79001380b13814e1f2',
@@ -42,6 +45,23 @@ export default class TransactionsStatus extends Component {
                 isRead: false
             },
             {
+                id: 4,
+                status: TransactionNotification.APPROVED,
+                type: 'Transaction',
+                address: '0x31a998d51f26c79001380b13814e1f2',
+                time: '5 sec ago',
+                isRead: true
+            },
+            {
+                id: 5,
+                status: TransactionNotification.APPROVED,
+                type: 'Transaction',
+                address: '0x31a998d51f26c79001380b13814e1f2',
+                time: '5 sec ago',
+                isRead: true
+            },
+            {
+                id: 6,
                 status: TransactionNotification.APPROVED,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',

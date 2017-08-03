@@ -8,6 +8,8 @@
 
 @mixin font-semi() {
   @include font();
+  font-size: 13px;
+  font-family: 'Muli-SemiBold', sans-serif;
 }
 
 @mixin link() {

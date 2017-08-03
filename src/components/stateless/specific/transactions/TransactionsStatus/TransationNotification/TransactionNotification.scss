@@ -1,3 +1,5 @@
+@import '../../../../shared';
+
 :local(.notification) {
   display: flex;
   flex-direction: row;
@@ -32,6 +34,7 @@
 }
 
 :local(.type) {
+  @include font-semi();
   font-size: 17px;
 }
 
@@ -41,14 +44,17 @@
 }
 
 :local(.approved) {
+  @include font-semi();
   color: #8BC34A;
 }
 
 :local(.pending) {
+  @include font-semi();
   color: #F8A900;
 }
 
 :local(.notApproved) {
+  @include font-semi();
   color: #D14B4B;
 }
 

@@ -13,7 +13,6 @@ export default class TransactionsStatus extends Component {
     }
 
     expand() {
-        console.log(this.state);
         this.setState({
             expanded: !this.state.expanded
         })
@@ -29,7 +28,7 @@ export default class TransactionsStatus extends Component {
             },
             {
                 status: TransactionNotification.NOT_APPROVED,
-                type: 'Transaction',
+                type: 'Created New Requirement',
                 address: '0x31a998d51f26c79001380b13814e1f2',
                 time: '5 sec ago'
             },

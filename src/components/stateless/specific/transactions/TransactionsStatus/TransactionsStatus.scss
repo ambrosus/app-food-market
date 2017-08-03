@@ -1,0 +1,86 @@
+:local(.icon) {
+  background: url('/static/images/blockchain.svg') no-repeat;
+  margin: 0 auto;
+  width: 26px;
+  height: 26px;
+}
+
+:local(.container) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 65px;
+  height: 70px;
+  background-color: #f5fafd;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(0, 44, 135, 0.19);
+  border-bottom: 0;
+}
+
+:local(.normal) {
+  display: none;
+}
+
+:local(.expanded) {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5fafd;
+  position: absolute;
+  right: -1px;
+  top: 70px;
+  border: 1px solid rgba(0, 44, 135, 0.19);
+  border-bottom: 0;
+}
+
+
+
+:local(.notification) {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 44, 135, 0.19);
+  width: 337px;
+  height: 67px;
+}
+
+:local(.header) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+:local(.description) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  width: 269px;
+}
+
+:local(.time) {
+  font-size: 11px;
+  color: rgba(0,44,135,0.4);
+}
+
+:local(.type) {
+  font-size: 17px;
+}
+
+:local(.address) {
+  font-size: 13px;
+  color: rgba(0,44,135,0.4);
+}
+
+:local(.status) {
+  font-size: 13px;
+}
+
+:local(.typeIcon) {
+  background: url('/static/images/transaction-approved.svg') no-repeat;
+  width: 39px;
+  height: 39px;
+  position: relative;
+  top: 18px;
+  left: 8px;
+}

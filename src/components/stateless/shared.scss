@@ -6,6 +6,10 @@
   font-weight: 100;
 }
 
+@mixin font-semi() {
+  @include font();
+}
+
 @mixin link() {
   color: #20ABFA;
   text-decoration: none;

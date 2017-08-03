@@ -84,7 +84,7 @@ export const createMarket = () => {
         marketRepository.create(web3.eth.accounts[0], (transactionHash) => {
             dispatch(statusAddPendingTransaction(transactionHash, "Creating contract", "ads"));
             dispatch(createMarketResponse(transactionHash));
-            dispatch(showModal("TransactionProgressModal"));
+            dispatch(showModal("TransactionProgressModal", {title: "Creating market"}));
         }).then((myContract) => {
             dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
             dispatch(createMarketSuccess(myContract.marketContract.address));

@@ -1,0 +1,67 @@
+@import '../../../../shared';
+
+:local(.notification) {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 44, 135, 0.19);
+  width: 337px;
+  height: 67px;
+}
+
+:local(.typeIcon) {
+  background: url('/static/images/transaction-approved.svg') no-repeat;
+  width: 39px;
+  height: 39px;
+  position: relative;
+  top: 18px;
+  left: 8px;
+}
+
+:local(.header) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+:local(.status) {
+  font-size: 13px;
+}
+
+:local(.time) {
+  font-size: 11px;
+  color: rgba(0,44,135,0.4);
+}
+
+:local(.type) {
+  @include font-semi();
+  font-size: 17px;
+}
+
+:local(.address) {
+  font-size: 13px;
+  color: rgba(0,44,135,0.4);
+}
+
+:local(.approved) {
+  @include font-semi();
+  color: #8BC34A;
+}
+
+:local(.pending) {
+  @include font-semi();
+  color: #F8A900;
+}
+
+:local(.notApproved) {
+  @include font-semi();
+  color: #D14B4B;
+}
+
+:local(.description) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  width: 269px;
+}

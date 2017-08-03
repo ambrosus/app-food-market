@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 import TransactionItem from "../TransactionItem/TransactionItem";
 
@@ -17,12 +17,16 @@ export default class TransactionList extends Component {
     };
 
     render() {
-        return ( < div >
+        return ( < div>
             <ul>
-                {this.props.pending.map(item => <TransactionItem key={ item.key } status="pending" tx={ item.tx } caption={ item.caption } />)}
-                {this.props.success.map(item => <TransactionItem key={ item.key } status="success" tx={ item.tx } caption={ item.caption } />)}
-                {this.props.failed.map(item => <TransactionItem key={ item.key } status="failed" tx={ item.tx } caption={ item.caption } errorMessage={item.errorMessage.toString()}/>)}
-            </ul> 
-            </div>);
+                {this.props.pending.map(item => <TransactionItem key={item.key} status="pending" tx={item.tx}
+                                                                 caption={item.caption}/>)}
+                {this.props.success.map(item => <TransactionItem key={item.key} status="success" tx={item.tx}
+                                                                 caption={item.caption}/>)}
+                {this.props.failed.map(item => <TransactionItem key={item.key} status="failed" tx={item.tx}
+                                                                caption={item.caption}
+                                                                errorMessage={item.errorMessage.toString()}/>)}
+            </ul>
+        </div>);
     }
 }

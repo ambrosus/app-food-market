@@ -6,6 +6,12 @@
   font-weight: 100;
 }
 
+@mixin font-semi() {
+  @include font();
+  font-size: 13px;
+  font-family: 'Muli-SemiBold', sans-serif;
+}
+
 @mixin link() {
   color: #20ABFA;
   text-decoration: none;

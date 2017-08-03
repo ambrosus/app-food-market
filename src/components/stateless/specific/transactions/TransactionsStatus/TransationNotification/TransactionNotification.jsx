@@ -21,7 +21,11 @@ export default class TransactionNotification extends Component {
 
     render() {
         return (<div className={styles.notification}>
-            <div className={styles.typeIcon}/>
+            <div className={classnames(styles.typeIcon, {
+                [styles.typeApproved]: this.props.notification.status === TransactionNotification.APPROVED,
+                [styles.typePending]: this.props.notification.status === TransactionNotification.PENDING,
+                [styles.typeNotApproved]: this.props.notification.status === TransactionNotification.NOT_APPROVED,
+            })}/>
             <div className={styles.description}>
                 <div className={styles.header}>
                     <div className={styles.status}>Status: <span className={classnames({

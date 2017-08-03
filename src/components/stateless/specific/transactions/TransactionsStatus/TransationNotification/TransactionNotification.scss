@@ -11,12 +11,26 @@
 }
 
 :local(.typeIcon) {
-  background: url('/static/images/transaction-approved.svg') no-repeat;
   width: 39px;
   height: 39px;
   position: relative;
   top: 18px;
   left: 8px;
+}
+
+:local(.typeApproved) {
+  @extend :local(.typeIcon);
+  background: url('/static/images/transaction-approved.svg') no-repeat;
+}
+
+:local(.typePending) {
+  @extend :local(.typeIcon);
+  background: url('/static/images/transaction-pending.svg') no-repeat;
+}
+
+:local(.typeNotApproved) {
+  @extend :local(.typeIcon);
+  background: url('/static/images/transaction-rejected.svg') no-repeat;
 }
 
 :local(.header) {

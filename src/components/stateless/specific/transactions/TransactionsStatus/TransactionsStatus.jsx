@@ -12,7 +12,7 @@ export default class TransactionsStatus extends Component {
         }
     }
 
-    expand() {
+    toggle() {
         this.setState({
             expanded: !this.state.expanded
         })
@@ -50,7 +50,7 @@ export default class TransactionsStatus extends Component {
             }
         ];
 
-        return ( <div onClick={this.expand.bind(this)} className={styles.container}>
+        return ( <div onClick={this.toggle.bind(this)} className={styles.container}>
             <div className={styles.icon}/>
             <div className={classnames(styles.hidden, {[styles.visible]: this.state.expanded})}>
                 {notifications.map((notification, index) => (

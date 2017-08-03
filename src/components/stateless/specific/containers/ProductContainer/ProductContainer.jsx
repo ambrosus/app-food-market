@@ -23,12 +23,7 @@ class ProductContainer extends Component {
             );
         }
         else if (this.props.market.offers.length === 0) {
-            return (<p>There are no offers on the market yet.
-                <Link to="/create-offer">
-                    Create
-                </Link>
-                first.
-            </p>)
+            return (<p>There are no offers on the market yet. <Link to="/create-offer">Create</Link> first.</p>)
         }
         return (
             <div className={styles.container}>

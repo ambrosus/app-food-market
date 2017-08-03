@@ -15,6 +15,7 @@ export default class TransactionNotification extends Component {
             time: PropTypes.string,
             type: PropTypes.string,
             address: PropTypes.string,
+            read: PropTypes.bool.isRequired
         })
     };
 

@@ -24,31 +24,35 @@ export default class TransactionsStatus extends Component {
                 status: TransactionNotification.APPROVED,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago'
+                time: '5 sec ago',
+                read: true
             },
             {
                 status: TransactionNotification.NOT_APPROVED,
                 type: 'Created New Requirement',
                 address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago'
+                time: '5 sec ago',
+                read: false
             },
             {
                 status: TransactionNotification.PENDING,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago'
+                time: '5 sec ago',
+                read: true
             },
             {
                 status: 'Approved',
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago'
+                time: '5 sec ago',
+                read: true
             }
         ];
 
         return ( <div onClick={this.expand.bind(this)} className={styles.container}>
             <div className={styles.icon}/>
-            <div className={classnames(styles.normal, {[styles.expanded]: this.state.expanded})}>
+            <div className={classnames(styles.hidden, {[styles.visible]: this.state.expanded})}>
                 {notifications.map((notification, index) => (
                     <TransactionNotification key={index} notification={notification}/>
                 ))}

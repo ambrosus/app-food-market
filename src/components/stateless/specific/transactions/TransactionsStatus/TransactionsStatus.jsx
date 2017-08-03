@@ -25,28 +25,28 @@ export default class TransactionsStatus extends Component {
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
                 time: '5 sec ago',
-                read: true
-            },
-            {
-                status: TransactionNotification.NOT_APPROVED,
-                type: 'Created New Requirement',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                read: false
+                isRead: true
             },
             {
                 status: TransactionNotification.PENDING,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
                 time: '5 sec ago',
-                read: true
+                isRead: false
             },
             {
-                status: 'Approved',
+                status: TransactionNotification.NOT_APPROVED,
+                type: 'Created New Requirement',
+                address: '0x31a998d51f26c79001380b13814e1f2',
+                time: '5 sec ago',
+                isRead: false
+            },
+            {
+                status: TransactionNotification.APPROVED,
                 type: 'Transaction',
                 address: '0x31a998d51f26c79001380b13814e1f2',
                 time: '5 sec ago',
-                read: true
+                isRead: true
             }
         ];
 

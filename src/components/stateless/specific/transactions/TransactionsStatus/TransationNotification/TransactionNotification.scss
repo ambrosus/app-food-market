@@ -31,6 +31,16 @@
 :local(.typeNotApproved) {
   @extend :local(.typeIcon);
   background: url('/static/images/transaction-rejected.svg') no-repeat;
+  left: 11px;
+  top: 24px;
+}
+
+:local(.read) {
+  background-color: red;
+}
+
+:local(.unread) {
+  background-color: #F5FAFD;
 }
 
 :local(.header) {

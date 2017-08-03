@@ -15,12 +15,14 @@ export default class TransactionNotification extends Component {
             time: PropTypes.string,
             type: PropTypes.string,
             address: PropTypes.string,
-            read: PropTypes.bool.isRequired
+            isRead: PropTypes.bool.isRequired
         })
     };
 
     render() {
-        return (<div className={styles.notification}>
+        return (<div className={classnames(styles.notification,{
+            [styles.unread]: this.props.notification.isRead,
+        })}>
             <div className={classnames(styles.typeIcon, {
                 [styles.typeApproved]: this.props.notification.status === TransactionNotification.APPROVED,
                 [styles.typePending]: this.props.notification.status === TransactionNotification.PENDING,

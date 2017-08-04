@@ -10,7 +10,8 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categories
+        categories: ['All'].concat(state.categories),
+        qualities: ['All'].concat(state.market.qualities)
     };
 };
 
@@ -26,7 +27,7 @@ class MarketPage extends Component {
     }
 
     getQualities() {
-        return [{value: 'All'}, {value: 'Poor'}, {value: 'Good'}];
+        return this.props.qualities.map(name => { return {value: name} } );
     }
 
     render() {

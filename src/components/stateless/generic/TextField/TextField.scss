@@ -16,3 +16,11 @@
     outline: none;
   }
 }
+
+:local(.error) {
+  border: 1px solid rgba(255,0,0,0.29) !important;
+}
+
+:local(.message) {
+  color: #f00;
+}

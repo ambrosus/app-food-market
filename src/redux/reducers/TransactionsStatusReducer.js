@@ -1,12 +1,4 @@
-const transactionsStatus = (state = {list: [
-    {
-        status: 'success',
-        time: '5 seconds',
-        type: 'Example',
-        address: 'asdfasdf',
-        isRead: false
-    }
-]}, action) => {
+const transactionsStatus = (state = {list: []}, action) => {
     switch (action.type) {
         case 'STATUS_ADD_SUCCESS_TRANSACTION':
         case 'STATUS_ADD_FAILED_TRANSACTION':

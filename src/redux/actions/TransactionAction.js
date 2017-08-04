@@ -8,23 +8,23 @@ const CHECK_TRANSACTION_STATUS_TIME = 1000;
 
 export const executeEthereumTransaction = (promise, caption, url) => {
     return function (dispatch) {
-        promise.then((tx) => {
-            dispatch(statusAddPendingTransaction(tx, caption, url));
-            dispatch(watchPendingTransaction(tx, caption, url));
+        promise.then((address) => {
+            dispatch(statusAddPendingTransaction({address, caption, url}));
+            dispatch(watchPendingTransaction(address, caption, url));
         }).catch((reason) => {
-            dispatch(statusAddFailedTransaction("", caption, reason));
+            dispatch(statusAddFailedTransaction({address:"", caption, reason}));
         });
     }
 };
 
 export const watchPendingTransaction = (tx, caption, url) => {
 
-    function checkStatus(tx, dispatch) {
-        web3.eth.getTransaction(tx, function (error, transaction) {
+    function checkStatus(address, dispatch) {
+        web3.eth.getTransaction(address, function (error, transaction) {
             if (error) {
-                dispatch(statusAddFailedTransaction("", caption, error));
+                dispatch(statusAddFailedTransaction({address: "", caption, error}));
             } else if (transaction.blockHash) {
-                dispatch(statusAddSuccessTransaction(tx, caption, url));
+                dispatch(statusAddSuccessTransaction({address, caption, url}));
             } else {
                 setTimeout(() => checkStatus(tx, dispatch), CHECK_TRANSACTION_STATUS_TIME);
             }
@@ -32,7 +32,7 @@ export const watchPendingTransaction = (tx, caption, url) => {
     }
 
     return function (dispatch) {
-        checkStatus(tx, dispatch);
+        checkStatus(address, dispatch);
     }
 };
 

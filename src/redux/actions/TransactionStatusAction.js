@@ -1,28 +1,39 @@
-export const statusAddPendingTransaction = (tx, caption, url) => {
+export const statusAddPendingTransaction = ({address, caption, url}) => {
     return {
         type: 'STATUS_ADD_PENDING_TRANSACTION',
         data: {
             status: 'pending',
-            address: tx,
-            caption: 'Caption',
+            address: address,
+            type: caption,
             url: url,
             isRead: false
         }
     };
 };
 
-export const statusAddSuccessTransaction = (tx, caption, url) => {
+export const statusAddSuccessTransaction = ({address, caption, url}) => {
     return {
         type: 'STATUS_ADD_SUCCESS_TRANSACTION',
-        status: 'success',
-        tx, caption, url
+        data: {
+            status: 'pending',
+            address: address,
+            type: caption,
+            url: url,
+            isRead: false
+        }
     };
 };
 
-export const statusAddFailedTransaction = (tx, caption, errorMessage) => {
+export const statusAddFailedTransaction = ({address, caption, errorMessage}) => {
     return {
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',
-        tx, caption, errorMessage
+        data: {
+            status: 'pending',
+            address: address,
+            type: caption,
+            isRead: false,
+            errorMessage: errorMessage
+        }
     };
 };

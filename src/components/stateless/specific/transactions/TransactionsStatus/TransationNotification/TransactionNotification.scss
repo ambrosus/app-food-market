@@ -53,6 +53,11 @@
   font-size: 13px;
 }
 
+:local(.statusValue) {
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
 :local(.time) {
   font-size: 11px;
   color: rgba(0,44,135,0.4);

@@ -3,7 +3,7 @@ import ContextMenu from "../../navigation/ContextMenu/ContextMenu";
 import {Link} from "react-router-dom";
 import Breadcrumbs from "../../navigation/Breadcrumbs/Breadcrumbs";
 import styles from './HeaderContainer.scss';
-import TransactionsStatus from "../../transactions/TransactionsStatus/TransactionsStatus";
+import EthereumTransactionList from "../../../../stateful/EthereumTransactionList/EthereumTransactionList";
 
 export default class HeaderContainer extends Component {
     render() {
@@ -11,7 +11,7 @@ export default class HeaderContainer extends Component {
             <Link className={styles.logo} to="/">
                 <img className={styles.logo} src="/static/images/logotype.png"/>
             </Link>
-            <TransactionsStatus/>
+            <EthereumTransactionList />
             <ContextMenu/>
             <hr className={styles.line}/>
             <Breadcrumbs className={styles.breadcrumbs}/>

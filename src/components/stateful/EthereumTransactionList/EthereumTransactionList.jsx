@@ -1,8 +1,11 @@
-import { connect } from 'react-redux';
-import TransactionList from '../../stateless/specific/transactions/TransactionList/TransactionList';
+import {connect} from 'react-redux';
+import TransactionStatus from '../../stateless/specific/transactions/TransactionsStatus/TransactionsStatus';
 
 const mapStateToProps = (state, ownProps) => {
-    return state["transactionsStatus"];
+    console.log('state', state);
+    return {
+        notifications: state.transactions.list
+    }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -12,6 +15,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const EthereumTransactionList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TransactionList);
+)(TransactionStatus);
 
 export default EthereumTransactionList;

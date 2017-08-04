@@ -1,9 +1,14 @@
 import React, {Component} from "react";
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 import styles from './TransactionsStatus.scss';
 import TransactionNotification from "./TransationNotification/TransactionNotification";
 
 export default class TransactionsStatus extends Component {
+
+    static propTypes = {
+        notifications: PropTypes.array.isRequired
+    };
 
     constructor(props) {
         super(props);
@@ -19,64 +24,16 @@ export default class TransactionsStatus extends Component {
     }
 
     render() {
-        const notifications = [
-            {
-                id: 1,
-                status: TransactionNotification.APPROVED,
-                type: 'Transaction',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: true
-            },
-            {
-                id: 2,
-                status: TransactionNotification.PENDING,
-                type: 'Transaction',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: false
-            },
-            {
-                id: 3,
-                status: TransactionNotification.NOT_APPROVED,
-                type: 'Created New Requirement',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: false
-            },
-            {
-                id: 4,
-                status: TransactionNotification.APPROVED,
-                type: 'Transaction',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: true
-            },
-            {
-                id: 5,
-                status: TransactionNotification.APPROVED,
-                type: 'Transaction',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: true
-            },
-            {
-                id: 6,
-                status: TransactionNotification.APPROVED,
-                type: 'Transaction',
-                address: '0x31a998d51f26c79001380b13814e1f2',
-                time: '5 sec ago',
-                isRead: true
-            }
-        ];
-
         return ( <div onClick={this.toggle.bind(this)} className={styles.container}>
             <div className={styles.icon}/>
             <div className={classnames(styles.hidden, {[styles.visible]: this.state.expanded})}>
-                {notifications.map((notification, index) => (
-                    <TransactionNotification key={index} notification={notification}/>
-                ))}
+                {this.props.notifications ? this.renderNotifications() : <div>Empty</div>}
             </div>
         </div>);
+    }
+
+    renderNotifications() {
+        return this.props.notifications.map((notification, index) => <TransactionNotification
+            notification={notification} key={index}/>)
     }
 }

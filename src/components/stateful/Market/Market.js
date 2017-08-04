@@ -14,7 +14,6 @@ const filteredOffers = (offers, filters) => {
   return offers.filter((offer) => isFilterMatch(offer, filters));
 };
 
-
 const mapStateToProps = state => {
   return {
     market: state.market,

@@ -76,7 +76,7 @@ function createMarketContract(callback) {
 }
 
 
-export const createMarket = () => {
+export const createMarket = (history) => {
     return async function(dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
@@ -90,11 +90,18 @@ export const createMarket = () => {
             dispatch(createMarketSuccess(myContract.marketContract.address));
             dispatch(hideModal());
             Cookies.set('market_address', myContract.marketContract.address);
+            dispatch(redirectToMarket(history));
         }).catch((err) => {
             dispatch(statusAddFailedTransaction("", "Creating contract", err));
             dispatch(showModal("ErrorModal", { reason: err }));
         });
     };
+}
+
+export const redirectToMarket = (history) => {
+    return async function(dispatch) {
+        history.push("market");
+    }
 }
 
 export const getAllOffers = (address) => {

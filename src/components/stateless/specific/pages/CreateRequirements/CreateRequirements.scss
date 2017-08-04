@@ -1,5 +1,5 @@
-@import '../../../shared';
 @import '../../../generic/Button/Button';
+@import '../../../shared';
 
 :local(.saveButton) {
   @include button(#ffffff, #002c87, 40px);
@@ -13,9 +13,14 @@
   margin: 0 20px;
 }
 
+:local(.addRequirement) {
+  width: 300px;
+}
+
 :local(.list) {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 :local(.row) {

@@ -27,49 +27,63 @@ class CreateRequirements extends Component {
 
     constructor(props) {
         super(props);
-        this.requirements = [{},{}];
+        this.state = {
+            requirements: this.props.requirements,
+        }
         this.name = '';
     }
 
     getRequirementsData() {
-        return this.requirements.map((r) => ({
+        return this.state.requirements.map((r) => ({
             id: r.id.value,
             type: 0,
-            decimals: parseInt(r.decimals.value),
-            min: parseInt(r.min.value),
-            max: parseInt(r.max.value)
+            decimals: parseInt(r.decimals.value) || 0,
+            min: parseInt(r.min.value) || 0,
+            max: parseInt(r.max.value) || 0
         }));
+    }
+
+    static defaultProps = {
+        requirements: [],
+    };
+
+    addRow() {
+        let clone = this.state.requirements.slice();
+        clone.push({});
+        this.setState({
+            requirements: clone
+        })
+    }
+
+    onCancel() {
+        this.props.history.goBack();
+    }
+
+    onSave() {
+        this.props.onAdd(this.name.value, this.getRequirementsData(), this.props.address);
     }
 
     render() {
         return (<div>
             <NavigationBar title="Create requirements">
                 <Button className={styles.cancelButton}
-                        onClick={this.props.history.goBack}>Cancel</Button>
+                        onClick={this.onCancel.bind(this)}>Cancel</Button>
                 <Button className={styles.saveButton}
-                        onClick={() => this.props.onAdd(this.name.value, this.getRequirementsData(), this.props.address)}>
-                    Save
-                </Button>
+                        onClick={this.onSave.bind(this)}>Save</Button>
             </NavigationBar>
             <Label className={styles.label} text="Quality standard name:"/>
             <TextField className={styles.qualityStandard} inputRef={el => this.name = el}/>
             <Label text="Attributes:" className={styles.section}/>
             <div className={styles.list}>
-                <div className={styles.row}>
-                    <TextField inputRef={el => this.requirements[0].id = el}/>
+                {this.state.requirements.map((element, index) => (<div key={index} className={styles.row}>
+                    <TextField inputRef={el => element.id = el}/>
                     <SelectorField options={[{value: 'Range'}, {value: 'Boolean'}]} className={styles.selector}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[0].decimals = el}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[0].min = el}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[0].max = el}/>
-                </div>
-                <div className={styles.row}>
-                    <TextField inputRef={el => this.requirements[1].id = el}/>
-                    <SelectorField options={[{value: 'Range'}, {value: 'Boolean'}]} className={styles.selector}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[1].decimals = el}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[1].min = el}/>
-                    <TextField className={styles.selector} inputRef={el => this.requirements[1].max = el}/>
-                </div>
+                    <TextField className={styles.selector} inputRef={el => element.decimals = el}/>
+                    <TextField className={styles.selector} inputRef={el => element.min = el}/>
+                    <TextField className={styles.selector} inputRef={el => element.max = el}/>
+                </div>))}
             </div>
+            <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
         </div>)
     }
 }

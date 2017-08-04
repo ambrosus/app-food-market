@@ -141,11 +141,10 @@ class CreateOfferPage extends Component {
                                             error={this.props.getValidationMessages('price')}/>
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>
-                            <SelectorField className={styles.selector} options={[
-                                {value: 'Low'},
-                                {value: 'Medium'},
-                                {value: 'Good'},
-                                {value: 'Excellent'}]} label="Category"/>
+                            <SelectorField className={styles.selector} options={
+                                    this.props.requirements.map(name => {return {value: name}})
+                                } 
+                                label="Category"/>
                             <span className={styles.paragraph }>or <Link to="create-requirements">create custom requirements</Link> for quality</span>
                             <AttributeValueFieldContainer className={styles.properties}>
                                 { parameters.map((element, index) => (

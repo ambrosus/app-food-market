@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46 (44423) - http://www.bohemiancoding.com/sketch -->
+    <title>Blockchain icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="processing-bar-copy" transform="translate(-859.000000, -250.000000)">
+            <g id="2" transform="translate(0.000000, 233.000000)">
+                <g id="Group-2">
+                    <g id="Blockchain-icon" transform="translate(859.000000, 17.000000)">
+                        <polyline id="Path-3" stroke="#002C87" points="2.78125 23.8887197 2.78125 13.1772461 23.2762886 13.1772461"></polyline>
+                        <path d="M12.8491211,2.97021484 L12.8491211,13.566964" id="Path-4" stroke="#002C87"></path>
+                        <rect id="Rectangle-2" fill="#002C87" x="0" y="10" width="6" height="6" rx="1"></rect>
+                        <rect id="Rectangle-2" fill="#002C87" x="10" y="10" width="6" height="6" rx="1"></rect>
+                        <rect id="Rectangle-2" fill="#002C87" x="20" y="10" width="6" height="6" rx="1"></rect>
+                        <rect id="Rectangle-2" fill="#002C87" x="0" y="20" width="6" height="6" rx="1"></rect>
+                        <rect id="Rectangle-2" fill="#002C87" x="10" y="0" width="6" height="6" rx="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

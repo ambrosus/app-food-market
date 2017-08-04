@@ -8,6 +8,8 @@ import {connect} from "react-redux";
 
 const mapStateToProps = (state) => {
     return {
+        title: state.modal.args.title,
+        message: state.modal.args.message
     };
 };
 
@@ -27,7 +29,9 @@ class TransactionProgressModal extends Component {
         },
         onConfirm: () => {
             console.info('onConfirm not defined in ', TransactionProgressModal)
-        }
+        },
+        title: "Operation in progress",
+        message: "This transaction can takes few minutes."
     };
 
     static propTypes = {
@@ -40,12 +44,12 @@ class TransactionProgressModal extends Component {
             <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
-                        <Label className={styles.title} text="Operation in progress"/>
+                        <Label className={styles.title} text={ this.props.title } />
                         <div className={styles.spinner}>
                             <img src="./static/images/spinner.svg"/>
                             <img className={styles.icon} src="./static/images/cubes.svg"/>
                         </div>
-                        <div className={styles.description}>This transaction can takes few minutes.</div>
+                        <div className={styles.description}> { this.props.message }</div>
                     </div>
                 </div>
             </div>

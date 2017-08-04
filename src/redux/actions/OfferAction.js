@@ -14,7 +14,7 @@ const uploadToIPFS = async (ipfs, image) => {
 export const createOffer = (offer, image, marketAddress, history) => {
   return async function(dispatch) {
       if (image) {
-        dispatch(showModal("TransactionProgressModal"));
+        dispatch(showModal("TransactionProgressModal", {title: "Uploading image"}));
         withIPFS(async (ipfs) => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
           dispatch(hideModal("TransactionProgressModal"));
@@ -31,7 +31,7 @@ export const doCreateOffer = (offer, address, history) => {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);    
     offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
       dispatch(statusAddPendingTransaction(transactionHash, "Creating offer", ""));
-      dispatch(showModal("TransactionProgressModal"));
+      dispatch(showModal("TransactionProgressModal", {title: "Creating offer"}));
     }).then((myContract) => {
       dispatch(statusAddSuccessTransaction(myContract.transactionHash, "Creating offer", ""));
       dispatch(hideModal());

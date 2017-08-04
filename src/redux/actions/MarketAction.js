@@ -115,7 +115,7 @@ export const createMarket = () => {
         marketRepository.create(web3.eth.accounts[0], (transactionHash) => {
             dispatch(statusAddPendingTransaction(transactionHash, "Creating contract", "ads"));
             dispatch(createMarketResponse(transactionHash));
-            dispatch(showModal("TransactionProgressModal"));
+            dispatch(showModal("TransactionProgressModal", {title: "Creating market"}));
         }).then((myContract) => {
             dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
             dispatch(createMarketSuccess(myContract.marketContract.address));
@@ -169,6 +169,7 @@ export const getAllRequirements = (address) => {
         await waitForAmbrosus();
         const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
         const market = await marketRepo.fromAddress(address);
+        const requirementsRepository = new Ambrosus.RequirementsRepository();
         const requirements = await requirementsRepository.getAllFromMarket(market);
         var names = await requirementsNames(requirements);
         dispatch(receiveAllRequirements(names));

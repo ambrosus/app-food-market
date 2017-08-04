@@ -3,7 +3,7 @@ const market = (state = {
     address: '',
     status: 'No market',
     filter: {},
-    requirements: []
+    requirements: ['No data']
   },
   action) => {
   switch (action.type) {

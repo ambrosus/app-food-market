@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
 
 export default class TransactionItem extends Component {
@@ -15,14 +15,14 @@ export default class TransactionItem extends Component {
         tx: "0x",
         caption: "",
         url: "",
-		errorMessage: ""
+        errorMessage: ""
     };
 
     render() {
-        if (this.props.status == "failed")
-            return ( < li > {this.props.status} {this.props.caption} ({ this.props.errorMessage }) </li>);
-        else 
-            return ( < li > {this.props.status} {this.props.caption} ({ this.props.tx.substring(0,8)+"..." }) </li>);
+        if (this.props.status === "failed")
+            return ( <li> {this.props.status} {this.props.caption} ({this.props.errorMessage}) </li>);
+        else
+            return ( <li> {this.props.status} {this.props.caption} ({this.props.tx.substring(0, 8) + "..."}) </li>);
     }
 
 }

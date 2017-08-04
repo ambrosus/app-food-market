@@ -50,7 +50,6 @@ class CreateOfferPage extends Component {
     }
 
     getValidatorData() {
-        console.log('AAA')
         return {
             name: this.formFields.name.value,
             price: this.formFields.pricePerUnit.value,

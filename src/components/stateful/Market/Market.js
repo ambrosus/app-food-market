@@ -20,7 +20,6 @@ const getData = (dispatch, address, qualities) => {
   
 }
 
-
 const mapStateToProps = state => {
   return {
     market: state.market,

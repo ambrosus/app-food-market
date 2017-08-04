@@ -14,7 +14,7 @@ const filteredOffers = (offers, filters) => {
   return offers.filter((offer) => isFilterMatch(offer, filters));
 };
 
-const getData = (dispatch, address, requirements) => {
+const getData = (dispatch, address, qualities) => {
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
   
@@ -24,21 +24,21 @@ const getData = (dispatch, address, requirements) => {
 const mapStateToProps = state => {
   return {
     market: state.market,
-    requirements: state.market.requirements,
+    qualities: state.market.qualities,
     offers: filteredOffers(state.market.offers, state.market.filter),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMount: (address, requirements) => {
+    onMount: (address, qualities) => {
       if (address) {
-        getData(dispatch, address, requirements);
+        getData(dispatch, address, qualities);
       } else {
         let addressFromCookies = Cookies.get('market_address', address);
         if (addressFromCookies) {
           dispatch(gotoMarket(addressFromCookies));
-          getData(dispatch, addressFromCookies, requirements);
+          getData(dispatch, addressFromCookies, qualities);
         }
       }
     },

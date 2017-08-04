@@ -1,10 +1,12 @@
-const market = (state = {
+const DEFAULT_STATE = {
     offers: [],
     address: '',
     status: 'No market',
     filter: {},
-    requirements: ['No data']
-  },
+    qualities: []
+  };
+
+const market = (state = DEFAULT_STATE,
   action) => {
   switch (action.type) {
     case 'FETCH_OFFERS_REQUEST':
@@ -12,7 +14,7 @@ const market = (state = {
     case 'FETCH_OFFERS_RESPONSE':
       return { ...state, offers: action.offers, status: null };
     case 'FETCH_REQUIREMENT_RESPONSE':
-      return {...state, requirements: action.requirements};
+      return {...state, qualities: action.requirements};
     case 'CREATE_MARKET_REQUEST':
       return { ...state, status: 'About to create market...' };
     case 'CREATE_MARKET_RESPONSE':

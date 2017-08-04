@@ -129,7 +129,6 @@ export const createMarket = () => {
 }
 
 export const createRequirement = (name, requirements, marketAddress, history) => {
-    console.log(requirements)
     return async function(dispatch) {
         dispatch(requestCreateRequirement());
         await waitForAmbrosus();

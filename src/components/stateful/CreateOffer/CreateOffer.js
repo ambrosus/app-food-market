@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
     return {
         address: state.market.address,
         categories: state.categories,
-        requirements: state.market.requirements
+        qualities: state.market.qualities
     };
 };
 

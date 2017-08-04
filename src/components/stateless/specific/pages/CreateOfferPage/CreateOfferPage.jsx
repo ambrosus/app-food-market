@@ -50,6 +50,7 @@ class CreateOfferPage extends Component {
     }
 
     getValidatorData() {
+        console.log('AAA')
         return {
             name: this.formFields.name.value,
             price: this.formFields.pricePerUnit.value,
@@ -142,7 +143,7 @@ class CreateOfferPage extends Component {
                             </div>
                             <Label className={styles.label} text="Quality standard:"/>
                             <SelectorField className={styles.selector} options={
-                                    this.props.requirements.map(name => {return {value: name}})
+                                    this.props.qualities.map(name => {return {value: name}})
                                 } 
                                 label="Category"/>
                             <span className={styles.paragraph }>or <Link to="create-requirements">create custom requirements</Link> for quality</span>

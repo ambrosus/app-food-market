@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import TransactionStatus from '../../stateless/specific/transactions/TransactionsStatus/TransactionsStatus';
+import TransactionsStatus from '../../stateless/specific/transactions/TransactionsStatus/TransactionsStatus';
 
 const mapStateToProps = (state, ownProps) => {
     console.log('state', state);
@@ -9,12 +9,16 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {}
+    return {
+        onClick: () => {
+            console.log('onClick');
+        }
+    }
 };
 
 const EthereumTransactionList = connect(
     mapStateToProps,
     mapDispatchToProps
-)(TransactionStatus);
+)(TransactionsStatus);
 
 export default EthereumTransactionList;

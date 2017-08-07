@@ -10,6 +10,7 @@ export default class TransactionNotification extends Component {
     static FAILED = 'failed';
 
     static propTypes = {
+        onClick: PropTypes.func,
         notification: PropTypes.shape({
             status: PropTypes.string,
             time: PropTypes.string,
@@ -19,9 +20,15 @@ export default class TransactionNotification extends Component {
         })
     };
 
+    static defaultProps = {
+        onClick: () => {
+            console.warn('onClick is not defined')
+        }
+    };
+
     render() {
 
-        return (<div className={classnames(styles.notification, {
+        return (<div onClick={this.props.onClick} className={classnames(styles.notification, {
             [styles.unread]: !this.props.notification.isRead,
         })}>
             <div className={classnames(styles.typeIcon, {

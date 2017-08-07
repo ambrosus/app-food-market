@@ -7,7 +7,12 @@ import TransactionNotification from "./TransationNotification/TransactionNotific
 export default class TransactionsStatus extends Component {
 
     static propTypes = {
-        notifications: PropTypes.array.isRequired
+        notifications: PropTypes.array.isRequired,
+        onClick: PropTypes.func
+    };
+
+    static defaultTypes = {
+        onClick: () => { console.warn('TransactionsStatus didn\'t get onClick')}
     };
 
     constructor(props) {
@@ -34,6 +39,6 @@ export default class TransactionsStatus extends Component {
 
     renderNotifications() {
         return this.props.notifications.map((notification, index) => <TransactionNotification
-            notification={notification} key={index}/>)
+            notification={notification} onClick={this.props.onClick} key={index}/>)
     }
 }

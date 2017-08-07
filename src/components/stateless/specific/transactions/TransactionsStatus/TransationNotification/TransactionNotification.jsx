@@ -12,10 +12,10 @@ export default class TransactionNotification extends Component {
     static propTypes = {
         onClick: PropTypes.func,
         notification: PropTypes.shape({
-            status: PropTypes.string,
-            time: PropTypes.string,
-            type: PropTypes.string,
-            address: PropTypes.string,
+            status: PropTypes.string.isRequired,
+            time: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            address: PropTypes.string.isRequired,
             isRead: PropTypes.bool.isRequired
         })
     };
@@ -23,6 +23,13 @@ export default class TransactionNotification extends Component {
     static defaultProps = {
         onClick: () => {
             console.warn('onClick is not defined')
+        },
+        notification: {
+            status: 'Not defined',
+            time: 'Not defined',
+            type: 'Not defined',
+            address: 'Not defined',
+            isRead: false
         }
     };
 

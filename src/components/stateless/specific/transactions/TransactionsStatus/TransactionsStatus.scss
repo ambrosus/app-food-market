@@ -18,6 +18,10 @@
   height: 26px;
 }
 
+:local(.scrollableArea) {
+  max-height: 400px;
+}
+
 :local(.hidden) {
   display: none;
 }

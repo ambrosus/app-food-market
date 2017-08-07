@@ -1,6 +1,6 @@
 let index = 0;
 
-export const statusAddPendingTransaction = ({address, caption, url}) => {
+export const statusAddPendingTransaction = ({address, time, caption, url}) => {
     return {
         type: 'STATUS_ADD_PENDING_TRANSACTION',
         data: {
@@ -8,13 +8,14 @@ export const statusAddPendingTransaction = ({address, caption, url}) => {
             status: 'pending',
             address: address,
             type: caption,
+            time: time || Date.now(),
             url: url,
             isRead: false
         }
     };
 };
 
-export const statusAddSuccessTransaction = ({address, caption, url}) => {
+export const statusAddSuccessTransaction = ({address, time, caption, url}) => {
     return {
         type: 'STATUS_ADD_SUCCESS_TRANSACTION',
         data: {
@@ -22,6 +23,7 @@ export const statusAddSuccessTransaction = ({address, caption, url}) => {
             status: 'success',
             address: address,
             type: caption,
+            time: time || Date.now(),
             url: url,
             isRead: false
         }
@@ -37,6 +39,7 @@ export const statusAddFailedTransaction = ({address, caption, errorMessage}) => 
             status: 'pending',
             address: address,
             type: caption,
+            time: time || Date.now(),
             isRead: false,
             errorMessage: errorMessage
         }

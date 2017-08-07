@@ -27,7 +27,7 @@ export default class TransactionsStatus extends Component {
         return ( <div onClick={this.toggle.bind(this)} className={styles.container}>
             <div className={styles.icon}/>
             <div className={classnames(styles.hidden, {[styles.visible]: this.state.expanded})}>
-                {this.props.notifications ? this.renderNotifications() : <div>Empty</div>}
+                {this.props.notifications.length > 0 ? this.renderNotifications() : <div>Empty</div>}
             </div>
         </div>);
     }

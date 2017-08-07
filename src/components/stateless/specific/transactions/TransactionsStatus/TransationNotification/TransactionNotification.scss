@@ -71,6 +71,8 @@
 :local(.address) {
   font-size: 13px;
   color: rgba(0,44,135,0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :local(.approved) {

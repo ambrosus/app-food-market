@@ -1,6 +1,10 @@
-import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
-import { showModal, hideModal } from './ModalAction.js';
-import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
+import {
+    statusAddFailedTransaction,
+    statusAddPendingTransaction,
+    statusAddSuccessTransaction
+} from './TransactionStatusAction.js';
+import {hideModal, showModal} from './ModalAction.js';
+import {waitForAmbrosus} from '../../utils/waitForAmbrosus';
 import * as Cookies from "js-cookie";
 import Ambrosus from 'ambrosus';
 
@@ -30,7 +34,7 @@ const createMarketResponse = (marketContract) => {
     }
 };
 
-export const createMarketSuccess = (address) => {
+export const createMarketSuccess = ({address}) => {
     return {
         type: 'CREATE_MARKET_SUCCESS',
         address
@@ -44,7 +48,7 @@ export const createMarketFailed = (reason) => {
     }
 };
 
-export const gotoMarket = (address) => {
+export const gotoMarket = ({address}) => {
     return {
         type: 'GOTO_MARKET',
         address
@@ -75,30 +79,44 @@ function createMarketContract(callback) {
     MarketContract.new(tx_args, callback);
 }
 
-
 export const createMarket = () => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
         let marketRepository = new Ambrosus.MarketRepository(Ambrosus.marketArtifacts);
         marketRepository.create(web3.eth.accounts[0], (transactionHash) => {
-            dispatch(statusAddPendingTransaction(transactionHash, "Creating contract", "ads"));
+            dispatch(statusAddPendingTransaction({
+                address: transactionHash,
+                caption: "Creating contract",
+                url: "http://www.google.pl"
+            }));
             dispatch(createMarketResponse(transactionHash));
             dispatch(showModal("TransactionProgressModal", {title: "Creating market"}));
         }).then((myContract) => {
-            dispatch(statusAddSuccessTransaction(myContract.marketContract.transactionHash, "Creating contract", "ads"));
-            dispatch(createMarketSuccess(myContract.marketContract.address));
+            dispatch(statusAddSuccessTransaction({
+                address: myContract.marketContract.transactionHash,
+                caption: "Creating contract",
+                url: "http://www.google.pl"
+            }));
+            dispatch(createMarketSuccess({
+                address: myContract.marketContract.address
+            }));
             dispatch(hideModal());
             Cookies.set('market_address', myContract.marketContract.address);
         }).catch((err) => {
-            dispatch(statusAddFailedTransaction("", "Creating contract", err));
-            dispatch(showModal("ErrorModal", { reason: err }));
+            dispatch(statusAddFailedTransaction(
+                {
+                    address: myContract.marketContract.address,
+                    caption: "Creating contract",
+                    url: "http://www.google.pl"
+                }));
+            dispatch(showModal("ErrorModal", {reason: err}));
         });
     };
 };
 
 export const getAllOffers = (address) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         dispatch(requestAllOffers());
         await waitForAmbrosus();
         const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);

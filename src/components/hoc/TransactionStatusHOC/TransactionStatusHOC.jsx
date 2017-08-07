@@ -4,13 +4,14 @@ import TransactionsStatus from '../../stateless/specific/transactions/Transactio
 const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {
-    return state["transactionsStatus"];
+    return {
+        notifications: state.transactions.list
+    }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onClick: () => {
-            console.log('onClick');
             const promisifedSendTransaction = promisify(web3.eth.sendTransaction);
             let args = {to: web3.eth.defaultAccount, value: 1000};
             dispatch(executeEthereumTransaction(promisifedSendTransaction(args), "Test transaction", "url"));
@@ -18,4 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionsStatus);
+const TransactionStatusHOC = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TransactionsStatus);
+
+export default TransactionStatusHOC;

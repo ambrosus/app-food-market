@@ -36,7 +36,6 @@ class CreateRequirements extends Component {
     }
 
     render() {
-        { console.log(this.state.requirements) }
         return (<div>
             <NavigationBar title="Create requirements">
                 <Button className={styles.cancelButton}

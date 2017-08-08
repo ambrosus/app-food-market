@@ -6,6 +6,7 @@ import modal from '../reducers/ModalReducer';
 import {ambrosus, initWeb3} from '../reducers/InitializeReducer.js';
 import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
+import token from '../reducers/TokenReducer.js';
 
 
 const CATEGORIES = ["Anchovies", "Markel", "Salmon", "Tuna", "Other"];
@@ -19,7 +20,8 @@ const store = createStore(combineReducers({
         market,
         modal,
         offer,
-        categories
+        categories,
+        token
     }),
     compose(applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f

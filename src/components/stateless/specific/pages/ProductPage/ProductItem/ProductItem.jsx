@@ -51,8 +51,9 @@ export default class ProductItem extends Component {
                             More details
                         </Button>
                     </Link>
-                    <Link className={styles.link} to="/product-info">
-                        <Button className="product__buy-button" onClick={this.props.buyAction}>
+                    <Link className={styles.link} to="/product-buy">
+                        <Button className="product__buy-button" 
+                                onClick={() => this.props.buyAction(this.props.offer)}>
                             <span className="icon-basket-loaded product__icon"/><span>Buy</span>
                         </Button>
                     </Link>

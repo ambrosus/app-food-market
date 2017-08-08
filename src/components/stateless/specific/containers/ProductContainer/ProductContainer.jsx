@@ -32,6 +32,7 @@ class ProductContainer extends Component {
                         key={index}
                         offer={offer}
                         moreDetailsAction={this.props.moreDetailsAction}
+                        buyAction={this.props.buyAction}
                     />)
                 }
             </div>

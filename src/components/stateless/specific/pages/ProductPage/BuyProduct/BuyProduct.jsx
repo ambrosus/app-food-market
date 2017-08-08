@@ -5,14 +5,33 @@ import Label from "../../../../generic/Label/Label";
 import AttributeValueFieldContainer from "../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import InputField from "../../../../generic/InputField/InputField";
 import Button from "../../../../generic/Button/Button";
+import { connect } from 'react-redux';
+import { showModal } from "../../../../../../redux/actions/ModalAction.js";
+
+
+const mapStateToProps = state => {
+  return {
+    offer: state.offer,
+  };
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBuy: (offer) => {
+      dispatch(showModal('ConfirmBuyModal'));
+    }
+  }
+};
+
 
 class BuyProduct extends Component {
 
     static propTypes = {
         offer: PropTypes.shape({
-            pricePerUnit: PropTypes.string,
-            pricePerPackage: PropTypes.string,
-            packageWeight: PropTypes.string
+            pricePerUnit: PropTypes.number,
+            pricePerPackage: PropTypes.number,
+            packageWeight: PropTypes.number
         })
     };
 
@@ -23,6 +42,10 @@ class BuyProduct extends Component {
             packageWeight: '10'
         }
     };
+
+    buy() {
+        this.props.onBuy(this.props.offer);
+    }
 
     render() {
 
@@ -35,10 +58,10 @@ class BuyProduct extends Component {
         return (<div>
             <Label className={styles.title} text="Buy product"/>
             <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
-            <div><InputField label="Packages"/><Button>Buy product</Button></div>
+            <div><InputField label="Packages"/><Button onClick={()=>this.buy()}>Buy product</Button></div>
         </div>)
     }
 }
 
-export default BuyProduct;
+export default connect(mapStateToProps, mapDispatchToProps)(BuyProduct);
 

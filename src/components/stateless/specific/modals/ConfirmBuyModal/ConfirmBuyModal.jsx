@@ -10,12 +10,16 @@ import {showModal, hideModal} from '../../../../../redux/actions/ModalAction';
 
 const mapStateToProps = (state) => {
     return {
+        offer: state.offer,
+        quantity: state.modal.args.quantity
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConfirm: () => console.log("not yet implemented"),
+        onConfirm: (offer) => {
+            
+        },
         onCancel: () => dispatch(hideModal())
     }
 };
@@ -24,6 +28,7 @@ class ConfirmBuyModal extends Component {
 
     static defaultProps = {
         visible: false,
+        quantity: 1,
         onCancel: () => {
             console.info('onCancel not defined in ', ConfirmBuyModal)
         },
@@ -38,23 +43,29 @@ class ConfirmBuyModal extends Component {
     };
 
     render() {
+        console.log(this.props.offer)
+        let total = (this.props.quantity * this.props.offer.pricePerPackage / 100).toFixed(2);
+        let weight = this.props.quantity * this.props.offer.packageWeight / 100;
         return (<div>
             <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
                         <Label className={styles.title} text="Confirm buy"/>
-                        <div className={styles.description}>We put 140 EUR tokens into ESCROW</div>
+                        <div className={styles.description}>We put {total} EUR tokens into ESCROW</div>
                         <div className={styles.table}>
                             <AttributeValueFieldContainer
                                 options={[
-                                    {field: 'Price', value: '35 euro / kg'},
-                                    {field: 'Price per package', value: '140 euro'},
-                                    {field: 'Per package', value: '4 kg'},
+                                    {field: 'Price', value: `${(this.props.offer.pricePerUnit/100).toFixed(2)} euro / kg`},
+                                    {
+                                        field: 'Price per package', 
+                                        value: `${(this.props.offer.pricePerPackage/100).toFixed(2)} euro`
+                                    },
+                                    {field: 'Per package', value: `${this.props.offer.packageWeight/100} kg`},
                                 ]}/>
                             <AttributeValueFieldContainer
                                 options={[
-                                    {field: 'TOTAL WEIGHT', value: '4 kg'},
-                                    {field: 'TOTAL PRICE', value: '140 euro'},
+                                    {field: 'TOTAL WEIGHT', value: `${weight} kg`},
+                                    {field: 'TOTAL PRICE', value: `${total} euro`},
                                 ]}/>
                         </div>
                     </div>

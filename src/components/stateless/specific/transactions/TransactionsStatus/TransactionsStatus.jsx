@@ -20,7 +20,7 @@ export default class TransactionsStatus extends Component {
         stats: {
             pending: 0,
             approved: 0,
-            notApproved: 0
+            failed: 0
         }
     };
 
@@ -74,7 +74,7 @@ export default class TransactionsStatus extends Component {
                         </div>
                         <div className={styles.notApprovedIcon}>
                             <div
-                                className={classnames(styles.indicator, styles.indicatorNotApproved)}>{this.props.stats.notApproved}</div>
+                                className={classnames(styles.indicator, styles.indicatorNotApproved)}>{this.props.stats.failed}</div>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,8 @@ const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        notifications: state.transactions.list
+        notifications: state.transactions.list,
+        stats: state.transactions.stats
     }
 };
 

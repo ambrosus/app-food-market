@@ -32,7 +32,7 @@ export const doCreateOffer = (offer, address, history) => {
     var market = await new Ambrosus.MarketRepository().fromAddress(address);
 
     var requirementsRepository = new Ambrosus.RequirementsRepository();
-    var requirements = requirementsRepository.findQualityByName(offer.requirementsName, market)
+    var requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
     offer.requirementsAddress = requirements.getAddress();
 
     offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {

@@ -3,15 +3,15 @@ import CreatingMarketPage from './CreatingMarketPage';
 import { createMarket } from "../../../../../redux/actions/MarketAction.js";
 
 const mapStateToProps = state => {
-  return {  	
-  	market: state.market,
-  };
+    return {
+        market: state.market,
+    };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onMount: () => { dispatch(createMarket()) }
-  }
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onMount: () => { dispatch(createMarket(ownProps.history)) }
+    }
 };
 
 const CreatingMarketContainter = connect(mapStateToProps, mapDispatchToProps)(CreatingMarketPage);

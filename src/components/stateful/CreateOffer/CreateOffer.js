@@ -5,7 +5,8 @@ import {createOffer} from '../../../redux/actions/OfferAction.js';
 const mapStateToProps = (state) => {
     return {
         address: state.market.address,
-        categories: state.categories
+        categories: state.categories,
+        qualities: state.market.qualities
     };
 };
 

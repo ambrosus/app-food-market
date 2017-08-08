@@ -7,7 +7,7 @@ import Label from "../../../generic/Label/Label";
 import Button from "../../../generic/Button/Button";
 import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import {showModal, hideModal} from '../../../../../redux/actions/ModalAction';
-import  { escrow } from "../../../../../redux/actions/PurchaseAction";
+import  { buy } from "../../../../../redux/actions/PurchaseAction";
 
 
 const mapStateToProps = (state) => {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onConfirm: (offer, quantity, token) => {
             if (token)
-                dispatch(escrow(offer, quantity, token));
+                dispatch(buy(offer, quantity, token));
             else{
                 dispatch(showModal("ErrorModal", {reason: "No token specified"}))
             }
@@ -49,20 +49,25 @@ class ConfirmBuyModal extends Component {
         onConfirm: PropTypes.func,
     };
 
+    total() {
+        return (this.props.quantity * this.props.offer.pricePerPackage / 100).toFixed(2);
+    }
+
+    weight() {
+        return this.props.quantity * this.props.offer.packageWeight / 100;
+    }
+
     buy() {
         this.props.onConfirm(this.props.offer, this.props.quantity, this.props.token);
     }
 
-    render() {
-        console.log(this.props.offer)
-        let total = (this.props.quantity * this.props.offer.pricePerPackage / 100).toFixed(2);
-        let weight = this.props.quantity * this.props.offer.packageWeight / 100;
+    render() {        
         return (<div>
             <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
                     <div className={styles.upper}>
                         <Label className={styles.title} text="Confirm buy"/>
-                        <div className={styles.description}>We put {total} EUR tokens into ESCROW</div>
+                        <div className={styles.description}>We put {this.total()} EUR tokens into ESCROW</div>
                         <div className={styles.table}>
                             <AttributeValueFieldContainer
                                 options={[
@@ -75,8 +80,8 @@ class ConfirmBuyModal extends Component {
                                 ]}/>
                             <AttributeValueFieldContainer
                                 options={[
-                                    {field: 'TOTAL WEIGHT', value: `${weight} kg`},
-                                    {field: 'TOTAL PRICE', value: `${total} euro`},
+                                    {field: 'TOTAL WEIGHT', value: `${this.weight()} kg`},
+                                    {field: 'TOTAL PRICE', value: `${this.total()} euro`},
                                 ]}/>
                         </div>
                     </div>
@@ -86,7 +91,7 @@ class ConfirmBuyModal extends Component {
                         </div>
                         <div className={styles.buttons}>
                             <Button onClick={this.props.onCancel} className={styles.cancel}>Cancel</Button>
-                            <Button onClick={()=>this.buy()} className={styles.confirm}>Confirm my order</Button>
+                            <Button onClick={this.buy} className={styles.confirm}>Confirm my order</Button>
                         </div>
                     </div>
                 </div>

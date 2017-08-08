@@ -7,6 +7,8 @@ import Label from "../../../generic/Label/Label";
 import { createToken, updateBalance } from "../../../../../redux/actions/TokenAction";
 import {Link} from "react-router-dom";
 
+const INITIAL_AMOUNT = 1000000;
+
 const mapStateToProps = state => {
   return {
     balance: state.token.balance,
@@ -22,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     newToken: () => {
-      dispatch(createToken(1000000));
+      dispatch(createToken(INITIAL_AMOUNT));
     }
   }
 };

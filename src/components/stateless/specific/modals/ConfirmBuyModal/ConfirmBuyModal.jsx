@@ -91,7 +91,7 @@ class ConfirmBuyModal extends Component {
                         </div>
                         <div className={styles.buttons}>
                             <Button onClick={this.props.onCancel} className={styles.cancel}>Cancel</Button>
-                            <Button onClick={this.buy} className={styles.confirm}>Confirm my order</Button>
+                            <Button onClick={this.buy.bind(this)} className={styles.confirm}>Confirm my order</Button>
                         </div>
                     </div>
                 </div>

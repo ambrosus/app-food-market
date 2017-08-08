@@ -18,8 +18,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onBuy: (offer) => {
-      dispatch(showModal('ConfirmBuyModal'));
+    onBuy: (offer, quantity) => {
+      dispatch(showModal('ConfirmBuyModal', {quantity}));
     }
   }
 };
@@ -27,12 +27,16 @@ const mapDispatchToProps = (dispatch) => {
 
 class BuyProduct extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     static propTypes = {
         offer: PropTypes.shape({
             pricePerUnit: PropTypes.number,
             pricePerPackage: PropTypes.number,
             packageWeight: PropTypes.number
-        })
+        }),
     };
 
     static defaultProps = {
@@ -44,7 +48,7 @@ class BuyProduct extends Component {
     };
 
     buy() {
-        this.props.onBuy(this.props.offer);
+        this.props.onBuy(this.props.offer, parseInt(this.quantity.value) || 1);
     }
 
     render() {
@@ -58,7 +62,10 @@ class BuyProduct extends Component {
         return (<div>
             <Label className={styles.title} text="Buy product"/>
             <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
-            <div><InputField label="Packages"/><Button onClick={()=>this.buy()}>Buy product</Button></div>
+            <div>
+                <InputField label="Packages" inputRef={(e)=>this.quantity=e}/>
+                <Button onClick={()=>this.buy()}>Buy product</Button>
+            </div>
         </div>)
     }
 }

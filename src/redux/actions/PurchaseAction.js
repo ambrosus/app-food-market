@@ -7,7 +7,7 @@ import { showModal, hideModal } from './ModalAction.js';
 
 export const escrow = (offer, quantity, token) => {
   return async(dispatch) => {
-    var agreement = new Agreement(offer.address, quantity, token.address);
+    var agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
     agreement.initiateAgreement((transactionHash) => {
       dispatch(statusAddPendingTransaction(transactionHash, "Transfer to escrow", ""));
       dispatch(showModal("TransactionProgressModal", { title: "Transfer to escrow" }));

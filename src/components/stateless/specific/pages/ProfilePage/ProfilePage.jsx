@@ -5,6 +5,7 @@ import NavigationBar from "../../navigation/NavigationBar/NavigationBar";
 import Button from "../../../generic/Button/Button";
 import Label from "../../../generic/Label/Label";
 import { createToken, updateBalance } from "../../../../../redux/actions/TokenAction";
+import {Link} from "react-router-dom";
 
 const mapStateToProps = state => {
   return {
@@ -21,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     newToken: () => {
-      dispatch(createToken(10000));
+      dispatch(createToken(1000000));
     }
   }
 };
@@ -50,8 +51,9 @@ class ProfilePage extends Component {
     return (
       <div>
           <NavigationBar title="Profile"/>
-          <Label text={`Your balance: ${this.props.balance}`}/>
-          <Button onClick={this.props.newToken}>Get 10000€</Button>
+          <Link onClick={this.props.newToken} to="#">
+            <Label text={`Your balance: ${(this.props.balance/100).toFixed(2)} (charge)`}/>
+          </Link>
       </div>
     );
   }

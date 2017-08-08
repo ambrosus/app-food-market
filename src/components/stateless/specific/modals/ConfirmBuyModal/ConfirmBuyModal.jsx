@@ -7,18 +7,25 @@ import Label from "../../../generic/Label/Label";
 import Button from "../../../generic/Button/Button";
 import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import {showModal, hideModal} from '../../../../../redux/actions/ModalAction';
+import  { escrow } from "../../../../../redux/actions/PurchaseAction";
+
 
 const mapStateToProps = (state) => {
     return {
         offer: state.offer,
-        quantity: state.modal.args.quantity
+        quantity: state.modal.args.quantity,
+        token: state.token.token?state.token.token.contract:null,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConfirm: (offer) => {
-            
+        onConfirm: (offer, quantity, token) => {
+            if (token)
+                dispatch(escrow(offer, quantity, token));
+            else{
+                dispatch(showModal("ErrorModal", {reason: "No token specified"}))
+            }
         },
         onCancel: () => dispatch(hideModal())
     }
@@ -41,6 +48,10 @@ class ConfirmBuyModal extends Component {
         onCancel: PropTypes.func,
         onConfirm: PropTypes.func,
     };
+
+    buy() {
+        this.props.onConfirm(this.props.offer, this.props.quantity, this.props.token);
+    }
 
     render() {
         console.log(this.props.offer)
@@ -75,7 +86,7 @@ class ConfirmBuyModal extends Component {
                         </div>
                         <div className={styles.buttons}>
                             <Button onClick={this.props.onCancel} className={styles.cancel}>Cancel</Button>
-                            <Button onClick={this.props.onConfirm} className={styles.confirm}>Confirm my order</Button>
+                            <Button onClick={()=>this.buy()} className={styles.confirm}>Confirm my order</Button>
                         </div>
                     </div>
                 </div>

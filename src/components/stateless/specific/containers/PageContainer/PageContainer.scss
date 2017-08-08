@@ -1,7 +1,5 @@
-$page-background-color: #ffffff;
-
-.page-container {
-  background-color: $page-background-color;
+:local(.pageContainer) {
+  background-color: #ffffff;
   padding: 30px 100px;
   display: flex;
   flex-direction: column;

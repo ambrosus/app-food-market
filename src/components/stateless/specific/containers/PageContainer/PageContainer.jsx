@@ -1,9 +1,14 @@
 import React, {Component} from "react";
-require('./PageContainer.scss');
+import styles from './PageContainer.scss';
 
 export default class PageContainer extends Component {
 
+    onClick() {
+        console.log('onClick');
+    }
+
     render() {
-        return (<div className="page-container" {...this.props} >{ this.props.children }</div>)
+        return (<div onClick={this.onClick.bind(this)}
+                     className={styles.pageContainer} {...this.props} >{this.props.children}</div>)
     }
 }

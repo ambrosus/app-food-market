@@ -13,8 +13,8 @@ import store from "../redux/stores/store";
 import ModalContainer from "./stateless/specific/containers/ModalContainer/ModalContainer";
 import {BrowserHistory} from 'react-history';
 import CreateRequirements from "./stateless/specific/pages/CreateRequirements/CreateRequirements";
-import styles from "./RootComponent.scss";
 import Product from "./stateful/Product/Product";
+require("./RootComponent.scss");
 
 export default class RootComponent extends Component {
 

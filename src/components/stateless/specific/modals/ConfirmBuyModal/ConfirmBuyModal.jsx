@@ -54,7 +54,6 @@ class ConfirmBuyModal extends Component {
     }
 
     render() {
-        console.log(this.props.offer)
         let total = (this.props.quantity * this.props.offer.pricePerPackage / 100).toFixed(2);
         let weight = this.props.quantity * this.props.offer.packageWeight / 100;
         return (<div>

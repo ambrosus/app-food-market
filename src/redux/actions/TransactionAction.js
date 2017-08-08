@@ -10,7 +10,7 @@ export const executeEthereumTransaction = (promise, caption, url) => {
     return function (dispatch) {
         promise.then((address) => {
             dispatch(statusAddPendingTransaction({address, caption, url}));
-            dispatch(watchPendingTransaction(address, caption, url));
+            dispatch(watchPendingTransaction({address, caption, url}));
         }).catch((reason) => {
             dispatch(statusAddFailedTransaction({address:"", caption, reason}));
         });

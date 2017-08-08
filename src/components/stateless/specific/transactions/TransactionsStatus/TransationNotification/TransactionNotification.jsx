@@ -13,7 +13,7 @@ export default class TransactionNotification extends Component {
         onClick: PropTypes.func,
         notification: PropTypes.shape({
             status: PropTypes.string.isRequired,
-            time: PropTypes.string.isRequired,
+            time: PropTypes.number.isRequired,
             type: PropTypes.string.isRequired,
             address: PropTypes.string.isRequired,
             isRead: PropTypes.bool.isRequired

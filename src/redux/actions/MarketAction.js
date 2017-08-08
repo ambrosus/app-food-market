@@ -106,7 +106,7 @@ export const resetFilter = () => {
 };
 
 export const createMarket = (history) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
         let marketRepository = new Ambrosus.MarketRepository(Ambrosus.marketArtifacts);
@@ -114,7 +114,7 @@ export const createMarket = (history) => {
             dispatch(statusAddPendingTransaction({
                 address: transactionHash,
                 caption: "Creating contract",
-                url: "http://www.google.pl"
+                url: "/market"
             }));
             dispatch(createMarketResponse(transactionHash));
             dispatch(showModal("TransactionProgressModal", {title: "Creating market"}));
@@ -122,7 +122,7 @@ export const createMarket = (history) => {
             dispatch(statusAddSuccessTransaction({
                 address: myContract.marketContract.transactionHash,
                 caption: "Creating contract",
-                url: "http://www.google.pl"
+                url: "/market"
             }));
             dispatch(createMarketSuccess({
                 address: myContract.marketContract.address
@@ -135,7 +135,7 @@ export const createMarket = (history) => {
                 {
                     address: myContract.marketContract.address,
                     caption: "Creating contract",
-                    url: "http://www.google.pl"
+                    url: "/market"
                 }));
             dispatch(showModal("ErrorModal", {reason: err}));
         });
@@ -143,7 +143,7 @@ export const createMarket = (history) => {
 };
 
 export const createRequirement = (name, requirements, marketAddress, history) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         dispatch(requestCreateRequirement());
         await waitForAmbrosus();
         let requirementsRepository = new Ambrosus.RequirementsRepository();
@@ -151,7 +151,8 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
             dispatch(statusAddPendingTransaction({
                 address: transactionHash,
                 caption: "Creating contract",
-                url: "ads"}));
+                url: "ads"
+            }));
             dispatch(responseCreateRequirement(transactionHash));
             dispatch(showModal("TransactionProgressModal"));
         }).then((requirements) => {
@@ -165,15 +166,17 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
             dispatch(redirectToMarket(history));
         }).catch((err) => {
             console.error(err);
-            dispatch(statusAddFailedTransaction({address:"",
-                caption: "Creating contract", errors: err}));
-            dispatch(showModal("ErrorModal", { reason: err }));
+            dispatch(statusAddFailedTransaction({
+                address: "",
+                caption: "Creating contract", errors: err
+            }));
+            dispatch(showModal("ErrorModal", {reason: err}));
         });
     };
 };
 
 export const redirectToMarket = (history) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         history.push("market");
     }
 };
@@ -191,7 +194,7 @@ export const getAllOffers = (address) => {
 };
 
 export const getAllRequirements = (address) => {
-    return async function(dispatch) {
+    return async function (dispatch) {
         dispatch(requestAllRequirements());
         await waitForAmbrosus();
         const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
@@ -210,6 +213,3 @@ async function requirementsNames(requirements) {
     }
     return names;
 }
-
-
-

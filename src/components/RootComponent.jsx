@@ -15,6 +15,7 @@ import {BrowserHistory} from 'react-history';
 import CreateRequirements from "./stateless/specific/pages/CreateRequirements/CreateRequirements";
 import styles from "./RootComponent.scss";
 import Product from "./stateful/Product/Product";
+import ProductBuy from "./stateful/Product/ProductBuy";
 
 export default class RootComponent extends Component {
 
@@ -31,6 +32,7 @@ export default class RootComponent extends Component {
                         <Route exact path="/profile" component={ProfilePage}/>
                         <Route exact path="/product" component={Product}/>
                         <Route exact path="/product-info" component={Product}/>
+                        <Route exact path="/product-buy" component={ProductBuy}/>
                         <Route exact path="/create-offer" component={CreateOffer}/>
                         <Route exact path="/create-requirements" component={CreateRequirements}/>
                         <ModalContainer/>

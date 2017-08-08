@@ -144,6 +144,7 @@ class CreateOfferPage extends Component {
                             <SelectorField className={styles.selector} options={
                                     this.props.qualities.map(name => {return {value: name}})
                                 } 
+                                inputRef={el => this.formFields.requirementsName = el}
                                 label="Category"/>
                             <span className={styles.paragraph }>or <Link to="create-requirements">create custom requirements</Link> for quality</span>
                             <AttributeValueFieldContainer className={styles.properties}>

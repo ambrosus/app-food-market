@@ -29,11 +29,11 @@ class ProductContainer extends Component {
             <div className={styles.container}>
                 {offers.map((offer, index) =>
                     <ProductItem
-                        key={index}
+                        key={offer.address}
                         offer={offer}
                         moreDetailsAction={this.props.moreDetailsAction}
-                    />)
-                }
+                        buyAction={this.props.buyAction}
+                    />)}
             </div>
         );
     }

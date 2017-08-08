@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-around;
   width: 65px;
-  height: 70px;
+  height: 60px;
   background-color: #f5fafd;
   cursor: pointer;
   position: relative;
@@ -18,6 +18,75 @@
   height: 26px;
 }
 
+:local(.pendingIcon) {
+  background: url('/static/images/icon-pending.svg') no-repeat;
+  margin: 0 auto;
+  width: 22px;
+  height: 25px;
+}
+
+:local(.approvedIcon) {
+  background: url('/static/images/icon-approved.svg') no-repeat;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+:local(.notApprovedIcon) {
+  background: url('/static/images/icon-failed.svg') no-repeat;
+  background-position-y: 5px;
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+:local(.tooltip) {
+  display: none;
+  border: 1px solid rgba(0, 44, 135, 0.19);
+  background-color: #fafdfe;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  left: -142.6px;
+  width: 140px;
+  height: 60px;
+}
+
+:local(.indicator) {
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 2px;
+  position: relative;
+  left: 7px;
+  top: -7px;
+  transform: scale(0.6);
+}
+
+:local(.indicatorNotApproved) {
+  background-color: red !important
+}
+
+:local(.indicatorApproved) {
+  background-color: #8bc34a !important
+}
+
+:local(.indicatorPending) {
+  display: none;
+  background-color: #f8a900 !important
+}
+
+:local(.iconContainer) {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+:local(.tooltipVisible) {
+  display: flex;
+}
+
 :local(.scrollableArea) {
   max-height: 400px;
 }
@@ -26,13 +95,13 @@
   display: none;
 }
 
-:local(.visible) {
+:local(.expanded) {
   display: flex;
   flex-direction: column;
   background-color: white;
   position: absolute;
   right: -1px;
-  top: 70px;
+  top: 60px;
   border: 1px solid rgba(0, 44, 135, 0.19);
   border-bottom: 0;
 }

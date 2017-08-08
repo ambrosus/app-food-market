@@ -9,12 +9,18 @@ export default class TransactionsStatus extends Component {
 
     static propTypes = {
         notifications: PropTypes.array.isRequired,
-        onClick: PropTypes.func
+        onClick: PropTypes.func,
+        stats: PropTypes.object
     };
 
-    static defaultTypes = {
+    static defaultProps = {
         onClick: () => {
             console.warn('TransactionsStatus didn\'t get onClick')
+        },
+        stats: {
+            pending: 0,
+            approved: 0,
+            notApproved: 0
         }
     };
 
@@ -31,16 +37,48 @@ export default class TransactionsStatus extends Component {
         })
     }
 
+    over() {
+        this.setState({
+            tooltip: true
+        })
+    }
+
+    out() {
+        this.setState({
+            tooltip: false
+        })
+    }
+
     render() {
-        return ( <div onClick={this.toggle.bind(this)} className={styles.container}>
-            <div className={styles.icon}/>
-            <div className={classnames(styles.hidden, {[styles.visible]: this.state.expanded})}>
-                {this.props.notifications.length > 0 ?
-                    <ScrollArea className={styles.scrollableArea}>
-                        {this.renderNotifications()}
-                    </ScrollArea> : <div>Empty</div>}
-            </div>
-        </div>);
+        return (
+            <div onMouseEnter={this.over.bind(this)} onMouseLeave={this.out.bind(this)} onClick={this.toggle.bind(this)}
+                 className={styles.container}>
+                <div className={styles.icon}/>
+                <div className={classnames(styles.hidden, {[styles.expanded]: this.state.expanded})}>
+                    {this.props.notifications.length > 0 ?
+                        <ScrollArea className={styles.scrollableArea}>
+                            {this.renderNotifications()}
+                        </ScrollArea> : <div>Empty</div>}
+                </div>
+                <div className={classnames(styles.tooltip, {
+                    [styles.tooltipVisible]: this.state.tooltip
+                })}>
+                    <div className={styles.iconContainer}>
+                        <div className={styles.pendingIcon}>
+                            <div
+                                className={classnames(styles.indicator, styles.indicatorPending)}>{this.props.stats.pending}</div>
+                        </div>
+                        <div className={styles.approvedIcon}>
+                            <div
+                                className={classnames(styles.indicator, styles.indicatorApproved)}>{this.props.stats.approved}</div>
+                        </div>
+                        <div className={styles.notApprovedIcon}>
+                            <div
+                                className={classnames(styles.indicator, styles.indicatorNotApproved)}>{this.props.stats.notApproved}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>);
     }
 
     renderNotifications() {

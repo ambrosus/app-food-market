@@ -61,7 +61,7 @@ class ConfirmBuyModal extends Component {
         this.props.onConfirm(this.props.offer, this.props.quantity, this.props.token);
     }
 
-    render() {        
+    render() {
         return (<div>
             <div className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>

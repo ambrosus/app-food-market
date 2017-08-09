@@ -10,23 +10,23 @@ const uploadToIPFS = async (ipfs, image) => {
 };
 
 export const createOffer = (offer, image, marketAddress, history) => {
-  return async function(dispatch) {
+  return async function (dispatch) {
       if (image) {
-        dispatch(showModal("TransactionProgressModal", {title: "Uploading image"}));
+        dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
         withIPFS(async (ipfs) => {
           offer.imageHash = await uploadToIPFS(ipfs, image);
-          dispatch(hideModal("TransactionProgressModal"));
+          dispatch(hideModal('TransactionProgressModal'));
           dispatch(doCreateOffer(offer, marketAddress, history));
         });
       } else {
         dispatch(doCreateOffer(offer, marketAddress, history));
       }
-  };
+    };
 };
 
 export const doCreateOffer = (offer, address, history) => {
-  return async function(dispatch) {
-    const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract); 
+  return async function (dispatch) {
+    const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
     var market = await new Ambrosus.MarketRepository().fromAddress(address);
 
     var requirementsRepository = new Ambrosus.RequirementsRepository();
@@ -34,21 +34,21 @@ export const doCreateOffer = (offer, address, history) => {
     offer.requirementsAddress = requirements.getAddress();
 
     offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
-      dispatch(statusAddPendingTransaction({address: transactionHash, caption:"Creating offer", url:""}));
-      dispatch(showModal("TransactionProgressModal", {title: "Creating offer"}));
+      dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));
+      dispatch(showModal('TransactionProgressModal', { title: 'Creating offer' }));
     }).then((myContract) => {
-      dispatch(statusAddSuccessTransaction({address:myContract.transactionHash, caption: "Creating offer", url:""}));
+      dispatch(statusAddSuccessTransaction({ address: myContract.transactionHash, caption: 'Creating offer', url: '' }));
       dispatch(hideModal());
       history.push('/market');
     }).catch((reason) => {
-      dispatch(showModal("ErrorModal", { reason }));
-    })
-  }
+      dispatch(showModal('ErrorModal', { reason }));
+    });
+  };
 };
 
 export const selectOffer = (offer) => {
   return {
     type: 'SELECT_OFFER',
-    offer
-  }
-}
+    offer,
+  };
+};

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import ProductContainer from '../../stateless/specific/containers/ProductContainer/ProductContainer';
-import { getAllOffers, getAllRequirements } from "../../../redux/actions/MarketAction.js";
-import { gotoMarket } from "../../../redux/actions/MarketAction.js";
-import { selectOffer } from "../../../redux/actions/OfferAction.js";
-import * as Cookies from "js-cookie";
+import { getAllOffers, getAllRequirements } from '../../../redux/actions/MarketAction.js';
+import { gotoMarket } from '../../../redux/actions/MarketAction.js';
+import { selectOffer } from '../../../redux/actions/OfferAction.js';
+import * as Cookies from 'js-cookie';
 
 const isFilterMatch = (offer, filters) => {
   let keys = Object.keys(filters).filter((key) => filters[key]);
@@ -17,8 +17,8 @@ const filteredOffers = (offers, filters) => {
 const getData = (dispatch, address, qualities) => {
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
-  
-}
+
+};
 
 const mapStateToProps = state => {
   return {
@@ -48,8 +48,8 @@ const mapDispatchToProps = (dispatch) => {
 
     moreDetailsAction: (offer) => {
       dispatch(selectOffer(offer));
-    }
-  }
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);

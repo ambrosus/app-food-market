@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         let addressFromCookies = Cookies.get('market_address', address);
         if (addressFromCookies) {
-          dispatch(gotoMarket(addressFromCookies));
+          dispatch(gotoMarket({address:addressFromCookies}));
           getData(dispatch, addressFromCookies, qualities);
         }
       }

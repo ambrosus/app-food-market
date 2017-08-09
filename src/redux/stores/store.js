@@ -20,7 +20,7 @@ const store = createStore(combineReducers({
         modal,
         offer,
         categories,
-        token
+        token,
     }),
 
     compose(applyMiddleware(thunk),

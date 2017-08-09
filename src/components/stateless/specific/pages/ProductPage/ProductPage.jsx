@@ -56,7 +56,7 @@ class ProductPage extends Component {
                 <div className={cx(styles.column, styles.summaryColumn)}>
                     { this.props.sidebar === 'summary' && <SummaryProduct/> }
                     { this.props.sidebar === 'progress' && <SummaryApprovedProduct/> }
-                    { this.props.sidebar === 'buy' && <BuyProduct/> }
+                    { this.props.sidebar === 'buy' && <BuyProduct offer={this.props.offer} onBuy={this.props.onBuy}/> }
                 </div>
             </div>
         )

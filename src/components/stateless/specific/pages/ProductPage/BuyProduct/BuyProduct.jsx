@@ -5,15 +5,58 @@ import Label from "../../../../generic/Label/Label";
 import AttributeValueFieldContainer from "../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
 import InputField from "../../../../generic/InputField/InputField";
 import Button from "../../../../generic/Button/Button";
+import { connect } from 'react-redux';
+import { showModal } from "../../../../../../redux/actions/ModalAction.js";
+import validation from 'react-validation-mixin';
+import strategy from 'react-validatorjs-strategy'; 
+
+
+const mapStateToProps = state => {
+  return {
+    offer: state.offer,
+  };
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBuy: (offer, quantity) => {
+      dispatch(showModal('ConfirmBuyModal', {quantity}));
+    }
+  }
+};
+
 
 class BuyProduct extends Component {
 
+    constructor(props) {
+        super(props);
+        this.validatorTypes = strategy.createSchema(
+            // Rules
+            {
+                quantity: "required|numeric"
+            }, 
+            // Messages
+            {
+                "required": "This field is required",
+                "numeric": "This is not a number",
+            }
+        );
+        this.getValidatorData = this.getValidatorData.bind(this);
+    }
+
+    getValidatorData() {
+        return {
+            quantity: this.quantity.value,
+        };
+    }
+
     static propTypes = {
         offer: PropTypes.shape({
-            pricePerUnit: PropTypes.string,
-            pricePerPackage: PropTypes.string,
-            packageWeight: PropTypes.string
-        })
+            pricePerUnit: PropTypes.number,
+            pricePerPackage: PropTypes.number,
+            packageWeight: PropTypes.number
+        }),
     };
 
     static defaultProps = {
@@ -23,6 +66,14 @@ class BuyProduct extends Component {
             packageWeight: '10'
         }
     };
+
+    buy() {
+        this.props.validate((err) => {
+            if (err)
+                return;
+            this.props.onBuy(this.props.offer, parseInt(this.quantity.value));
+        });
+    }
 
     render() {
 
@@ -35,10 +86,15 @@ class BuyProduct extends Component {
         return (<div>
             <Label className={styles.title} text="Buy product"/>
             <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
-            <div><InputField label="Packages"/><Button>Buy product</Button></div>
+            <div>
+                <InputField label="Packages" 
+                            inputRef={(e)=>this.quantity=e}
+                            validate={this.props.handleValidation('quantity')}
+                            error={this.props.getValidationMessages('quantity')}/>
+                <Button onClick={()=>this.buy()}>Buy product</Button>
+            </div>
         </div>)
     }
 }
 
-export default BuyProduct;
-
+export default connect(mapStateToProps, mapDispatchToProps)(validation(strategy)(BuyProduct));

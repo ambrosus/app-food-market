@@ -1,47 +1,50 @@
-let nextId = 0;
-
-const transactionsStatus = (state = {pending: [], success: [], failed: []}, action) => {
+const transactionsStatus = (state = {
+    list: [],
+    stats: {
+        failed: 0,
+        pending: 0,
+        approved: 0
+    }
+}, action) => {
     switch (action.type) {
+        case 'STATUS_ADD_SUCCESS_TRANSACTION':
+            let others = state.list.filter((transaction) => {
+                return transaction.address !== action.data.address
+            });
 
-        case 'STATUS_ADD_PENDING_TRANSACTION':
             return {
-                pending: [...state.pending, {
-                    status: 'pending',
-                    key: (nextId++).toString(),
-                    tx: action.tx,
-                    caption: action.caption,
-                    url: action.url
-                }],
-                success: state.success,
-                failed: state.failed
+                list: [...others, action.data],
+                stats: {
+                    approved: state.stats.approved + 1,
+                    failed: state.stats.failed,
+                    pending: state.stats.pending - 1,
+                }
             };
+            break;
 
         case 'STATUS_ADD_FAILED_TRANSACTION':
-            return {
-                failed: [...state.failed, {
-                    status: 'failed',
-                    key: (nextId++).toString(),
-                    tx: action.tx,
-                    caption: action.caption,
-                    errorMessage: action.errorMessage
-                }],
-                success: state.success,
-                pending: state.pending
-            };
+            let filtered = state.list.filter((transaction) => {
+                return transaction.address !== action.data.address
+            });
 
-        case 'STATUS_ADD_SUCCESS_TRANSACTION':
             return {
-                success: [...state.success, {
-                    status: 'success',
-                    key: (nextId++).toString(),
-                    tx: action.tx,
-                    caption: action.caption,
-                    url: action.url
-                }],
-                failed: state.failed,
-                pending: state.pending.filter((transaction) => transaction.tx != action.tx)
+                list: [...filtered, action.data],
+                stats: {
+                    approved: state.stats.approved,
+                    failed: state.stats.failed + 1,
+                    pending: state.stats.pending - 1,
+                }
             };
-
+            break;
+        case 'STATUS_ADD_PENDING_TRANSACTION':
+            return {
+                list: [...state.list, action.data],
+                stats: {
+                    approved: state.stats.approved,
+                    failed: state.stats.failed,
+                    pending: state.stats.pending + 1
+                }
+            };
         default:
             return state;
     }

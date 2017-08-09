@@ -1,14 +1,6 @@
 import React, {Component} from "react";
-import NavigationBar from "../../navigation/NavigationBar/NavigationBar";
 import {connect} from 'react-redux';
-import Button from "../../../generic/Button/Button";
-import styles from './CreateRequirements.scss';
-import TextField from "../../../generic/TextField/TextField";
-import Label from "../../../generic/Label/Label";
-import SelectorField from "../../../generic/SelectorField/SelectorField";
 import {createRequirement} from '../../../../../redux/actions/MarketAction.js';
-import validation from 'react-validation-mixin';
-import strategy from 'react-validatorjs-strategy';
 import CreateRequirementsLayout from './CreateRequirementsLayout';
 
 

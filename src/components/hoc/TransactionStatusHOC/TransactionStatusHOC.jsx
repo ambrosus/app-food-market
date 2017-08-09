@@ -4,7 +4,10 @@ import TransactionsStatus from '../../stateless/specific/transactions/Transactio
 const promisify = require("es6-promisify");
 
 const mapStateToProps = (state, ownProps) => {
-    return state["transactionsStatus"];
+    return {
+        notifications: state.transactions.list,
+        stats: state.transactions.stats
+    }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -17,4 +20,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TransactionsStatus);
+const TransactionStatusHOC = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TransactionsStatus);
+
+export default TransactionStatusHOC;

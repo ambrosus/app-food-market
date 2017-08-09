@@ -5,36 +5,52 @@ import classnames from "classnames";
 
 export default class TransactionNotification extends Component {
 
-    static APPROVED = 'Approved';
-    static PENDING = 'Pending';
-    static NOT_APPROVED = 'Not Approved';
+    static CONFIRMED = 'success';
+    static PENDING = 'pending';
+    static FAILED = 'failed';
 
     static propTypes = {
+        onClick: PropTypes.func,
         notification: PropTypes.shape({
-            status: PropTypes.string,
-            time: PropTypes.string,
-            type: PropTypes.string,
-            address: PropTypes.string,
+            status: PropTypes.string.isRequired,
+            time: PropTypes.number.isRequired,
+            type: PropTypes.string.isRequired,
+            address: PropTypes.string.isRequired,
             isRead: PropTypes.bool.isRequired
         })
     };
 
+    static defaultProps = {
+        onClick: () => {
+            console.warn('onClick is not defined')
+        },
+        notification: {
+            status: 'Not defined',
+            time: 'Not defined',
+            type: 'Not defined',
+            address: 'Not defined',
+            isRead: false
+        }
+    };
+
     render() {
-        return (<div className={classnames(styles.notification,{
-            [styles.unread]: this.props.notification.isRead,
+
+        return (<div onClick={this.props.onClick} className={classnames(styles.notification, {
+            [styles.unread]: !this.props.notification.isRead,
         })}>
             <div className={classnames(styles.typeIcon, {
-                [styles.typeApproved]: this.props.notification.status === TransactionNotification.APPROVED,
+                [styles.typeApproved]: this.props.notification.status === TransactionNotification.CONFIRMED,
                 [styles.typePending]: this.props.notification.status === TransactionNotification.PENDING,
-                [styles.typeNotApproved]: this.props.notification.status === TransactionNotification.NOT_APPROVED,
+                [styles.typeNotApproved]: this.props.notification.status === TransactionNotification.FAILED,
             })}/>
             <div className={styles.description}>
                 <div className={styles.header}>
-                    <div className={styles.status}>Status: <span className={classnames({
-                        [styles.approved]: this.props.notification.status === TransactionNotification.APPROVED,
-                        [styles.pending]: this.props.notification.status === TransactionNotification.PENDING,
-                        [styles.notApproved]: this.props.notification.status === TransactionNotification.NOT_APPROVED,
-                    })}>{this.props.notification.status}</span></div>
+                    <div className={styles.status}>Status: <span className={classnames(
+                        styles.statusValue, {
+                            [styles.approved]: this.props.notification.status === TransactionNotification.CONFIRMED,
+                            [styles.pending]: this.props.notification.status === TransactionNotification.PENDING,
+                            [styles.notApproved]: this.props.notification.status === TransactionNotification.FAILED,
+                        })}>{this.props.notification.status}</span></div>
                     <div className={styles.time}>{this.props.notification.time}</div>
                 </div>
                 <div className={styles.type}>{this.props.notification.type}</div>

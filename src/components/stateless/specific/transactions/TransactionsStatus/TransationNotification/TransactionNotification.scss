@@ -53,6 +53,11 @@
   font-size: 13px;
 }
 
+:local(.statusValue) {
+  text-transform: capitalize;
+  font-size: 13px;
+}
+
 :local(.time) {
   font-size: 11px;
   color: rgba(0,44,135,0.4);
@@ -66,6 +71,8 @@
 :local(.address) {
   font-size: 13px;
   color: rgba(0,44,135,0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :local(.approved) {

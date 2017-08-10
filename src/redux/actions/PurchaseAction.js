@@ -1,12 +1,11 @@
 import Ambrosus from 'ambrosus';
-import { executeEthereumTransaction } from './TransactionAction.js';
-import { transactionMined } from '../../utils/blockchainEvents.js';
-import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
+import { statusAddPendingTransaction,
+statusAddSuccessTransaction,
+statusAddFailedTransaction } from './TransactionStatusAction.js';
 import { showModal, hideModal } from './ModalAction.js';
 
-export const buy = (offer, quantity, token) => {
-  return async(dispatch) => {
-    var agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
+export const buy = (offer, quantity, token) => async(dispatch) => {
+    let agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
     agreement.initiateAgreement((transactionHash) => {
       dispatch(statusAddPendingTransaction(transactionHash, 'Transfer to escrow', ''));
       dispatch(showModal('TransactionProgressModal', { title: 'Transfer to escrow' }));
@@ -17,4 +16,3 @@ export const buy = (offer, quantity, token) => {
       dispatch(showModal('ErrorModal', { reason }));
     });
   };
-};

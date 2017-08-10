@@ -1,7 +1,9 @@
 import IPFSUploader from 'ipfs-image-web-upload';
 import Ambrosus from 'ambrosus';
 import { showModal, hideModal } from './ModalAction.js';
-import { statusAddPendingTransaction, statusAddSuccessTransaction, statusAddFailedTransaction } from './TransactionStatusAction.js';
+import { statusAddPendingTransaction,
+statusAddSuccessTransaction,
+statusAddFailedTransaction } from './TransactionStatusAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -22,8 +24,7 @@ export const createOffer = (offer, image, marketAddress, history) => async funct
       }
     };
 
-export const doCreateOffer = (offer, address, history) => {
-  return async function (dispatch) {
+export const doCreateOffer = (offer, address, history) => async function (dispatch) {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
     let market = await new Ambrosus.MarketRepository().fromAddress(address);
     let requirementsRepository = new Ambrosus.RequirementsRepository();
@@ -34,18 +35,17 @@ export const doCreateOffer = (offer, address, history) => {
       dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));
       dispatch(showModal('TransactionProgressModal', { title: 'Creating offer' }));
     }).then((myContract) => {
-      dispatch(statusAddSuccessTransaction({ address: myContract.transactionHash, caption: 'Creating offer', url: '' }));
+      dispatch(statusAddSuccessTransaction({ address: myContract.transactionHash,
+              caption: 'Creating offer',
+              url: '', }));
       dispatch(hideModal());
       history.push('/market');
     }).catch((reason) => {
       dispatch(showModal('ErrorModal', { reason }));
     });
   };
-};
 
-export const selectOffer = (offer) => {
-  return {
+export const selectOffer = (offer) => ({
     type: 'SELECT_OFFER',
     offer,
-  };
-};
+  });

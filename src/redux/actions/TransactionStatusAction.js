@@ -13,8 +13,7 @@ export const statusAddPendingTransaction = ({ address, time, caption, url }) => 
           },
       });
 
-export const statusAddSuccessTransaction = ({ address, time, caption, url }) => {
-    return {
+export const statusAddSuccessTransaction = ({ address, time, caption, url }) => ({
         type: 'STATUS_ADD_SUCCESS_TRANSACTION',
         data: {
             index: index++,
@@ -25,11 +24,9 @@ export const statusAddSuccessTransaction = ({ address, time, caption, url }) => 
             url: url,
             isRead: false,
           },
-      };
-  };
+      });
 
-export const statusAddFailedTransaction = ({ address, caption, errorMessage }) => {
-    return {
+export const statusAddFailedTransaction = ({ address, caption, errorMessage }) => ({
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',
         data: {
@@ -41,5 +38,4 @@ export const statusAddFailedTransaction = ({ address, caption, errorMessage }) =
             isRead: false,
             errorMessage: errorMessage,
           },
-      };
-  };
+      });

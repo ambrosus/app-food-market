@@ -1,4 +1,6 @@
-import { statusAddFailedTransaction, statusAddPendingTransaction, statusAddSuccessTransaction } from './TransactionStatusAction.js';
+import { statusAddFailedTransaction,
+statusAddPendingTransaction,
+statusAddSuccessTransaction } from './TransactionStatusAction.js';
 import { hideModal, showModal } from './ModalAction.js';
 import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import * as Cookies from 'js-cookie';

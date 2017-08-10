@@ -38,7 +38,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "ambrosus": "^0.2.7",
+    "ambrosus": "^0.2.8",
     "classnames": "^2.2.5",
     "es6-promisify": "^5.0.0",
     "font-awesome": "^4.7.0",

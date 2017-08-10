@@ -30,7 +30,7 @@ export const statusAddSuccessTransaction = ({address, time, caption, url}) => {
     };
 };
 
-export const statusAddFailedTransaction = ({address, caption, errorMessage}) => {
+export const statusAddFailedTransaction = ({address, caption, index, time, errorMessage}) => {
     return {
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',

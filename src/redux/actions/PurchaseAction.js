@@ -6,7 +6,7 @@ import { showModal, hideModal } from './ModalAction.js';
 
 
 export const buy = (offer, quantity, token) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     var agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
     agreement.initiateAgreement((transactionHash) => {
       dispatch(statusAddPendingTransaction(transactionHash, "Transfer to escrow", ""));
@@ -14,8 +14,15 @@ export const buy = (offer, quantity, token) => {
     }).then((agreementContract) => {
       dispatch(statusAddSuccessTransaction(agreementContract.transactionHash, "Transfer to escrow", ""));
       dispatch(hideModal());
+      dispatch(transfer(agreement, agreementContract))
     }).catch((reason) => {
       dispatch(showModal("ErrorModal", { reason }));
     });
+  }
+}
+
+const transfer = (agreement, contract) => {
+  return async (dispatch) => {
+    dispatch(executeEthereumTransaction(agreement.transfer(contract)));
   }
 }

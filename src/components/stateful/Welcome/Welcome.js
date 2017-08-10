@@ -6,11 +6,11 @@ import * as Cookies from 'js-cookie';
 const mapStateToProps = (state, ownProps) => state.market;
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-        goOnClick: (address) => {
-            Cookies.set('market_address', address);
-            dispatch(gotoMarket(address));
-            ownProps.history.push('market');
-          },
-      });
+  goOnClick: (address) => {
+    Cookies.set('market_address', address);
+    dispatch(gotoMarket(address));
+    ownProps.history.push('market');
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

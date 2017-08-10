@@ -7,17 +7,17 @@ import AttributeValueField from './AttributeValueField';
 export default class AttributeValueFieldContainer extends Component {
 
   static propTypes = {
-      options: PropTypes.array.isRequired,
-    };
+    options: PropTypes.array.isRequired,
+  };
 
   static defaultProps = {
-      options: [],
-    };
+    options: [],
+  };
 
   render() {
     return (<div style={this.props.style} className={cx(styles.container, this.props.className)}>
-        {this.props.options.map((element, index) => (
-            <AttributeValueField key={index} field={element.field} value={element.value}/>)
-        )}</div>);
+      {this.props.options.map((element, index) => (
+        <AttributeValueField key={index} field={element.field} value={element.value}/>),
+      )}</div>);
   }
 };

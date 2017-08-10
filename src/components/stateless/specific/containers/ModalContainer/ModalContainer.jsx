@@ -7,24 +7,24 @@ import BalanceTooLowModal from '../../modals/BalanceTooLowModal/BalanceTooLowMod
 import TransactionProgressModal from '../../modals/TransactionProgressModal/TransactionProgressModal';
 
 const mapStateToProps = (state) => ({
-    name: state.modal.name,
-    args: state.modal.args,
-  });
+  name: state.modal.name,
+  args: state.modal.args,
+});
 
-const mapDispatchToProps = (dispatch) => {};
+const mapDispatchToProps = (dispatch) => ({});
 
 class ModalContainer extends Component {
 
   static propTypes = {
-      name: PropTypes.string,
-      args: PropTypes.object,
-    };
+    name: PropTypes.string,
+    args: PropTypes.object,
+  };
 
   render() {
     if (this.props.name === 'ConfirmBuyModal')
-        return (<ConfirmBuyModal/>);
+      return (<ConfirmBuyModal/>);
     else if (this.props.name === 'ErrorModal')
-          return (<ErrorModal/>);
+      return (<ErrorModal/>);
     else if (this.props.name === 'BalanceTooLowModal')
       return (<BalanceTooLowModal/>);
     else if (this.props.name === 'TransactionProgressModal')

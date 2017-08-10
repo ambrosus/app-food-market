@@ -8,9 +8,7 @@ const transactionsStatus = (state = {
   }, action) => {
     switch (action.type) {
     case 'STATUS_ADD_SUCCESS_TRANSACTION':
-      let others = state.list.filter((transaction) => {
-          return transaction.address !== action.data.address;
-        });
+      let others = state.list.filter((transaction) => transaction.address !== action.data.address);
 
       return {
           list: [...others, action.data],
@@ -23,10 +21,7 @@ const transactionsStatus = (state = {
     break;
 
     case 'STATUS_ADD_FAILED_TRANSACTION':
-      let filtered = state.list.filter((transaction) => {
-          return transaction.address !== action.data.address;
-        });
-
+      let filtered = state.list.filter((transaction) => transaction.address !== action.data.address);
       return {
           list: [...filtered, action.data],
           stats: {

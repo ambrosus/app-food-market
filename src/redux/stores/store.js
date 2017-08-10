@@ -9,9 +9,7 @@ import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
 
 const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna', 'Other'];
-const categories = (state = CATEGORIES, action) => {
-    return state;
-  };
+const categories = (state = CATEGORIES, action) => state;
 
 const store = createStore(combineReducers({
         transactions,

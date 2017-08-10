@@ -9,8 +9,7 @@ const uploadToIPFS = async (ipfs, image) => {
   return await uploader.uploadBlob(image);
 };
 
-export const createOffer = (offer, image, marketAddress, history) => {
-  return async function (dispatch) {
+export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
       if (image) {
         dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
         withIPFS(async (ipfs) => {
@@ -22,18 +21,14 @@ export const createOffer = (offer, image, marketAddress, history) => {
         dispatch(doCreateOffer(offer, marketAddress, history));
       }
     };
-};
 
 export const doCreateOffer = (offer, address, history) => {
-  return async function(dispatch) {
-    const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract); 
-
-    if (offer.requirementsName) {
-      var market = await new Ambrosus.MarketRepository().fromAddress(address);
-      var requirementsRepository = new Ambrosus.RequirementsRepository();
-      var requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
-      offer.requirementsAddress = requirements.getAddress();
-    }
+  return async function (dispatch) {
+    const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+    let market = await new Ambrosus.MarketRepository().fromAddress(address);
+    let requirementsRepository = new Ambrosus.RequirementsRepository();
+    let requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
+    offer.requirementsAddress = requirements.getAddress();
 
     offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
       dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));

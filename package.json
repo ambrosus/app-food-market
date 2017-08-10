@@ -4,6 +4,7 @@
   "description": "Food market",
   "main": "index.js",
   "scripts": {
+    "fix": "jscs src --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch",
     "dev-server": "webpack-dev-server -d --content-base dist --hot --inline"

@@ -1,7 +1,6 @@
 let index = 0;
 
-export const statusAddPendingTransaction = ({ address, time, caption, url }) => {
-    return {
+export const statusAddPendingTransaction = ({ address, time, caption, url }) => ({
         type: 'STATUS_ADD_PENDING_TRANSACTION',
         data: {
             index: index++,
@@ -12,8 +11,7 @@ export const statusAddPendingTransaction = ({ address, time, caption, url }) => 
             url: url,
             isRead: false,
           },
-      };
-  };
+      });
 
 export const statusAddSuccessTransaction = ({ address, time, caption, url }) => {
     return {

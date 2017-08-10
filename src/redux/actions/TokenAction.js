@@ -9,18 +9,18 @@ export const createToken = (amount) => {
     await waitForAmbrosus();
     var tokenCreator = new Ambrosus.TokenSingleton();
     tokenCreator.create([web3.eth.accounts[0]], [amount], (transactionHash) => {
-      dispatch(statusAddPendingTransaction(transactionHash, "Creating token", ""));
-      dispatch(showModal("TransactionProgressModal", {title: "Creating token"}));
+      dispatch(statusAddPendingTransaction(transactionHash, 'Creating token', ''));
+      dispatch(showModal('TransactionProgressModal', { title: 'Creating token' }));
     }).then((token) => {
-      dispatch(statusAddSuccessTransaction(token.contract.transactionHash, "Creating token", ""));
-      dispatch({type: 'CREATE_TOKEN_SUCCESS', token});
+      dispatch(statusAddSuccessTransaction(token.contract.transactionHash, 'Creating token', ''));
+      dispatch({ type: 'CREATE_TOKEN_SUCCESS', token });
       dispatch(updateBalance(token));
       dispatch(hideModal());
     }).catch((reason) => {
-      dispatch(showModal("ErrorModal", { reason }));      
-    })
-  }
-}
+      dispatch(showModal('ErrorModal', { reason }));
+    });
+  };
+};
 
 export const fetchToken = (marketAddress) => {
   return async function(dispatch) {

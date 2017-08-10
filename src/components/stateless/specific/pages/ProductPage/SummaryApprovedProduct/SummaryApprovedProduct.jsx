@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SummaryApprovedProduct.scss';
 import Label from '../../../../generic/Label/Label';
-import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueFieldContainer
+from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import Button from '../../../../generic/Button/Button';
 
 class SummaryApprovedProduct extends Component {
@@ -35,7 +36,7 @@ class SummaryApprovedProduct extends Component {
       <Label className={styles.title} text='Summary approve'/>
       <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
       <Button className={styles.approvePayment}>Reorder</Button>
-    </div>)
+    </div>);
   }
 }
 

@@ -18,8 +18,8 @@ class CreateRequirementsLayout extends Component {
       requirements: this.props.requirements,
       rowCount: this.props.rowCount,
       validatorMessages: {
-        'required': 'This field is required',
-        'numeric': 'This is not a number',
+        required: 'This field is required',
+        numeric: 'This is not a number',
       },
     };
     this.name = '';
@@ -29,7 +29,7 @@ class CreateRequirementsLayout extends Component {
   }
 
   getValidatorData() {
-    var validatorData = { name: this.name.value };
+    let validatorData = { name: this.name.value };
     let count = this.state.rowCount;
     for (let i = 0; i < count; i++) {
       validatorData[`id${i}`] = this.state.requirements[i].id.value;
@@ -37,6 +37,7 @@ class CreateRequirementsLayout extends Component {
       validatorData[`min${i}`] = this.state.requirements[i].min.value;
       validatorData[`max${i}`] = this.state.requirements[i].max.value;
     }
+
     return validatorData;
   }
 
@@ -83,8 +84,7 @@ class CreateRequirementsLayout extends Component {
         return;
       this.props.onAdd(this.name.value, this.getRequirementsData(), this.props.address);
     });
-  }
-
+  };
 
   render() {
     return (<div>
@@ -125,7 +125,7 @@ class CreateRequirementsLayout extends Component {
         </div>))}
       </div>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
-    </div>)
+    </div>);
   }
 }
 

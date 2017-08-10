@@ -11,7 +11,6 @@ import { showModal } from '../../../../../../redux/actions/ModalAction.js';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
 
-
 const mapStateToProps = state => ({
     offer: state.offer,
   });
@@ -90,7 +89,7 @@ class BuyProduct extends Component {
                     error={this.props.getValidationMessages('quantity')}/>
         <Button onClick={() => this.buy()}>Buy product</Button>
       </div>
-    </div>)
+    </div>);
   }
 }
 

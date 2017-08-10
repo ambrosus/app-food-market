@@ -22,8 +22,9 @@ export default class TransactionNotification extends Component {
 
   static defaultProps = {
     onClick: () => {
-      console.warn('onClick is not defined')
+      console.warn('onClick is not defined');
     },
+
     notification: {
       status: 'Not defined',
       time: 'Not defined',
@@ -58,4 +59,4 @@ export default class TransactionNotification extends Component {
       </div>
     </div>);
   }
-}
+};

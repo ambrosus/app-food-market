@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import { createRequirement } from '../../../../../redux/actions/MarketAction.js';
 import CreateRequirementsLayout from './CreateRequirementsLayout';
 
-
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     address: state.market.address,
-  };
-};
+  });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
+const mapDispatchToProps = (dispatch, ownProps) => ({
     onAdd: (name, requirements, address) => {
       dispatch(createRequirement(name, requirements, address, ownProps.history));
     },
-  }
-};
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequirementsLayout);

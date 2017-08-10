@@ -1,10 +1,10 @@
 const isLocalhost = () => {
-  var host = window.location.host;
+  let host = window.location.host;
   return host.startsWith('localhost') || host.startsWith('127.0.0.1');
 };
 
 const httpsizedLocation = (location) => {
-    var url = 'https://' + location.hostname;
+    let url = 'https://' + location.hostname;
     if (location.port) {
       url += ':' + location.port;
     }

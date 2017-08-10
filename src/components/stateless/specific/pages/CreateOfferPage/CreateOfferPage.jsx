@@ -1,17 +1,17 @@
-import React, {Component} from "react";
-import styles from "./CreateOfferPage.scss";
-import NavigationBar from "../../navigation/NavigationBar/NavigationBar";
-import {Link} from "react-router-dom";
-import TextField from "../../../generic/TextField/TextField";
-import SelectorField from "../../../generic/SelectorField/SelectorField";
-import InputField from "../../../generic/InputField/InputField";
-import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import AttributeValueField from "../../containers/AttributeValueFieldContainer/AttributeValueField";
-import FileProcessor from "react-file-processor";
-import Label from "../../../generic/Label/Label.jsx";
+import React, {Component} from 'react';
+import styles from './CreateOfferPage.scss';
+import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
+import {Link} from 'react-router-dom';
+import TextField from '../../../generic/TextField/TextField';
+import SelectorField from '../../../generic/SelectorField/SelectorField';
+import InputField from '../../../generic/InputField/InputField';
+import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueField from '../../containers/AttributeValueFieldContainer/AttributeValueField';
+import FileProcessor from 'react-file-processor';
+import Label from '../../../generic/Label/Label.jsx';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy'; 
-import Button from "../../../generic/Button/Button.jsx";
+import Button from '../../../generic/Button/Button.jsx';
 
 
 const parameters = [
@@ -32,16 +32,16 @@ class CreateOfferPage extends Component {
         this.validatorTypes = strategy.createSchema(
             // Rules
             {
-                name: "required|min:3|max:30",
-                price: "numeric",
-                weight: "numeric"
+                name: 'required|min:3|max:30',
+                price: 'numeric',
+                weight: 'numeric'
             }, 
             // Messages
             {
-                "required.name": "You must specify the product name",
-                "min.name": "Name must be not shorter than 3",
-                "max.name": "Name must be not longer than 30",
-                "numeric": "This is not a number",
+                'required.name': 'You must specify the product name',
+                'min.name': 'Name must be not shorter than 3',
+                'max.name': 'Name must be not longer than 30',
+                'numeric': 'This is not a number',
             }
         );
         this.getValidatorData = this.getValidatorData.bind(this);
@@ -96,7 +96,7 @@ class CreateOfferPage extends Component {
 
     render() {
         return (<div>
-                <NavigationBar title="Create an offer">
+                <NavigationBar title='Create an offer'>
                     <Button className={styles.cancelButton}
                             onClick={ this.props.history.goBack }>Cancel</Button>       
                     <Button className={styles.saveButton}
@@ -104,7 +104,7 @@ class CreateOfferPage extends Component {
                 </NavigationBar>      
 
                 <div className={styles.top}>
-                    <Label className={styles.label} text="Name of object:"/>
+                    <Label className={styles.label} text='Name of object:'/>
                     <TextField className={styles.textField} 
                                inputRef={el => this.formFields.name = el}
                                validate={this.props.handleValidation('name')}
@@ -112,41 +112,41 @@ class CreateOfferPage extends Component {
                     <div className={styles.container}>
                         <div className={styles.column}>
                             <FileProcessor
-                                ref="myFileInput"
+                                ref='myFileInput'
                                 onFileSelect={(e, f) => this.onFileSelect(e, f)}>
                                 <div className={styles.imageContainer} onClick={() => this.onImageClick()}>
                                     <div className={styles.verticalContainer}>
                                         <div className={styles.horizontalContainer}>
                                             <img className={styles.image}
-                                                 src="./static/images/iconImage.png"
-                                                 ref="image"/>
+                                                 src='./static/images/iconImage.png'
+                                                 ref='image'/>
                                         </div>
                                     </div>
                                 </div>
                             </FileProcessor>
                         </div>
                         <div className={styles.column}>
-                            <Label className={styles.label} text="Category:"/>
+                            <Label className={styles.label} text='Category:'/>
                             <SelectorField className={styles.selector}
-                                           options={ this.getCategories() } label="Category"
+                                           options={ this.getCategories() } label='Category'
                                            inputRef={el => this.formFields.category = el}/>
                             <div className={styles.table}>
-                                <InputField label="Package weight (kg)"
+                                <InputField label='Package weight (kg)'
                                             inputRef={el => this.formFields.packageWeight = el}
                                             validate={this.props.handleValidation('weight')}
                                             error={this.props.getValidationMessages('weight')}/>
-                                <InputField label="Price per package (€)"
+                                <InputField label='Price per package (€)'
                                             inputRef={el => this.formFields.pricePerUnit = el}
                                             validate={this.props.handleValidation('price')}
                                             error={this.props.getValidationMessages('price')}/>
                             </div>
-                            <Label className={styles.label} text="Quality standard:"/>
+                            <Label className={styles.label} text='Quality standard:'/>
                             <SelectorField className={styles.selector} options={
                                     this.props.qualities.map(name => {return {value: name}})
                                 } 
                                 inputRef={el => this.formFields.requirementsName = el}
-                                label="Category"/>
-                            <span className={styles.paragraph }>or <Link to="create-requirements">create custom requirements</Link> for quality</span>
+                                label='Category'/>
+                            <span className={styles.paragraph }>or <Link to='create-requirements'>create custom requirements</Link> for quality</span>
                             <AttributeValueFieldContainer className={styles.properties}>
                                 { parameters.map((element, index) => (
                                     <AttributeValueField key={index} field={element.field} value={element.value}/>)

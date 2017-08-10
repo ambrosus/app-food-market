@@ -1,12 +1,12 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import styles from "./BuyProduct.scss";
-import Label from "../../../../generic/Label/Label";
-import AttributeValueFieldContainer from "../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import InputField from "../../../../generic/InputField/InputField";
-import Button from "../../../../generic/Button/Button";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import styles from './BuyProduct.scss';
+import Label from '../../../../generic/Label/Label';
+import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import InputField from '../../../../generic/InputField/InputField';
+import Button from '../../../../generic/Button/Button';
 import { connect } from 'react-redux';
-import { showModal } from "../../../../../../redux/actions/ModalAction.js";
+import { showModal } from '../../../../../../redux/actions/ModalAction.js';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy'; 
 
@@ -34,12 +34,12 @@ class BuyProduct extends Component {
         this.validatorTypes = strategy.createSchema(
             // Rules
             {
-                quantity: "required|numeric"
+                quantity: 'required|numeric'
             }, 
             // Messages
             {
-                "required": "This field is required",
-                "numeric": "This is not a number",
+                'required': 'This field is required',
+                'numeric': 'This is not a number',
             }
         );
         this.getValidatorData = this.getValidatorData.bind(this);
@@ -84,10 +84,10 @@ class BuyProduct extends Component {
         ];
 
         return (<div>
-            <Label className={styles.title} text="Buy product"/>
+            <Label className={styles.title} text='Buy product'/>
             <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
             <div>
-                <InputField label="Packages" 
+                <InputField label='Packages'
                             inputRef={(e)=>this.quantity=e}
                             validate={this.props.handleValidation('quantity')}
                             error={this.props.getValidationMessages('quantity')}/>

@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './TransactionsStatus.scss';
-import TransactionNotification from "./TransationNotification/TransactionNotification";
+import TransactionNotification from './TransationNotification/TransactionNotification';
 import ScrollArea from 'react-scrollbar';
 
 export default class TransactionsStatus extends Component {

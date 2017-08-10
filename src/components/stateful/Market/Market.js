@@ -24,8 +24,7 @@ const mapStateToProps = state => ({
     offers: filteredOffers(state.market.offers, state.market.filter),
   });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+const mapDispatchToProps = (dispatch) => ({
     onMount: (address, qualities) => {
       if (address) {
         getData(dispatch, address, qualities);
@@ -45,7 +44,6 @@ const mapDispatchToProps = (dispatch) => {
     moreDetailsAction: (offer) => {
       dispatch(selectOffer(offer));
     },
-  };
-};
+  });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);

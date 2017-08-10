@@ -1,11 +1,11 @@
-import React, {Component} from "react";
-import NavigationBar from "../../navigation/NavigationBar/NavigationBar";
+import React, {Component} from 'react';
+import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import {connect} from 'react-redux';
-import Button from "../../../generic/Button/Button";
+import Button from '../../../generic/Button/Button';
 import styles from './CreateRequirements.scss';
-import TextField from "../../../generic/TextField/TextField";
-import Label from "../../../generic/Label/Label";
-import SelectorField from "../../../generic/SelectorField/SelectorField";
+import TextField from '../../../generic/TextField/TextField';
+import Label from '../../../generic/Label/Label';
+import SelectorField from '../../../generic/SelectorField/SelectorField';
 import {createRequirement} from '../../../../../redux/actions/MarketAction.js';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy'; 
@@ -20,8 +20,8 @@ class CreateRequirementsLayout extends Component {
             requirements: this.props.requirements,
             rowCount: this.props.rowCount,
             validatorMessages: {
-                "required": "This field is required",
-                "numeric": "This is not a number",
+                'required': 'This field is required',
+                'numeric': 'This is not a number',
             }
         };
         this.name = '';
@@ -89,18 +89,18 @@ class CreateRequirementsLayout extends Component {
 
     render() {
         return (<div>
-            <NavigationBar title="Create requirements">
+            <NavigationBar title='Create requirements'>
                 <Button className={styles.cancelButton}
                         onClick={this.onCancel.bind(this)}>Cancel</Button>
                 <Button className={styles.saveButton}
                         onClick={this.onSave.bind(this)}>Save</Button>
             </NavigationBar>
-            <Label className={styles.label} text="Quality standard name:"/>
+            <Label className={styles.label} text='Quality standard name:'/>
             <TextField className={styles.qualityStandard} 
                        inputRef={el => this.name = el}
                        validate={this.props.handleValidation('name')}
                        error={this.props.getValidationMessages('name')}/>
-            <Label text="Attributes:" className={styles.section}/>
+            <Label text='Attributes:' className={styles.section}/>
             <div className={styles.list}>
                 {this.state.requirements.map((element, index) => (<div key={index} className={styles.row}>
                     <TextField placeholder='ID' 

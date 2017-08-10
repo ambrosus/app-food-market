@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import styles from './NavigationBar.scss';
 
 export default class NavigationBar extends Component {

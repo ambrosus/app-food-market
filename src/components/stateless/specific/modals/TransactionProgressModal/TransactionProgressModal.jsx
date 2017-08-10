@@ -1,10 +1,10 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
-import styles from "./TransactionProgressModal.scss";
-import Label from "../../../generic/Label/Label";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+import styles from './TransactionProgressModal.scss';
+import Label from '../../../generic/Label/Label';
 import {hideModal} from '../../../../../redux/actions/ModalAction';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConfirm: () => console.log("not yet implemented"),
+        onConfirm: () => console.log('not yet implemented'),
         onCancel: () => dispatch(hideModal())
     }
 };
@@ -30,8 +30,8 @@ class TransactionProgressModal extends Component {
         onConfirm: () => {
             console.info('onConfirm not defined in ', TransactionProgressModal)
         },
-        title: "Operation in progress",
-        message: "This transaction can takes few minutes."
+        title: 'Operation in progress',
+        message: 'This transaction can takes few minutes.'
     };
 
     static propTypes = {
@@ -46,8 +46,8 @@ class TransactionProgressModal extends Component {
                     <div className={styles.upper}>
                         <Label className={styles.title} text={ this.props.title } />
                         <div className={styles.spinner}>
-                            <img src="./static/images/spinner.svg"/>
-                            <img className={styles.icon} src="./static/images/cubes.svg"/>
+                            <img src='./static/images/spinner.svg'/>
+                            <img className={styles.icon} src='./static/images/cubes.svg'/>
                         </div>
                         <div className={styles.description}> { this.props.message }</div>
                     </div>

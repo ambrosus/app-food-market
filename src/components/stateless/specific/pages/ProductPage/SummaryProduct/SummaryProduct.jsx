@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import styles from "./SummaryProduct.scss";
-import Label from "../../../../generic/Label/Label";
-import AttributeValueFieldContainer from "../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import Button from "../../../../generic/Button/Button";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import styles from './SummaryProduct.scss';
+import Label from '../../../../generic/Label/Label';
+import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import Button from '../../../../generic/Button/Button';
 
 class SummaryProduct extends Component {
 
@@ -32,7 +32,7 @@ class SummaryProduct extends Component {
         ];
 
         return (<div>
-            <Label className={styles.title} text="Summary"/>
+            <Label className={styles.title} text='Summary'/>
             <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
             <Button className={styles.approvePayment}>Approve payment</Button>
             <Button className={styles.reimburse}>Reimbursed</Button>

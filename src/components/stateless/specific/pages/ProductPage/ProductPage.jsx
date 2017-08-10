@@ -1,14 +1,14 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import styles from "./ProductPage.scss";
-import cx from "classnames";
-import AttributeValueFieldContainer from "../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer";
-import Label from "../../../generic/Label/Label";
-import MeasurementList from "../../data/MeasurementList/MeasurementList";
-import {loadImage} from "../../../../../utils/loadFromIPFS";
-import BuyProduct from "./BuyProduct/BuyProduct";
-import SummaryApprovedProduct from "./SummaryApprovedProduct/SummaryApprovedProduct";
-import SummaryProduct from "./SummaryProduct/SummaryProduct";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import styles from './ProductPage.scss';
+import cx from 'classnames';
+import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import Label from '../../../generic/Label/Label';
+import MeasurementList from '../../data/MeasurementList/MeasurementList';
+import {loadImage} from '../../../../../utils/loadFromIPFS';
+import BuyProduct from './BuyProduct/BuyProduct';
+import SummaryApprovedProduct from './SummaryApprovedProduct/SummaryApprovedProduct';
+import SummaryProduct from './SummaryProduct/SummaryProduct';
 
 class ProductPage extends Component {
 
@@ -42,15 +42,15 @@ class ProductPage extends Component {
 
         return (<div className={styles.container}>
                 <div className={styles.requirementsColumn}>
-                    <img className={styles.image} src="./static/images/placeholder.png"
-                         srcSet="./static/images/placeholder.png 2x" ref="image"/>
-                    <Label className={styles.subtitle} text="Requirements"/>
+                    <img className={styles.image} src='./static/images/placeholder.png'
+                         srcSet='./static/images/placeholder.png 2x' ref='image'/>
+                    <Label className={styles.subtitle} text='Requirements'/>
                     <AttributeValueFieldContainer options={requirements} className={styles.requirements}/>
                 </div>
                 <div className={styles.typeColumn}>
                     <Label className={styles.title} text={this.props.offer.name}/>
                     <AttributeValueFieldContainer options={parameters} className={styles.info}/>
-                    <Label className={styles.subtitle} text="Measurements"/>
+                    <Label className={styles.subtitle} text='Measurements'/>
                     <MeasurementList/>
                 </div>
                 <div className={cx(styles.column, styles.summaryColumn)}>

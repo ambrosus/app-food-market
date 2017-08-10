@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import NavigationBar from "../../navigation/NavigationBar/NavigationBar";
+import React, {Component} from 'react';
+import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 
 let OrdersPage = () => (
     <div>
-        <NavigationBar title="Orders"/>
+        <NavigationBar title='Orders'/>
     </div>
 );
 

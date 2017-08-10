@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PropTypes from "prop-types";
-import cx from "classnames";
-import styles from "./ErrorModal.scss";
-import Label from "../../../generic/Label/Label";
+import PropTypes from 'prop-types';
+import cx from 'classnames';
+import styles from './ErrorModal.scss';
+import Label from '../../../generic/Label/Label';
 import {hideModal} from '../../../../../redux/actions/ModalAction';
 import {Link} from 'react-router-dom';
 
@@ -25,9 +25,9 @@ class ErrorModal extends Component {
 
     static defaultProps = {
         state: null,
-        title: "Operation unsuccessful",
-        message: "We were unanable to perfom operation this time.",
-        reason: "Reason unknown.",
+        title: 'Operation unsuccessful',
+        message: 'We were unanable to perfom operation this time.',
+        reason: 'Reason unknown.',
         onCancel: () => {
             console.info('onCancel not defined in ', ErrorModal)
         }
@@ -45,7 +45,7 @@ class ErrorModal extends Component {
         return <div>
             <div onClick={this.props.onCancel} className={cx(styles.modal, this.props.className)}>
                 <div className={styles.inner}>
-                    <img src="./static/images/iconError.svg" className={styles.icon}/>
+                    <img src='./static/images/iconError.svg' className={styles.icon}/>
                     <Label className={styles.title} text={this.props.title}/>
                     <p>
                         { this.props.message }

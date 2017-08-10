@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import styles from './TransactionNotification.scss';
-import classnames from "classnames";
+import classnames from 'classnames';
 
 export default class TransactionNotification extends Component {
 

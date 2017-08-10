@@ -27,9 +27,11 @@ export const createOffer = (offer, image, marketAddress, history) => async funct
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
     const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
     let market = await new Ambrosus.MarketRepository().fromAddress(address);
-    let requirementsRepository = new Ambrosus.RequirementsRepository();
-    let requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
-    offer.requirementsAddress = requirements.getAddress();
+    if (offer.requirementsName) {
+      let requirementsRepository = new Ambrosus.RequirementsRepository();
+      let requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
+      offer.requirementsAddress = requirements.getAddress();
+    }
 
     offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
       dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));

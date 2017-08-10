@@ -10,9 +10,7 @@ const isFilterMatch = (offer, filters) => {
   return keys.every((key) => offer[key] === filters[key]);
 };
 
-const filteredOffers = (offers, filters) => {
-  return offers.filter((offer) => isFilterMatch(offer, filters));
-};
+const filteredOffers = (offers, filters) => offers.filter((offer) => isFilterMatch(offer, filters));
 
 const getData = (dispatch, address, qualities) => {
   dispatch(getAllOffers(address));
@@ -20,13 +18,11 @@ const getData = (dispatch, address, qualities) => {
 
 };
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     market: state.market,
     qualities: state.market.qualities,
     offers: filteredOffers(state.market.offers, state.market.filter),
-  };
-};
+  });
 
 const mapDispatchToProps = (dispatch) => {
   return {

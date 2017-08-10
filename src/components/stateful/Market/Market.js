@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import ProductContainer from '../../stateless/specific/containers/ProductContainer/ProductContainer';
 import { getAllOffers, getAllRequirements, gotoMarket } from '../../../redux/actions/MarketAction.js';
 import { selectOffer } from '../../../redux/actions/OfferAction.js';
+import { fetchToken } from '../../../redux/actions/TokenAction.js';
 import * as Cookies from 'js-cookie';
 
 const isFilterMatch = (offer, filters) => {
@@ -12,6 +13,7 @@ const isFilterMatch = (offer, filters) => {
 const filteredOffers = (offers, filters) => offers.filter((offer) => isFilterMatch(offer, filters));
 
 const getData = (dispatch, address, qualities) => {
+  dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
 

@@ -1,7 +1,6 @@
 let index = 0;
 
-export const statusAddPendingTransaction = ({address, time, caption, url}) => {
-    return {
+export const statusAddPendingTransaction = ({ address, time, caption, url }) => ({
         type: 'STATUS_ADD_PENDING_TRANSACTION',
         data: {
             index: index++,
@@ -10,13 +9,11 @@ export const statusAddPendingTransaction = ({address, time, caption, url}) => {
             type: caption,
             time: time || Date.now(),
             url: url,
-            isRead: false
-        }
-    };
-};
+            isRead: false,
+          },
+      });
 
-export const statusAddSuccessTransaction = ({address, time, caption, url}) => {
-    return {
+export const statusAddSuccessTransaction = ({ address, time, caption, url }) => ({
         type: 'STATUS_ADD_SUCCESS_TRANSACTION',
         data: {
             index: index++,
@@ -25,13 +22,11 @@ export const statusAddSuccessTransaction = ({address, time, caption, url}) => {
             type: caption,
             time: time || Date.now(),
             url: url,
-            isRead: false
-        }
-    };
-};
+            isRead: false,
+          },
+      });
 
-export const statusAddFailedTransaction = ({address, caption, errorMessage}) => {
-    return {
+export const statusAddFailedTransaction = ({ address, caption, index, time, errorMessage }) => ({
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',
         data: {
@@ -41,7 +36,6 @@ export const statusAddFailedTransaction = ({address, caption, errorMessage}) => 
             type: caption,
             time: time || Date.now(),
             isRead: false,
-            errorMessage: errorMessage
-        }
-    };
-};
+            errorMessage: errorMessage,
+          },
+      });

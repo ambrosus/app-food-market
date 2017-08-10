@@ -5,5 +5,5 @@ import ensureHttps from './utils/ensureHttps.js';
 require.context('./static/images/', true);
 
 if (ensureHttps()) {
-	ReactDOM.render(<RootComponent/>, document.getElementById('container'));
+  ReactDOM.render(<RootComponent/>, document.getElementById('container'));
 }

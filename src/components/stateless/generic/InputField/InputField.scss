@@ -1,6 +1,6 @@
 @import '../.././shared.scss';
 
-$placeholder-color: rgba(32,171,250,0.42);
+$placeholder-color: rgba(32, 171, 250, 0.42);
 $label-color: #002c87;
 
 :local(.row) {
@@ -25,7 +25,7 @@ $label-color: #002c87;
   font-family: 'Muli', sans-serif;
   color: #002C87;
   border: 1px solid #002c87;
-  border-radius:2px;
+  border-radius: 2px;
   font-size: 16px;
   height: 40px;
   outline: none;

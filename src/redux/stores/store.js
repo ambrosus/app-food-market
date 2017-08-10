@@ -19,7 +19,7 @@ const store = createStore(combineReducers({
         offer,
         categories,
         token,
-    }),
+      }),
 
     compose(applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f

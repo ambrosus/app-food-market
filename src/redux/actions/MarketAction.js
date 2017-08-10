@@ -171,5 +171,6 @@ async function requirementsNames(requirements) {
   for (let i = 0; i < requirements.length; i++) {
     names.push(await requirements[i].getName());
   }
+
   return names;
 }

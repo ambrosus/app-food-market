@@ -8,7 +8,7 @@ export default class TextField extends Component {
       if (this.props.error && this.props.error.length>0)
         return styles.error;
       return '';
-    }
+    };
 
     render() {
         return (<div>

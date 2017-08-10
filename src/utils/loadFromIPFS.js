@@ -3,8 +3,8 @@ import { withIPFS } from './withIPFS.js';
 
 export const loadImage = (domElement, imageHash) => {
   if (!imageHash)
-    return;	
-  withIPFS((ipfs)=>{
+    return;
+  withIPFS((ipfs)=> {
     let uploader = new IPFSUploader(ipfs);
     uploader.loadImage(domElement, imageHash);
   });

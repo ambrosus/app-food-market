@@ -23,7 +23,7 @@ class CreateRequirementsLayout extends Component {
                 "required": "This field is required",
                 "numeric": "This is not a number",
             }
-        }
+        };
         this.name = '';
         this.validatorRules = {name: 'required'};
         this.validatorTypes = strategy.createSchema(this.validatorRules, this.state.validatorMessages);

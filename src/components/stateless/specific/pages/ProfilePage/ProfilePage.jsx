@@ -36,7 +36,7 @@ class ProfilePage extends Component {
     getBalance: ()=>console.warn('getBalance is not defined'),
     newToken: ()=>console.warn('newToken is not defined'),
     balance: 0
-  }
+  };
 
   componentDidMount() {
     if (this.props.token)

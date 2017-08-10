@@ -24,6 +24,6 @@ class CreatingMarketPage extends Component {
       </div>
     );
   }
-};
+}
 
 export default CreatingMarketPage;

@@ -22,7 +22,8 @@ class WelcomePage extends Component {
           </div>
           <span className={styles.text}>or</span>
           <Button className={styles.newAccount}>
-            <Link className={styles.link} to="/create-market">Create new market</Link></Button>
+            <Link className={styles.link} to="/create-market">Create new market</Link>
+          </Button>
         </div>
         <img className={styles.smallLogo} src="./static/images/ambrosus-small.png" />
       </div>);

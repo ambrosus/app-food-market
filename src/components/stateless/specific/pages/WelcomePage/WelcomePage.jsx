@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
-import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import { Link } from 'react-router-dom';
-import Button from '../../../generic/Button/Button';
-import TextField from '../../../generic/TextField/TextField';
+import styles from './WelcomePage.scss';
 import Label from '../../../generic/Label/Label';
+import TextField from '../../../generic/TextField/TextField';
+import Button from '../../../generic/Button/Button';
+import Link from 'react-router-dom/es/Link';
 
 class WelcomePage extends Component {
 
   render() {
     return (
-      <div>
-        <NavigationBar title='Welcome'>
-          <Link className='navigation__link' to='/create-market'>
-            <Button className='navigation__create-offer-button'>
-              Create new market
-            </Button>
-          </Link>
-        </NavigationBar>
-        <Label text='Enter address of a market:'/>
-        <TextField label='Market address' inputRef={el => this.addressField = el}/>
-        <Button className='navigation__create-offer-button'
-                onClick={(e) => this.props.goOnClick(this.addressField.value)}> Go </Button>
+      <div className={styles.page}>
+        <div className={styles.container}>
+          <Label className={styles.header} text='Welcome' />
+          <div>
+            <Label className={styles.label} text='Go to existing market:' />
+            <div className={styles.row}>
+              <TextField placeholder={'contact address'} className={styles.field} />
+              <Button className={styles.button}><Link className={styles.link} to="/">Go</Link></Button>
+            </div>
+          </div>
+          <span className={styles.text}>or</span>
+          <Button className={styles.newAccount}>
+            <Link className={styles.link} to="/create-market">Create new market</Link></Button>
+        </div>
       </div>);
   }
 }

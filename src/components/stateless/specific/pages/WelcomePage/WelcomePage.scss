@@ -1,0 +1,104 @@
+@import '../../../shared.scss';
+
+:local(.page) {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  background-color: #002c87;
+  width:100%;
+  height:100%;
+  left: 0;
+  top: 0;
+}
+
+:local(.group) {
+  display: flex;
+  flex-direction:column;
+}
+
+:local(.logo) {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+}
+
+:local(.smallLogo) {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+}
+
+:local(.group) {
+  display: flex;
+  flex-direction: column;
+}
+
+:local(.row) {
+  display: flex;
+  margin-top: 10px;
+}
+
+:local(.button) {
+  flex: 1;
+  border-radius: 2px;
+}
+
+:local(.field) {
+  flex: 8;
+}
+
+:local(.text) {
+  @include font();
+  font-size: 20px;
+  color: #011c74;
+  font-weight: 700;
+  margin: 0 auto 23px auto;
+}
+
+:local(.link) {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+:local(.label) {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+:local(.header) {
+  @include font();
+  color: #011c74;
+  font-size: 47px;
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+:local(.newAccount) {
+  @include font();
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 2px;
+  background-color: #002c87;
+}
+
+:local(.container) {
+  @include font();
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 520px;
+  height: 467px;
+  border-radius: 3px;
+  background-color: #fafbff;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  padding: 40px 40px;
+  transform: translateX(-50%) translateY(-50%);
+}

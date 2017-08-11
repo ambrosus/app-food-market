@@ -26,12 +26,12 @@ export const statusAddSuccessTransaction = ({ address, time, caption, url }) => 
           },
       });
 
-export const statusAddFailedTransaction = ({ address, caption, index, time, errorMessage }) => ({
+export const statusAddFailedTransaction = ({ address, caption, time, errorMessage }) => ({
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',
         data: {
             index: index++,
-            status: 'pending',
+            status: 'failed',
             address: address,
             type: caption,
             time: time || Date.now(),

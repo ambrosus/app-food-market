@@ -4,8 +4,30 @@ import Label from '../../../generic/Label/Label';
 import TextField from '../../../generic/TextField/TextField';
 import Button from '../../../generic/Button/Button';
 import Link from 'react-router-dom/es/Link';
+import PropTypes from 'prop-types';
 
 class WelcomePage extends Component {
+
+  static propTypes = {
+    onGoClick: PropTypes.func,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: '',
+    };
+  }
+
+  updateAddress(address) {
+    this.setState({
+      address: address,
+    });
+  }
+
+  onClick() {
+    console.log(this.props.onGoClick(this.state.address));
+  }
 
   render() {
     return (
@@ -16,8 +38,11 @@ class WelcomePage extends Component {
           <div>
             <Label className={styles.label} text='Go to existing market:'/>
             <div className={styles.row}>
-              <TextField placeholder={'contact address'} className={styles.field}/>
-              <Button className={styles.button}><Link className={styles.link} to="/">Go</Link></Button>
+              <TextField onChange={(input) => this.updateAddress(input.target.value)}
+                         placeholder="contact address"
+                         value={this.state.address}
+                         className={styles.field}/>
+              <Button className={styles.button} onClick={this.onClick.bind(this)}>Go</Button>
             </div>
           </div>
           <span className={styles.text}>or</span>
@@ -25,7 +50,7 @@ class WelcomePage extends Component {
             <Link className={styles.link} to="/create-market">Create new market</Link>
           </Button>
         </div>
-        <img className={styles.smallLogo} src="./static/images/ambrosus-small.png" />
+        <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
       </div>);
   }
 }

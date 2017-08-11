@@ -8,7 +8,8 @@ export default class TextField extends Component {
   static propTypes = {
     error: PropTypes.array,
     placeholder: PropTypes.string,
-    validate: PropTypes.func,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
   };
 
   validationClass = () => {
@@ -22,8 +23,9 @@ export default class TextField extends Component {
       <input className={cx(styles.input, this.validationClass())}
              placeholder={this.props.placeholder}
              ref={this.props.inputRef}
+             value={this.props.value}
              type='text'
-             onChange={this.props.validate}/>
+             onChange={this.props.onChange}/>
       <p className={cx(styles.message)}>{this.props.error}</p>
     </div>);
   }

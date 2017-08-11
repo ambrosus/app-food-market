@@ -77,11 +77,13 @@ export const resetFilter = () => ({
         type: 'FILTER_RESET',
       });
 
+const INITIAL_TOKENS = 1000000;
+
 export const createMarket = (history) => async function (dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
-        let marketRepository = new Ambrosus.MarketRepository(Ambrosus.marketArtifacts);
-        marketRepository.create(web3.eth.accounts[0], (transactionHash) => {
+        let marketRepository = new Ambrosus.MarketRepository();
+        marketRepository.create(INITIAL_TOKENS, (transactionHash) => {
             dispatch(statusAddPendingTransaction({
                 address: transactionHash,
                 caption: 'Creating contract',

@@ -9,11 +9,11 @@ import {executeEthereumTransaction} from './TransactionAction.js';
 export const buy = (offer, quantity, token) => async(dispatch) => {
     let agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
     agreement.initiateAgreement((transactionHash) => {
-      dispatch(statusAddPendingTransaction(transactionHash, 'Transfer to escrow', ''));
-      dispatch(showModal('TransactionProgressModal', { title: 'Transfer to escrow' }));
+      dispatch(statusAddPendingTransaction(transactionHash, 'Creating contract', ''));
+      dispatch(showModal('TransactionProgressModal', { title: 'Creating contract' }));
     }).then((agreementContract) => {
-      dispatch(statusAddSuccessTransaction(agreementContract.transactionHash, 'Transfer to escrow', ''));
-      dispatch(transfer(agreement, agreementContract))
+      dispatch(statusAddSuccessTransaction(agreementContract.transactionHash, 'Creating contract', ''));
+      dispatch(transfer(agreement, agreementContract));
     }).catch((reason) => {
       dispatch(showModal('ErrorModal', { reason }));
     });
@@ -21,6 +21,14 @@ export const buy = (offer, quantity, token) => async(dispatch) => {
 
 
 const transfer = (agreement, contract) => async (dispatch) => {
-    dispatch(executeEthereumTransaction(agreement.transfer(contract)));
+    agreement.transfer(contract, (transactionHash) => {
+      dispatch(statusAddPendingTransaction(transactionHash, 'Transfer to escrow', ''));
+      dispatch(showModal('TransactionProgressModal', { title: 'Transfer to escrow' }));
+    }).then((tx) => {
+      dispatch(statusAddSuccessTransaction(tx, 'Creating contract', ''));
+      dispatch(hideModal());
+    }).catch((reason) => {
+      dispatch(showModal('ErrorModal', { reason }));
+    });
   }
 

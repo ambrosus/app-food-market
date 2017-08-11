@@ -26,7 +26,7 @@ class WelcomePage extends Component {
   }
 
   onClick() {
-    console.log(this.props.onGoClick(this.state.address));
+    this.props.onGoClick(this.state.address);
   }
 
   render() {

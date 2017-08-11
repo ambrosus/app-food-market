@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 export default class TextField extends Component {
 
   static propTypes = {
+    className: PropTypes.string,
     error: PropTypes.array,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,

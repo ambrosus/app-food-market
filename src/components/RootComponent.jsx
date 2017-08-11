@@ -23,7 +23,6 @@ export default class RootComponent extends Component {
     return (
       <Provider store={store}>
         <Router history={BrowserHistory}>
-          <div>
             <PageContainer>
               <HeaderContainer/>
               <Route exact path='/' component={WelcomeHOC}/>
@@ -38,7 +37,6 @@ export default class RootComponent extends Component {
               <Route exact path='/create-requirements' component={CreateRequirements}/>
               <ModalContainer/>
             </PageContainer>
-          </div>
         </Router>
       </Provider>);
   }

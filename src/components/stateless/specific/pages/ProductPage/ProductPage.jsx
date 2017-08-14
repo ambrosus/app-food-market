@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './ProductPage.scss';
 import cx from 'classnames';
@@ -9,6 +10,17 @@ import { loadImage } from '../../../../../utils/loadFromIPFS';
 import BuyProduct from './BuyProduct/BuyProduct';
 import SummaryApprovedProduct from './SummaryApprovedProduct/SummaryApprovedProduct';
 import SummaryProduct from './SummaryProduct/SummaryProduct';
+import { fetchAttributes } from '../../../../../redux/actions/AttributesAction.js';
+
+const mapStateToProps = state => ({
+  attributes: state.attributes,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAttributes: (attributesAddress) => {
+    dispatch(fetchAttributes(attributesAddress));
+  },
+});
 
 class ProductPage extends Component {
 
@@ -19,21 +31,26 @@ class ProductPage extends Component {
   static propTypes = {
     offer: PropTypes.object,
     sidebar: PropTypes.string,
+    attributes: PropTypes.array,
   };
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
+    this.props.getAttributes(this.props.offer.requirementsAddress);
+  }
+
+  attributesToValueField() {
+    return this.props.attributes.map(attribute => {
+      const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);
+      const max = (attribute.max / (10 ** attribute.decimals)).toFixed(attribute.decimals);
+      return {
+        field: attribute.id,
+        value: `${min} – ${max}`,
+      };
+    });
   }
 
   render() {
-
-    const requirements = [
-      { field: 'Anti-Biotics Free', value: 'Yes' },
-      { field: 'Method of Fishing', value: 'Line' },
-      { field: 'Fresh/ Frozen', value: 'Fresh' },
-      { field: 'Wild/ Aquaculture', value: 'Wild' },
-      { field: 'Temperature', value: '0-4 Celsius' },
-    ];
 
     const parameters = [
       { field: 'Category', value: this.props.offer.category },
@@ -45,7 +62,8 @@ class ProductPage extends Component {
           <img className={styles.image} src='./static/images/placeholder.png'
                srcSet='./static/images/placeholder.png 2x' ref='image'/>
           <Label className={styles.subtitle} text='Requirements'/>
-          <AttributeValueFieldContainer options={requirements} className={styles.requirements}/>
+          <AttributeValueFieldContainer options={this.attributesToValueField()}
+                                        className={styles.requirements}/>
         </div>
         <div className={styles.typeColumn}>
           <Label className={styles.title} text={this.props.offer.name}/>
@@ -63,5 +81,5 @@ class ProductPage extends Component {
   }
 }
 
-export default ProductPage;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
 

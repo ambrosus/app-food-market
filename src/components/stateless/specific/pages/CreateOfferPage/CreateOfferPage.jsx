@@ -66,11 +66,11 @@ class CreateOfferPage extends Component {
     return result;
   }
 
-  onImageClick(e) {
+  onImageClick() {
     this.refs.myFileInput.chooseFile();
   }
 
-  onFileSelect(e, files) {
+  onFileSelect(files) {
     if (!files[0]) return;
     this.image = files[0];
     let reader = new FileReader();
@@ -146,7 +146,7 @@ class CreateOfferPage extends Component {
               <SelectorField className={styles.selector} options={this.props.qualities.map(name => ({ value: name }))}
                              inputRef={el => this.formFields.requirementsName = el}
                              label='Category'/>
-              <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements</Link>
+              <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements </Link>
                 for quality</span>
               <AttributeValueFieldContainer className={styles.properties}>
                 {parameters.map((element, index) => (

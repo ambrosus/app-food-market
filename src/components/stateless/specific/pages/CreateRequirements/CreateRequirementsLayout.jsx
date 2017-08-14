@@ -20,6 +20,9 @@ class CreateRequirementsLayout extends Component {
       validatorMessages: {
         required: 'This field is required',
         numeric: 'This is not a number',
+        integer: 'This value must be an integer',
+        min: 'This value must be not negative',
+        max: 'This value must not greater then 18',
       },
     };
     this.name = '';
@@ -42,13 +45,16 @@ class CreateRequirementsLayout extends Component {
   }
 
   getRequirementsData() {
-    return this.state.requirements.map((r) => ({
-      id: r.id.value,
-      type: RANGE_REQUIREMENT,
-      decimals: parseInt(r.decimals.value) || 0,
-      min: parseInt(r.min.value) || 0,
-      max: parseInt(r.max.value) || 0,
-    }));
+    return this.state.requirements.map((r) => {
+      const decimals = parseInt(r.decimals.value);
+      return {
+        id: r.id.value,
+        type: RANGE_REQUIREMENT,
+        decimals: decimals,
+        min: parseFloat(r.min.value) * (10 ** decimals),
+        max: parseFloat(r.max.value) * (10 ** decimals),
+      };
+    });
   }
 
   static defaultProps = {
@@ -63,7 +69,7 @@ class CreateRequirementsLayout extends Component {
     this.validatorRules = {
       ...this.validatorRules,
       [`id${count}`]: 'required',
-      [`decimals${count}`]: 'required|numeric',
+      [`decimals${count}`]: 'required|integer|min:0|max:18',
       [`min${count}`]: 'required|numeric',
       [`max${count}`]: 'required|numeric',
     };

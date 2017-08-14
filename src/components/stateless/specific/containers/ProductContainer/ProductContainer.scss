@@ -1,4 +1,4 @@
-.container {
+:local(.container) {
   width: 100%;
   background-color: #ffffff;
   display: flex;
@@ -8,7 +8,7 @@
   min-height: 100vh;
 }
 
-.spinner {
+:local(.spinner) {
   display: block;
   margin: 0 auto;
 }

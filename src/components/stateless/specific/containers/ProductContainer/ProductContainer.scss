@@ -1,13 +1,3 @@
-:local(.container) {
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  min-height: 100vh;
-}
-
 :local(.spinner) {
   display: block;
   margin: 0 auto;

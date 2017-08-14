@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import HeaderContainer from './stateless/specific/containers/HeaderContainer/HeaderContainer';
 import PageContainer from './stateless/specific/containers/PageContainer/PageContainer';
 import FilteredMarketPage from './stateful/FilteredMarketPage/FilteredMarketPage';
-import WelcomeHOC from './hoc/WelcomeHOC/WelcomeHOC.js';
+import WelcomeHOC from './hoc/WelcomeHOC.js';
 import CreatingMarketContainer from './stateless/specific/pages/CreatingMarketPage/CreatingMarketContainer.js';
 import OrdersPage from './stateless/specific/pages/OrdersPage/OrdersPage';
 import ProfilePage from './stateless/specific/pages/ProfilePage/ProfilePage';
@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 import store from '../redux/stores/store';
 import ModalContainer from './stateless/specific/containers/ModalContainer/ModalContainer';
 import { BrowserHistory } from 'react-history';
-import CreateRequirements from './stateless/specific/pages/CreateRequirements/CreateRequirements';
+import CreateRequirements from '../components/hoc/CreateRequirementsHOC';
 import Product from './stateful/Product/Product';
 import ProductBuy from './stateful/Product/ProductBuy';
 

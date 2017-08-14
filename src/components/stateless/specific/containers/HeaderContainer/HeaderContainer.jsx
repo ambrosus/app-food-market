@@ -3,7 +3,7 @@ import ContextMenu from '../../navigation/ContextMenu/ContextMenu';
 import { Link } from 'react-router-dom';
 import Breadcrumbs from '../../navigation/Breadcrumbs/Breadcrumbs';
 import styles from './HeaderContainer.scss';
-import TransactionStatusHOC from '../../../../hoc/TransactionStatusHOC/TransactionStatusHOC';
+import TransactionStatusHOC from '../../../../hoc/TransactionStatusHOC';
 
 export default class HeaderContainer extends Component {
   render() {

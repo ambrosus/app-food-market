@@ -50,7 +50,9 @@ class WelcomePage extends Component {
             <Link className={styles.link} to="/create-market">Create new market</Link>
           </Button>
         </div>
-        <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
+        <Link to={'market'}>
+          <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
+        </Link>
       </div>);
   }
 }

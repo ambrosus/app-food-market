@@ -1,77 +1,36 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import Button from '../../../generic/Button/Button';
 import styles from './CreateRequirements.scss';
-import TextField from '../../../generic/TextField/TextField';
 import Label from '../../../generic/Label/Label';
-import SelectorField from '../../../generic/SelectorField/SelectorField';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
+import ValidatedTextField from '../../../generic/ValidatedTextField/ValidatedTextField';
+import CreateRequirementsRow from './CreateRequirementsRow';
 
-const RANGE_REQUIREMENT = 0;
-
-class CreateRequirementsLayout extends Component {
+class CreateRequirements extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       requirements: this.props.requirements,
-      rowCount: this.props.rowCount,
-      validatorMessages: {
-        required: 'This field is required',
-        numeric: 'This is not a number',
-      },
     };
-    this.name = '';
-    this.validatorRules = { name: 'required' };
-    this.validatorTypes = strategy.createSchema(this.validatorRules, this.state.validatorMessages);
-    this.getValidatorData = this.getValidatorData.bind(this);
-  }
+  };
 
-  getValidatorData() {
-    let validatorData = { name: this.name.value };
-    let count = this.state.rowCount;
-    for (let i = 0; i < count; i++) {
-      validatorData[`id${i}`] = this.state.requirements[i].id.value;
-      validatorData[`decimals${i}`] = this.state.requirements[i].decimals.value;
-      validatorData[`min${i}`] = this.state.requirements[i].min.value;
-      validatorData[`max${i}`] = this.state.requirements[i].max.value;
-    }
-
-    return validatorData;
-  }
-
-  getRequirementsData() {
-    return this.state.requirements.map((r) => ({
-      id: r.id.value,
-      type: RANGE_REQUIREMENT,
-      decimals: parseInt(r.decimals.value) || 0,
-      min: parseInt(r.min.value) || 0,
-      max: parseInt(r.max.value) || 0,
-    }));
-  }
+  static propTypes = {
+    requirements: PropTypes.array,
+  };
 
   static defaultProps = {
     requirements: [],
-    rowCount: 0,
   };
 
-  addRow() {
-    let clone = this.state.requirements.slice();
-    let count = this.state.rowCount;
-    clone.push({});
-    this.validatorRules = {
-      ...this.validatorRules,
-      [`id${count}`]: 'required',
-      [`decimals${count}`]: 'required|numeric',
-      [`min${count}`]: 'required|numeric',
-      [`max${count}`]: 'required|numeric',
+  getValidationMessages() {
+    return {
+      required: 'This field is required',
+      numeric: 'This is not a number',
     };
-    this.validatorTypes = strategy.createSchema(this.validatorRules, this.state.validatorMessages);
-    this.setState({
-      requirements: clone,
-      rowCount: count + 1,
-    });
   }
 
   onCancel() {
@@ -79,12 +38,23 @@ class CreateRequirementsLayout extends Component {
   }
 
   onSave() {
-    this.props.validate((err) => {
-      if (err)
-        return;
-      this.props.onAdd(this.name.value, this.getRequirementsData(), this.props.address);
+    console.log('asdf');
+  }
+
+  addRow() {
+    let requirements = [...this.state.requirements, { hash: Date.now() }];
+    this.setState({
+      requirements: requirements,
     });
-  };
+    console.log(requirements);
+  }
+
+  removeRow(hash) {
+    const filtered = this.state.requirements.filter((requirement) => requirement.hash !== hash);
+    this.setState({
+      requirements: [...filtered],
+    });
+  }
 
   render() {
     return (<div>
@@ -95,38 +65,20 @@ class CreateRequirementsLayout extends Component {
                 onClick={this.onSave.bind(this)}>Save</Button>
       </NavigationBar>
       <Label className={styles.label} text='Quality standard name:'/>
-      <TextField className={styles.qualityStandard}
-                 inputRef={el => this.name = el}
-                 validate={this.props.handleValidation('name')}
-                 error={this.props.getValidationMessages('name')}/>
+      <ValidatedTextField
+        className={styles.qualityStandard}
+        validate={this.props.handleValidation('name')}
+        error={this.props.getValidationMessages('name')}/>
       <Label text='Attributes:' className={styles.section}/>
       <div className={styles.list}>
-        {this.state.requirements.map((element, index) => (<div key={index} className={styles.row}>
-          <TextField placeholder='ID'
-                     inputRef={el => element.id = el}
-                     validate={this.props.handleValidation(`id${index}`)}
-                     error={this.props.getValidationMessages(`id${index}`)}/>
-          <SelectorField options={[{ value: 'Range' }, { value: 'Boolean' }]} className={styles.selector}/>
-          <TextField className={styles.selector}
-                     placeholder='Decimals'
-                     inputRef={el => element.decimals = el}
-                     validate={this.props.handleValidation(`decimals${index}`)}
-                     error={this.props.getValidationMessages(`decimals${index}`)}/>
-          <TextField className={styles.selector}
-                     placeholder='Min'
-                     inputRef={el => element.min = el}
-                     validate={this.props.handleValidation(`min${index}`)}
-                     error={this.props.getValidationMessages(`min${index}`)}/>
-          <TextField className={styles.selector}
-                     placeholder='Max'
-                     inputRef={el => element.max = el}
-                     validate={this.props.handleValidation(`max${index}`)}
-                     error={this.props.getValidationMessages(`max${index}`)}/>
-        </div>))}
+        {  this.state.requirements.map((element, key) =>
+          (<CreateRequirementsRow key={element.hash}
+                                  onRemove={()=>this.removeRow(element.hash)} requirement={element} />))
+        }
       </div>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
     </div>);
   }
 }
 
-export default validation(strategy)(CreateRequirementsLayout);
+export default validation(strategy)(CreateRequirements);

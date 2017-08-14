@@ -1,33 +1,23 @@
 import React, { Component } from 'react';
-import styles from './TextField.scss';
-import cx from 'classnames';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import styles from './TextField.scss';
 
 export default class TextField extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    error: PropTypes.array,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string,
   };
 
-  validationClass = () => {
-    if (this.props.error && this.props.error.length > 0)
-      return styles.error;
-    return '';
-  };
-
   render() {
-    return (<div className={this.props.className}>
-      <input className={cx(styles.input, this.validationClass())}
+    return (<div {...this.props} >
+      <input className={classNames(styles.input, this.props.className)}
+             onChange={this.props.onChange}
              placeholder={this.props.placeholder}
-             ref={this.props.inputRef}
-             value={this.props.value}
-             type='text'
-             onChange={this.props.onChange}/>
-      <p className={cx(styles.message)}>{this.props.error}</p>
+             value={this.props.value} />
     </div>);
   }
 };

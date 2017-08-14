@@ -1,5 +1,6 @@
 {
   "preset": "airbnb",
   "maximumLineLength": 120,
-  "maxErrors": 10000
+  "maxErrors": 10000,
+  "plugins": [ "jscs-jsx-rules" ]
 }

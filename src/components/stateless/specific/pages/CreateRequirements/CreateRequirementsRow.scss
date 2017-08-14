@@ -1,0 +1,15 @@
+:local(.selector) {
+  color: rgba(0, 44, 135, 1);
+  border-radius: 2px;
+  border: 1px solid rgba(0, 44, 135, 0.29);
+  width: 127px;
+  height: 40px;
+}
+
+:local(.row) {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0;
+}

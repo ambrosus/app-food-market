@@ -46,7 +46,6 @@ class CreateRequirements extends Component {
     this.setState({
       requirements: requirements,
     });
-    console.log(requirements);
   }
 
   removeRow(hash) {

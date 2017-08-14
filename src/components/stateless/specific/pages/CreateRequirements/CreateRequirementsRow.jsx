@@ -39,7 +39,7 @@ class CreateRequirementsRow extends Component {
                           placeholder='Min' />
       <ValidatedTextField className={styles.selector}
                           placeholder='Max' />
-      <span onClick={this.props.onRemove}>Remove</span>
+      <img className={styles.removeIcon} onClick={this.props.onRemove} src="./static/images/transaction-rejected.svg"/>
     </div>);
   }
 }

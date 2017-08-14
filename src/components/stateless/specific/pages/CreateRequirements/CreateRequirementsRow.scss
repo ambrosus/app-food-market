@@ -6,6 +6,12 @@
   height: 40px;
 }
 
+:local(.removeIcon) {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 :local(.row) {
   width: 70%;
   display: flex;

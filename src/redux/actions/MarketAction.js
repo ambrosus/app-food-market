@@ -83,17 +83,19 @@ export const createMarket = (history) => async function (dispatch) {
         dispatch(requestNewMarket());
         await waitForAmbrosus();
         let marketRepository = new Ambrosus.MarketRepository();
+        let temporaryHashCode;
         marketRepository.create(INITIAL_TOKENS, (transactionHash) => {
+            temporaryHashCode = transactionHash;
             dispatch(statusAddPendingTransaction({
-                address: transactionHash,
-                caption: 'Creating contract',
-                url: '/market',
-              }));
+                  address: temporaryHashCode,
+                  caption: 'Creating contract',
+                  url: '/market',
+                }));
             dispatch(createMarketResponse(transactionHash));
             dispatch(showModal('TransactionProgressModal', { title: 'Creating market' }));
           }).then((myContract) => {
             dispatch(statusAddSuccessTransaction({
-                address: myContract.marketContract.transactionHash,
+                address: temporaryHashCode,
                 caption: 'Creating contract',
                 url: '/market',
               }));

@@ -4,58 +4,58 @@ const path = require('path');
 module.exports = {
 
     entry: {
-        app: "./src/app.js",
-        index: "./src/index.html",
-    },
+        app: './src/app.js',
+        index: './src/index.html',
+      },
 
     output: {
         filename: '[name].js',
-        path: __dirname + "/dist/"
-    },
+        path: __dirname + '/dist/',
+      },
 
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, 'dist'),
         historyApiFallback: {
-            index: '/'
-        },
+            index: '/',
+          },
         compress: true,
-        port: 9000
-    },
+        port: 9000,
+      },
 
     resolve: {
-        extensions: ['.js', '.jsx', '.scss']
-    },
+        extensions: ['.js', '.jsx', '.scss'],
+      },
 
     module: {
         rules: [
             {
                 test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
-                loader: 'url-loader?limit=10000'
-            },
+                loader: 'url-loader?limit=10000',
+              },
             {
                 test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/,
-                loader: 'file-loader?=name=/public/fonts/[name].[ext]'
-            },
+                loader: 'file-loader?=name=/public/fonts/[name].[ext]',
+              },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
-                loader: "file-loader?name=/static/images/[name].[ext]"
-            },
+                loader: 'file-loader?name=/static/images/[name].[ext]',
+              },
             {
                 test: /\.html$/,
-                loader: "file-loader?name=[name].[ext]",
-            },
+                loader: 'file-loader?name=[name].[ext]',
+              },
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
+                loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'stage-1']
-                }
-            },
+                    presets: ['react', 'stage-1'],
+                  },
+              },
             {
                 test: /\.css$/,
-                loader: ['style?sourceMap','css-loader?modules&importLoaders=1']
-            },
+                loader: ['style?sourceMap', 'css-loader?modules&importLoaders=1'],
+              },
             {
                 test: /\.scss$/,
                 use: [
@@ -64,12 +64,12 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: false,
-                            localIdentName: '[name]__[local]--[hash:base64:5]'
-                        }
-                    },
-                    'sass-loader'
+                            localIdentName: '[name]__[local]--[hash:base64:5]',
+                          },
+                      },
+                    'sass-loader',
                 ],
-            }
-        ]
-    }
-};
+              },
+        ],
+      },
+  };

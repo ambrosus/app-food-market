@@ -21,7 +21,7 @@ class ErrorModal extends Component {
   static defaultProps = {
     state: null,
     title: 'Operation unsuccessful',
-    message: 'We were unanable to perfom operation this time.',
+    message: 'We were unable to perform operation this time.',
     reason: 'Reason unknown.',
     onCancel: () => {
       console.info('onCancel not defined in ', ErrorModal);

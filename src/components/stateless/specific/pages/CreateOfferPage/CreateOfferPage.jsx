@@ -73,7 +73,7 @@ class CreateOfferPage extends Component {
     this.refs.myFileInput.chooseFile();
   }
 
-  onFileSelect(files) {
+  onFileSelect(e, files) {
     if (!files[0]) return;
     this.image = files[0];
     let reader = new FileReader();

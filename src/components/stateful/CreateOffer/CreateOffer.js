@@ -7,7 +7,7 @@ import { resetSelectedOffer } from '../../../redux/actions/OfferAction';
 const mapStateToProps = (state) => ({
   address: state.market.address,
   categories: state.categories,
-  qualities: ['None', ...state.market.qualities],
+  qualities: state.market.qualities,
   requirements: state.requirementsAttributes,
 });
 

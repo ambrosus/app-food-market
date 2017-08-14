@@ -3,8 +3,7 @@ import { statusAddPendingTransaction,
 statusAddSuccessTransaction,
 statusAddFailedTransaction } from './TransactionStatusAction.js';
 import { showModal, hideModal } from './ModalAction.js';
-import {executeEthereumTransaction} from './TransactionAction.js';
-
+import { executeEthereumTransaction } from './TransactionAction.js';
 
 export const buy = (offer, quantity, token) => async(dispatch) => {
     let agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
@@ -17,8 +16,7 @@ export const buy = (offer, quantity, token) => async(dispatch) => {
     }).catch((reason) => {
       dispatch(showModal('ErrorModal', { reason }));
     });
-  }
-
+  };
 
 const transfer = (agreement, contract) => async (dispatch) => {
     agreement.transfer(contract, (transactionHash) => {
@@ -30,5 +28,5 @@ const transfer = (agreement, contract) => async (dispatch) => {
     }).catch((reason) => {
       dispatch(showModal('ErrorModal', { reason }));
     });
-  }
+  };
 

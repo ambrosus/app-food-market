@@ -9,11 +9,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => {
-    const promisifedSendTransaction = promisify(web3.eth.sendTransaction);
-    let args = { to: web3.eth.defaultAccount, value: 1000 };
-    dispatch(executeEthereumTransaction(promisifedSendTransaction(args), 'Test transaction', 'url'));
-  },
 });
 
 const TransactionStatusHOC = connect(

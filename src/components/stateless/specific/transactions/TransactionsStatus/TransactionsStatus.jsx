@@ -9,15 +9,10 @@ export default class TransactionsStatus extends Component {
 
   static propTypes = {
     notifications: PropTypes.array.isRequired,
-    onClick: PropTypes.func,
     stats: PropTypes.object,
   };
 
   static defaultProps = {
-    onClick: () => {
-      console.warn('TransactionsStatus didn\'t get onClick');
-    },
-
     stats: {
       pending: 0,
       approved: 0,
@@ -84,6 +79,6 @@ export default class TransactionsStatus extends Component {
 
   renderNotifications() {
     return (this.props.notifications.map((notification, index) => <TransactionNotification
-      notification={notification} onClick={this.props.onClick} key={index}/>));
+      notification={notification} key={index}/>));
   }
 }

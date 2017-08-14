@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TransactionNotification.scss';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
 export default class TransactionNotification extends Component {
@@ -18,11 +19,11 @@ export default class TransactionNotification extends Component {
       address: PropTypes.string,
       isRead: PropTypes.bool.isRequired,
     }),
+    urlHelper: PropTypes.object,
   };
 
   static defaultProps = {
-    onClick: () => {
-      console.warn('onClick is not defined');
+    onClick: (e, address) => {
     },
 
     notification: {
@@ -34,9 +35,8 @@ export default class TransactionNotification extends Component {
     },
   };
 
-  render() {
-
-    return (<div onClick={this.props.onClick} className={classnames(styles.notification, {
+  render() {     
+    return (<div onClick={ (e) => this.props.onClick(e, this.props.address) } className={classnames(styles.notification, {
       [styles.unread]: !this.props.notification.isRead,
     })}>
       <div className={classnames(styles.typeIcon, {
@@ -55,7 +55,9 @@ export default class TransactionNotification extends Component {
           <div className={styles.time}>{this.props.notification.time}</div>
         </div>
         <div className={styles.type}>{this.props.notification.type}</div>
-        <div className={styles.address}>{this.props.notification.address}</div>
+        <a href= { `https://kovan.etherscan.io/tx/${this.props.notification.address}` } target="_blank">
+          <div className={styles.address}>{this.props.notification.address}</div>
+        </a>
       </div>
     </div>);
   }

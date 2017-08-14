@@ -11,6 +11,8 @@ const uploadToIPFS = async (ipfs, image) => {
   return await uploader.uploadBlob(image);
 };
 
+export const resetSelectedOffer = () => ({ type: 'RESET_SELECTED' });
+
 export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
       if (image) {
         dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));

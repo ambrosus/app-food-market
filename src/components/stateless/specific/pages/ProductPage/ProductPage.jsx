@@ -11,15 +11,21 @@ import BuyProduct from './BuyProduct/BuyProduct';
 import SummaryApprovedProduct from './SummaryApprovedProduct/SummaryApprovedProduct';
 import SummaryProduct from './SummaryProduct/SummaryProduct';
 import { fetchAttributes } from '../../../../../redux/actions/AttributesAction.js';
+import { resetSelectedOffer } from '../../../../../redux/actions/OfferAction';
 
 const mapStateToProps = state => ({
-  attributes: state.attributes,
+  requirements: state.requirementsAttributes,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getAttributes: (attributesAddress) => {
     dispatch(fetchAttributes(attributesAddress));
   },
+
+  reset: () => {
+    dispatch(resetSelectedOffer());
+  },
+
 });
 
 class ProductPage extends Component {
@@ -31,7 +37,7 @@ class ProductPage extends Component {
   static propTypes = {
     offer: PropTypes.object,
     sidebar: PropTypes.string,
-    attributes: PropTypes.array,
+    requirements: PropTypes.array,
   };
 
   componentDidMount() {
@@ -39,8 +45,12 @@ class ProductPage extends Component {
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
   attributesToValueField() {
-    return this.props.attributes.map(attribute => {
+    return this.props.requirements.map(attribute => {
       const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);
       const max = (attribute.max / (10 ** attribute.decimals)).toFixed(attribute.decimals);
       return {
@@ -62,6 +72,7 @@ class ProductPage extends Component {
           <img className={styles.image} src='./static/images/placeholder.png'
                srcSet='./static/images/placeholder.png 2x' ref='image'/>
           <Label className={styles.subtitle} text='Requirements'/>
+          <Label text={this.props.offer.quality}/>
           <AttributeValueFieldContainer options={this.attributesToValueField()}
                                         className={styles.requirements}/>
         </div>

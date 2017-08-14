@@ -2,12 +2,13 @@ import { connect } from 'react-redux';
 import CreateOfferPage from '../../stateless/specific/pages/CreateOfferPage/CreateOfferPage';
 import { createOffer } from '../../../redux/actions/OfferAction.js';
 import { fetchAttributesFromQualityName } from '../../../redux/actions/AttributesAction';
+import { resetSelectedOffer } from '../../../redux/actions/OfferAction';
 
 const mapStateToProps = (state) => ({
   address: state.market.address,
   categories: state.categories,
   qualities: ['None', ...state.market.qualities],
-  attributes: state.attributes,
+  requirements: state.requirementsAttributes,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -17,6 +18,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
   fetchAttributes: (requirementsName, marketAddress) => {
     dispatch(fetchAttributesFromQualityName(requirementsName, marketAddress));
+  },
+
+  reset: () => {
+    dispatch(resetSelectedOffer());
   },
 
 });

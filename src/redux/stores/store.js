@@ -7,7 +7,7 @@ import { ambrosus, initWeb3 } from '../reducers/InitializeReducer.js';
 import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
-import attributes from '../reducers/AttributesReducer.js';
+import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
 
 const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna', 'Other'];
 const categories = (state = CATEGORIES, action) => state;
@@ -20,7 +20,7 @@ const store = createStore(combineReducers({
         offer,
         categories,
         token,
-        attributes,
+        requirementsAttributes,
       }),
 
     compose(applyMiddleware(thunk),

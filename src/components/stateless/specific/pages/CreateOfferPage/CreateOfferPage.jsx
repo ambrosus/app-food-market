@@ -6,7 +6,6 @@ import TextField from '../../../generic/TextField/TextField';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
-import AttributeValueField from '../../containers/AttributeValueFieldContainer/AttributeValueField';
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
 import validation from 'react-validation-mixin';
@@ -49,6 +48,10 @@ class CreateOfferPage extends Component {
     this.formFields = {};
   }
 
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
   getValidatorData() {
     return {
       name: this.formFields.name.value,
@@ -66,11 +69,11 @@ class CreateOfferPage extends Component {
     return result;
   }
 
-  onImageClick(e) {
+  onImageClick() {
     this.refs.myFileInput.chooseFile();
   }
 
-  onFileSelect(e, files) {
+  onFileSelect(files) {
     if (!files[0]) return;
     this.image = files[0];
     let reader = new FileReader();
@@ -94,6 +97,17 @@ class CreateOfferPage extends Component {
 
   getCategories() {
     return this.props.categories.map((key) => ({ value: key }));
+  }
+
+  attributesToValueField() {
+    return this.props.requirements.map(attribute => {
+      const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);
+      const max = (attribute.max / (10 ** attribute.decimals)).toFixed(attribute.decimals);
+      return {
+        field: attribute.id,
+        value: `${min} – ${max}`,
+      };
+    });
   }
 
   render() {
@@ -145,14 +159,11 @@ class CreateOfferPage extends Component {
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector} options={this.props.qualities.map(name => ({ value: name }))}
                              inputRef={el => this.formFields.requirementsName = el}
+                             onChange={(val)=>this.props.fetchAttributes(val, this.props.address)}
                              label='Category'/>
               <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements</Link>
-                for quality</span>
-              <AttributeValueFieldContainer className={styles.properties}>
-                {parameters.map((element, index) => (
-                  <AttributeValueField key={index} field={element.field} value={element.value}/>),
-                )}
-              </AttributeValueFieldContainer>
+                &nbsp;for quality</span>
+              <AttributeValueFieldContainer className={styles.properties} options={this.attributesToValueField()}/>
             </div>
           </div>
         </div>

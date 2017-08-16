@@ -23,11 +23,7 @@ export default class TextField extends Component {
     return (<div {...this.props} >
       <input ref="input"
              className={classNames(styles.input, this.props.className)}
-             onChange={()=> {
-                this.onChange();
-                this.props.onChange();
-              }}
-
+             onChange={this.onChange.bind(this)}
              placeholder={this.props.placeholder}
              value={this.props.value} />
     </div>);
@@ -36,6 +32,6 @@ export default class TextField extends Component {
   onChange() {
     this.setState({
       value: this.refs.input.value,
-    });
+    }, this.props.onChange);
   }
 };

@@ -9,10 +9,11 @@ class CreateRequirementsRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      type: '',
-      min: '',
-      max: '',
+      id: null,
+      decimals: null,
+      type: null,
+      min: null,
+      max: null,
     };
   }
 
@@ -21,41 +22,38 @@ class CreateRequirementsRow extends Component {
     onChange: PropTypes.func,
   };
 
-  static defaultProps = {
-
-  };
-
   render() {
     return (<div className={styles.row}>
-      <ValidatedTextField placeholder='ID'
-                          ref="id"
-                          onChange={this.onRowChange.bind(this)} />
+      <ValidatedTextField ref="id"
+                          placeholder='ID'
+                          onChange={this.onFieldChange.bind(this)} />
       <SelectorField ref="type"
+                     onChange={this.onFieldChange.bind(this)}
                      options={[{ value: 'Range' }, { value: 'Boolean' }]}
                      className={styles.selector}/>
       <ValidatedTextField ref="decimals"
                           className={styles.selector}
-                          onChange={this.onRowChange.bind(this)}
+                          onChange={this.onFieldChange.bind(this)}
                           placeholder='Decimals' />
       <ValidatedTextField ref="min"
                           className={styles.selector}
-                          onChange={this.onRowChange.bind(this)}
+                          onChange={this.onFieldChange.bind(this)}
                           placeholder='Min'/>
       <ValidatedTextField ref="max"
                           className={styles.selector}
-                          onChange={this.onRowChange.bind(this)}
+                          onChange={this.onFieldChange.bind(this)}
                           placeholder='Max'/>
       <img className={styles.removeIcon} onClick={this.props.onRemove} src="./static/images/transaction-rejected.svg"/>
     </div>);
   }
 
-  onRowChange() {
-    console.log(this.state);
+  onFieldChange() {
     this.setState({
-      id: this.refs.id,
-      type: this.refs.type.value,
-      min: this.refs.min.value,
-      max: this.refs.max.value,
+      id: this.refs.id.state.value,
+      decimals: this.refs.decimals.value,
+      type: this.refs.type.selected,
+      min: this.refs.min.state.value,
+      max: this.refs.max.state.value,
     });
   }
 }

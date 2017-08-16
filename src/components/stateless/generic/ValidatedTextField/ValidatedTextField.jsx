@@ -6,6 +6,13 @@ import styles from './ValidatedTextField';
 
 export default class ValidatedTextField extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+    };
+  }
+
   static propTypes = {
     className: PropTypes.string,
     message: PropTypes.array,
@@ -26,6 +33,6 @@ export default class ValidatedTextField extends Component {
   onChange() {
     this.setState({
       value: this.refs.input.state.value,
-    });
+    }, this.props.onChange);
   }
 };

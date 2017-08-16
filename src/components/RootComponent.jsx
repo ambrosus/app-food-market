@@ -13,7 +13,7 @@ import store from '../redux/stores/store';
 import ModalContainer from './stateless/specific/containers/ModalContainer/ModalContainer';
 import { BrowserHistory } from 'react-history';
 import CreateRequirements from '../components/hoc/CreateRequirementsHOC';
-import Product from './hoc/ProductHOC/ProductHOC';
+import Product from './hoc/ProductHOC/OrderSummaryHOC';
 import ProductBuy from './hoc/ProductHOC/BuyProductHOC';
 
 require('./RootComponent.scss');

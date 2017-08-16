@@ -4,17 +4,19 @@ import Button from '../../../../generic/Button/Button';
 import { loadImage } from '../../../../../../utils/loadFromIPFS';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.scss';
+import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 
 export default class ProductItem extends Component {
 
   static propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.object,
     price: PropTypes.string,
     seller: PropTypes.string,
     title: PropTypes.string,
     image: PropTypes.string,
     moreDetailsAction: PropTypes.func.isRequired,
     buyAction: PropTypes.func.isRequired,
+    detailsPath: PropTypes.string,
   };
 
   static defaultProps = {
@@ -33,19 +35,14 @@ export default class ProductItem extends Component {
   }
 
   render() {
-    const { category, name, pricePerUnit, seller } = this.props.offer;
+    const { category, name } = this.props.offer;
     return (<article className={styles.product}>
       <img src={this.props.image} width='263' height='180' ref='image'/>
       <span className={styles.category}>{category}</span>
       <div className={styles.info}>
         <h1 className={styles.title}>{name}</h1>
-        <div className={styles.fieldsContainer}>
-          <span className={styles.productLabel}>Price:</span>
-          <span className={styles.productValue}>{'€' + pricePerUnit / 100.0 + '/kg'}</span>
-          <span className={styles.productLabel}>Seller:</span>
-          <span className={styles.productValue}>{seller.slice(0, 10) + '...'}</span>
-        </div>
-        <Link className={styles.link} to='/product-buy'>
+        <AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>
+        <Link className={styles.link} to={this.props.detailsPath}>
           <Button onClick={() => this.props.buyAction(this.props.offer)} className={styles.button}>
             More details
           </Button>

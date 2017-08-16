@@ -5,6 +5,7 @@ import ConfirmBuyModal from '../../modals/ConfirmBuyModal/ConfirmBuyModal';
 import ErrorModal from '../../modals/ErrorModal/ErrorModal';
 import BalanceTooLowModal from '../../modals/BalanceTooLowModal/BalanceTooLowModal';
 import TransactionProgressModal from '../../modals/TransactionProgressModal/TransactionProgressModal';
+import { Route } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
   name: state.modal.name,
@@ -22,7 +23,9 @@ class ModalContainer extends Component {
 
   render() {
     if (this.props.name === 'ConfirmBuyModal')
-      return (<ConfirmBuyModal/>);
+      return (<Route render={({ history }) => (
+        <ConfirmBuyModal history={history}/>
+      )}/>);
     else if (this.props.name === 'ErrorModal')
       return (<ErrorModal/>);
     else if (this.props.name === 'BalanceTooLowModal')

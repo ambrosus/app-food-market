@@ -28,7 +28,7 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    console.log(this.state.rows);
+    console.log(this.state.form);
   }
 
   addRow() {
@@ -75,15 +75,15 @@ class CreateRequirements extends Component {
                 onClick={this.onSave.bind(this)}>Save</Button>
       </NavigationBar>
       <Label className={styles.label} text='Quality standard name:'/>
-      <ValidatedTextField
-        ref="name"
-        onChange={this.onNameChange.bind(this)}
-        className={styles.qualityStandard}
-        validate={this.props.handleValidation('name')}
-        error={this.props.getValidationMessages('name')}/>
-      <Label text='Attributes:' className={styles.section}/>
-      <CreateRequirementsForm className={styles.list}>
-        {  this.state.rows.map((row) => row) }
+      <CreateRequirementsForm>
+        <ValidatedTextField
+          ref="name"
+          onChange={this.onNameChange.bind(this)}
+          className={styles.qualityStandard}
+          validate={this.props.handleValidation('name')}
+          error={this.props.getValidationMessages('name')}/>
+        <Label text='Attributes:' className={styles.section}/>
+        <div className={styles.list}>{ this.state.rows.map((row) => row) }</div>
       </CreateRequirementsForm>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
     </div>);

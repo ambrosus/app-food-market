@@ -12,23 +12,13 @@ import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
 import Button from '../../../generic/Button/Button.jsx';
 
-const parameters = [
-  { field: 'Origin', value: 'Norway' },
-  { field: 'Seller', value: 'Johnston Ltd.' },
-  { field: 'Anti-Biotics Free', value: 'Yes' },
-  { field: 'Method of Fishing', value: 'Line' },
-  { field: 'Fresh/ Frozen', value: 'Fresh' },
-  { field: 'Fresh/ Frozen', value: 'Fresh' },
-  { field: 'Wild/ Aquaculture', value: 'Wild' },
-  { field: 'Temperature', value: '0-4 Celsius' },
-];
+const DECIMALS = 2;
 
 class CreateOfferPage extends Component {
 
   constructor(props) {
     super(props);
     this.validatorTypes = strategy.createSchema(
-
       // Rules
       {
         name: 'required|min:3|max:30',
@@ -70,6 +60,8 @@ class CreateOfferPage extends Component {
       result[i] = this.formFields[i].value;
     }
 
+    result.pricePerPackage *= 10 ** DECIMALS;
+    result.pricePerUnit *= 10 ** DECIMALS;
     return result;
   }
 
@@ -155,7 +147,7 @@ class CreateOfferPage extends Component {
                             inputRef={el => this.formFields.packageWeight = el}
                             validate={this.props.handleValidation('weight')}
                             error={this.props.getValidationMessages('weight')}/>
-                <InputField label='Price per package (€)'
+                <InputField label='Price per unit (€/kg)'
                             inputRef={el => this.formFields.pricePerUnit = el}
                             validate={this.props.handleValidation('price')}
                             error={this.props.getValidationMessages('price')}/>
@@ -163,7 +155,7 @@ class CreateOfferPage extends Component {
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector} options={this.props.qualities.map(name => ({ value: name }))}
                              inputRef={el => this.formFields.requirementsName = el}
-                             onChange={(val)=>this.props.fetchAttributes(val, this.props.address)}
+                             onChange={(val) => this.props.fetchAttributes(val, this.props.address)}
                              label='Category'/>
               <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements</Link>
                 &nbsp;for quality</span>

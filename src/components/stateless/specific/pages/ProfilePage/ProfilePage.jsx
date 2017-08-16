@@ -8,6 +8,7 @@ import { updateBalance } from '../../../../../redux/actions/TokenAction';
 const mapStateToProps = state => ({
     balance: state.token.balance,
     token: state.token.token,
+    market: state.market,
   });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -39,6 +40,7 @@ class ProfilePage extends Component {
       <div>
         <NavigationBar title='Profile'/>
         <Label text={`Your balance: ${(this.props.balance / 100).toFixed(2)}`}/>
+        <Label text={`Market address is: ${this.props.market.address}`} />
       </div>
     );
   }

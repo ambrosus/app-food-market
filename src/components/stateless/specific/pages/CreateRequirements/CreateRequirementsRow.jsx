@@ -19,8 +19,8 @@ class CreateRequirementsRow extends Component {
   }
 
   static propTypes = {
-    onRemove: PropTypes.func,
-    onChange: PropTypes.func,
+    onRowRemove: PropTypes.func,
+    onRowChange: PropTypes.func,
   };
 
   render() {
@@ -44,7 +44,7 @@ class CreateRequirementsRow extends Component {
                           className={styles.selector}
                           onChange={this.onFieldChange.bind(this)}
                           placeholder='Max'/>
-      <img className={styles.removeIcon} onClick={this.props.onRemove} src="./static/images/transaction-rejected.svg"/>
+      <img className={styles.removeIcon} onClick={this.props.onRowRemove} src="./static/images/transaction-rejected.svg"/>
     </div>);
   }
 
@@ -56,8 +56,7 @@ class CreateRequirementsRow extends Component {
       min: this.refs.min.state.value,
       max: this.refs.max.state.value,
     };
-
-    this.setState(state);
+    this.setState(state, this.props.onRowChange.bind(this, state));
   }
 }
 

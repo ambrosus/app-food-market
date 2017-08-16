@@ -17,6 +17,9 @@ class CreateRequirements extends Component {
     this.state = {
       name: '',
       rows: [],
+      form: {
+
+      },
     };
   };
 
@@ -31,16 +34,29 @@ class CreateRequirements extends Component {
   addRow() {
     let key = Date.now().toString();
     let element = (<CreateRequirementsRow key={key}
-                                          onRemove={this.removeRow.bind(this, key)} />);
+                                          onRowChange={this.onRowChange.bind(this, key)}
+                                          onRowRemove={this.onRowRemove.bind(this, key)} />);
+    let formClone = Object.assign({}, this.state.form);
+    formClone[key] = {};
     this.setState({
       rows: [...this.state.rows, element],
+      form: formClone,
     });
   }
 
-  removeRow(key) {
+  onRowChange(key, state) {
+    this.setState({
+      form: Object.assign(this.state.form, { [key]: state }),
+    });
+  }
+
+  onRowRemove(key) {
     const filtered = this.state.rows.filter((row) => row.key !== key);
+    let formClone = Object.assign({}, this.state.form);
+    delete formClone[key];
     this.setState({
       rows: [...filtered],
+      form: formClone,
     });
   }
 

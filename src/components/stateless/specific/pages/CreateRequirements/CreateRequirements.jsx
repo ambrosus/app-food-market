@@ -14,8 +14,10 @@ class CreateRequirements extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       requirements: this.props.requirements,
     };
+    this.rows = [];
   };
 
   static propTypes = {
@@ -42,7 +44,15 @@ class CreateRequirements extends Component {
   }
 
   addRow() {
-    let requirements = [...this.state.requirements, { hash: Date.now() }];
+    let requirements = [...this.state.requirements,
+      { id: '',
+        type: '',
+        min: '',
+        max: '',
+        hash: Date.now(),
+      },
+    ];
+
     this.setState({
       requirements: requirements,
     });
@@ -52,6 +62,20 @@ class CreateRequirements extends Component {
     const filtered = this.state.requirements.filter((requirement) => requirement.hash !== hash);
     this.setState({
       requirements: [...filtered],
+    });
+  }
+
+  onRowChange(hash) {
+    let requirement = this.state.requirements.filter((requirement)=> requirement.hash === hash)[0];
+    Object.assign(requirement, this.rows[hash].state);
+    this.setState({
+      requirements: this.state.requirements.concat([]),
+    });
+  }
+
+  onNameChange() {
+    this.setState({
+      name: this.refs.name.state.value,
     });
   }
 
@@ -65,6 +89,8 @@ class CreateRequirements extends Component {
       </NavigationBar>
       <Label className={styles.label} text='Quality standard name:'/>
       <ValidatedTextField
+        ref="name"
+        onChange={this.onNameChange.bind(this)}
         className={styles.qualityStandard}
         validate={this.props.handleValidation('name')}
         error={this.props.getValidationMessages('name')}/>
@@ -72,6 +98,8 @@ class CreateRequirements extends Component {
       <div className={styles.list}>
         {  this.state.requirements.map((element, key) =>
           (<CreateRequirementsRow key={element.hash}
+                                  ref={(ref)=> this.rows[element.hash] = ref}
+                                  onChange={this.onRowChange.bind(this, element.hash)}
                                   onRemove={()=>this.removeRow(element.hash)} requirement={element} />))
         }
       </div>

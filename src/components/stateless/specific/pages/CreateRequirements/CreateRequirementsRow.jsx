@@ -54,7 +54,7 @@ class CreateRequirementsRow extends Component {
       decimals: this.refs.decimals.state.value,
       min: this.refs.min.state.value,
       max: this.refs.max.state.value,
-    });
+    }, this.props.onChange);
   }
 }
 

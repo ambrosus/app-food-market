@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   onMount: (address) => {
     if (address) {
-      getData(dispatch, address, qualities);
+      getData(dispatch, address);
     } else {
       let addressFromCookies = Cookies.get('market_address', address);
       if (addressFromCookies) {

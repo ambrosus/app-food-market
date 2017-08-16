@@ -48,6 +48,10 @@ class CreateOfferPage extends Component {
     this.formFields = {};
   }
 
+  componentDidMount() {
+    this.props.fetchAttributes(this.props.qualities[0], this.props.address);
+  }
+
   componentWillUnmount() {
     this.props.reset();
   }

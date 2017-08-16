@@ -5,6 +5,13 @@ import styles from './TextField.scss';
 
 export default class TextField extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: '',
+    };
+  }
+
   static propTypes = {
     className: PropTypes.string,
     placeholder: PropTypes.string,
@@ -14,10 +21,21 @@ export default class TextField extends Component {
 
   render() {
     return (<div {...this.props} >
-      <input className={classNames(styles.input, this.props.className)}
-             onChange={this.props.onChange}
+      <input ref="input"
+             className={classNames(styles.input, this.props.className)}
+             onChange={()=> {
+                this.onChange();
+                this.props.onChange();
+              }}
+
              placeholder={this.props.placeholder}
              value={this.props.value} />
     </div>);
+  }
+
+  onChange() {
+    this.setState({
+      value: this.refs.input.value,
+    });
   }
 };

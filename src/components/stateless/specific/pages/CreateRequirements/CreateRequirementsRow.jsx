@@ -28,19 +28,35 @@ class CreateRequirementsRow extends Component {
   render() {
     return (<div className={styles.row}>
       <ValidatedTextField placeholder='ID'
-                          id='id'
-                          onChange={this.onChange} />
-      <SelectorField
-        options={[{ value: 'Range' }, { value: 'Boolean' }]}
-        className={styles.selector}/>
-      <ValidatedTextField className={styles.selector}
+                          ref="id"
+                          onChange={this.onRowChange.bind(this)} />
+      <SelectorField ref="type"
+                     options={[{ value: 'Range' }, { value: 'Boolean' }]}
+                     className={styles.selector}/>
+      <ValidatedTextField ref="decimals"
+                          className={styles.selector}
+                          onChange={this.onRowChange.bind(this)}
                           placeholder='Decimals' />
-      <ValidatedTextField className={styles.selector}
-                          placeholder='Min' />
-      <ValidatedTextField className={styles.selector}
-                          placeholder='Max' />
+      <ValidatedTextField ref="min"
+                          className={styles.selector}
+                          onChange={this.onRowChange.bind(this)}
+                          placeholder='Min'/>
+      <ValidatedTextField ref="max"
+                          className={styles.selector}
+                          onChange={this.onRowChange.bind(this)}
+                          placeholder='Max'/>
       <img className={styles.removeIcon} onClick={this.props.onRemove} src="./static/images/transaction-rejected.svg"/>
     </div>);
+  }
+
+  onRowChange() {
+    console.log(this.state);
+    this.setState({
+      id: this.refs.id,
+      type: this.refs.type.value,
+      min: this.refs.min.value,
+      max: this.refs.max.value,
+    });
   }
 }
 

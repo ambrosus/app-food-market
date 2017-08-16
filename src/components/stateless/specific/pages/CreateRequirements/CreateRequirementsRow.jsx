@@ -57,7 +57,7 @@ class CreateRequirementsRow extends Component {
       max: this.refs.max.state.value,
     };
 
-    this.setState(state, this.props.onChange.bind(this, state));
+    this.setState(state);
   }
 }
 

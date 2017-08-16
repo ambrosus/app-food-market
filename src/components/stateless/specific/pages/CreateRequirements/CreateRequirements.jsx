@@ -7,6 +7,7 @@ import Label from '../../../generic/Label/Label';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
 import ValidatedTextField from '../../../generic/ValidatedTextField/ValidatedTextField';
+import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
 
 class CreateRequirements extends Component {
@@ -24,21 +25,16 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    console.log('asdf');
+    console.log(this.state.rows);
   }
 
   addRow() {
     let key = Date.now().toString();
     let element = (<CreateRequirementsRow key={key}
-                                          onChange={this.onChange.bind(this, key)}
                                           onRemove={this.removeRow.bind(this, key)} />);
     this.setState({
       rows: [...this.state.rows, element],
     });
-  }
-
-  onChange(key, state) {
-    console.log(key, state);
   }
 
   removeRow(key) {
@@ -70,9 +66,9 @@ class CreateRequirements extends Component {
         validate={this.props.handleValidation('name')}
         error={this.props.getValidationMessages('name')}/>
       <Label text='Attributes:' className={styles.section}/>
-      <div className={styles.list}>
+      <CreateRequirementsForm className={styles.list}>
         {  this.state.rows.map((row) => row) }
-      </div>
+      </CreateRequirementsForm>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
     </div>);
   }

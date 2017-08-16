@@ -29,7 +29,7 @@ class TransactionProgressModal extends Component {
     },
 
     title: 'Operation in progress',
-    message: 'This transaction can takes few minutes.',
+    message: 'This transaction can take few minutes.',
   };
 
   static propTypes = {
@@ -39,7 +39,7 @@ class TransactionProgressModal extends Component {
 
   render() {
     return (<div>
-      <div className={cx(styles.modal, this.props.className)}>
+      <div onClick={this.props.onCancel} className={cx(styles.modal, this.props.className)}>
         <div className={styles.inner}>
           <div className={styles.upper}>
             <Label className={styles.title} text={this.props.title}/>

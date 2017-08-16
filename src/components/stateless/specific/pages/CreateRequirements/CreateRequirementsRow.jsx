@@ -50,8 +50,8 @@ class CreateRequirementsRow extends Component {
   onFieldChange() {
     this.setState({
       id: this.refs.id.state.value,
-      decimals: this.refs.decimals.value,
-      type: this.refs.type.selected,
+      type: this.refs.type.state.selected,
+      decimals: this.refs.decimals.state.value,
       min: this.refs.min.state.value,
       max: this.refs.max.state.value,
     });

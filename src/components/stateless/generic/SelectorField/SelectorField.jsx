@@ -8,7 +8,7 @@ export default class SelectorField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: this.props.options[0],
+      selected: this.props.options[0].value,
     };
   }
 

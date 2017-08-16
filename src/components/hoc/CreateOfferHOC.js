@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import CreateOfferPage from '../../stateless/specific/pages/CreateOfferPage/CreateOfferPage';
-import { createOffer } from '../../../redux/actions/OfferAction.js';
-import { fetchAttributesFromQualityName } from '../../../redux/actions/AttributesAction';
-import { resetSelectedOffer } from '../../../redux/actions/OfferAction';
+import CreateOfferPage from '../stateless/specific/pages/CreateOfferPage/CreateOfferPage';
+import { createOffer } from '../../redux/actions/OfferAction.js';
+import { fetchAttributesFromQualityName } from '../../redux/actions/AttributesAction';
+import { resetSelectedOffer } from '../../redux/actions/OfferAction';
 
 const mapStateToProps = (state) => ({
   address: state.market.address,

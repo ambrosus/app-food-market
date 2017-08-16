@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import Market from '../../../../stateful/Market/Market.js';
+import Market from '../../../../hoc/ProductContainerHOC.js';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import Button from '../../../generic/Button/Button';
 import Label from '../../../generic/Label/Label';

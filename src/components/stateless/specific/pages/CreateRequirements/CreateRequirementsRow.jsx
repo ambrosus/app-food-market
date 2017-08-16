@@ -8,10 +8,11 @@ class CreateRequirementsRow extends Component {
 
   constructor(props) {
     super(props);
+    this.options = [{ value: 'Range' }, { value: 'Boolean' }];
     this.state = {
       id: null,
       decimals: null,
-      type: null,
+      type: this.options[0].value,
       min: null,
       max: null,
     };
@@ -29,7 +30,7 @@ class CreateRequirementsRow extends Component {
                           onChange={this.onFieldChange.bind(this)} />
       <SelectorField ref="type"
                      onChange={this.onFieldChange.bind(this)}
-                     options={[{ value: 'Range' }, { value: 'Boolean' }]}
+                     options={this.options}
                      className={styles.selector}/>
       <ValidatedTextField ref="decimals"
                           className={styles.selector}
@@ -48,13 +49,15 @@ class CreateRequirementsRow extends Component {
   }
 
   onFieldChange() {
-    this.setState({
+    let state = {
       id: this.refs.id.state.value,
       type: this.refs.type.state.selected,
       decimals: this.refs.decimals.state.value,
       min: this.refs.min.state.value,
       max: this.refs.max.state.value,
-    }, this.props.onChange);
+    };
+
+    this.setState(state, this.props.onChange.bind(this, state));
   }
 }
 

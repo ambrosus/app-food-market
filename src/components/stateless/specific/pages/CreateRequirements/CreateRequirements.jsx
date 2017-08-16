@@ -15,25 +15,9 @@ class CreateRequirements extends Component {
     super(props);
     this.state = {
       name: '',
-      requirements: this.props.requirements,
+      rows: [],
     };
-    this.rows = [];
   };
-
-  static propTypes = {
-    requirements: PropTypes.array,
-  };
-
-  static defaultProps = {
-    requirements: [],
-  };
-
-  getValidationMessages() {
-    return {
-      required: 'This field is required',
-      numeric: 'This is not a number',
-    };
-  }
 
   onCancel() {
     this.props.history.goBack();
@@ -44,32 +28,23 @@ class CreateRequirements extends Component {
   }
 
   addRow() {
-    let requirements = [...this.state.requirements,
-      { id: '',
-        type: '',
-        min: '',
-        max: '',
-        hash: Date.now(),
-      },
-    ];
-
+    let key = Date.now().toString();
+    let element = (<CreateRequirementsRow key={key}
+                                          onChange={this.onChange.bind(this, key)}
+                                          onRemove={this.removeRow.bind(this, key)} />);
     this.setState({
-      requirements: requirements,
+      rows: [...this.state.rows, element],
     });
   }
 
-  removeRow(hash) {
-    const filtered = this.state.requirements.filter((requirement) => requirement.hash !== hash);
-    this.setState({
-      requirements: [...filtered],
-    });
+  onChange(key, state) {
+    console.log(key, state);
   }
 
-  onRowChange(hash) {
-    let requirement = this.state.requirements.filter((requirement)=> requirement.hash === hash)[0];
-    Object.assign(requirement, this.rows[hash].state);
+  removeRow(key) {
+    const filtered = this.state.rows.filter((row) => row.key !== key);
     this.setState({
-      requirements: this.state.requirements.concat([]),
+      rows: [...filtered],
     });
   }
 
@@ -96,12 +71,7 @@ class CreateRequirements extends Component {
         error={this.props.getValidationMessages('name')}/>
       <Label text='Attributes:' className={styles.section}/>
       <div className={styles.list}>
-        {  this.state.requirements.map((element, key) =>
-          (<CreateRequirementsRow key={element.hash}
-                                  ref={(ref)=> this.rows[element.hash] = ref}
-                                  onChange={this.onRowChange.bind(this, element.hash)}
-                                  onRemove={()=>this.removeRow(element.hash)} requirement={element} />))
-        }
+        {  this.state.rows.map((row) => row) }
       </div>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add requirement</Button>
     </div>);

@@ -30,9 +30,9 @@ export const buy = (marketAddress, offer, quantity, history) => async (dispatch)
     console.error(reason);
     dispatch(showModal('ErrorModal', { reason }));
     dispatch(statusAddFailedTransaction({
-      address: transactionHash,
+      address: tx,
       caption: 'Transfer to ESCROW',
-      errors: err,
+      errors: reason,
     }));
   });
 };
@@ -60,7 +60,7 @@ export const approve = (agreementAddress) => async (dispatch) => {
     dispatch(statusAddFailedTransaction({
       address: transactionHash,
       caption: 'Approve transaction',
-      errors: err,
+      errors: reason,
     }));
   });
 };
@@ -87,7 +87,8 @@ export const reject = (agreementAddress) => async (dispatch) => {
     dispatch(showModal('ErrorModal', { reason }));
     dispatch(statusAddFailedTransaction({
       address: transactionHash,
-      caption: 'Reimburse transaction', errors: err,
+      caption: 'Reimburse transaction',
+      errors: reason,
     }));
   });
 };

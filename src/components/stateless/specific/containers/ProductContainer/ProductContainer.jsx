@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProductItem from '../../pages/ProductPage/ProductItem/ProductItem';
 import { Link } from 'react-router-dom';
 import styles from './ProductContainer.scss';
 
 class ProductContainer extends Component {
+
+  static propTypes = {
+    offers: PropTypes.array,
+    market: PropTypes.shape({
+      address: PropTypes.string,
+      status: PropTypes.string,
+    }),
+    detailsPath: PropTypes.string,
+    productItemFieldValues: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    offers: [],
+    detailsPath: '/product-buy',
+  };
 
   componentDidMount() {
     this.props.onMount(this.props.market.address);
@@ -31,6 +47,8 @@ class ProductContainer extends Component {
           <ProductItem
             key={offer.address}
             offer={offer}
+            options={this.props.productItemFieldValues(offer)}
+            detailsPath={this.props.detailsPath}
             moreDetailsAction={this.props.moreDetailsAction}
             buyAction={this.props.buyAction}
           />)}

@@ -1,6 +1,6 @@
 let index = 0;
 
-export const statusAddPendingTransaction = ({ address, time, caption, url }) => ({
+export const statusAddPendingTransaction = ({ address, caption, url, time }) => ({
         type: 'STATUS_ADD_PENDING_TRANSACTION',
         data: {
             index: index++,
@@ -13,7 +13,7 @@ export const statusAddPendingTransaction = ({ address, time, caption, url }) => 
           },
       });
 
-export const statusAddSuccessTransaction = ({ address, time, caption, url }) => ({
+export const statusAddSuccessTransaction = ({ address, caption, url, time }) => ({
         type: 'STATUS_ADD_SUCCESS_TRANSACTION',
         data: {
             index: index++,
@@ -26,7 +26,7 @@ export const statusAddSuccessTransaction = ({ address, time, caption, url }) => 
           },
       });
 
-export const statusAddFailedTransaction = ({ address, caption, time, errorMessage }) => ({
+export const statusAddFailedTransaction = ({ address, caption, errorMessage, time }) => ({
         type: 'STATUS_ADD_FAILED_TRANSACTION',
         status: 'failed',
         data: {

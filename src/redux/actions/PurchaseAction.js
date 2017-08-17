@@ -1,32 +1,94 @@
 import Ambrosus from 'ambrosus';
-import { statusAddPendingTransaction,
-statusAddSuccessTransaction,
-statusAddFailedTransaction } from './TransactionStatusAction.js';
+import {
+  statusAddPendingTransaction,
+  statusAddSuccessTransaction,
+  statusAddFailedTransaction,
+} from './TransactionStatusAction.js';
 import { showModal, hideModal } from './ModalAction.js';
 import { executeEthereumTransaction } from './TransactionAction.js';
 
-export const buy = (offer, quantity, token) => async(dispatch) => {
-    let agreement = new Ambrosus.Agreement(offer.address, quantity, token.address);
-    agreement.initiateAgreement((transactionHash) => {
-      dispatch(statusAddPendingTransaction(transactionHash, 'Creating contract', ''));
-      dispatch(showModal('TransactionProgressModal', { title: 'Creating contract' }));
-    }).then((agreementContract) => {
-      dispatch(statusAddSuccessTransaction(agreementContract.transactionHash, 'Creating contract', ''));
-      dispatch(transfer(agreement, agreementContract));
-    }).catch((reason) => {
-      dispatch(showModal('ErrorModal', { reason }));
-    });
-  };
+export const buy = (marketAddress, offer, quantity, history) => async (dispatch) => {
+  let agreement = new Ambrosus.AgreementRepository(marketAddress);
+  dispatch(showModal('TransactionProgressModal', { title: 'Transfer to ESCROW' }));
+  let tx = '';
+  agreement.initiateAgreement(offer.address, quantity, (transactionHash) => {
+    dispatch(statusAddPendingTransaction({
+      address: transactionHash,
+      caption: 'Transfer to ESCROW',
+      url: '',
+    }));
+    tx = transactionHash;
+  }).then((transactionHash) => {
+    dispatch(statusAddSuccessTransaction({
+      address: transactionHash,
+      caption: 'Transfer to ESCROW',
+      url: '',
+    }));
+    dispatch(hideModal());
+    history.push('orders');
+  }).catch((reason) => {
+    console.error(reason);
+    dispatch(showModal('ErrorModal', { reason }));
+    dispatch(statusAddFailedTransaction({
+      address: tx,
+      caption: 'Transfer to ESCROW',
+      errors: reason,
+    }));
+  });
+};
 
-const transfer = (agreement, contract) => async (dispatch) => {
-    agreement.transfer(contract, (transactionHash) => {
-      dispatch(statusAddPendingTransaction(transactionHash, 'Transfer to escrow', ''));
-      dispatch(showModal('TransactionProgressModal', { title: 'Transfer to escrow' }));
-    }).then((tx) => {
-      dispatch(statusAddSuccessTransaction(tx, 'Creating contract', ''));
-      dispatch(hideModal());
-    }).catch((reason) => {
-      dispatch(showModal('ErrorModal', { reason }));
-    });
-  };
+export const approve = (agreementAddress) => async (dispatch) => {
+  dispatch(showModal('TransactionProgressModal', { title: 'Approve transaction' }));
+  let agreement = await new Ambrosus.AgreementRepository().fromAddress(agreementAddress);
+  let transactionHash = '';
+  agreement.accept((tx) => {
+    transactionHash = tx;
+    dispatch(statusAddPendingTransaction({
+      address: tx,
+      caption: 'Approve transaction',
+      url: '',
+    }));
+  }).then((tx) => {
+    dispatch(statusAddSuccessTransaction({
+      address: tx,
+      caption: 'Approve transaction',
+      url: '',
+    }));
+    dispatch(hideModal());
+  }).catch((reason) => {
+    dispatch(showModal('ErrorModal', { reason }));
+    dispatch(statusAddFailedTransaction({
+      address: transactionHash,
+      caption: 'Approve transaction',
+      errors: reason,
+    }));
+  });
+};
 
+export const reject = (agreementAddress) => async (dispatch) => {
+  dispatch(showModal('TransactionProgressModal', { title: 'Reimburse transaction' }));
+  let agreement = await new Ambrosus.AgreementRepository().fromAddress(agreementAddress);
+  let transactionHash = '';
+  agreement.reject((tx) => {
+    transactionHash = tx;
+    dispatch(statusAddPendingTransaction({
+      address: tx,
+      caption: 'Reimburse transaction',
+      url: '',
+    }));
+  }).then((tx) => {
+    dispatch(statusAddSuccessTransaction({
+      address: tx,
+      caption: 'Reimburse transaction',
+      url: '',
+    }));
+    dispatch(hideModal());
+  }).catch((reason) => {
+    dispatch(showModal('ErrorModal', { reason }));
+    dispatch(statusAddFailedTransaction({
+      address: transactionHash,
+      caption: 'Reimburse transaction',
+      errors: reason,
+    }));
+  });
+};

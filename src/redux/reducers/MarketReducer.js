@@ -1,12 +1,14 @@
 const DEFAULT_STATE = {
-    offers: [],
-    address: '',
-    status: 'No market',
-    filter: {},
-    qualities: [],
-  };
+  offers: [],
+  address: '',
+  status: 'No market',
+  filter: {},
+  qualities: [],
+  agreements: [],
+};
 
-const market = (state = DEFAULT_STATE,
+const market = (
+  state = DEFAULT_STATE,
   action) => {
   switch (action.type) {
     case 'FETCH_OFFERS_REQUEST':
@@ -29,6 +31,8 @@ const market = (state = DEFAULT_STATE,
       return { ...state, filter: { ...state.filter, [action.key]: action.value } };
     case 'FILTER_RESET':
       return { ...state, filter: {} };
+    case 'FETCH_AGREEMENTS_SUCCESS':
+      return { ...state, agreements: action.agreements };
     default:
       return state;
   }

@@ -12,7 +12,7 @@ const isFilterMatch = (offer, filters) => {
 
 const filteredOffers = (offers, filters) => offers.filter((offer) => isFilterMatch(offer, filters));
 
-const getData = (dispatch, address, qualities) => {
+const fetchMarketData = (dispatch, address) => {
   dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
@@ -26,17 +26,22 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onMount: (address, qualities) => {
+  onMount: (address) => {
     if (address) {
-      getData(dispatch, address, qualities);
+      fetchMarketData(dispatch, address);
     } else {
       let addressFromCookies = Cookies.get('market_address', address);
       if (addressFromCookies) {
         dispatch(gotoMarket({ address: addressFromCookies }));
-        getData(dispatch, addressFromCookies, qualities);
+        fetchMarketData(dispatch, addressFromCookies);
       }
     }
   },
+
+  productItemFieldValues: (offer) => [
+    { field: 'Price', value: '€' + offer.pricePerUnit / 100.0 + '/kg' },
+    { field: 'Seller', value: offer.seller.slice(0, 10) + '...' },
+  ],
 
   buyAction: (offer) => {
     dispatch(selectOffer(offer));

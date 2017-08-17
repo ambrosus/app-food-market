@@ -20,7 +20,7 @@ export default class TextField extends Component {
   };
 
   render() {
-    return (<div {...this.props} >
+    return (<div>
       <input ref="input"
              className={classNames(styles.input, this.props.className)}
              onChange={this.onChange.bind(this)}
@@ -30,8 +30,9 @@ export default class TextField extends Component {
   }
 
   onChange() {
-    this.setState({
+    let state = {
       value: this.refs.input.value,
-    }, this.props.onChange);
+    };
+    this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }
 };

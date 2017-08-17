@@ -83,7 +83,7 @@ class BuyProduct extends Component {
       <Label className={styles.title} text='Buy product'/>
       <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
       <div>
-        <InputField label='Packages'
+        <InputField text='Packages'
                     inputRef={(e) => this.quantity = e}
                     validate={this.props.handleValidation('quantity')}
                     error={this.props.getValidationMessages('quantity')}/>

@@ -8,18 +8,25 @@ export default class SelectorField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: this.props.options[0].value,
+      selected: null,
     };
   }
 
   static propTypes = {
     onChange: PropTypes.func,
+    options: PropTypes.array.isRequired,
   };
 
   static defaultProps = {
     onChange: () => console.log('onChange is not defined'),
     options: [],
   };
+
+  componentDidMount() {
+    this.setState({
+      selected: this.props.options[0].value,
+    });
+  }
 
   render() {
     return (<div>
@@ -32,8 +39,9 @@ export default class SelectorField extends Component {
   }
 
   onChange(event) {
-    this.setState({
+    let state = {
       selected: event.target.value,
-    }, this.props.onChange);
+    };
+    this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }
 }

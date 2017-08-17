@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './CreateOfferPage.scss';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
@@ -9,8 +10,6 @@ import AttributeValueFieldContainer from '../../containers/AttributeValueFieldCo
 import AttributeValueField from '../../containers/AttributeValueFieldContainer/AttributeValueField';
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
-import validation from 'react-validation-mixin';
-import strategy from 'react-validatorjs-strategy';
 import Button from '../../../generic/Button/Button.jsx';
 
 const parameters = [
@@ -26,44 +25,18 @@ const parameters = [
 
 class CreateOfferPage extends Component {
 
+  static propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.string),
+    qualities: PropTypes.arrayOf(PropTypes.string),
+  };
+
+  static defaultProps = {
+    categories: ['None'],
+    qualities: ['None', 'Value'],
+  };
+
   constructor(props) {
     super(props);
-    this.validatorTypes = strategy.createSchema(
-
-      // Rules
-      {
-        name: 'required|min:3|max:30',
-        price: 'numeric',
-        weight: 'numeric',
-      },
-
-      // Messages
-      {
-        'required.name': 'You must specify the product name',
-        'min.name': 'Name must be not shorter than 3',
-        'max.name': 'Name must be not longer than 30',
-        numeric: 'This is not a number',
-      },
-    );
-    this.getValidatorData = this.getValidatorData.bind(this);
-    this.formFields = {};
-  }
-
-  getValidatorData() {
-    return {
-      name: this.formFields.name.value,
-      price: this.formFields.pricePerUnit.value,
-      weight: this.formFields.packageWeight.value,
-    };
-  }
-
-  getOfferData() {
-    let result = {};
-    for (let i in this.formFields) {
-      result[i] = this.formFields[i].value;
-    }
-
-    return result;
   }
 
   onImageClick(e) {
@@ -81,19 +54,38 @@ class CreateOfferPage extends Component {
     reader.readAsDataURL(files[0]);
   }
 
-  onSaveClick() {
-    this.props.validate((err) => {
-      if (err)
-        return;
-      this.props.onAdd(
-        this.getOfferData(),
-        this.image,
-        this.props.address);
-    });
+  getOfferData() {
+    let result = {};
+    return result;
   }
+
+  onSaveClick() {
+    this.props.onAdd(this.getOfferData(), this.image, this.props.address);
+  };
 
   getCategories() {
     return this.props.categories.map((key) => ({ value: key }));
+  }
+
+  getQualities() {
+    const qualities = this.props.qualities.length > 0 ? this.props.qualities : CreateOfferPage.defaultProps.qualities;
+    return qualities.map((key) => ({ value: key }));
+  }
+
+  onNameChange(label, state) {
+    console.log(label, state);
+  }
+
+  onCategorySelected(label, state) {
+    console.log(label, state);
+  }
+
+  onWeightChange(label, state) {
+    console.log(label, state);
+  }
+
+  onPriceChange(label, state) {
+    console.log(label, state);
   }
 
   render() {
@@ -104,13 +96,9 @@ class CreateOfferPage extends Component {
           <Button className={styles.saveButton}
                   onClick={() => this.onSaveClick()}>Save</Button>
         </NavigationBar>
-
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField className={styles.textField}
-                     inputRef={el => this.formFields.name = el}
-                     validate={this.props.handleValidation('name')}
-                     error={this.props.getValidationMessages('name')}/>
+          <TextField label="name" onChange={this.onNameChange.bind(this)} className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
@@ -130,23 +118,20 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
-                             options={this.getCategories()} label='Category'
-                             inputRef={el => this.formFields.category = el}/>
+                             onChange={this.onCategorySelected.bind(this)}
+                             options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField label='Package weight (kg)'
-                            inputRef={el => this.formFields.packageWeight = el}
-                            validate={this.props.handleValidation('weight')}
-                            error={this.props.getValidationMessages('weight')}/>
-                <InputField label='Price per package (€)'
-                            inputRef={el => this.formFields.pricePerUnit = el}
-                            validate={this.props.handleValidation('price')}
-                            error={this.props.getValidationMessages('price')}/>
+                <InputField text='Package weight (kg)' onChange={this.onWeightChange.bind(this)} label='weight'/>
+                <InputField text='Price per package (€)' onChange={this.onPriceChange.bind(this)}
+                            label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>
-              <SelectorField className={styles.selector} options={this.props.qualities.map(name => ({ value: name }))}
-                             inputRef={el => this.formFields.requirementsName = el}
-                             label='Category'/>
-              <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements</Link>
+              <SelectorField className={styles.selector}
+                             onChange={this.onCategorySelected.bind(this)}
+                             options={this.getQualities()}
+                             label='quality'/>
+              <span className={styles.paragraph}>or
+                <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
                 for quality</span>
               <AttributeValueFieldContainer className={styles.properties}>
                 {parameters.map((element, index) => (
@@ -161,5 +146,5 @@ class CreateOfferPage extends Component {
   }
 }
 
-export default validation(strategy)(CreateOfferPage);
+export default CreateOfferPage;
 

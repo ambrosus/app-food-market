@@ -5,7 +5,7 @@ import ConfirmBuyModal from '../../modals/ConfirmBuyModal/ConfirmBuyModal';
 import ErrorModal from '../../modals/ErrorModal/ErrorModal';
 import BalanceTooLowModal from '../../modals/BalanceTooLowModal/BalanceTooLowModal';
 import TransactionProgressModal from '../../modals/TransactionProgressModal/TransactionProgressModal';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
   name: state.modal.name,

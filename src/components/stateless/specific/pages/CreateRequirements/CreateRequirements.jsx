@@ -23,12 +23,17 @@ class CreateRequirements extends Component {
     };
   };
 
+  static propTypes = {
+    address: PropTypes.string.isRequired,
+    onAdd: PropTypes.func.isRequired,
+  };
+
   onCancel() {
     this.props.history.goBack();
   }
 
   onSave() {
-    console.log(this.state.form);
+    this.props.onAdd(this.state.name, this.state.form, this.props.address);
   }
 
   addRow() {

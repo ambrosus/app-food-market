@@ -32,7 +32,7 @@ class CreateOfferPage extends Component {
 
   static defaultProps = {
     categories: ['None'],
-    qualities: ['None', 'Value'],
+    qualities: [],
   };
 
   constructor(props) {
@@ -87,7 +87,7 @@ class CreateOfferPage extends Component {
         </NavigationBar>
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField label="requirementsName" onChange={this.onChange.bind(this)} className={styles.textField}/>
+          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor

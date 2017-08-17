@@ -23,10 +23,12 @@ export default class SelectorField extends Component {
   };
 
   componentDidMount() {
-    let state = {
-      value: this.props.options[0].value,
-    };
-    this.setState(state, this.props.onChange.bind(this, this.props.label, state));
+    if (this.props.options.length > 0) {
+      let state = {
+        value: this.props.options[0].value,
+      };
+      this.setState(state, this.props.onChange.bind(this, this.props.label, state));
+    }
   }
 
   render() {

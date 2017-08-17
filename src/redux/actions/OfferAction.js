@@ -1,9 +1,8 @@
 import IPFSUploader from 'ipfs-image-web-upload';
 import Ambrosus from 'ambrosus';
 import { showModal, hideModal } from './ModalAction.js';
-import { statusAddPendingTransaction,
-statusAddSuccessTransaction,
-statusAddFailedTransaction } from './TransactionStatusAction.js';
+import { statusAddPendingTransaction, statusAddSuccessTransaction,
+  statusAddFailedTransaction } from './TransactionStatusAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
 
 const uploadToIPFS = async (ipfs, image) => {

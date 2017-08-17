@@ -8,7 +8,7 @@ export default class SelectorField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: null,
+      value: null,
     };
   }
 
@@ -24,7 +24,7 @@ export default class SelectorField extends Component {
 
   componentDidMount() {
     let state = {
-      selected: this.props.options[0].value,
+      value: this.props.options[0].value,
     };
     this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }
@@ -41,7 +41,7 @@ export default class SelectorField extends Component {
 
   onChange(event) {
     let state = {
-      selected: event.target.value,
+      value: event.target.value,
     };
     this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }

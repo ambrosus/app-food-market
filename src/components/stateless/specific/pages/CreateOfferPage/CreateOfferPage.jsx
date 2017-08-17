@@ -38,11 +38,7 @@ class CreateOfferPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      pricePerPackage: '',
-      category: '',
-      quality: '',
-      weight: '',
+      form: {},
     };
   }
 
@@ -61,13 +57,8 @@ class CreateOfferPage extends Component {
     reader.readAsDataURL(files[0]);
   }
 
-  getOfferData() {
-    let result = {};
-    return result;
-  }
-
   onSaveClick() {
-    this.props.onAdd(this.getOfferData(), this.image, this.props.address);
+    this.props.onAdd(this.state.form, this.image, this.props.address);
   };
 
   getCategories() {
@@ -80,8 +71,10 @@ class CreateOfferPage extends Component {
   }
 
   onChange(label, state) {
-    const newState = Object.assign({}, { [label]: state });
-    this.setState(newState);
+    const formState = Object.assign(this.state.form, { [label]: state.value });
+    this.setState({
+      form: formState,
+    });
   }
 
   render() {
@@ -94,7 +87,7 @@ class CreateOfferPage extends Component {
         </NavigationBar>
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
+          <TextField label="requirementsName" onChange={this.onChange.bind(this)} className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor

@@ -4,7 +4,8 @@ import Button from '../../../../generic/Button/Button';
 import { loadImage } from '../../../../../../utils/loadFromIPFS';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.scss';
-import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueFieldContainer
+  from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 
 export default class ProductItem extends Component {
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TransactionNotification.scss';
-import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
 export default class TransactionNotification extends Component {
@@ -35,8 +34,9 @@ export default class TransactionNotification extends Component {
     },
   };
 
-  render() {     
-    return (<div onClick={ (e) => this.props.onClick(e, this.props.address) } className={classnames(styles.notification, {
+  render() {
+    return (<div onClick={ (e) => this.props.onClick(e, this.props.address) }
+                 className={classnames(styles.notification, {
       [styles.unread]: !this.props.notification.isRead,
     })}>
       <div className={classnames(styles.typeIcon, {

@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMyAgreements(marketAddress));
   },
 
-  childrenData: (agreement) => [
+  productItemFieldValues: (agreement) => [
     { field: 'Status', value: agreement.status },
     { field: 'Value', value: `${(agreement.amount / 100).toFixed(2)} EUR tokens` },
   ],

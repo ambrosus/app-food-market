@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import Label from '../../../generic/Label/Label';
 import { updateBalance } from '../../../../../redux/actions/TokenAction';
-import MyOrdersHOC from '../../../../hoc/MyOrdersHOC';
 
 const mapStateToProps = state => ({
     balance: state.token.balance,
@@ -42,7 +41,6 @@ class ProfilePage extends Component {
         <NavigationBar title='Profile'/>
         <Label text={`Your balance: ${(this.props.balance / 100).toFixed(2)}`}/>
         <Label text={`Market address is: ${this.props.market.address}`} />
-        <MyOrdersHOC/>
       </div>
     );
   }

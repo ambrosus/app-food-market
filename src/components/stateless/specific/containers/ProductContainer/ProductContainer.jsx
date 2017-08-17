@@ -13,6 +13,7 @@ class ProductContainer extends Component {
       status: PropTypes.string,
     }),
     detailsPath: PropTypes.string,
+    productItemFieldValues: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -46,7 +47,7 @@ class ProductContainer extends Component {
           <ProductItem
             key={offer.address}
             offer={offer}
-            options={this.props.childrenData(offer)}
+            options={this.props.productItemFieldValues(offer)}
             detailsPath={this.props.detailsPath}
             moreDetailsAction={this.props.moreDetailsAction}
             buyAction={this.props.buyAction}

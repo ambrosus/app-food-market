@@ -25,7 +25,7 @@ export const buy = (marketAddress, offer, quantity, history) => async (dispatch)
       url: '',
     }));
     dispatch(hideModal());
-    history.push('profile');
+    history.push('orders');
   }).catch((reason) => {
     console.error(reason);
     dispatch(showModal('ErrorModal', { reason }));

@@ -37,6 +37,13 @@ class CreateOfferPage extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      pricePerPackage: '',
+      category: '',
+      quality: '',
+      weight: '',
+    };
   }
 
   onImageClick(e) {
@@ -72,20 +79,9 @@ class CreateOfferPage extends Component {
     return qualities.map((key) => ({ value: key }));
   }
 
-  onNameChange(label, state) {
-    console.log(label, state);
-  }
-
-  onCategorySelected(label, state) {
-    console.log(label, state);
-  }
-
-  onWeightChange(label, state) {
-    console.log(label, state);
-  }
-
-  onPriceChange(label, state) {
-    console.log(label, state);
+  onChange(label, state) {
+    const newState = Object.assign({}, { [label]: state });
+    this.setState(newState);
   }
 
   render() {
@@ -98,7 +94,7 @@ class CreateOfferPage extends Component {
         </NavigationBar>
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField label="name" onChange={this.onNameChange.bind(this)} className={styles.textField}/>
+          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
@@ -118,16 +114,15 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
-                             onChange={this.onCategorySelected.bind(this)}
+                             onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField text='Package weight (kg)' onChange={this.onWeightChange.bind(this)} label='weight'/>
-                <InputField text='Price per package (€)' onChange={this.onPriceChange.bind(this)}
-                            label='pricePerPackage'/>
+                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='weight'/>
+                <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
-                             onChange={this.onCategorySelected.bind(this)}
+                             onChange={this.onChange.bind(this)}
                              options={this.getQualities()}
                              label='quality'/>
               <span className={styles.paragraph}>or

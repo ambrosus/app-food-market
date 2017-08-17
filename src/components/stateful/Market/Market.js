@@ -16,7 +16,6 @@ const getData = (dispatch, address, qualities) => {
   dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
-
 };
 
 const mapStateToProps = state => ({
@@ -26,6 +25,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+
   onMount: (address, qualities) => {
     if (address) {
       getData(dispatch, address, qualities);

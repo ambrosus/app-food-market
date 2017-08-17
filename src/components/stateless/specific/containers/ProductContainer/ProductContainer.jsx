@@ -10,7 +10,8 @@ class ProductContainer extends Component {
   }
 
   render() {
-    let offers = this.props.offers;
+
+    /*let offers = this.props.offers;
     if (!this.props.market.address) {
       return (<p>Opsss.. No market yet.
         <Link to='/create-market'>
@@ -24,10 +25,10 @@ class ProductContainer extends Component {
     } else if (this.props.market.offers.length === 0) {
       return (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>);
     }
-
+*/
     return (
       <div className={styles.container}>
-        {offers.map((offer, index) =>
+        {this.props.market.offers.map((offer, index) =>
           <ProductItem
             key={offer.address}
             offer={offer}

@@ -1,4 +1,4 @@
-const token = (state = { token: null, balance: 0 }, action) => {
+const token = (state = { token: {}, balance: 0 }, action) => {
   switch (action.type) {
     case 'FETCH_TOKEN_SUCCESS':
       return { token: action.token, balance: 0 };

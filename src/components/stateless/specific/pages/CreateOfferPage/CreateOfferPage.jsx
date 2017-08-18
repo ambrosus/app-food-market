@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './CreateOfferPage.scss';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
@@ -6,67 +7,42 @@ import TextField from '../../../generic/TextField/TextField';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueField from '../../containers/AttributeValueFieldContainer/AttributeValueField';
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
-import validation from 'react-validation-mixin';
-import strategy from 'react-validatorjs-strategy';
 import Button from '../../../generic/Button/Button.jsx';
 
-const DECIMALS = 2;
+const parameters = [
+  { field: 'Origin', value: 'Norway' },
+  { field: 'Seller', value: 'Johnston Ltd.' },
+  { field: 'Anti-Biotics Free', value: 'Yes' },
+  { field: 'Method of Fishing', value: 'Line' },
+  { field: 'Fresh/ Frozen', value: 'Fresh' },
+  { field: 'Fresh/ Frozen', value: 'Fresh' },
+  { field: 'Wild/ Aquaculture', value: 'Wild' },
+  { field: 'Temperature', value: '0-4 Celsius' },
+];
 
 class CreateOfferPage extends Component {
 
+  static propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.string),
+    qualities: PropTypes.arrayOf(PropTypes.string),
+  };
+
+  static defaultProps = {
+    categories: ['None'],
+    qualities: [],
+  };
+
   constructor(props) {
     super(props);
-    this.validatorTypes = strategy.createSchema(
-
-      // Rules
-      {
-        name: 'required|min:3|max:30',
-        price: 'numeric',
-        weight: 'numeric',
-      },
-
-      // Messages
-      {
-        'required.name': 'You must specify the product name',
-        'min.name': 'Name must be not shorter than 3',
-        'max.name': 'Name must be not longer than 30',
-        numeric: 'This is not a number',
-      },
-    );
-    this.getValidatorData = this.getValidatorData.bind(this);
-    this.formFields = {};
-  }
-
-  componentDidMount() {
-    this.props.fetchAttributes(this.props.qualities[0], this.props.address);
-  }
-
-  componentWillUnmount() {
-    this.props.reset();
-  }
-
-  getValidatorData() {
-    return {
-      name: this.formFields.name.value,
-      price: this.formFields.pricePerUnit.value,
-      weight: this.formFields.packageWeight.value,
+    this.state = {
+      form: {},
     };
   }
 
-  getOfferData() {
-    let result = {};
-    for (let i in this.formFields) {
-      result[i] = this.formFields[i].value;
-    }
-
-    result.packageWeight *= 10 ** DECIMALS;
-    result.pricePerUnit *= 10 ** DECIMALS;
-    return result;
-  }
-
-  onImageClick() {
+  onImageClick(e) {
     this.refs.myFileInput.chooseFile();
   }
 
@@ -82,28 +58,22 @@ class CreateOfferPage extends Component {
   }
 
   onSaveClick() {
-    this.props.validate((err) => {
-      if (err)
-        return;
-      this.props.onAdd(
-        this.getOfferData(),
-        this.image,
-        this.props.address);
-    });
-  }
+    this.props.onAdd(this.state.form, this.image, this.props.address);
+  };
 
   getCategories() {
     return this.props.categories.map((key) => ({ value: key }));
   }
 
-  attributesToValueField() {
-    return this.props.requirements.map(attribute => {
-      const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);
-      const max = (attribute.max / (10 ** attribute.decimals)).toFixed(attribute.decimals);
-      return {
-        field: attribute.id,
-        value: `${min} – ${max}`,
-      };
+  getQualities() {
+    const qualities = this.props.qualities.length > 0 ? this.props.qualities : CreateOfferPage.defaultProps.qualities;
+    return qualities.map((key) => ({ value: key }));
+  }
+
+  onChange(label, state) {
+    const formState = Object.assign(this.state.form, { [label]: state.value });
+    this.setState({
+      form: formState,
     });
   }
 
@@ -115,13 +85,9 @@ class CreateOfferPage extends Component {
           <Button className={styles.saveButton}
                   onClick={() => this.onSaveClick()}>Save</Button>
         </NavigationBar>
-
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField className={styles.textField}
-                     inputRef={el => this.formFields.name = el}
-                     validate={this.props.handleValidation('name')}
-                     error={this.props.getValidationMessages('name')}/>
+          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
@@ -141,26 +107,25 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
-                             options={this.getCategories()} label='Category'
-                             inputRef={el => this.formFields.category = el}/>
+                             onChange={this.onChange.bind(this)}
+                             options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField label='Package weight (kg)'
-                            inputRef={el => this.formFields.packageWeight = el}
-                            validate={this.props.handleValidation('weight')}
-                            error={this.props.getValidationMessages('weight')}/>
-                <InputField label='Price per unit (€/kg)'
-                            inputRef={el => this.formFields.pricePerUnit = el}
-                            validate={this.props.handleValidation('price')}
-                            error={this.props.getValidationMessages('price')}/>
+                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='weight'/>
+                <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>
-              <SelectorField className={styles.selector} options={this.props.qualities.map(name => ({ value: name }))}
-                             inputRef={el => this.formFields.requirementsName = el}
-                             onChange={(val) => this.props.fetchAttributes(val, this.props.address)}
-                             label='Category'/>
-              <span className={styles.paragraph}>or <Link to='create-requirements'>create custom requirements</Link>
-                &nbsp;for quality</span>
-              <AttributeValueFieldContainer className={styles.properties} options={this.attributesToValueField()}/>
+              <SelectorField className={styles.selector}
+                             onChange={this.onChange.bind(this)}
+                             options={this.getQualities()}
+                             label='quality'/>
+              <span className={styles.paragraph}>or
+                <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
+                for quality</span>
+              <AttributeValueFieldContainer className={styles.properties}>
+                {parameters.map((element, index) => (
+                  <AttributeValueField key={index} field={element.field} value={element.value}/>),
+                )}
+              </AttributeValueFieldContainer>
             </div>
           </div>
         </div>
@@ -169,5 +134,4 @@ class CreateOfferPage extends Component {
   }
 }
 
-export default validation(strategy)(CreateOfferPage);
-
+export default CreateOfferPage;

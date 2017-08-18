@@ -1,21 +1,50 @@
 import React, { Component } from 'react';
-import cx from 'classnames';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import styles from './SelectorField.scss';
 
 export default class SelectorField extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  static propTypes = {
+    onChange: PropTypes.func,
+    options: PropTypes.array.isRequired,
+  };
+
   static defaultProps = {
     onChange: () => console.log('onChange is not defined'),
     options: [],
   };
 
+  componentDidMount() {
+    if (this.props.options.length > 0) {
+      let state = {
+        value: this.props.options[0].value,
+      };
+      this.setState(state, this.props.onChange.bind(this, this.props.label, state));
+    }
+  }
+
   render() {
     return (<div>
-      <select className={cx(styles.select, this.props.className)}
-              ref={this.props.inputRef}
-              onChange={(e) => this.props.onChange(e.target.value)}
+      <select className={classnames(styles.select, this.props.className)}
+              onChange={this.onChange.bind(this)}
               value={this.props.value}>
         {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
       </select>
     </div>);
+  }
+
+  onChange(event) {
+    let state = {
+      value: event.target.value,
+    };
+    this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }
 }

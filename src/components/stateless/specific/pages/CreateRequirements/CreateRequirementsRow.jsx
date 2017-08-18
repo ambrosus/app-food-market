@@ -51,7 +51,7 @@ class CreateRequirementsRow extends Component {
   onFieldChange() {
     let state = {
       id: this.refs.id.state.value,
-      type: this.refs.type.state.selected,
+      type: this.refs.type.state.value,
       decimals: this.refs.decimals.state.value,
       min: this.refs.min.state.value,
       max: this.refs.max.state.value,

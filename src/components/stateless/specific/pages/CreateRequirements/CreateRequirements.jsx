@@ -33,9 +33,18 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    console.log(this.state.name, this.state.form, this.props.address);
-    //this.props.onAdd(this.state.name, this.state.form, this.props.address);
+    this.props.onAdd(this.state.name, this.mapToArray(this.state.form), this.props.address);
   }
+
+  mapToArray(object) {
+    let result = [];
+    for (let key in object) {
+      if (object.hasOwnProperty(key)) {
+        result.push(object[key]);
+      }
+    }
+    return result;
+  };
 
   addRow() {
     let key = Date.now().toString();

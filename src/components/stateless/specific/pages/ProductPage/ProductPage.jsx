@@ -45,10 +45,6 @@ class ProductPage extends Component {
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
-  /*componentWillUnmount() {
-    this.props.reset();
-  }*/
-
   attributesToValueField() {
     return this.props.requirements.map(attribute => {
       const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);

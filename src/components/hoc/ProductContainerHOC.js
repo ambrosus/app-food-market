@@ -3,7 +3,6 @@ import ProductContainer from '../stateless/specific/containers/ProductContainer/
 import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/actions/MarketAction.js';
 import { selectOffer } from '../../redux/actions/OfferAction.js';
 import { fetchToken } from '../../redux/actions/TokenAction.js';
-import * as Cookies from 'js-cookie';
 
 const isFilterMatch = (offer, filters) => {
   let keys = Object.keys(filters).filter((key) => filters[key]);
@@ -29,12 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
   onMount: (address) => {
     if (address) {
       fetchMarketData(dispatch, address);
-    } else {
-      let addressFromCookies = Cookies.get('market_address', address);
-      if (addressFromCookies) {
-        dispatch(gotoMarket({ address: addressFromCookies }));
-        fetchMarketData(dispatch, addressFromCookies);
-      }
     }
   },
 

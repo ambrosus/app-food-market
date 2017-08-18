@@ -3,7 +3,6 @@ statusAddPendingTransaction,
 statusAddSuccessTransaction } from './TransactionStatusAction.js';
 import { hideModal, showModal } from './ModalAction.js';
 import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
-import * as Cookies from 'js-cookie';
 import Ambrosus from 'ambrosus';
 
 const requestAllOffers = () => ({
@@ -103,7 +102,6 @@ export const createMarket = (history) => async function (dispatch) {
                 address: myContract.marketContract.address,
               }));
             dispatch(hideModal());
-            Cookies.set('market_address', myContract.marketContract.address);
             dispatch(redirectToMarket(history));
           }).catch((err) => {
             dispatch(statusAddFailedTransaction(

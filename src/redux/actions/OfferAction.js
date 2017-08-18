@@ -51,7 +51,7 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
       url: '',
     }));
     dispatch(hideModal());
-    history.push('/market');
+    history.push('market');
   }).catch((reason) => {
     dispatch(showModal('ErrorModal', { reason }));
   });

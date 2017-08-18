@@ -19,6 +19,7 @@ class MarketPage extends Component {
   }
 
   static propTypes = {
+    filter: PropTypes.object,
     categories: PropTypes.array,
     qualities: PropTypes.array,
   };

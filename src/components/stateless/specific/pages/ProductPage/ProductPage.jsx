@@ -45,9 +45,9 @@ class ProductPage extends Component {
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
-  componentWillUnmount() {
+  /*componentWillUnmount() {
     this.props.reset();
-  }
+  }*/
 
   attributesToValueField() {
     return this.props.requirements.map(attribute => {
@@ -85,8 +85,10 @@ class ProductPage extends Component {
         <div className={cx(styles.column, styles.summaryColumn)}>
           {this.props.sidebar === 'summary' && <SummaryProduct offer={this.props.offer}
                                                                onApprove={this.props.approve}
-                                                               onReimburse={this.props.reject}/>}
-          {this.props.sidebar === 'progress' && <SummaryApprovedProduct/>}
+                                                               onReimburse={this.props.reject}
+                                                               history={this.props.history}/>}
+          {this.props.sidebar === 'progress' && <SummaryApprovedProduct offer={this.props.offer}
+                                                                        onReorder={this.props.reorder}/>}
           {this.props.sidebar === 'buy' && <BuyProduct offer={this.props.offer} onBuy={this.props.onBuy}/>}
         </div>
       </div>

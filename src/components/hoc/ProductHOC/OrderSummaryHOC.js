@@ -4,13 +4,13 @@ import { approve, reject } from '../../../redux/actions/PurchaseAction';
 
 const mapStateToProps = state => ({ offer: state.offer });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
   approve: (agreementAddress) => {
-    dispatch(approve(agreementAddress));
+    dispatch(approve(agreementAddress, ownProps.history));
   },
 
   reject: (agreementAddress) => {
-    dispatch(reject(agreementAddress));
+    dispatch(reject(agreementAddress, ownProps.history));
   },
 });
 

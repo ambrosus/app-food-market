@@ -14,11 +14,12 @@ class ProductContainer extends Component {
   };
 
   render() {
+    console.log(this.props)
     return (
       <div className={styles.container}>
         {this.props.products.map((offer, index) =>
           <ProductItem
-            key={Date.now()}
+            key={index}
             offer={offer}
             moreDetailsAction={this.props.moreDetailsAction}
             buyAction={this.props.buyAction}

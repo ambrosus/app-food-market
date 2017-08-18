@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import SelectorField from '../../../generic/SelectorField/SelectorField';

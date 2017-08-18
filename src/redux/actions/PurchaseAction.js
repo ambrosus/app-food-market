@@ -5,7 +5,6 @@ import {
   statusAddFailedTransaction,
 } from './TransactionStatusAction.js';
 import { showModal, hideModal } from './ModalAction.js';
-import { executeEthereumTransaction } from './TransactionAction.js';
 
 export const buy = (marketAddress, offer, quantity, history) => async (dispatch) => {
   let agreement = new Ambrosus.AgreementRepository(marketAddress);

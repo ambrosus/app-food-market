@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ConfirmBuyModal from '../../modals/ConfirmBuyModal/ConfirmBuyModal';
-import ErrorModal from '../../modals/ErrorModal/ErrorModal';
-import BalanceTooLowModal from '../../modals/BalanceTooLowModal/BalanceTooLowModal';
-import TransactionProgressModal from '../../modals/TransactionProgressModal/TransactionProgressModal';
 import { Route } from 'react-router-dom';
+import ConfirmBuyModalHOC from '../../../../hoc/ConfirmBuyModalHOC';
+import ErrorModalHOC from '../../../../hoc/ErrorModalHOC';
+import TransactionProgressModalHOC from '../../../../hoc/TransactionProgressModalHOC';
 
 class ModalContainer extends Component {
 
@@ -16,14 +15,14 @@ class ModalContainer extends Component {
   render() {
     if (this.props.name === 'ConfirmBuyModal')
       return (<Route render={({ history }) => (
-        <ConfirmBuyModal history={history}/>
+        <ConfirmBuyModalHOC history={history}/>
       )}/>);
     else if (this.props.name === 'ErrorModal')
-      return (<ErrorModal/>);
+      return (<ErrorModalHOC/>);
     else if (this.props.name === 'BalanceTooLowModal')
-      return (<BalanceTooLowModal/>);
+      return (<BalanceTooLowModalHOC/>);
     else if (this.props.name === 'TransactionProgressModal')
-      return (<TransactionProgressModal/>);
+      return (<TransactionProgressModalHOC/>);
     else
       return null;
   }

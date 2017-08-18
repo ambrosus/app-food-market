@@ -6,20 +6,8 @@ import AttributeValueFieldContainer
 from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import InputField from '../../../../generic/InputField/InputField';
 import Button from '../../../../generic/Button/Button';
-import { connect } from 'react-redux';
-import { showModal } from '../../../../../../redux/actions/ModalAction.js';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
-
-const mapStateToProps = state => ({
-    offer: state.offer,
-  });
-
-const mapDispatchToProps = (dispatch) => ({
-    onBuy: (offer, quantity) => {
-      dispatch(showModal('ConfirmBuyModal', { quantity }));
-    },
-  });
 
 class BuyProduct extends Component {
 
@@ -93,4 +81,4 @@ class BuyProduct extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(validation(strategy)(BuyProduct));
+export default validation(strategy)(BuyProduct);

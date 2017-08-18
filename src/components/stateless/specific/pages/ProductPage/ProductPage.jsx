@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from './ProductPage.scss';
 import cx from 'classnames';
@@ -10,23 +9,6 @@ import { loadImage } from '../../../../../utils/loadFromIPFS';
 import BuyProduct from './BuyProduct/BuyProduct';
 import SummaryApprovedProduct from './SummaryApprovedProduct/SummaryApprovedProduct';
 import SummaryProduct from './SummaryProduct/SummaryProduct';
-import { fetchAttributes } from '../../../../../redux/actions/AttributesAction.js';
-import { resetSelectedOffer } from '../../../../../redux/actions/OfferAction';
-
-const mapStateToProps = state => ({
-  requirements: state.requirementsAttributes,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getAttributes: (attributesAddress) => {
-    dispatch(fetchAttributes(attributesAddress));
-  },
-
-  reset: () => {
-    dispatch(resetSelectedOffer());
-  },
-
-});
 
 class ProductPage extends Component {
 
@@ -44,10 +26,6 @@ class ProductPage extends Component {
     loadImage(this.refs.image, this.props.offer.imageHash);
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
-
-  /*componentWillUnmount() {
-    this.props.reset();
-  }*/
 
   attributesToValueField() {
     return this.props.requirements.map(attribute => {
@@ -96,5 +74,5 @@ class ProductPage extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
+export default ProductPage;
 

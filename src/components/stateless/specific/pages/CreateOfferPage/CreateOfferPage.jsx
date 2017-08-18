@@ -38,7 +38,13 @@ class CreateOfferPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: {},
+      form: {
+        category: '',
+        name: '',
+        weight: '',
+        pricePerPage: '',
+        quality: '',
+      },
     };
   }
 

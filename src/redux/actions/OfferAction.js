@@ -16,6 +16,7 @@ const uploadToIPFS = async (ipfs, image) => {
 export const resetSelectedOffer = () => ({ type: 'RESET_SELECTED' });
 
 export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
+
   if (offer.requirementsName === 'None') {
     delete offer.requirementsName;
   }

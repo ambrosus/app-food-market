@@ -94,17 +94,23 @@ export const createMarket = (history) => async function (dispatch) {
             dispatch(createMarketResponse(transactionHash));
             dispatch(showModal('TransactionProgressModal', { title: 'Creating market' }));
           }).then((myContract) => {
+            console.log(myContract);
+
             dispatch(statusAddSuccessTransaction({
                 address: temporaryHashCode,
                 caption: 'Creating contract',
                 url: '/market',
               }));
+
             dispatch(createMarketSuccess({
                 address: myContract.marketContract.address,
               }));
+
             dispatch(hideModal());
+
             Cookies.set('market_address', myContract.marketContract.address);
             dispatch(redirectToMarket(history));
+
           }).catch((err) => {
             dispatch(statusAddFailedTransaction(
                 {
@@ -136,7 +142,7 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
               }));
             dispatch(successCreateRequirement(requirements.contract.address));
             dispatch(hideModal());
-            dispatch(redirectToMarket(history));
+            dispatch(gotoMarket(marketAddress));
           }).catch((err) => {
             console.error(err);
             dispatch(statusAddFailedTransaction({
@@ -148,7 +154,7 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
       };
 
 export const redirectToMarket = (history) => async function (dispatch) {
-        history.push('market');
+        // history.push('market');
       };
 
 export const getAllOffers = (address) => async function (dispatch) {

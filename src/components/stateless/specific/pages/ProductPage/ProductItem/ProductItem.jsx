@@ -42,12 +42,12 @@ export default class ProductItem extends Component {
       <span className={styles.category}>{category}</span>
       <div className={styles.info}>
         <h1 className={styles.title}>{name}</h1>
-        <AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>
-        <Link className={styles.link} to={this.props.detailsPath}>
+        {/*<AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>*/}
+        {/*<Link className={styles.link} to={this.props.detailsPath}>*/}
           <Button onClick={() => this.props.buyAction(this.props.offer)} className={styles.button}>
             More details
           </Button>
-        </Link>
+        {/*</Link>*/}
       </div>
     </article>);
   }

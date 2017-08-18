@@ -22,7 +22,9 @@ class MarketPage extends Component {
     filter: PropTypes.object,
     categories: PropTypes.array,
     qualities: PropTypes.array,
+    offers: PropTypes.array.isRequired,
     fetchOffers: PropTypes.func.isRequired,
+    moreDetailsAction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -30,7 +32,7 @@ class MarketPage extends Component {
     qualities: [],
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchOffers(this.props.address, this.props.qualities);
   }
 
@@ -46,14 +48,6 @@ class MarketPage extends Component {
 
   getQualities() {
     return this.props.qualities.map(name => ({ value: name }));
-  }
-
-  renderEmpty() {
-    return (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>);
-  }
-
-  renderOffers() {
-    return (<ProductContainer products={this.props.offers} />);
   }
 
   render() {
@@ -74,7 +68,9 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        {this.props.offers.length > 0 ? this.renderOffers() : this.renderEmpty()}
+        {this.props.offers.length > 0 ?
+          <ProductContainer moreDetailsAction={this.props.moreDetailsAction} products={this.props.offers} /> :
+          (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );
   }

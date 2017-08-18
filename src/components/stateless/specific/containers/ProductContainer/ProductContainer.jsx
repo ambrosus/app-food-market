@@ -7,23 +7,22 @@ class ProductContainer extends Component {
 
   static propTypes = {
     products: PropTypes.array,
+    moreDetailsAction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     products: [],
+    moreDetailsAction: () => {},
   };
 
   render() {
-    console.log(this.props)
     return (
       <div className={styles.container}>
         {this.props.products.map((offer, index) =>
           <ProductItem
             key={index}
             offer={offer}
-            moreDetailsAction={this.props.moreDetailsAction}
-            buyAction={this.props.buyAction}
-          />)}
+            moreDetailsAction={this.props.moreDetailsAction} />)}
       </div>
     );
   }

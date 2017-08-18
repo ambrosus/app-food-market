@@ -109,7 +109,6 @@ export const createMarket = (history) => async function (dispatch) {
             dispatch(hideModal());
 
             Cookies.set('market_address', myContract.marketContract.address);
-            dispatch(redirectToMarket(history));
 
           }).catch((err) => {
             dispatch(statusAddFailedTransaction(
@@ -153,11 +152,8 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
           });
       };
 
-export const redirectToMarket = (history) => async function (dispatch) {
-        // history.push('market');
-      };
-
 export const getAllOffers = (address) => async function (dispatch) {
+        console.log('getting offers', address);
         dispatch(requestAllOffers());
         await waitForAmbrosus();
         const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);

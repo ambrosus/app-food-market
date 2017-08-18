@@ -4,8 +4,7 @@ import Button from '../../../../generic/Button/Button';
 import { loadImage } from '../../../../../../utils/loadFromIPFS';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.scss';
-import AttributeValueFieldContainer
-  from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 
 export default class ProductItem extends Component {
 
@@ -21,6 +20,7 @@ export default class ProductItem extends Component {
   };
 
   static defaultProps = {
+    detailsPath: '',
     image: '/static/images/placeholder.png',
     moreDetailsAction: () => {
       console.warn('Warning: More details action is not defined');
@@ -42,12 +42,12 @@ export default class ProductItem extends Component {
       <span className={styles.category}>{category}</span>
       <div className={styles.info}>
         <h1 className={styles.title}>{name}</h1>
-        {/*<AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>*/}
-        {/*<Link className={styles.link} to={this.props.detailsPath}>*/}
-          <Button onClick={() => this.props.buyAction(this.props.offer)} className={styles.button}>
+        <AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>
+        <Link className={styles.link} to={this.props.detailsPath}>
+          <Button onClick={()=>this.props.moreDetailsAction(this.props.offer)} className={styles.button}>
             More details
           </Button>
-        {/*</Link>*/}
+        </Link>
       </div>
     </article>);
   }

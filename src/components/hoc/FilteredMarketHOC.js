@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import MarketPage from '../stateless/specific/pages/MarketPage/MarketPage.jsx';
+import MarketHOC from './MarketHOC';
 
 const mapStateToProps = (state) => ({
   filter: state.market.filter,
@@ -8,4 +8,4 @@ const mapStateToProps = (state) => ({
   qualities: state.market.qualities.concat(['All']),
 });
 
-export default connect(mapStateToProps)(MarketPage);
+export default connect(mapStateToProps)(MarketHOC);

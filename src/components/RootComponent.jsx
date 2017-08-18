@@ -5,9 +5,9 @@ import PageContainer from './stateless/specific/containers/PageContainer/PageCon
 
 import { Provider } from 'react-redux';
 import store from '../redux/stores/store';
-import ModalContainer from './stateless/specific/containers/ModalContainer/ModalContainer';
 import { BrowserHistory } from 'react-history';
 
+import ModalContainerHOC from './hoc/ModalContainerHOC';
 import CreateMarketContainerHOC from './hoc/CreateMarketContainer';
 import ProfileHOC from './hoc/ProfileHOC';
 import WelcomeHOC from './hoc/WelcomeHOC.js';
@@ -16,9 +16,8 @@ import CreateRequirementsHOC from '../components/hoc/CreateRequirementsHOC';
 import OrderSummaryHOC from './hoc/OrderSummaryHOC';
 import BuyProductHOC from './hoc/BuyProductHOC';
 import ApprovedOrderHOC from './hoc/ApprovedOrderHOC';
-import FilteredMarketPageHOC from './hoc/FilteredMarketPageHOC';
+import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
-
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
@@ -30,7 +29,7 @@ export default class RootComponent extends Component {
               <HeaderContainer/>
               <Route exact path='/' component={WelcomeHOC}/>
               <Route exact path='/create-market' component={CreateMarketContainerHOC}/>
-              <Route exact path='/market' component={FilteredMarketPageHOC}/>
+              <Route exact path='/market' component={FilteredMarketHOC}/>
               <Route exact path='/orders' component={MyOrdersHOC}/>
               <Route exact path='/profile' component={ProfileHOC}/>
               <Route exact path='/product' component={OrderSummaryHOC}/>
@@ -39,7 +38,7 @@ export default class RootComponent extends Component {
               <Route exact path='/product-buy' component={BuyProductHOC}/>
               <Route exact path='/create-offer' component={CreateOfferHOC}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
-              <ModalContainer/>
+              <ModalContainerHOC/>
             </PageContainer>
         </Router>
       </Provider>);

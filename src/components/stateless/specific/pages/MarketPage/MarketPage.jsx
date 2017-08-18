@@ -22,12 +22,17 @@ class MarketPage extends Component {
     filter: PropTypes.object,
     categories: PropTypes.array,
     qualities: PropTypes.array,
+    fetchOffers: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     categories: [],
     qualities: [],
   };
+
+  componentDidMount() {
+    this.props.fetchOffers(this.props.address, this.props.qualities);
+  }
 
   onChange(label, state) {
     this.setState({

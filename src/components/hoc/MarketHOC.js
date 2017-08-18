@@ -12,13 +12,13 @@ const isFilterMatch = (offer, filters) => {
 
 const filteredOffers = (offers, filters) => offers.filter((offer) => isFilterMatch(offer, filters));
 
-const getData = (dispatch, address, qualities) => {
+const getData = (dispatch, address) => {
   dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   market: state.market,
   qualities: state.market.qualities,
   offers: filteredOffers(state.market.offers, state.market.filter),
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onMount: (address, qualities) => {
+  fetchOffers: (address, qualities) => {
     if (address) {
       getData(dispatch, address, qualities);
     } else {

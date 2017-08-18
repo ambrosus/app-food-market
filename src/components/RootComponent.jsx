@@ -15,6 +15,7 @@ import { BrowserHistory } from 'react-history';
 import CreateRequirementsHOC from '../components/hoc/CreateRequirementsHOC';
 import OrderSummaryHOC from './hoc/ProductHOC/OrderSummaryHOC';
 import BuyProductHOC from './hoc/ProductHOC/BuyProductHOC';
+import ApprovedOrderHOC from './hoc/ProductHOC/ApprovedOrderHOC';
 
 require('./RootComponent.scss');
 
@@ -32,6 +33,7 @@ export default class RootComponent extends Component {
               <Route exact path='/profile' component={ProfilePage}/>
               <Route exact path='/product' component={OrderSummaryHOC}/>
               <Route exact path='/product-info' component={OrderSummaryHOC}/>
+              <Route exact path='/approved' component={ApprovedOrderHOC}/>
               <Route exact path='/product-buy' component={BuyProductHOC}/>
               <Route exact path='/create-offer' component={CreateOffer}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>

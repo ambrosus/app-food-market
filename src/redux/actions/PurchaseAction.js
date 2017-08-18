@@ -37,7 +37,7 @@ export const buy = (marketAddress, offer, quantity, history) => async (dispatch)
   });
 };
 
-export const approve = (agreementAddress) => async (dispatch) => {
+export const approve = (agreementAddress, history) => async (dispatch) => {
   dispatch(showModal('TransactionProgressModal', { title: 'Approve transaction' }));
   let agreement = await new Ambrosus.AgreementRepository().fromAddress(agreementAddress);
   let transactionHash = '';
@@ -55,6 +55,7 @@ export const approve = (agreementAddress) => async (dispatch) => {
       url: '',
     }));
     dispatch(hideModal());
+    history.push('orders');
   }).catch((reason) => {
     dispatch(showModal('ErrorModal', { reason }));
     dispatch(statusAddFailedTransaction({
@@ -65,7 +66,7 @@ export const approve = (agreementAddress) => async (dispatch) => {
   });
 };
 
-export const reject = (agreementAddress) => async (dispatch) => {
+export const reject = (agreementAddress, history) => async (dispatch) => {
   dispatch(showModal('TransactionProgressModal', { title: 'Reimburse transaction' }));
   let agreement = await new Ambrosus.AgreementRepository().fromAddress(agreementAddress);
   let transactionHash = '';
@@ -83,6 +84,7 @@ export const reject = (agreementAddress) => async (dispatch) => {
       url: '',
     }));
     dispatch(hideModal());
+    history.push('orders');
   }).catch((reason) => {
     dispatch(showModal('ErrorModal', { reason }));
     dispatch(statusAddFailedTransaction({

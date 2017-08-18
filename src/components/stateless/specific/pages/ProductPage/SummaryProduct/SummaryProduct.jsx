@@ -8,6 +8,12 @@ import Button from '../../../../generic/Button/Button';
 
 class SummaryProduct extends Component {
 
+  componentDidMount() {
+    if (this.props.offer.status !== 'In progress') {
+      this.props.history.replace('approved');
+    }
+  }
+
   static propTypes = {
     offer: PropTypes.shape({
       pricePerUnit: PropTypes.number,

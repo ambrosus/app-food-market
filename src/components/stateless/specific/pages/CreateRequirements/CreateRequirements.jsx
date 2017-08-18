@@ -9,6 +9,7 @@ import strategy from 'react-validatorjs-strategy';
 import ValidatedTextField from '../../../generic/ValidatedTextField/ValidatedTextField';
 import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
+import utils from '../../../../../utils/utils';
 
 class CreateRequirements extends Component {
 
@@ -17,9 +18,7 @@ class CreateRequirements extends Component {
     this.state = {
       name: '',
       rows: [],
-      form: {
-
-      },
+      form: {},
     };
   };
 
@@ -33,18 +32,8 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    this.props.onAdd(this.state.name, this.mapToArray(this.state.form), this.props.address);
+    this.props.onAdd(this.state.name, utils.mapToArray(this.state.form), this.props.address);
   }
-
-  mapToArray(object) {
-    let result = [];
-    for (let key in object) {
-      if (object.hasOwnProperty(key)) {
-        result.push(object[key]);
-      }
-    }
-    return result;
-  };
 
   addRow() {
     let key = Date.now().toString();

@@ -1,21 +1,38 @@
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import Market from '../../../../hoc/ProductContainerHOC.js';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import Button from '../../../generic/Button/Button';
 import Label from '../../../generic/Label/Label';
 import styles from './MarketPage.scss';
-import { connect } from 'react-redux';
-
-const mapStateToProps = (state) => ({
-    categories: ['All'].concat(state.categories),
-    qualities: ['All'].concat(state.market.qualities),
-  });
-
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+import ProductContainer from '../../containers/ProductContainer/ProductContainer';
 
 class MarketPage extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCategory: this.props.categories[0],
+      selectedQuality: this.props.qualities[0],
+    };
+  }
+
+  static propTypes = {
+    categories: PropTypes.array,
+    qualities: PropTypes.array,
+  };
+
+  static defaultProps = {
+    categories: [],
+    qualities: [],
+  };
+
+  onChange(label, state) {
+    this.setState({
+      [label]: state.value,
+    });
+  }
 
   getCategories() {
     return this.props.categories.map(key => ({ value: key }));
@@ -25,28 +42,36 @@ class MarketPage extends Component {
     return this.props.qualities.map(name => ({ value: name }));
   }
 
+  renderEmpty() {
+    return (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>);
+  }
+
+  renderOffers() {
+    return (<ProductContainer products={this.props.offers} />);
+  }
+
   render() {
     return (
       <div>
         <NavigationBar title='Market'>
           <Label text='Quality:'/>
           <SelectorField className={styles.selector} options={this.getQualities()}
-                         label='Quality' onChange={this.props.qualityChange}
-                         value={this.props.filter.quality}/>
+                         label='selectedQuality' onChange={this.onChange.bind(this)}
+                         value={this.state.selectedQuality}/>
           <Label text='Categories:'/>
-          <SelectorField className={styles.selector} options={this.getCategories()} label='Category'
-                         onChange={this.props.categoryChange}
-                         value={this.props.filter.category}/>
+          <SelectorField className={styles.selector} options={this.getCategories()}
+                         label='selectedCategory'
+                         onChange={this.onChange.bind(this)}
+                         value={this.state.selectedCategory}/>
           <Link className='navigation__link' to='/create-offer'><Button
             className='navigation__create-offer-button'>
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        <Market/>
+        {this.props.offers.length > 0 ? this.renderOffers() : this.renderEmpty()}
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);
-
+export default MarketPage;

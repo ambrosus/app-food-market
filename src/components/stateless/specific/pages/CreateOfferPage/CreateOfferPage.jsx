@@ -110,7 +110,7 @@ class CreateOfferPage extends Component {
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} tex='weight'/>
+                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='weight'/>
                 <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>

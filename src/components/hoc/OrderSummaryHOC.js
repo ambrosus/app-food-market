@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ProductPage from '../../stateless/specific/pages/ProductPage/ProductPage';
-import { approve, reject } from '../../../redux/actions/PurchaseAction';
+import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
+import { approve, reject } from '../../redux/actions/PurchaseAction';
 
 const mapStateToProps = state => ({ offer: state.offer });
 

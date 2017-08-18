@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import ProductContainer from '../stateless/specific/containers/ProductContainer/ProductContainer';
 import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/actions/MarketAction.js';
 import { selectOffer } from '../../redux/actions/OfferAction.js';
 import { fetchToken } from '../../redux/actions/TokenAction.js';
 import * as Cookies from 'js-cookie';
+import MarketPage from '../stateless/specific/pages/MarketPage/MarketPage';
 
 const isFilterMatch = (offer, filters) => {
   let keys = Object.keys(filters).filter((key) => filters[key]);
@@ -12,11 +12,10 @@ const isFilterMatch = (offer, filters) => {
 
 const filteredOffers = (offers, filters) => offers.filter((offer) => isFilterMatch(offer, filters));
 
-const fetchMarketData = (dispatch, address) => {
+const getData = (dispatch, address, qualities) => {
   dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
-
 };
 
 const mapStateToProps = state => ({
@@ -26,22 +25,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onMount: (address) => {
+
+  onMount: (address, qualities) => {
     if (address) {
-      fetchMarketData(dispatch, address);
+      getData(dispatch, address, qualities);
     } else {
       let addressFromCookies = Cookies.get('market_address', address);
       if (addressFromCookies) {
         dispatch(gotoMarket({ address: addressFromCookies }));
-        fetchMarketData(dispatch, addressFromCookies);
+        getData(dispatch, addressFromCookies, qualities);
       }
     }
   },
-
-  productItemFieldValues: (offer) => [
-    { field: 'Price', value: '€' + offer.pricePerUnit / 100.0 + '/kg' },
-    { field: 'Seller', value: offer.seller.slice(0, 10) + '...' },
-  ],
 
   buyAction: (offer) => {
     dispatch(selectOffer(offer));
@@ -52,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);

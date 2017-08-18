@@ -121,11 +121,7 @@ class CreateOfferPage extends Component {
               <span className={styles.paragraph}>or
                 <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
                 for quality</span>
-              <AttributeValueFieldContainer className={styles.properties}>
-                {parameters.map((element, index) => (
-                  <AttributeValueField key={index} field={element.field} value={element.value}/>),
-                )}
-              </AttributeValueFieldContainer>
+              <AttributeValueFieldContainer options={parameters} className={styles.properties} />
             </div>
           </div>
         </div>

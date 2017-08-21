@@ -28,16 +28,15 @@ export const resetSelectedOffer = () => ({
 });
 
 export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
+
   if (image) {
     dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
     withIPFS(async (ipfs) => {
       offer.imageHash = await uploadToIPFS(ipfs, image);
       dispatch(hideModal('TransactionProgressModal'));
     });
-  }
-
-  dispatch(doCreateOffer(offer, marketAddress, history));
-};
+    dispatch(doCreateOffer(offer, marketAddress, history));
+  }};
 
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);

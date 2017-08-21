@@ -11,12 +11,18 @@ class ConfirmBuyModal extends Component {
   static defaultProps = {
     visible: false,
     quantity: 1,
+    onCancel: () => {
+      console.info('onCancel not defined in ', ConfirmBuyModal);
+    },
+
+    onConfirm: () => {
+      console.info('onConfirm not defined in ', ConfirmBuyModal);
+    },
   };
 
   static propTypes = {
-    visible: PropTypes.bool,
-    onCancel: PropTypes.func.isRequired,
-    onConfirm: PropTypes.func.isRequired,
+    onCancel: PropTypes.func,
+    onConfirm: PropTypes.func,
   };
 
   total() {

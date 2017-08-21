@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import { selectOffer } from '../../redux/actions/OfferAction.js';
 import MarketPage from '../stateless/specific/pages/MarketPage/MarketPage';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   market: state.market,
-  qualities: state.market.qualities,
   offers: state.market.offers,
   moreDetailsPath: '/product-buy',
+  ...ownProps,
 });
 
 const mapDispatchToProps = (dispatch) => ({

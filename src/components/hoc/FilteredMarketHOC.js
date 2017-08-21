@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
   filter: state.market.filter,
   offers: state.market.offers,
   categories: state.categories,
-  qualities: state.market.qualities.concat(['All']),
+  qualities: state.market.qualities,
 });
 
 const mapDispatchToProps = (dispatch) => ({

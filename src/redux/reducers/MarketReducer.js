@@ -2,7 +2,6 @@ const DEFAULT_STATE = {
   offers: [],
   address: '',
   status: 'No market',
-  filter: {},
   requirements: [],
   agreements: [],
 };

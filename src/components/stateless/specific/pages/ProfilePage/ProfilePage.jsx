@@ -9,11 +9,6 @@ class ProfilePage extends Component {
     token: PropTypes.object,
   };
 
-  static defaultProps = {
-    balance: 0,
-    token: {},
-  };
-
   componentDidMount() {
     this.props.refreshBalance(this.props.marketAddress);
   }
@@ -23,7 +18,6 @@ class ProfilePage extends Component {
       <div>
         <NavigationBar title='Profile'/>
         <p>{`Your balance: ${(this.props.balance / 100).toFixed(2)}`}</p>
-        <p>{`Your token: ${(this.props.token)}`}</p>
       </div>
     );
   }

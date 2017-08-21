@@ -43,11 +43,6 @@ export const createMarketFailed = (reason) => ({
         reason,
       });
 
-export const gotoMarket = ({ address }) => ({
-        type: 'GOTO_MARKET',
-        address,
-      });
-
 export const requestCreateRequirement = () => ({
         type: 'CREATE_REQUIREMENT_REQUEST',
       });

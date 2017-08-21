@@ -14,14 +14,14 @@ class MarketPage extends Component {
     super(props);
     this.state = {
       selectedCategory: this.props.categories[0],
-      selectedQuality: this.props.qualities[0],
+      selectedRequirement: this.props.requirements[0],
     };
   }
 
   static propTypes = {
     filter: PropTypes.object,
     categories: PropTypes.array,
-    qualities: PropTypes.array,
+    requirements: PropTypes.array,
     offers: PropTypes.array.isRequired,
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ class MarketPage extends Component {
   };
 
   componentWillMount() {
-    this.props.fetchOffers(this.props.address, this.props.qualities);
+    this.props.fetchOffers(this.props.address, this.props.requirements);
   }
 
   onChange(label, state) {
@@ -47,8 +47,8 @@ class MarketPage extends Component {
     return this.props.categories.map(key => ({ value: key }));
   }
 
-  getQualities() {
-    return this.props.qualities.map(name => ({ value: name }));
+  getRequirements() {
+    return this.props.requirements.map(name => ({ value: name }));
   }
 
   render() {
@@ -56,9 +56,9 @@ class MarketPage extends Component {
       <div>
         <NavigationBar title='Market'>
           <Label text='Quality:'/>
-          <SelectorField className={styles.selector} options={this.getQualities()}
-                         label='selectedQuality' onChange={this.onChange.bind(this)}
-                         value={this.state.selectedQuality}/>
+          <SelectorField className={styles.selector} options={this.getRequirements()}
+                         label='selectedRequirement' onChange={this.onChange.bind(this)}
+                         value={this.state.selectedRequirement}/>
           <Label text='Categories:'/>
           <SelectorField className={styles.selector} options={this.getCategories()}
                          label='selectedCategory'

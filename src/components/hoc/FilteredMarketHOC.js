@@ -4,38 +4,20 @@ import { fetchToken } from '../../redux/actions/TokenAction';
 import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/actions/MarketAction';
 import Cookies from 'js-cookie';
 
-const getData = (dispatch, address) => {
-  dispatch(getAllOffers(address));
-  dispatch(getAllRequirements(address));
-};
-
-const isFilterMatch = (offer, filters) => {
-  let keys = Object.keys(filters).filter((key) => filters[key]);
-  return keys.every((key) => offer[key] === filters[key]);
-};
-
 const mapStateToProps = (state) => ({
   filter: state.market.filter,
   offers: state.market.offers,
   categories: ['All', ...state.categories],
-  qualities: ['All', ...state.market.qualities],
+  requirements: ['All', ...state.market.requirements],
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
-  fetchOffers: (address, qualities) => {
-    if (address) {
-      getData(dispatch, address, qualities);
-    } else {
-      let addressFromCookies = Cookies.get('market_address', address);
-      if (addressFromCookies) {
-        dispatch(gotoMarket({ address: addressFromCookies }));
-        getData(dispatch, addressFromCookies, qualities);
-      }
-    }
+  fetchOffers: ($address) => {
+    let address = Cookies.get('market_address', $address) || $address;
+    dispatch(getAllOffers(address));
+    dispatch(getAllRequirements(address));
   },
-
-  filteredOffers: (offers, filters) => (offers.filter((offer) => isFilterMatch(offer, filters))),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketHOC);

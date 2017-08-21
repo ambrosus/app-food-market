@@ -34,15 +34,17 @@ export const createOffer = (offer, image, marketAddress, history) => async funct
       offer.imageHash = await uploadToIPFS(ipfs, image);
       dispatch(hideModal('TransactionProgressModal'));
     });
-    dispatch(doCreateOffer(offer, marketAddress, history));
-  }};
+  }
+
+  dispatch(doCreateOffer(offer, marketAddress, history));
+};
 
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
   let market = await new Ambrosus.MarketRepository().fromAddress(address);
-  if (offer.requirementsName) {
+  if (offer.quality) {
     let requirementsRepository = new Ambrosus.RequirementsRepository();
-    let requirements = await requirementsRepository.findQualityByName(offer.requirementsName, market);
+    let requirements = await requirementsRepository.findQualityByName(offer.quality, market);
     offer.requirementsAddress = requirements.getAddress();
   }
 

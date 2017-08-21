@@ -25,7 +25,7 @@ class ProductPage extends Component {
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
 
-    // this.props.getAttributes(this.props.offer.requirementsAddress);
+    this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
   attributesToValueField() {
@@ -40,7 +40,6 @@ class ProductPage extends Component {
   }
 
   render() {
-
     const parameters = [
       { field: 'Category', value: this.props.offer.category },
       { field: 'Seller', value: this.props.offer.seller },

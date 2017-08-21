@@ -24,7 +24,7 @@ class CreateRequirements extends Component {
 
   static propTypes = {
     address: PropTypes.string.isRequired,
-    onAdd: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
   };
 
   onCancel() {
@@ -32,7 +32,7 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    this.props.onAdd(this.state.name, utils.mapToArray(this.state.form), this.props.address);
+    this.props.onSave(this.state.name, utils.mapToArray(this.state.form), this.props.address);
   }
 
   addRow() {

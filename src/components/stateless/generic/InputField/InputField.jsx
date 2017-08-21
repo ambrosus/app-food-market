@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 export default class InputField extends Component {
 
   static propTypes = {
-    text: PropTypes.string,
+    text: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.string.isRequired,
   };
 
   onChange() {

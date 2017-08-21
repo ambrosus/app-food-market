@@ -9,7 +9,7 @@ const mergeAgreementWithOffer = (agreements) => (
 
 const mapStateToProps = (state) => ({
   marketAddress: state.market.address,
-  orders: mergeAgreementWithOffer(state.market.agreements),
+  orders: mergeAgreementWithOffer(state.market.orders),
 });
 
 const mapDispatchToProps = (dispatch) => ({

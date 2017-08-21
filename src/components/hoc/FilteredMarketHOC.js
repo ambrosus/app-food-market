@@ -5,7 +5,6 @@ import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/action
 import Cookies from 'js-cookie';
 
 const mapStateToProps = (state) => ({
-  filter: state.market.filter,
   offers: state.market.offers,
   categories: ['All', ...state.categories],
   requirements: ['All', ...state.market.requirements],

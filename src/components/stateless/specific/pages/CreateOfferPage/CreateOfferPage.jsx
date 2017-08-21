@@ -19,23 +19,18 @@ class CreateOfferPage extends Component {
 
   static propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string),
-    qualities: PropTypes.arrayOf(PropTypes.string),
-  };
-
-  static defaultProps = {
-    categories: ['None'],
-    qualities: [],
+    requirements: PropTypes.arrayOf(PropTypes.string),
   };
 
   constructor(props) {
     super(props);
     this.state = {
       form: {
-        name: '',
-        category: '',
-        packageWeight: '',
-        pricePerPackage: '',
-        quality: '',
+        name: null,
+        category: null,
+        packageWeight: null,
+        pricePerPackage: null,
+        requirement: null,
       },
     };
   }
@@ -66,9 +61,8 @@ class CreateOfferPage extends Component {
     return this.props.categories.map((key) => ({ value: key }));
   }
 
-  getQualities() {
-    const qualities = this.props.qualities.length > 0 ? this.props.qualities : CreateOfferPage.defaultProps.qualities;
-    return qualities.map((key) => ({ value: key }));
+  getRequirements() {
+    return this.props.requirements.map((key) => ({ value: key }));
   }
 
   onChange(label, state) {
@@ -125,6 +119,8 @@ class CreateOfferPage extends Component {
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
+                             options={this.getRequirements()}
+                             label='requirement'/>
                              onChange={(label, state) => {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);

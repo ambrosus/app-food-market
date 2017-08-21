@@ -1,9 +1,9 @@
 const DEFAULT_STATE = {
   offers: [],
-  address: '',
   status: 'No market',
+  address: '',
   requirements: [],
-  agreements: [],
+  orders: [],
 };
 
 const market = (

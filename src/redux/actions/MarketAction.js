@@ -43,12 +43,16 @@ export const createMarketFailed = (reason) => ({
         reason,
       });
 
-export const requestCreateRequirement = () => ({
+export const requestCreateRequirement = (name, requirement) => ({
         type: 'CREATE_REQUIREMENT_REQUEST',
+        data: {
+          name: name,
+          requirement,
+        },
       });
 
 export const responseCreateRequirement = (address) => ({
-        type: 'CREATE_REQUIREMENT_RESPONCE',
+        type: 'CREATE_REQUIREMENT_RESPONSE',
         address,
       });
 

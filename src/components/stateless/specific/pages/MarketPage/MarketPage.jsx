@@ -47,6 +47,11 @@ class MarketPage extends Component {
     return this.props.requirements.map(name => ({ value: name }));
   }
 
+  getFilteredOffers() {
+    return this.props.offers.filter(offer => offer.category === this.state.selectedCategory)
+                            .filter(offer => !offer.quality ? true : offer.quality === this.state.selectedRequirement);
+  }
+
   render() {
     return (
       <div>
@@ -65,7 +70,7 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        {this.props.offers.length > 0 ?
+        { this.getFilteredOffers().length > 0 ?
           <ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
                             products={this.props.offers} /> :

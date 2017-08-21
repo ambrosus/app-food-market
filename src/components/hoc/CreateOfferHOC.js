@@ -18,6 +18,7 @@ function attributesToValueField(attributes) {
 const mapStateToProps = (state) => ({
   address: state.market.address,
   categories: state.categories,
+  requirements: state.market.requirements,
   qualities: state.market.qualities,
   attributesValueField: attributesToValueField(state.requirementsAttributes),
 });

@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
 import { approve, reject } from '../../redux/actions/PurchaseAction';
 
-const mapStateToProps = state => ({ offer: state.offer });
+const mapStateToProps = state => ({
+  offer: state.offer,
+  requirements: state.requirementsAttributes,
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   approve: (agreementAddress) => {

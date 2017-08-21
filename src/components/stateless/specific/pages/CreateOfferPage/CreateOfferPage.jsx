@@ -10,17 +10,7 @@ import AttributeValueFieldContainer from '../../containers/AttributeValueFieldCo
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
 import Button from '../../../generic/Button/Button.jsx';
-
-const parameters = [
-  { field: 'Origin', value: 'Norway' },
-  { field: 'Seller', value: 'Johnston Ltd.' },
-  { field: 'Anti-Biotics Free', value: 'Yes' },
-  { field: 'Method of Fishing', value: 'Line' },
-  { field: 'Fresh/ Frozen', value: 'Fresh' },
-  { field: 'Fresh/ Frozen', value: 'Fresh' },
-  { field: 'Wild/ Aquaculture', value: 'Wild' },
-  { field: 'Temperature', value: '0-4 Celsius' },
-];
+import { fetchAttributes } from '../../../../../redux/actions/AttributesAction';
 
 const PRICE_DECIMALS = 2;
 const WEIGHT_DECIMALS = 2;
@@ -93,6 +83,10 @@ class CreateOfferPage extends Component {
     });
   }
 
+  getAttributes(quality) {
+    this.props.fetchAttributes(quality, this.props.address);
+  }
+
   render() {
     return (<div>
         <NavigationBar title='Create an offer'>
@@ -131,13 +125,17 @@ class CreateOfferPage extends Component {
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
-                             onChange={this.onChange.bind(this)}
+                             onChange={(label, state) => {
+                                this.onChange(label, state);
+                                this.getAttributes(state.value);
+                              }}
+
                              options={this.getQualities()}
                              label='quality'/>
               <span className={styles.paragraph}>or
                 <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
                 for quality</span>
-              <AttributeValueFieldContainer options={parameters} className={styles.properties}/>
+              <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>
           </div>
         </div>

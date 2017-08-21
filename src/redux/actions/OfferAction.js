@@ -28,15 +28,17 @@ export const resetSelectedOffer = () => ({
 });
 
 export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
-
   if (image) {
     dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
     withIPFS(async (ipfs) => {
       offer.imageHash = await uploadToIPFS(ipfs, image);
       dispatch(hideModal('TransactionProgressModal'));
+      dispatch(doCreateOffer(offer, marketAddress, history));
     });
+  } else {
     dispatch(doCreateOffer(offer, marketAddress, history));
-  }};
+  }
+};
 
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
@@ -52,18 +54,16 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
     dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));
     dispatch(showModal('TransactionProgressModal', { title: 'Creating offer' }));
   }).then((myContract) => {
-    dispatch(statusAddSuccessTransaction({
+    dispatch(hideModal());
+    history.push('market');
+    return dispatch(statusAddSuccessTransaction({
       address: myContract.transactionHash,
       caption: 'Creating offer',
       url: '',
     }));
-    dispatch(hideModal());
-    history.push('market');
   }).catch((reason) => {
     dispatch(statusAddFailedTransaction({
-      address: myContract.transactionHash,
-      caption: reason,
-      url: '',
+      url: 'Operation failed',
     }));
     dispatch(showModal('ErrorModal', { reason }));
   });

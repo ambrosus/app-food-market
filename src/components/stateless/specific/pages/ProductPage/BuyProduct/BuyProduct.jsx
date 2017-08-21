@@ -14,6 +14,7 @@ class BuyProduct extends Component {
   }
 
   static propTypes = {
+    onBuy: PropTypes.func.isRequired,
     offer: PropTypes.shape({
       pricePerUnit: PropTypes.number,
       pricePerPackage: PropTypes.number,

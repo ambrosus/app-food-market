@@ -27,7 +27,6 @@ class ConfirmBuyModal extends Component {
   }
 
   buy() {
-    console.log(this.props.marketAddress);
     this.props.onConfirm(this.props.marketAddress, this.props.offer, this.props.quantity);
   }
 

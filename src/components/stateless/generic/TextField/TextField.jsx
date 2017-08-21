@@ -20,13 +20,11 @@ export default class TextField extends Component {
   };
 
   render() {
-    return (<div>
-      <input ref="input"
+    return (<input ref="input"
              className={classNames(styles.input, this.props.className)}
              onChange={this.onChange.bind(this)}
              placeholder={this.props.placeholder}
-             value={this.props.value} />
-    </div>);
+             value={this.props.value} />);
   }
 
   onChange() {

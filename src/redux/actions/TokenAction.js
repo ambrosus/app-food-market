@@ -29,7 +29,7 @@ export const fetchToken = (marketAddress) => async function (dispatch) {
   let market = await new Ambrosus.MarketRepository().fromAddress(marketAddress);
   let tokenAddress = await market.getTokenAddress();
   let token = tokenCreator.fromAddress(tokenAddress);
-  dispatch({ type: 'FETCH_TOKEN_SUCCESS', token });
+  //dispatch({ type: 'FETCH_TOKEN_SUCCESS', token });
   dispatch(updateBalance(token));
 };
 

@@ -24,7 +24,7 @@ const store = createStore(combineReducers({
       }),
 
     compose(applyMiddleware(thunk),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
+        window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f
     ));
 
 store.dispatch(initializeBlockchain());

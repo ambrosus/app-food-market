@@ -28,19 +28,15 @@ class MarketPage extends Component {
     moreDetailsPath: PropTypes.string.isRequired,
   };
 
-  static defaultProps = {
-    categories: [],
-    qualities: [],
-  };
-
   componentWillMount() {
     this.props.fetchOffers(this.props.address, this.props.requirements);
   }
 
   onChange(label, state) {
-    this.setState({
+    let newState = Object.assign({}, this.state, {
       [label]: state.value,
     });
+    this.setState(newState, this.props.onFilterChange.bind(this, newState));
   }
 
   getCategories() {

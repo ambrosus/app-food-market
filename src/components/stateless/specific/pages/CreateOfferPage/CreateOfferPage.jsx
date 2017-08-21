@@ -43,7 +43,7 @@ class CreateOfferPage extends Component {
       form: {
         name: '',
         category: '',
-        weight: '',
+        packageWeight: '',
         pricePerPackage: '',
         quality: '',
       },
@@ -68,7 +68,7 @@ class CreateOfferPage extends Component {
   onSaveClick() {
     let offer = this.state.form;
     offer.pricePerUnit *= 10 ** PRICE_DECIMALS;
-    offer.weight *= 10 ** WEIGHT_DECIMALS;
+    offer.packageWeight *= 10 ** WEIGHT_DECIMALS;
     this.props.onAdd(offer, this.image, this.props.address);
   };
 
@@ -86,7 +86,7 @@ class CreateOfferPage extends Component {
       {
         [label]: state.value,
       });
-    formState.pricePerUnit = this.state.form.pricePerPackage / this.state.form.weight;
+    formState.pricePerUnit = this.state.form.pricePerPackage / this.state.form.packageWeight;
 
     this.setState({
       form: formState,
@@ -126,7 +126,7 @@ class CreateOfferPage extends Component {
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='weight'/>
+                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='packageWeight'/>
                 <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>

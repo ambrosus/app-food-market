@@ -14,6 +14,10 @@ class ProfilePage extends Component {
     token: {},
   };
 
+  componentDidMount() {
+    this.props.refreshBalance(this.props.marketAddress);
+  }
+
   render() {
     return (
       <div>

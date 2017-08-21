@@ -5,7 +5,6 @@ import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/action
 import Cookies from 'js-cookie';
 
 const getData = (dispatch, address) => {
-  dispatch(fetchToken(address));
   dispatch(getAllOffers(address));
   dispatch(getAllRequirements(address));
 };

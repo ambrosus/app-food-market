@@ -22,6 +22,9 @@ const parameters = [
   { field: 'Temperature', value: '0-4 Celsius' },
 ];
 
+const PRICE_DECIMALS = 2;
+const WEIGHT_DECIMALS = 2;
+
 class CreateOfferPage extends Component {
 
   static propTypes = {
@@ -63,7 +66,10 @@ class CreateOfferPage extends Component {
   }
 
   onSaveClick() {
-    this.props.onAdd(this.state.form, this.image, this.props.address);
+    let offer = this.state.form;
+    offer.pricePerUnit *= 10 ** PRICE_DECIMALS;
+    offer.weight *= 10 ** WEIGHT_DECIMALS;
+    this.props.onAdd(offer, this.image, this.props.address);
   };
 
   getCategories() {
@@ -76,7 +82,12 @@ class CreateOfferPage extends Component {
   }
 
   onChange(label, state) {
-    const formState = Object.assign(this.state.form, { [label]: state.value });
+    let formState = Object.assign(this.state.form,
+      {
+        [label]: state.value,
+      });
+    formState.pricePerUnit = this.state.form.pricePerPackage / this.state.form.weight;
+
     this.setState({
       form: formState,
     });
@@ -126,7 +137,7 @@ class CreateOfferPage extends Component {
               <span className={styles.paragraph}>or
                 <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
                 for quality</span>
-              <AttributeValueFieldContainer options={parameters} className={styles.properties} />
+              <AttributeValueFieldContainer options={parameters} className={styles.properties}/>
             </div>
           </div>
         </div>

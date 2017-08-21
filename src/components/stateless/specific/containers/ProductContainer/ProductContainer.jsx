@@ -27,7 +27,7 @@ class ProductContainer extends Component {
             imageHash={offer.imageHash}
             options={[{
               field: 'Price',
-              value: offer.pricePerUnit,
+              value: (offer.pricePerUnit / 100).toFixed(2),
             }, {
               field: 'Seller',
               value: offer.seller,

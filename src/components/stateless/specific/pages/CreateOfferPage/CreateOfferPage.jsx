@@ -120,14 +120,12 @@ class CreateOfferPage extends Component {
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
                              options={this.getRequirements()}
-                             label='requirement'/>
                              onChange={(label, state) => {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);
                               }}
 
-                             options={this.getQualities()}
-                             label='quality'/>
+                             label='requirement' />
               <span className={styles.paragraph}>or
                 <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
                 for quality</span>

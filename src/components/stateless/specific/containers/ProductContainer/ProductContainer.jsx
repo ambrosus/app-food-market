@@ -6,8 +6,9 @@ import styles from './ProductContainer.scss';
 class ProductContainer extends Component {
 
   static propTypes = {
-    products: PropTypes.array,
+    products: PropTypes.array.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
+    moreDetailsPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -21,8 +22,19 @@ class ProductContainer extends Component {
         {this.props.products.map((offer, index) =>
           <ProductItem
             key={index}
-            offer={offer}
-            moreDetailsAction={this.props.moreDetailsAction} />)}
+            name={offer.name}
+            category={offer.category}
+            imageHash={offer.imageHash}
+            options={[{
+              field: 'Price',
+              value: offer.pricePerUnit,
+            }, {
+              field: 'Seller',
+              value: offer.seller,
+            },
+            ]}
+            moreDetailsPath={this.props.moreDetailsPath}
+            moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)}
       </div>
     );
   }

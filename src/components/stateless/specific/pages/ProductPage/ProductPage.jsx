@@ -17,14 +17,15 @@ class ProductPage extends Component {
   };
 
   static propTypes = {
-    offer: PropTypes.object,
-    sidebar: PropTypes.string,
-    requirements: PropTypes.array,
+    offer: PropTypes.object.isRequired,
+    sidebar: PropTypes.string.isRequired,
+    requirements: PropTypes.array.isRequired,
   };
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
-    this.props.getAttributes(this.props.offer.requirementsAddress);
+
+    // this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
   attributesToValueField() {

@@ -6,6 +6,7 @@ const mapStateToProps = (state) => ({
   market: state.market,
   qualities: state.market.qualities,
   offers: state.market.offers,
+  moreDetailsPath: '/product-buy',
 });
 
 const mapDispatchToProps = (dispatch) => ({

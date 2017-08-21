@@ -25,6 +25,7 @@ class MarketPage extends Component {
     offers: PropTypes.array.isRequired,
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
+    moreDetailsPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -69,7 +70,9 @@ class MarketPage extends Component {
           </Link>
         </NavigationBar>
         {this.props.offers.length > 0 ?
-          <ProductContainer moreDetailsAction={this.props.moreDetailsAction} products={this.props.offers} /> :
+          <ProductContainer moreDetailsPath={this.props.moreDetailsPath}
+                            moreDetailsAction={this.props.moreDetailsAction}
+                            products={this.props.offers} /> :
           (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );

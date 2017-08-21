@@ -29,7 +29,7 @@ const market = (
     case 'FILTER_RESET':
       return { ...state, filter: {} };
     case 'FETCH_AGREEMENTS_SUCCESS':
-      return { ...state, agreements: action.agreements };
+      return { ...state, orders: action.agreements };
     default:
       return state;
   }

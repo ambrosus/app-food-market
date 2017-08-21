@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+
   onBuy: (offer, quantity) => {
     dispatch(showModal('ConfirmBuyModal', { quantity }));
   },

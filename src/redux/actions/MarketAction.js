@@ -112,8 +112,7 @@ export const createMarket = (history) => async function (dispatch) {
           }).catch((err) => {
             dispatch(statusAddFailedTransaction(
                 {
-                    address: myContract.marketContract.address,
-                    caption: 'Creating contract',
+                    caption: err.message,
                     url: '/market',
                   }));
             dispatch(showModal('ErrorModal', { reason: err }));

@@ -10,19 +10,12 @@ class ConfirmBuyModal extends Component {
 
   static defaultProps = {
     visible: false,
-    quantity: 1,
-    onCancel: () => {
-      console.info('onCancel not defined in ', ConfirmBuyModal);
-    },
-
-    onConfirm: () => {
-      console.info('onConfirm not defined in ', ConfirmBuyModal);
-    },
   };
 
   static propTypes = {
-    onCancel: PropTypes.func,
-    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    marketAddress: PropTypes.string.isRequired,
   };
 
   total() {
@@ -34,6 +27,7 @@ class ConfirmBuyModal extends Component {
   }
 
   buy() {
+    console.log(this.props.marketAddress);
     this.props.onConfirm(this.props.marketAddress, this.props.offer, this.props.quantity);
   }
 

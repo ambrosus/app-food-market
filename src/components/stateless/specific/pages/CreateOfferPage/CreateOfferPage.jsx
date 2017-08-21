@@ -7,7 +7,6 @@ import TextField from '../../../generic/TextField/TextField';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
-import AttributeValueField from '../../containers/AttributeValueFieldContainer/AttributeValueField';
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
 import Button from '../../../generic/Button/Button.jsx';
@@ -39,10 +38,10 @@ class CreateOfferPage extends Component {
     super(props);
     this.state = {
       form: {
-        category: '',
         name: '',
+        category: '',
         weight: '',
-        pricePerPage: '',
+        pricePerPackage: '',
         quality: '',
       },
     };

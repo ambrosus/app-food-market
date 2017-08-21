@@ -152,7 +152,6 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
       };
 
 export const getAllOffers = (address) => async function (dispatch) {
-        console.log('getting offers', address);
         dispatch(requestAllOffers());
         await waitForAmbrosus();
         const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);

@@ -33,6 +33,16 @@ export const createOffer = (offer, image, marketAddress, history) => async funct
   }
 };
 
+export const selectOffer = (offer) => ({
+  type: 'SELECT_OFFER',
+  offer,
+});
+
+export const saveNewOffer = (offer) => ({
+    type: 'SAVE_NEW_OFFER',
+    offer,
+  });
+
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
   let market = await new Ambrosus.MarketRepository().fromAddress(address);
@@ -43,6 +53,7 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
   }
 
   offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
+    dispatch(saveNewOffer(offer));
     dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));
     dispatch(showModal('TransactionProgressModal', { title: 'Creating offer' }));
   }).then((myContract) => {
@@ -54,11 +65,11 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
     dispatch(hideModal());
     history.push('market');
   }).catch((reason) => {
+    dispatch(statusAddFailedTransaction({
+      address: myContract.transactionHash,
+      caption: reason,
+      url: '',
+    }));
     dispatch(showModal('ErrorModal', { reason }));
   });
 };
-
-export const selectOffer = (offer) => ({
-  type: 'SELECT_OFFER',
-  offer,
-});

@@ -9,18 +9,18 @@ import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
 import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
 
-const CATEGORIES = ['All', 'Anchovies', 'Markel', 'Salmon', 'Tuna', 'Other'];
+const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna', 'Other'];
 const categories = (state = CATEGORIES, action) => state;
 
 const store = createStore(combineReducers({
-        transactions,
         ambrosus,
+        transactions,
+        requirementsAttributes,
         market,
         modal,
         offer,
         categories,
         token,
-        requirementsAttributes,
       }),
 
     compose(applyMiddleware(thunk),

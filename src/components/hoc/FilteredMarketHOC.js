@@ -17,8 +17,8 @@ const isFilterMatch = (offer, filters) => {
 const mapStateToProps = (state) => ({
   filter: state.market.filter,
   offers: state.market.offers,
-  categories: state.categories,
-  qualities: state.market.qualities,
+  categories: ['All', ...state.categories],
+  qualities: ['All', ...state.market.qualities],
 });
 
 const mapDispatchToProps = (dispatch) => ({

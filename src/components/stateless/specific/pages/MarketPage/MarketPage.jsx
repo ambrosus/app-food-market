@@ -47,11 +47,19 @@ class MarketPage extends Component {
     return this.props.requirements.map(name => ({ value: name }));
   }
 
-  getFilteredOffers() {
+  getFilteredCategories(offers) {
     if (this.state.selectedCategory === 'All') {
-      return this.props.offers;
+      return offers;
     } else {
-      return this.props.offers.filter(offer => offer.category === this.state.selectedCategory);
+      return offers.filter(offer => offer.category === this.state.selectedCategory);
+    }
+  }
+
+  getFilteredRequirement(offers) {
+    if (this.state.selectedRequirement === 'All') {
+      return offers;
+    } else {
+      return offers.filter(offer => offer.requirement === this.state.selectedRequirement);
     }
   }
 
@@ -73,10 +81,10 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        { this.getFilteredOffers().length > 0 ?
-          <ProductContainer moreDetailsPath={this.props.moreDetailsPath}
+        { this.getFilteredRequirement(this.getFilteredCategories(this.props.offers)).length > 0 ?
+          (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
-                            products={this.props.offers} /> :
+                            products={this.props.offers} />)  :
           (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );

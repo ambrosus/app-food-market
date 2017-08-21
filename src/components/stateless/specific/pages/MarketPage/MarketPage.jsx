@@ -48,8 +48,11 @@ class MarketPage extends Component {
   }
 
   getFilteredOffers() {
-    return this.props.offers.filter(offer => offer.category === this.state.selectedCategory)
-                            .filter(offer => !offer.quality ? true : offer.quality === this.state.selectedRequirement);
+    if (this.state.selectedCategory === 'All') {
+      return this.props.offers;
+    } else {
+      return this.props.offers.filter(offer => offer.category === this.state.selectedCategory);
+    }
   }
 
   render() {

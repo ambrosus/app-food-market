@@ -21,14 +21,6 @@ class BuyProduct extends Component {
     }),
   };
 
-  static defaultProps = {
-    offer: {
-      pricePerUnit: '1000',
-      pricePerPackage: '50',
-      packageWeight: '10',
-    },
-  };
-
   onBuy() {
     this.props.onBuy(this.props.offer, this.state.amount);
   }

@@ -19,9 +19,9 @@ class WelcomePage extends Component {
     };
   }
 
-  updateAddress(address) {
+  onAddressChange(label, inputState) {
     this.setState({
-      address: address,
+      [label]: inputState.value,
     });
   }
 
@@ -38,7 +38,8 @@ class WelcomePage extends Component {
           <div>
             <Label className={styles.label} text='Go to existing market:'/>
             <div className={styles.row}>
-              <TextField onChange={(input) => this.updateAddress(input.target.value)}
+              <TextField onChange={this.onAddressChange.bind(this)}
+                         label="address"
                          placeholder="contact address"
                          value={this.state.address}
                          className={styles.field}/>

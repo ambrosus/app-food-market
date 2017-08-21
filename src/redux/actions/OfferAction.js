@@ -13,35 +13,29 @@ const uploadToIPFS = async (ipfs, image) => {
   return await uploader.uploadBlob(image);
 };
 
-export const resetSelectedOffer = () => ({ type: 'RESET_SELECTED' });
-
-export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
-
-  if (offer.requirementsName === 'None') {
-    delete offer.requirementsName;
-  }
-
-  if (image) {
-    dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
-    withIPFS(async (ipfs) => {
-      offer.imageHash = await uploadToIPFS(ipfs, image);
-      dispatch(hideModal('TransactionProgressModal'));
-      dispatch(doCreateOffer(offer, marketAddress, history));
-    });
-  } else {
-    dispatch(doCreateOffer(offer, marketAddress, history));
-  }
-};
-
 export const selectOffer = (offer) => ({
   type: 'SELECT_OFFER',
   offer,
 });
 
 export const saveNewOffer = (offer) => ({
-    type: 'SAVE_NEW_OFFER',
-    offer,
-  });
+  type: 'SAVE_NEW_OFFER',
+  offer,
+});
+
+export const resetSelectedOffer = () => ({
+  type: 'RESET_SELECTED',
+});
+
+export const createOffer = (offer, image, marketAddress, history) => async function (dispatch) {
+  if (image) {
+    dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
+    withIPFS(async (ipfs) => {
+      offer.imageHash = await uploadToIPFS(ipfs, image);
+      dispatch(hideModal('TransactionProgressModal'));
+    });
+    dispatch(doCreateOffer(offer, marketAddress, history));
+  }};
 
 export const doCreateOffer = (offer, address, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);

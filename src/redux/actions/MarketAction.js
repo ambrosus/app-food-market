@@ -141,7 +141,6 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
               }));
             dispatch(successCreateRequirement(requirements.contract.address));
             dispatch(hideModal());
-            //dispatch(gotoMarket(marketAddress));
           }).catch((err) => {
             console.error(err);
             dispatch(statusAddFailedTransaction({

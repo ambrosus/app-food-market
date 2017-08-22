@@ -34,9 +34,9 @@ class BuyProduct extends Component {
 
   render() {
     const summary = [
-      { field: 'Price', value: `€ ${this.props.offer.pricePerUnit / 100.0} /kg` },
-      { field: 'Price per package', value: `€${this.props.offer.pricePerPackage / 100.0}` },
-      { field: 'Per package', value: `${this.props.offer.packageWeight / 100.0} kg` },
+      { field: 'Price', value: `€ ${this.props.offer.pricePerUnit} /kg` },
+      { field: 'Price per package', value: `€${this.props.offer.pricePerPackage}` },
+      { field: 'Per package', value: `${this.props.offer.packageWeight} kg` },
     ];
 
     return (<div>

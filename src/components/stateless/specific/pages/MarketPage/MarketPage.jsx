@@ -28,8 +28,16 @@ class MarketPage extends Component {
     moreDetailsPath: PropTypes.string.isRequired,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.marketAddress && nextProps.marketAddress) {
+      this.props.fetchOffers(this.props.marketAddress);
+    }
+  }
+
   componentWillMount() {
-    this.props.fetchOffers(this.props.address, this.props.requirements);
+    if (this.props.marketAddress) {
+      this.props.fetchOffers(this.props.marketAddress);
+    }
   }
 
   onChange(label, state) {

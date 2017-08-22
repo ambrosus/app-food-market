@@ -9,7 +9,7 @@ import Button from '../../../../generic/Button/Button';
 class SummaryProduct extends Component {
 
   componentDidMount() {
-    if (this.props.offer.status !== 'In progress') {
+    if (this.props.offer.status && this.props.offer.status !== 'In progress') {
       this.props.history.replace('approved');
     }
   }

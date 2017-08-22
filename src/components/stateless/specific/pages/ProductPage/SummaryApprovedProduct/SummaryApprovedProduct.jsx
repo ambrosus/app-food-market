@@ -14,15 +14,8 @@ class SummaryApprovedProduct extends Component {
       pricePerUnit: PropTypes.number,
       pricePerPackage: PropTypes.number,
       packageWeight: PropTypes.number,
+      status: PropTypes.string,
     }),
-  };
-
-  static defaultProps = {
-    offer: {
-      pricePerUnit: 1000,
-      pricePerPackage: 50,
-      packageWeight: 10,
-    },
   };
 
   summary() {
@@ -37,7 +30,6 @@ class SummaryApprovedProduct extends Component {
 
     ];
   }
-
 
   render() {
     return (<div>

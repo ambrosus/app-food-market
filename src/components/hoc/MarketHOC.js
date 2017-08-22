@@ -3,7 +3,7 @@ import { selectOffer } from '../../redux/actions/OfferAction.js';
 import MarketPage from '../stateless/specific/pages/MarketPage/MarketPage';
 
 const mapStateToProps = (state, ownProps) => ({
-  market: state.market,
+  marketAddress: state.market.address,
   offers: state.market.offers,
   moreDetailsPath: '/product-buy',
   ...ownProps,

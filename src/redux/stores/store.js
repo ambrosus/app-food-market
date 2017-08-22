@@ -8,6 +8,7 @@ import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
 import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
+import { autoRehydrate, persistStore } from 'redux-persist';
 
 const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna'];
 const categories = (state = CATEGORIES, action) => state;
@@ -23,10 +24,11 @@ const store = createStore(combineReducers({
         token,
       }),
 
-    compose(applyMiddleware(thunk),
+    compose(applyMiddleware(thunk), autoRehydrate(),
         window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f
     ));
 
+persistStore(store);
 store.dispatch(initializeBlockchain());
 
 export default store;

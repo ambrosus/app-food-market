@@ -1,9 +1,19 @@
-const offer = (state = {}, action) => {
+const defaultState = {
+  pricePerUnit: 0,
+  pricePerPackage: 0,
+  packageWeight: 0,
+  category: '',
+  status: '',
+  seller: '',
+  name: '',
+};
+
+const offer = (state = defaultState, action) => {
   switch (action.type) {
     case 'SELECT_OFFER':
       return action.offer;
     case 'RESET_SELECTED':
-      return {};
+      return defaultState;
     default:
       return state;
   }

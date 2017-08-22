@@ -38,10 +38,13 @@ class SummaryApprovedProduct extends Component {
     ];
   }
 
+  toLower(text) {
+    return text ? text.toLowerCase() : '';
+  }
 
   render() {
     return (<div>
-      <Label className={styles.title} text={`Order ${this.props.offer.status.toLowerCase()}`}/>
+      <Label className={styles.title} text={`Order ${this.toLower(this.props.offer.status)}`}/>
       <AttributeValueFieldContainer options={this.summary()} className={styles.requirements}/>
       <Link to="product-buy">
         <Button className={styles.approvePayment}>Reorder</Button>

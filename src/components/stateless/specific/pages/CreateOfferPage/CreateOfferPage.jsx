@@ -9,7 +9,6 @@ import AttributeValueFieldContainer from '../../containers/AttributeValueFieldCo
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
 import Button from '../../../generic/Button/Button.jsx';
-import { fetchAttributes } from '../../../../../redux/actions/AttributesAction';
 
 class CreateOfferPage extends Component {
 
@@ -20,14 +19,33 @@ class CreateOfferPage extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       form: {
-        name: null,
-        category: null,
-        packageWeight: null,
-        pricePerPackage: null,
-        quality: null,
-      },
+        hasErrors: null,
+        fields: {
+          name: {
+            value: null,
+            errors: [],
+          },
+          category: {
+            value: null,
+            errors: [],
+          },
+          packageWeight: {
+            value: null,
+            errors: [],
+          },
+          pricePerPackage: {
+            value: null,
+            errors: [],
+          },
+          requirement: {
+            value: null,
+            errors: [],
+          },
+        },
+      }
     };
   }
 
@@ -59,12 +77,39 @@ class CreateOfferPage extends Component {
     return this.props.requirements.map((key) => ({ value: key }));
   }
 
-  onChange(label, state) {
-    let formState = Object.assign(this.state.form,
-      {
-        [label]: state.value,
-      });
+  handleValidation(label, value) {
+    let errors = [];
+    switch (label) {
+      case 'pricePerPackage':
+      case 'packageWeight':
+        if (isNaN(value)) {
+          return [...errors, 'It is not a number'];
+        } else return errors;
+      default:
+        return errors;
+    }
+  }
 
+  hasErrors(fields) {
+    for (let field in fields) {
+      if (fields.hasOwnProperty(field)) {
+        if (fields[field].errors.length !== 0) return true;
+      }
+    }
+
+    return false;
+  }
+
+  onChange(label, inputState) {
+
+    let formState = Object.assign({}, this.state.form, {});
+    let fields = Object.assign({}, this.state.form.fields, {
+      [label]: {
+        value: inputState.value,
+        errors: this.handleValidation(label, inputState.value),
+      },
+    });
+    formState.fields = fields;
     this.setState({
       form: formState,
     });
@@ -78,6 +123,7 @@ class CreateOfferPage extends Component {
     return (<div>
         <NavigationBar title='Create an offer'>
           <Button className={styles.cancelButton}
+                  disabled={this.state.form.hasErrors}
                   onClick={this.props.history.goBack}>Cancel</Button>
           <Button className={styles.saveButton}
                   onClick={() => this.onSaveClick()}>Save</Button>
@@ -107,8 +153,15 @@ class CreateOfferPage extends Component {
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='packageWeight'/>
-                <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
+                <InputField text='Package weight (kg)'
+                            errors={this.state.form.fields.packageWeight.errors}
+                            onChange={this.onChange.bind(this)}
+                            label='packageWeight'/>
+                <InputField
+                            text='Price per package (€)'
+                            errors={this.state.form.fields.pricePerPackage.errors}
+                            onChange={this.onChange.bind(this)}
+                            label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}

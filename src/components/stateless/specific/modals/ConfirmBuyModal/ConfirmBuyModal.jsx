@@ -1,45 +1,21 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './ConfirmBuyModal.scss';
 import Label from '../../../generic/Label/Label';
 import Button from '../../../generic/Button/Button';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
-import { hideModal } from '../../../../../redux/actions/ModalAction';
-import { buy } from '../../../../../redux/actions/PurchaseAction';
-
-const mapStateToProps = (state) => ({
-  marketAddress: state.market.address,
-  offer: state.offer,
-  quantity: state.modal.args.quantity,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onConfirm: (marketAddress, offer, quantity) => {
-    dispatch(buy(marketAddress, offer, quantity, ownProps.history));
-  },
-
-  onCancel: () => dispatch(hideModal()),
-});
 
 class ConfirmBuyModal extends Component {
 
   static defaultProps = {
     visible: false,
-    quantity: 1,
-    onCancel: () => {
-      console.info('onCancel not defined in ', ConfirmBuyModal);
-    },
-
-    onConfirm: () => {
-      console.info('onConfirm not defined in ', ConfirmBuyModal);
-    },
   };
 
   static propTypes = {
-    onCancel: PropTypes.func,
-    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    marketAddress: PropTypes.string.isRequired,
   };
 
   total() {
@@ -99,4 +75,4 @@ class ConfirmBuyModal extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfirmBuyModal);
+export default ConfirmBuyModal;

@@ -13,6 +13,5 @@ export function initializeBlockchain() {
       };
       dispatch(showModal('ErrorModal', args));
     }
-
   };
 }

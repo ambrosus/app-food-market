@@ -1,28 +1,66 @@
-import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import Market from '../../../../hoc/ProductContainerHOC.js';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import Button from '../../../generic/Button/Button';
 import Label from '../../../generic/Label/Label';
 import styles from './MarketPage.scss';
-import { connect } from 'react-redux';
-
-const mapStateToProps = (state) => ({
-    categories: ['All'].concat(state.categories),
-    qualities: ['All'].concat(state.market.qualities),
-  });
-
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+import ProductContainer from '../../containers/ProductContainer/ProductContainer';
 
 class MarketPage extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCategory: this.props.categories[0],
+      selectedRequirement: this.props.requirements[0],
+    };
+  }
+
+  static propTypes = {
+    filter: PropTypes.object,
+    categories: PropTypes.array,
+    requirements: PropTypes.array,
+    offers: PropTypes.array.isRequired,
+    fetchOffers: PropTypes.func.isRequired,
+    moreDetailsAction: PropTypes.func.isRequired,
+    moreDetailsPath: PropTypes.string.isRequired,
+  };
+
+  componentWillMount() {
+    this.props.fetchOffers(this.props.address, this.props.requirements);
+  }
+
+  onChange(label, state) {
+    let newState = Object.assign({}, this.state, {
+      [label]: state.value,
+    });
+    this.setState(newState, this.props.onFilterChange.bind(this, newState));
+  }
 
   getCategories() {
     return this.props.categories.map(key => ({ value: key }));
   }
 
-  getQualities() {
-    return this.props.qualities.map(name => ({ value: name }));
+  getRequirements() {
+    return this.props.requirements.map(name => ({ value: name }));
+  }
+
+  getFilteredCategories(offers) {
+    if (this.state.selectedCategory === 'All') {
+      return offers;
+    } else {
+      return offers.filter(offer => offer.category === this.state.selectedCategory);
+    }
+  }
+
+  getFilteredRequirement(offers) {
+    if (this.state.selectedRequirement === 'All') {
+      return offers;
+    } else {
+      return offers.filter(offer => offer.requirement === this.state.selectedRequirement);
+    }
   }
 
   render() {
@@ -30,23 +68,27 @@ class MarketPage extends Component {
       <div>
         <NavigationBar title='Market'>
           <Label text='Quality:'/>
-          <SelectorField className={styles.selector} options={this.getQualities()}
-                         label='Quality' onChange={this.props.qualityChange}
-                         value={this.props.filter.quality}/>
+          <SelectorField className={styles.selector} options={this.getRequirements()}
+                         label='selectedRequirement' onChange={this.onChange.bind(this)}
+                         value={this.state.selectedRequirement}/>
           <Label text='Categories:'/>
-          <SelectorField className={styles.selector} options={this.getCategories()} label='Category'
-                         onChange={this.props.categoryChange}
-                         value={this.props.filter.category}/>
+          <SelectorField className={styles.selector} options={this.getCategories()}
+                         label='selectedCategory'
+                         onChange={this.onChange.bind(this)}
+                         value={this.state.selectedCategory}/>
           <Link className='navigation__link' to='/create-offer'><Button
             className='navigation__create-offer-button'>
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        <Market/>
+        { this.getFilteredRequirement(this.getFilteredCategories(this.props.offers)).length > 0 ?
+          (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
+                            moreDetailsAction={this.props.moreDetailsAction}
+                            products={this.props.offers} />)  :
+          (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);
-
+export default MarketPage;

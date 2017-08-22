@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './BalanceTooLowModal.scss';
 import Label from '../../../generic/Label/Label';
 import { Link } from 'react-router-dom';
-
-const mapStateToProps = (state) => {};
-
-const mapDispatchToProps = (dispatch) => ({
-    onConfirm: () => console.log('Not yet implemented!'),
-    onCancel: () => dispatch(modelHide()),
-  });
 
 class BalanceTooLowModal extends Component {
 
@@ -50,4 +42,4 @@ class BalanceTooLowModal extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BalanceTooLowModal);
+export default BalanceTooLowModal;

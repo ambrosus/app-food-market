@@ -1,10 +1,9 @@
 const DEFAULT_STATE = {
   offers: [],
-  address: '',
   status: 'No market',
-  filter: {},
-  qualities: [],
-  agreements: [],
+  address: '',
+  requirements: [],
+  orders: [],
 };
 
 const market = (
@@ -16,7 +15,7 @@ const market = (
     case 'FETCH_OFFERS_RESPONSE':
       return { ...state, offers: action.offers, status: null };
     case 'FETCH_REQUIREMENT_RESPONSE':
-      return { ...state, qualities: action.requirements };
+      return { ...state, requirements: action.requirements };
     case 'CREATE_MARKET_REQUEST':
       return { ...state, status: 'About to create market...' };
     case 'CREATE_MARKET_RESPONSE':
@@ -25,14 +24,12 @@ const market = (
       return { ...state, address: action.address, status: 'Market address: ' + action.address };
     case 'CREATE_MARKET_FAILED':
       return { ...state, status: 'Unable to create market' };
-    case 'GOTO_MARKET':
-      return { ...state, address: action.address, offers: [], status: 'Loading', filter: {} };
     case 'FILTER_UPDATE':
       return { ...state, filter: { ...state.filter, [action.key]: action.value } };
     case 'FILTER_RESET':
       return { ...state, filter: {} };
     case 'FETCH_AGREEMENTS_SUCCESS':
-      return { ...state, agreements: action.agreements };
+      return { ...state, orders: action.agreements };
     default:
       return state;
   }

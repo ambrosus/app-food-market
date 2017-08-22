@@ -43,17 +43,16 @@ export const createMarketFailed = (reason) => ({
         reason,
       });
 
-export const gotoMarket = ({ address }) => ({
-        type: 'GOTO_MARKET',
-        address,
-      });
-
-export const requestCreateRequirement = () => ({
+export const requestCreateRequirement = (name, requirement) => ({
         type: 'CREATE_REQUIREMENT_REQUEST',
+        data: {
+          name: name,
+          requirement,
+        },
       });
 
 export const responseCreateRequirement = (address) => ({
-        type: 'CREATE_REQUIREMENT_RESPONCE',
+        type: 'CREATE_REQUIREMENT_RESPONSE',
         address,
       });
 
@@ -94,22 +93,26 @@ export const createMarket = (history) => async function (dispatch) {
             dispatch(createMarketResponse(transactionHash));
             dispatch(showModal('TransactionProgressModal', { title: 'Creating market' }));
           }).then((myContract) => {
+            console.log(myContract);
+
             dispatch(statusAddSuccessTransaction({
                 address: temporaryHashCode,
                 caption: 'Creating contract',
                 url: '/market',
               }));
+
             dispatch(createMarketSuccess({
                 address: myContract.marketContract.address,
               }));
+
             dispatch(hideModal());
+
             Cookies.set('market_address', myContract.marketContract.address);
-            dispatch(redirectToMarket(history));
+
           }).catch((err) => {
             dispatch(statusAddFailedTransaction(
                 {
-                    address: myContract.marketContract.address,
-                    caption: 'Creating contract',
+                    caption: err.message,
                     url: '/market',
                   }));
             dispatch(showModal('ErrorModal', { reason: err }));
@@ -136,7 +139,6 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
               }));
             dispatch(successCreateRequirement(requirements.contract.address));
             dispatch(hideModal());
-            dispatch(redirectToMarket(history));
           }).catch((err) => {
             console.error(err);
             dispatch(statusAddFailedTransaction({
@@ -145,10 +147,6 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
               }));
             dispatch(showModal('ErrorModal', { reason: err }));
           });
-      };
-
-export const redirectToMarket = (history) => async function (dispatch) {
-        history.push('market');
       };
 
 export const getAllOffers = (address) => async function (dispatch) {

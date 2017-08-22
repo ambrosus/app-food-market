@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onAdd: (name, requirements, address) => {
+    onSave: (name, requirements, address) => {
       dispatch(createRequirement(name, requirements, address, ownProps.history));
     },
   });

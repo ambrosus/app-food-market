@@ -9,22 +9,22 @@ import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
 import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
 
-const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna', 'Other'];
+const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna'];
 const categories = (state = CATEGORIES, action) => state;
 
 const store = createStore(combineReducers({
-        transactions,
         ambrosus,
+        transactions,
+        requirementsAttributes,
         market,
         modal,
         offer,
         categories,
         token,
-        requirementsAttributes,
       }),
 
     compose(applyMiddleware(thunk),
-        window.devToolsExtension ? window.devToolsExtension() : f => f
+        window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f
     ));
 
 store.dispatch(initializeBlockchain());

@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './ErrorModal.scss';
 import Label from '../../../generic/Label/Label';
-import { hideModal } from '../../../../../redux/actions/ModalAction';
-
-const mapStateToProps = (state) => ({
-    title: state.modal.args.title,
-    message: state.modal.args.message,
-    reason: state.modal.args.reason,
-  });
-
-const mapDispatchToProps = (dispatch) => ({
-    onCancel: () => dispatch(hideModal()),
-  });
 
 class ErrorModal extends Component {
 
@@ -54,4 +42,4 @@ class ErrorModal extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorModal);
+export default ErrorModal;

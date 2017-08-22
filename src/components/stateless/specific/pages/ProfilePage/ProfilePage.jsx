@@ -1,49 +1,26 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import Label from '../../../generic/Label/Label';
-import { updateBalance } from '../../../../../redux/actions/TokenAction';
-
-const mapStateToProps = state => ({
-    balance: state.token.balance,
-    token: state.token.token,
-    market: state.market,
-  });
-
-const mapDispatchToProps = (dispatch) => ({
-    getBalance: (token) => {
-      dispatch(updateBalance(token));
-    },
-  });
 
 class ProfilePage extends Component {
 
   static propTypes = {
-    getBalance: PropTypes.func,
     balance: PropTypes.number,
-  };
-
-  static defaultProps = {
-    getBalance: () => console.warn('getBalance is not defined'),
-    newToken: () => console.warn('newToken is not defined'),
-    balance: 0,
+    token: PropTypes.object,
   };
 
   componentDidMount() {
-    if (this.props.token)
-      this.props.getBalance(this.props.token);
+    this.props.refreshBalance(this.props.marketAddress);
   }
 
   render() {
     return (
       <div>
         <NavigationBar title='Profile'/>
-        <Label text={`Your balance: ${(this.props.balance / 100).toFixed(2)}`}/>
-        <Label text={`Market address is: ${this.props.market.address}`} />
+        <p>{`Your balance: ${(this.props.balance / 100).toFixed(2)}`}</p>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default ProfilePage;

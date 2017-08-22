@@ -6,48 +6,15 @@ import AttributeValueFieldContainer
 from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import InputField from '../../../../generic/InputField/InputField';
 import Button from '../../../../generic/Button/Button';
-import { connect } from 'react-redux';
-import { showModal } from '../../../../../../redux/actions/ModalAction.js';
-import validation from 'react-validation-mixin';
-import strategy from 'react-validatorjs-strategy';
-
-const mapStateToProps = state => ({
-    offer: state.offer,
-  });
-
-const mapDispatchToProps = (dispatch) => ({
-    onBuy: (offer, quantity) => {
-      dispatch(showModal('ConfirmBuyModal', { quantity }));
-    },
-  });
 
 class BuyProduct extends Component {
 
   constructor(props) {
     super(props);
-    this.validatorTypes = strategy.createSchema(
-
-      // Rules
-      {
-        quantity: 'required|numeric',
-      },
-
-      // Messages
-      {
-        required: 'This field is required',
-        numeric: 'This is not a number',
-      },
-    );
-    this.getValidatorData = this.getValidatorData.bind(this);
-  }
-
-  getValidatorData() {
-    return {
-      quantity: this.quantity.value,
-    };
   }
 
   static propTypes = {
+    onBuy: PropTypes.func.isRequired,
     offer: PropTypes.shape({
       pricePerUnit: PropTypes.number,
       pricePerPackage: PropTypes.number,
@@ -55,24 +22,17 @@ class BuyProduct extends Component {
     }),
   };
 
-  static defaultProps = {
-    offer: {
-      pricePerUnit: '1000',
-      pricePerPackage: '50',
-      packageWeight: '10',
-    },
-  };
+  onBuy() {
+    this.props.onBuy(this.props.offer, this.state.amount);
+  }
 
-  buy() {
-    this.props.validate((err) => {
-      if (err)
-        return;
-      this.props.onBuy(this.props.offer, parseInt(this.quantity.value));
+  onAmountChange(label, state) {
+    this.setState({
+      [label]: state.value,
     });
   }
 
   render() {
-
     const summary = [
       { field: 'Price', value: `€ ${this.props.offer.pricePerUnit / 100.0} /kg` },
       { field: 'Price per package', value: `€${this.props.offer.pricePerPackage / 100.0}` },
@@ -83,14 +43,13 @@ class BuyProduct extends Component {
       <Label className={styles.title} text='Buy product'/>
       <AttributeValueFieldContainer options={summary} className={styles.requirements}/>
       <div>
-        <InputField label='Packages'
-                    inputRef={(e) => this.quantity = e}
-                    validate={this.props.handleValidation('quantity')}
-                    error={this.props.getValidationMessages('quantity')}/>
-        <Button onClick={() => this.buy()}>Buy product</Button>
+        <InputField text='Packages'
+                    label="amount"
+                    onChange={this.onAmountChange.bind(this)}/>
+        <Button onClick={this.onBuy.bind(this)}>Buy product</Button>
       </div>
     </div>);
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(validation(strategy)(BuyProduct));
+export default BuyProduct;

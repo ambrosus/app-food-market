@@ -1,12 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import MyOrdersHOC from '../../../../hoc/MyOrdersHOC';
+import ProductContainer from '../../containers/ProductContainer/ProductContainer';
 
-let OrdersPage = () => (
-  <div>
-    <NavigationBar title='Orders'/>
-    <MyOrdersHOC/>
-  </div>
-);
+class OrdersPage extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    orders: PropTypes.array,
+    marketAddress: PropTypes.string.isRequired,
+    fetchOrders: PropTypes.func.isRequired,
+    moreDetailsAction: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    orders: [],
+  };
+
+  componentDidMount() {
+    this.props.fetchOrders(this.props.marketAddress);
+  }
+
+  renderEmpty() {
+    return (<p>You didn't buy anything yet</p>);
+  }
+
+  renderOrders() {
+    return (<ProductContainer products={this.props.orders}
+    moreDetailsPath={'/product-info'}
+    moreDetailsAction={this.props.moreDetailsAction}/>);
+  }
+
+  render() {
+    return (
+      <div>
+        <NavigationBar title='Orders'/>
+        {this.props.orders.length > 0 ? this.renderOrders() : this.renderEmpty()}
+      </div>
+    );
+  }
+}
 
 export default OrdersPage;

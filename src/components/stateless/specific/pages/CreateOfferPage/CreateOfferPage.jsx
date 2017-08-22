@@ -23,29 +23,21 @@ class CreateOfferPage extends Component {
     this.state = {
       form: {
         hasErrors: null,
-        fields: {
-          name: {
-            value: null,
-            errors: [],
-          },
-          category: {
-            value: null,
-            errors: [],
-          },
-          packageWeight: {
-            value: null,
-            errors: [],
-          },
-          pricePerPackage: {
-            value: null,
-            errors: [],
-          },
-          requirement: {
-            value: null,
-            errors: [],
-          },
+        errors: {
+          name: [],
+          category: [],
+          packageWeight: [],
+          pricePerPackage: [],
+          requirement: [],
         },
-      }
+        values: {
+          name: null,
+          category: null,
+          packageWeight: null,
+          pricePerPackage: null,
+          requirement: null,
+        },
+      },
     };
   }
 
@@ -65,7 +57,7 @@ class CreateOfferPage extends Component {
   }
 
   onSaveClick() {
-    let offer = this.state.form;
+    let offer = this.state.form.values;
     this.props.onAdd(offer, this.image, this.props.address);
   };
 
@@ -80,6 +72,12 @@ class CreateOfferPage extends Component {
   handleValidation(label, value) {
     let errors = [];
     switch (label) {
+      case 'name':
+        if (value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else { return [];
+        }
+
       case 'pricePerPackage':
       case 'packageWeight':
         if (isNaN(value)) {
@@ -90,10 +88,10 @@ class CreateOfferPage extends Component {
     }
   }
 
-  hasErrors(fields) {
-    for (let field in fields) {
-      if (fields.hasOwnProperty(field)) {
-        if (fields[field].errors.length > 0) return true;
+  hasErrors(errors) {
+    for (let error in errors) {
+      if (errors.hasOwnProperty(error)) {
+        if (errors[error].length > 0) return true;
       }
     }
 
@@ -103,16 +101,13 @@ class CreateOfferPage extends Component {
   onChange(label, inputState) {
 
     let formState = Object.assign({}, this.state.form);
-    let fields = Object.assign({}, this.state.form.fields, {
-      [label]: {
-        value: inputState.value,
-        errors: this.handleValidation(label, inputState.value),
-      },
-    });
+    let errors  = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value)});
+    let values = Object.assign({}, this.state.form.values, { [label]: inputState.value });
 
     formState = Object.assign({}, formState, {
-      fields: fields,
-      hasErrors: this.hasErrors(fields),
+      values: values,
+      errors: errors,
+      hasErrors: this.hasErrors(errors),
     });
 
     this.setState({
@@ -128,14 +123,17 @@ class CreateOfferPage extends Component {
     return (<div>
         <NavigationBar title='Create an offer'>
           <Button className={styles.cancelButton}
-                  disabled={this.state.form.hasErrors}
                   onClick={this.props.history.goBack}>Cancel</Button>
           <Button className={styles.saveButton}
-                  onClick={() => this.onSaveClick()}>Save</Button>
+                  enabled={!this.state.form.hasErrors}
+                  onClick={this.onSaveClick.bind(this)}>Save</Button>
         </NavigationBar>
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
+          <TextField label="name"
+                     errors={this.state.form.errors.name}
+                     onChange={this.onChange.bind(this)}
+                     className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
@@ -159,12 +157,12 @@ class CreateOfferPage extends Component {
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
                 <InputField text='Package weight (kg)'
-                            errors={this.state.form.fields.packageWeight.errors}
+                            errors={this.state.form.errors.packageWeight}
                             onChange={this.onChange.bind(this)}
                             label='packageWeight'/>
                 <InputField
                             text='Price per package (€)'
-                            errors={this.state.form.fields.pricePerPackage.errors}
+                            errors={this.state.form.errors.pricePerPackage}
                             onChange={this.onChange.bind(this)}
                             label='pricePerPackage'/>
               </div>

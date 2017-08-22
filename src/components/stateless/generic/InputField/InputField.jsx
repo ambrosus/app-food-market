@@ -9,7 +9,7 @@ export default class InputField extends Component {
     text: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
-    errors: PropTypes.array.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
   static defaultProps = {

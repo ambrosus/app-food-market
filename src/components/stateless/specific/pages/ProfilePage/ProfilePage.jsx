@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
+import { Link } from 'react-router-dom';
+import styles from './ProfilePage.scss';
 
 class ProfilePage extends Component {
 
@@ -18,6 +20,7 @@ class ProfilePage extends Component {
       <div>
         <NavigationBar title='Profile'/>
         <p>{`Your balance: ${(this.props.balance / 100).toFixed(2)}`}</p>
+        <p><Link className={styles.link} to='create-requirements'>Create quality requirements</Link></p>
       </div>
     );
   }

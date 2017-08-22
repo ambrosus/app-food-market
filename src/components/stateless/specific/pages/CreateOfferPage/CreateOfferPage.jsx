@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CreateOfferPage.scss';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
-import { Link } from 'react-router-dom';
 import TextField from '../../../generic/TextField/TextField';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
@@ -126,9 +125,6 @@ class CreateOfferPage extends Component {
                               }}
 
                              label='requirement' />
-              <span className={styles.paragraph}>or
-                <Link className={styles.link} to='create-requirements'>create custom requirements</Link>
-                for quality</span>
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>
           </div>

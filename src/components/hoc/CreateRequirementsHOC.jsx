@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createRequirement } from '../../redux/actions/MarketAction.js';
+import { createRequirement } from '../../redux/actions/RequirementAction.js';
 import CreateRequirements from '../stateless/specific/pages/CreateRequirements/CreateRequirements';
 
 const mapStateToProps = (state) => ({

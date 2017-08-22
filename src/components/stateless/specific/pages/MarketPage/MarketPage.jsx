@@ -36,7 +36,7 @@ class MarketPage extends Component {
     let newState = Object.assign({}, this.state, {
       [label]: state.value,
     });
-    this.setState(newState, this.props.onFilterChange.bind(this, newState));
+    this.setState(newState);
   }
 
   getCategories() {

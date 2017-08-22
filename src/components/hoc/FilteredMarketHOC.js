@@ -8,11 +8,11 @@ const mapStateToProps = (state) => ({
   offers: state.market.offers,
   categories: ['All', ...state.categories],
   requirements: ['All', ...state.market.requirements],
-  onFilterChange: (state) => { console.log(state); },
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchOffers: ($address) => {
+  	//TO REMOVE
     let address = Cookies.get('market_address', $address) || $address;
     dispatch(getAllOffers(address));
     dispatch(getAllRequirements(address));

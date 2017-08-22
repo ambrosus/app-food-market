@@ -23,9 +23,6 @@ export default class ProductItem extends Component {
       console.warn('Warning: More details action is not defined');
     },
 
-    buyAction: () => {
-      console.warn('Warning: Buy action is not defined');
-    },
   };
 
   componentDidMount() {

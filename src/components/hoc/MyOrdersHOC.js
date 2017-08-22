@@ -17,10 +17,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchMyAgreements(marketAddress));
   },
 
-  buyAction: (offer) => {
-    dispatch(selectOffer(offer));
-  },
-
   moreDetailsAction: (offer) => {
     dispatch(selectOffer(offer));
   },

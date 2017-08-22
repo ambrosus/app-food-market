@@ -11,10 +11,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-  buyAction: (offer) => {
-    dispatch(selectOffer(offer));
-  },
-
   moreDetailsAction: (offer) => {
     dispatch(selectOffer(offer));
   },

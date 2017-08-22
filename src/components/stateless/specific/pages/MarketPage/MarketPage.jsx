@@ -64,6 +64,7 @@ class MarketPage extends Component {
   }
 
   render() {
+    var filteredOffers = this.getFilteredRequirement(this.getFilteredCategories(this.props.offers));
     return (
       <div>
         <NavigationBar title='Market'>
@@ -81,10 +82,10 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        { this.getFilteredRequirement(this.getFilteredCategories(this.props.offers)).length > 0 ?
+        { filteredOffers.length > 0 ?
           (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
-                            products={this.props.offers} />)  :
+                            products={filteredOffers} />)  :
           (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );

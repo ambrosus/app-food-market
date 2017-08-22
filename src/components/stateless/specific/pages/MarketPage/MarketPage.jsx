@@ -30,7 +30,7 @@ class MarketPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!this.props.marketAddress && nextProps.marketAddress) {
-      this.props.fetchOffers(this.props.marketAddress);
+      this.props.fetchOffers(nextProps.marketAddress);
     }
   }
 

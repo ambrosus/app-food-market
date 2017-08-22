@@ -11,10 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchOffers: (address) => {
-    if (address) {
       dispatch(getAllOffers(address));
       dispatch(getAllRequirements(address));
-    }
   },
 });
 

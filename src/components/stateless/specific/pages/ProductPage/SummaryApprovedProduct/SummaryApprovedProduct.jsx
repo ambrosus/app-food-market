@@ -14,15 +14,8 @@ class SummaryApprovedProduct extends Component {
       pricePerUnit: PropTypes.number,
       pricePerPackage: PropTypes.number,
       packageWeight: PropTypes.number,
+      status: PropTypes.string,
     }),
-  };
-
-  static defaultProps = {
-    offer: {
-      pricePerUnit: 1000,
-      pricePerPackage: 50,
-      packageWeight: 10,
-    },
   };
 
   summary() {
@@ -38,13 +31,9 @@ class SummaryApprovedProduct extends Component {
     ];
   }
 
-  toLower(text) {
-    return text ? text.toLowerCase() : '';
-  }
-
   render() {
     return (<div>
-      <Label className={styles.title} text={`Order ${this.toLower(this.props.offer.status)}`}/>
+      <Label className={styles.title} text={`Order ${this.props.offer.status.toLowerCase()}`}/>
       <AttributeValueFieldContainer options={this.summary()} className={styles.requirements}/>
       <Link to="product-buy">
         <Button className={styles.approvePayment}>Reorder</Button>

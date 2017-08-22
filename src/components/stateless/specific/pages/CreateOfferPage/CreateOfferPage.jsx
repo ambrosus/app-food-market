@@ -93,7 +93,7 @@ class CreateOfferPage extends Component {
   hasErrors(fields) {
     for (let field in fields) {
       if (fields.hasOwnProperty(field)) {
-        if (fields[field].errors.length !== 0) return true;
+        if (fields[field].errors.length > 0) return true;
       }
     }
 
@@ -102,14 +102,19 @@ class CreateOfferPage extends Component {
 
   onChange(label, inputState) {
 
-    let formState = Object.assign({}, this.state.form, {});
+    let formState = Object.assign({}, this.state.form);
     let fields = Object.assign({}, this.state.form.fields, {
       [label]: {
         value: inputState.value,
         errors: this.handleValidation(label, inputState.value),
       },
     });
-    formState.fields = fields;
+
+    formState = Object.assign({}, formState, {
+      fields: fields,
+      hasErrors: this.hasErrors(fields),
+    });
+
     this.setState({
       form: formState,
     });

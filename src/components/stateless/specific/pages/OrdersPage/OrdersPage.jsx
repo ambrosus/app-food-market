@@ -20,8 +20,15 @@ class OrdersPage extends Component {
     orders: [],
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.marketAddress && nextProps.marketAddress) {
+      this.props.fetchOrders(nextProps.marketAddress);
+    }
+  }
+
   componentDidMount() {
-    this.props.fetchOrders(this.props.marketAddress);
+    if (this.props.marketAddress)
+      this.props.fetchOrders(this.props.marketAddress);
   }
 
   renderEmpty() {
@@ -30,8 +37,9 @@ class OrdersPage extends Component {
 
   renderOrders() {
     return (<ProductContainer products={this.props.orders}
-    moreDetailsPath={'/product-info'}
-    moreDetailsAction={this.props.moreDetailsAction}/>);
+                              moreDetailsPath={'/product-info'}
+                              moreDetailsAction={this.props.moreDetailsAction}
+                              getOptions={this.props.getOptions}/>);
   }
 
   render() {

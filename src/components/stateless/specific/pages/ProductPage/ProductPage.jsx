@@ -24,14 +24,13 @@ class ProductPage extends Component {
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
-
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 
   attributesToValueField() {
     return this.props.requirements.map(attribute => {
-      const min = (attribute.min / (10 ** attribute.decimals)).toFixed(attribute.decimals);
-      const max = (attribute.max / (10 ** attribute.decimals)).toFixed(attribute.decimals);
+      const min = attribute.min.toFixed(attribute.decimals);
+      const max = attribute.max.toFixed(attribute.decimals);
       return {
         field: attribute.id,
         value: `${min} – ${max}`,

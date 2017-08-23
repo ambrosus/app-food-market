@@ -19,11 +19,11 @@ class ConfirmBuyModal extends Component {
   };
 
   total() {
-    return (this.props.quantity * this.props.offer.pricePerPackage / 100).toFixed(2);
+    return (this.props.quantity * this.props.offer.pricePerPackage).toFixed(2);
   }
 
   weight() {
-    return this.props.quantity * this.props.offer.packageWeight / 100;
+    return this.props.quantity * this.props.offer.packageWeight;
   }
 
   buy() {
@@ -42,15 +42,15 @@ class ConfirmBuyModal extends Component {
                 options={[
                   {
                     field: 'Price',
-                    value: `${(this.props.offer.pricePerUnit / 100).toFixed(2)} euro / kg`,
+                    value: `${(this.props.offer.pricePerUnit).toFixed(2)} euro / kg`,
                   },
                   {
                     field: 'Price per package',
-                    value: `${(this.props.offer.pricePerPackage / 100).toFixed(2)} euro`,
+                    value: `${(this.props.offer.pricePerPackage).toFixed(2)} euro`,
                   },
                   {
                     field: 'Per package',
-                    value: `${this.props.offer.packageWeight / 100} kg`,
+                    value: `${this.props.offer.packageWeight} kg`,
                   },
                 ]}/>
               <AttributeValueFieldContainer

@@ -11,9 +11,6 @@ import Label from '../../../generic/Label/Label.jsx';
 import Button from '../../../generic/Button/Button.jsx';
 import { fetchAttributes } from '../../../../../redux/actions/AttributesAction';
 
-const PRICE_DECIMALS = 2;
-const WEIGHT_DECIMALS = 2;
-
 class CreateOfferPage extends Component {
 
   static propTypes = {
@@ -29,7 +26,7 @@ class CreateOfferPage extends Component {
         category: null,
         packageWeight: null,
         pricePerPackage: null,
-        requirement: null,
+        quality: null,
       },
     };
   }
@@ -51,8 +48,6 @@ class CreateOfferPage extends Component {
 
   onSaveClick() {
     let offer = this.state.form;
-    offer.pricePerUnit *= 10 ** PRICE_DECIMALS;
-    offer.packageWeight *= 10 ** WEIGHT_DECIMALS;
     this.props.onAdd(offer, this.image, this.props.address);
   };
 
@@ -69,7 +64,6 @@ class CreateOfferPage extends Component {
       {
         [label]: state.value,
       });
-    formState.pricePerUnit = this.state.form.pricePerPackage / this.state.form.packageWeight;
 
     this.setState({
       form: formState,
@@ -124,7 +118,7 @@ class CreateOfferPage extends Component {
                                 this.getAttributes(state.value);
                               }}
 
-                             label='requirement' />
+                             label='quality' />
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>
           </div>

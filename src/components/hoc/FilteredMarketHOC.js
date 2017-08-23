@@ -11,8 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchOffers: (address) => {
-      dispatch(getAllOffers(address));
-      dispatch(getAllRequirements(address));
+    dispatch(getAllOffers(address));
+    dispatch(getAllRequirements(address));
   },
 });
 

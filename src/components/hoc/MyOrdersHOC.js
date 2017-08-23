@@ -20,6 +20,17 @@ const mapDispatchToProps = (dispatch) => ({
   moreDetailsAction: (offer) => {
     dispatch(selectOffer(offer));
   },
+
+  getOptions: (offer) => [
+    {
+      field: 'Status',
+      value: offer.status,
+    }, {
+      field: 'Value',
+      value: `€${(offer.pricePerPackage * offer.quantity).toFixed(2)}`,
+    },
+  ],
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrdersPage);

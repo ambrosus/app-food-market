@@ -47,13 +47,13 @@ export default class TransactionBuilder {
   }
 
   sendTransaction() {
+    this.dispatch(showModal('TransactionProgressModal', { title: this.title }));
     this.promise(...this.arguments, (tx) => {
       this.tx = tx;
       this.dispatch(statusAddPendingTransaction({
         address: tx,
         caption: this.title,
       }));
-      this.dispatch(showModal('TransactionProgressModal', { title: this.title }));
       this.txCallback(tx);
     }).then((response) => {
       this.dispatch(statusAddSuccessTransaction({

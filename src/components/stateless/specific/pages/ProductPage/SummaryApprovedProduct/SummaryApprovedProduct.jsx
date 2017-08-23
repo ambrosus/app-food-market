@@ -20,12 +20,12 @@ class SummaryApprovedProduct extends Component {
 
   summary() {
     return [
-      { field: 'Price per package', value: `€${(this.props.offer.pricePerPackage).toFixed(2)}` },
+      { field: 'Price per package', value: `€${(this.props.offer.pricePerPackage).toFixed(this.props.decimals)}` },
       { field: 'Packages', value: this.props.offer.quantity },
       { field: 'Total weight', value: (this.props.offer.packageWeight) * this.props.offer.quantity },
       {
         field: 'Total',
-        value: `€${((this.props.offer.pricePerPackage) * this.props.offer.quantity).toFixed(2)}`,
+        value: `€${((this.props.offer.pricePerPackage) * this.props.offer.quantity).toFixed(this.props.decimals)}`,
       },
 
     ];

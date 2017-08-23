@@ -19,7 +19,7 @@ class ProfilePage extends Component {
     return (
       <div>
         <NavigationBar title='Profile'/>
-        <p>{`Your balance: ${(this.props.balance).toFixed(2)}`}</p>
+        <p>{`Your balance: ${(this.props.balance).toFixed(this.props.decimals)}`}</p>
         <p><Link className={styles.link} to='create-requirements'>Create quality requirements</Link></p>
       </div>
     );

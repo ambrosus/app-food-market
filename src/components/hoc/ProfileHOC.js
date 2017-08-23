@@ -6,6 +6,7 @@ import { updateBalance } from '../../redux/actions/TokenAction';
 const mapStateToProps = state => ({
   balance: state.token.balance,
   marketAddress: state.market.address,
+  decimals: state.token.decimals,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -10,6 +10,16 @@ const mergeAgreementWithOffer = (agreements) => (
 const mapStateToProps = (state) => ({
   marketAddress: state.market.address,
   orders: mergeAgreementWithOffer(state.market.orders),
+  getOptions: (offer) => [
+    {
+      field: 'Status',
+      value: offer.status,
+    }, {
+      field: 'Value',
+      value: `€${(offer.pricePerPackage * offer.quantity).toFixed(state.token.decimals)}`,
+    },
+  ],
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,16 +30,6 @@ const mapDispatchToProps = (dispatch) => ({
   moreDetailsAction: (offer) => {
     dispatch(selectOffer(offer));
   },
-
-  getOptions: (offer) => [
-    {
-      field: 'Status',
-      value: offer.status,
-    }, {
-      field: 'Value',
-      value: `€${(offer.pricePerPackage * offer.quantity).toFixed(2)}`,
-    },
-  ],
 
 });
 

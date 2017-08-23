@@ -38,5 +38,5 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
       dispatch(successCreateRequirement(requirements.contract.address));
       history.push('market');
     }).
-    sendTransaction();
+    send();
 };

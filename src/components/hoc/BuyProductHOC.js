@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   offer: state.offer,
   sidebar: 'buy',
   requirements: state.requirementsAttributes,
+  decimals: state.token.decimals,
 });
 
 const mapDispatchToProps = (dispatch) => ({

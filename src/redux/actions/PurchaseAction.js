@@ -7,7 +7,7 @@ export const buy = (marketAddress, offer, quantity, history) => async (dispatch)
     setTitle('Transfer to ESCROW').
     setArguments(offer.address, quantity).
     onSuccessCallback(()=>history.push('orders')).
-    sendTransaction();
+    send();
 };
 
 export const approve = (agreementAddress, history) => async (dispatch) => {
@@ -15,7 +15,7 @@ export const approve = (agreementAddress, history) => async (dispatch) => {
   new TransactionBuilder(dispatch, agreement.accept.bind(agreement)).
     setTitle('Approve transaction').
     onSuccessCallback(()=>history.push('orders')).
-    sendTransaction();
+    send();
 };
 
 export const reject = (agreementAddress, history) => async (dispatch) => {
@@ -23,5 +23,5 @@ export const reject = (agreementAddress, history) => async (dispatch) => {
   new TransactionBuilder(dispatch, agreement.reject.bind(agreement)).
     setTitle('Reimburse transaction').
     onSuccessCallback(()=>history.push('orders')).
-    sendTransaction();
+    send();
 };

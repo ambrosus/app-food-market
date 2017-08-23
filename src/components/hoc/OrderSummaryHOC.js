@@ -6,6 +6,7 @@ import { fetchAttributes } from '../../redux/actions/AttributesAction';
 const mapStateToProps = state => ({
   offer: state.offer,
   requirements: state.requirementsAttributes,
+  decimals: state.token.decimals,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

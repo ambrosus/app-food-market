@@ -7,6 +7,15 @@ const mapStateToProps = (state, ownProps) => ({
   marketAddress: state.market.address,
   offers: state.market.offers,
   moreDetailsPath: '/product-buy',
+  getOptions: (offer) => [
+    {
+      field: 'Price',
+      value: (offer.pricePerUnit || 0).toFixed(state.token.decimals),
+    }, {
+      field: 'Seller',
+      value: offer.seller,
+    },
+  ],
   ...ownProps,
 });
 
@@ -15,15 +24,6 @@ const mapDispatchToProps = (dispatch) => ({
   moreDetailsAction: (offer) => {
     dispatch(selectOffer(offer));
   },
-
-  getOptions: (offer) => [{
-      field: 'Price',
-      value: (offer.pricePerUnit || 0).toFixed(2),
-    }, {
-      field: 'Seller',
-      value: offer.seller,
-    },
-  ],
 
 });
 

@@ -55,5 +55,5 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
     setArguments(address, { ...offer, seller: web3.eth.accounts[0] }).
     onTxCallback(() => dispatch(saveNewOffer(offer))).
     onSuccessCallback(() => history.push('market')).
-    sendTransaction();
+    send();
 };

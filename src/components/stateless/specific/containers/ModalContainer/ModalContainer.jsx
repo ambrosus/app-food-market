@@ -15,7 +15,7 @@ class ModalContainer extends Component {
   render() {
     if (this.props.name === 'ConfirmBuyModal')
       return (<Route render={({ history }) => (
-        <ConfirmBuyModalHOC history={history}/>
+        <ConfirmBuyModalHOC history={history} decimals={this.props.decimals}/>
       )}/>);
     else if (this.props.name === 'ErrorModal')
       return (<ErrorModalHOC/>);

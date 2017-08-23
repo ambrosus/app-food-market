@@ -63,10 +63,13 @@ class ProductPage extends Component {
           {this.props.sidebar === 'summary' && <SummaryProduct offer={this.props.offer}
                                                                onApprove={this.props.approve}
                                                                onReimburse={this.props.reject}
-                                                               history={this.props.history}/>}
+                                                               history={this.props.history}
+                                                               decimals={this.props.decimals}/>}
           {this.props.sidebar === 'progress' && <SummaryApprovedProduct offer={this.props.offer}
-                                                                        onReorder={this.props.reorder}/>}
-          {this.props.sidebar === 'buy' && <BuyProduct offer={this.props.offer} onBuy={this.props.onBuy}/>}
+                                                                        onReorder={this.props.reorder}
+                                                                        decimals={this.props.decimals}/>}
+          {this.props.sidebar === 'buy' && <BuyProduct offer={this.props.offer} onBuy={this.props.onBuy}
+                                                       decimals={this.props.decimals}/>}
         </div>
       </div>
     );

@@ -9,6 +9,7 @@ class ProductContainer extends Component {
     products: PropTypes.array.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
+    getOptions: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -25,14 +26,7 @@ class ProductContainer extends Component {
             name={offer.name}
             category={offer.category}
             imageHash={offer.imageHash}
-            options={[{
-              field: 'Price',
-              value: (offer.pricePerUnit).toFixed(2),
-            }, {
-              field: 'Seller',
-              value: offer.seller,
-            },
-            ]}
+            options={this.props.getOptions(offer)}
             moreDetailsPath={this.props.moreDetailsPath}
             moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)}
       </div>

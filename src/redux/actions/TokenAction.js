@@ -17,7 +17,6 @@ export const chargeMyAccount = (marketAddress, amount) => async function (dispat
     setArguments(amount).
     onSuccessCallback(() => dispatch(updateBalance(marketAddress))).
     sendTransaction();
-
 };
 
 export const updateBalance = (marketAddress) => async function (dispatch) {

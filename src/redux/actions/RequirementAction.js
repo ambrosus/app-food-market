@@ -32,7 +32,7 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
 
   new TransactionBuilder(dispatch, requirementsRepository.create.bind(requirementsRepository)).
     setTitle('Transfer to ESCROW').
-    setArguments(name, marketAddress).
+    setArguments(name, marketAddress, requirements).
     onTxCallback((tx) => dispatch(responseCreateRequirement(tx))).
     onSuccessCallback((requirements) => {
       dispatch(successCreateRequirement(requirements.contract.address));

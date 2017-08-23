@@ -26,6 +26,7 @@ class MarketPage extends Component {
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
+    getOptions: PropTypes.func.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -93,7 +94,8 @@ class MarketPage extends Component {
         { filteredOffers.length > 0 ?
           (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
-                            products={filteredOffers} />)  :
+                            products={filteredOffers}
+                            getOptions={this.props.getOptions}/>)  :
           (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
       </div>
     );

@@ -37,8 +37,9 @@ class OrdersPage extends Component {
 
   renderOrders() {
     return (<ProductContainer products={this.props.orders}
-    moreDetailsPath={'/product-info'}
-    moreDetailsAction={this.props.moreDetailsAction}/>);
+                              moreDetailsPath={'/product-info'}
+                              moreDetailsAction={this.props.moreDetailsAction}
+                              getOptions={this.props.getOptions}/>);
   }
 
   render() {

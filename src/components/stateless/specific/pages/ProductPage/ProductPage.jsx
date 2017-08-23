@@ -24,7 +24,6 @@ class ProductPage extends Component {
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
-
     this.props.getAttributes(this.props.offer.requirementsAddress);
   }
 

@@ -1,117 +1,90 @@
-import { statusAddFailedTransaction,
-statusAddPendingTransaction,
-statusAddSuccessTransaction } from './TransactionStatusAction.js';
-import { hideModal, showModal } from './ModalAction.js';
 import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import Ambrosus from 'ambrosus';
+import TransactionBuilder from '../../utils/transactionBuilder';
 
 const requestAllOffers = () => ({
-        type: 'FETCH_OFFERS_REQUEST',
-      });
+  type: 'FETCH_OFFERS_REQUEST',
+});
 
 const receiveAllOffers = (offers) => ({
-        type: 'FETCH_OFFERS_RESPONSE',
-        offers,
-      });
+  type: 'FETCH_OFFERS_RESPONSE',
+  offers,
+});
 
 const requestAllRequirements = () => ({
-        type: 'FETCH_REQUIREMENT_REQUEST',
-      });
+  type: 'FETCH_REQUIREMENT_REQUEST',
+});
 
 const receiveAllRequirements = (requirements) => ({
-        type: 'FETCH_REQUIREMENT_RESPONSE',
-        requirements,
-      });
+  type: 'FETCH_REQUIREMENT_RESPONSE',
+  requirements,
+});
 
 const requestNewMarket = () => ({
-        type: 'CREATE_MARKET_REQUEST',
-      });
+  type: 'CREATE_MARKET_REQUEST',
+});
 
 const createMarketResponse = (marketContract) => ({
-        type: 'CREATE_MARKET_RESPONSE',
-        address: marketContract.address,
-      });
+  type: 'CREATE_MARKET_RESPONSE',
+  address: marketContract.address,
+});
 
 export const createMarketSuccess = ({ address }) => ({
-        type: 'CREATE_MARKET_SUCCESS',
-        address,
-      });
+  type: 'CREATE_MARKET_SUCCESS',
+  address,
+});
 
 export const createMarketFailed = (reason) => ({
-        type: 'CREATE_MARKET_FAILED',
-        reason,
-      });
+  type: 'CREATE_MARKET_FAILED',
+  reason,
+});
 
 export const updateFilter = (key, value) => ({
-        type: 'FILTER_UPDATE',
-        key,
-        value,
-      });
+  type: 'FILTER_UPDATE',
+  key,
+  value,
+});
 
 export const resetFilter = () => ({
-        type: 'FILTER_RESET',
-      });
+  type: 'FILTER_RESET',
+});
 
 const INITIAL_TOKENS = 1000000;
 
 export const createMarket = (history) => async function (dispatch) {
-        dispatch(requestNewMarket());
-        await waitForAmbrosus();
-        let marketRepository = new Ambrosus.MarketRepository();
-        let temporaryHashCode;
-        marketRepository.create(INITIAL_TOKENS, (transactionHash) => {
-            temporaryHashCode = transactionHash;
-            dispatch(statusAddPendingTransaction({
-                  address: temporaryHashCode,
-                  caption: 'Creating contract',
-                  url: '/market',
-                }));
-            dispatch(createMarketResponse(transactionHash));
-            dispatch(showModal('TransactionProgressModal', { title: 'Creating market' }));
-          }).then((myContract) => {
-            dispatch(statusAddSuccessTransaction({
-                address: temporaryHashCode,
-                caption: 'Creating contract',
-                url: '/market',
-              }));
-
-            dispatch(createMarketSuccess({
-                address: myContract.marketContract.address,
-              }));
-
-            dispatch(hideModal());
-
-          }).catch((err) => {
-            dispatch(statusAddFailedTransaction(
-                {
-                    caption: err.message,
-                    url: '/market',
-                  }));
-            dispatch(showModal('ErrorModal', { reason: err }));
-          });
-      };
-
+  dispatch(requestNewMarket());
+  await waitForAmbrosus();
+  let marketRepository = new Ambrosus.MarketRepository();
+  new TransactionBuilder(dispatch, marketRepository.create.bind(marketRepository)).
+    setTitle('Creating market').
+    setArguments(INITIAL_TOKENS).
+    onTxCallback((tx) => dispatch(createMarketResponse(transactionHash))).
+    onSuccessCallback((market) => dispatch(createMarketSuccess({
+      address: market.marketContract.address,
+    }))).
+    sendTransaction();
+};
 
 export const getAllOffers = (address) => async function (dispatch) {
-        dispatch(requestAllOffers());
-        await waitForAmbrosus();
-        const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
-        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-        const market = await marketRepo.fromAddress(address);
-        let offers = await offerRepo.getAllFromMarket(market);
-        dispatch(receiveAllOffers(offers));
-      };
+  dispatch(requestAllOffers());
+  await waitForAmbrosus();
+  const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+  const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+  const market = await marketRepo.fromAddress(address);
+  let offers = await offerRepo.getAllFromMarket(market);
+  dispatch(receiveAllOffers(offers));
+};
 
 export const getAllRequirements = (address) => async function (dispatch) {
-        dispatch(requestAllRequirements());
-        await waitForAmbrosus();
-        const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
-        const market = await marketRepo.fromAddress(address);
-        const requirementsRepository = new Ambrosus.RequirementsRepository();
-        const requirements = await requirementsRepository.getAllFromMarket(market);
-        let names = await requirementsNames(requirements);
-        dispatch(receiveAllRequirements(names));
-      };
+  dispatch(requestAllRequirements());
+  await waitForAmbrosus();
+  const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
+  const market = await marketRepo.fromAddress(address);
+  const requirementsRepository = new Ambrosus.RequirementsRepository();
+  const requirements = await requirementsRepository.getAllFromMarket(market);
+  let names = await requirementsNames(requirements);
+  dispatch(receiveAllRequirements(names));
+};
 
 async function requirementsNames(requirements) {
   let names = [];

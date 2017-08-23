@@ -7,6 +7,7 @@ import {
   statusAddFailedTransaction,
 } from './TransactionStatusAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
+import TransactionBuilder from '../../utils/transactionBuilder';
 
 const uploadToIPFS = async (ipfs, image) => {
   const uploader = new IPFSUploader(ipfs);
@@ -49,22 +50,10 @@ export const doCreateOffer = (offer, address, history) => async function (dispat
     offer.requirementsAddress = requirements.getAddress();
   }
 
-  offerRepo.save(address, { ...offer, seller: web3.eth.accounts[0] }, (transactionHash) => {
-    dispatch(saveNewOffer(offer));
-    dispatch(statusAddPendingTransaction({ address: transactionHash, caption: 'Creating offer', url: '' }));
-    dispatch(showModal('TransactionProgressModal', { title: 'Creating offer' }));
-  }).then((myContract) => {
-    dispatch(hideModal());
-    history.push('market');
-    return dispatch(statusAddSuccessTransaction({
-      address: myContract.transactionHash,
-      caption: 'Creating offer',
-      url: '',
-    }));
-  }).catch((reason) => {
-    dispatch(statusAddFailedTransaction({
-      url: 'Operation failed',
-    }));
-    dispatch(showModal('ErrorModal', { reason }));
-  });
+  new TransactionBuilder(dispatch, offerRepo.save.bind(offerRepo)).
+    setTitle('Creating offer').
+    setArguments(address, { ...offer, seller: web3.eth.accounts[0] }).
+    onTxCallback(() => dispatch(saveNewOffer(offer))).
+    onSuccessCallback(() => history.push('market')).
+    sendTransaction();
 };

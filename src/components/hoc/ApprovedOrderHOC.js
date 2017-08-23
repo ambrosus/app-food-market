@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
   offer: state.offer,
   sidebar: 'progress',
   requirements: state.requirementsAttributes,
+  decimals: state.token.decimals,
 });
 
 const mapDispatchToProps = (dispatch) => ({

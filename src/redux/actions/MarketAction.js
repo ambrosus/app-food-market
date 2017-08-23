@@ -62,7 +62,7 @@ export const createMarket = (history) => async function (dispatch) {
     onSuccessCallback((market) => dispatch(createMarketSuccess({
       address: market.marketContract.address,
     }))).
-    sendTransaction();
+    send();
 };
 
 export const getAllOffers = (address) => async function (dispatch) {

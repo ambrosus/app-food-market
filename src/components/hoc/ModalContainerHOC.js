@@ -5,6 +5,7 @@ import ModalContainer from '../stateless/specific/containers/ModalContainer/Moda
 const mapStateToProps = (state) => ({
   name: state.modal.name,
   args: state.modal.args,
+  decimals: state.token.decimals,
 });
 
 const mapDispatchToProps = (dispatch) => ({});

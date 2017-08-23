@@ -46,7 +46,7 @@ export default class TransactionBuilder {
     return this;
   }
 
-  sendTransaction() {
+  send() {
     this.dispatch(showModal('TransactionProgressModal', { title: this.title }));
     this.promise(...this.arguments, (tx) => {
       this.tx = tx;

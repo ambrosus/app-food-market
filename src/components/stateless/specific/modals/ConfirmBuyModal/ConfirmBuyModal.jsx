@@ -19,7 +19,7 @@ class ConfirmBuyModal extends Component {
   };
 
   total() {
-    return (this.props.quantity * this.props.offer.pricePerPackage).toFixed(2);
+    return (this.props.quantity * this.props.offer.pricePerPackage).toFixed(this.props.decimals);
   }
 
   weight() {
@@ -42,11 +42,11 @@ class ConfirmBuyModal extends Component {
                 options={[
                   {
                     field: 'Price',
-                    value: `${(this.props.offer.pricePerUnit).toFixed(2)} euro / kg`,
+                    value: `${(this.props.offer.pricePerUnit).toFixed(this.props.decimals)} euro / kg`,
                   },
                   {
                     field: 'Price per package',
-                    value: `${(this.props.offer.pricePerPackage).toFixed(2)} euro`,
+                    value: `${(this.props.offer.pricePerPackage).toFixed(this.props.decimals)} euro`,
                   },
                   {
                     field: 'Per package',

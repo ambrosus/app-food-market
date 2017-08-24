@@ -17,7 +17,7 @@ class ErrorList extends Component {
     return (<ul className={classnames(
       styles.errorList, {
         [styles.showErrors]: this.props.errors.length > 0,
-        [styles.hideErrors]: !this.props.errors,
+        [styles.hideErrors]: !this.props.errors || this.props.errors.length === 0,
       })}>
       { this.props.errors.map((error, index) =>
         (<li key={ Date.now() } className={styles.errorMessage}> {error} </li>)) }

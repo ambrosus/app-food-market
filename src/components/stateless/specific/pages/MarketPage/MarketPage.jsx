@@ -99,7 +99,8 @@ class MarketPage extends Component {
                             moreDetailsAction={this.props.moreDetailsAction}
                             products={filteredOffers}
                             getOptions={this.props.getOptions}/>)  :
-          (<p>There are no offers on the market yet. <Link to='/create-offer'>Create</Link> first.</p>) }
+          (<p>There are no offers meeting criteria. Change filter settings or {' '}
+            <Link to='/create-offer'>create</Link> new offer first.</p>) }
       </div>
     );
   }

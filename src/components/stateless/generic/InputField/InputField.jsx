@@ -31,10 +31,12 @@ export default class InputField extends Component {
              type='text'
              onChange={this.onChange.bind(this)}
              className={styles.value} />
-      <span className={classnames({
-        [styles.showErrors]: this.props.errors.length > 0,
-        [styles.hideErrors]: !this.props.errors,
-      })}>{this.props.errors[0]}</span>
+        <ul className={classnames({
+          [styles.showErrors]: this.props.errors.length > 0,
+          [styles.hideErrors]: !this.props.errors,
+        })}>
+          { this.props.errors.map(error => (<li> {error} </li>)) }
+        </ul>
     </div>);
   }
 };

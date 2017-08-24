@@ -16,6 +16,7 @@ export default class SelectorField extends Component {
     placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     options: PropTypes.array.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {

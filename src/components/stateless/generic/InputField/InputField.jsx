@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './InputField.scss';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 export default class InputField extends Component {
 
@@ -8,6 +9,11 @@ export default class InputField extends Component {
     text: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  };
+
+  static defaultProps = {
+    errors: [],
   };
 
   onChange() {
@@ -25,7 +31,10 @@ export default class InputField extends Component {
              type='text'
              onChange={this.onChange.bind(this)}
              className={styles.value} />
-      <span>{this.props.error}</span>
+      <span className={classnames({
+        [styles.showErrors]: this.props.errors.length > 0,
+        [styles.hideErrors]: !this.props.errors,
+      })}>{this.props.errors[0]}</span>
     </div>);
   }
 };

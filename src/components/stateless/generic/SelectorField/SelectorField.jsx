@@ -22,7 +22,7 @@ export default class SelectorField extends Component {
 
   static defaultProps = {
     options: [],
-    errors:[],
+    errors: [],
   };
 
   onChange(event) {
@@ -37,8 +37,8 @@ export default class SelectorField extends Component {
       <select className={classnames(styles.select, this.props.className)}
               onChange={this.onChange.bind(this)}
               value={this.state.value || this.props.placeholder}>
-        { <option defaultValue disabled>{ this.props.placeholder }</option> }
-        {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
+        { this.props.placeholder && <option defaultValue disabled>{ this.props.placeholder }</option> }
+        { this.props.options.map((option, index) => <option key={index}>{option.value}</option>) }
       </select>
       <ErrorList errors={this.props.errors}/>
     </div>);

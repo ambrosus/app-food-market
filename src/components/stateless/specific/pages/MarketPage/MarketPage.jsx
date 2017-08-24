@@ -78,16 +78,16 @@ class MarketPage extends Component {
       return (<p>There are no offers on the market yet. {' '}
             <Link to='/create-offer'>Create</Link> the first offer.</p>);
     } else if (filteredOffers.length === 0)  {
-      return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>)
+      return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>);
     } else {
       return (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
                             products={filteredOffers}
                             getOptions={this.props.getOptions}/>);
-    }    
+    }
   }
 
-  render() {    
+  render() {
     return (
       <div>
         <NavigationBar title='Market'>

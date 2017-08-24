@@ -4,7 +4,6 @@ import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import { Link } from 'react-router-dom';
 import styles from './ProfilePage.scss';
 import InputField from '../../../generic/InputField/InputField';
-import Button from '../../../generic/Button/Button';
 
 class ProfilePage extends Component {
 
@@ -37,7 +36,6 @@ class ProfilePage extends Component {
       <div>
         <NavigationBar title='Profile'>
           <InputField value={this.state.username} text="Username" label="username" onChange={this.onChange.bind(this)}/>
-          <Button onClick={()=>this.props.changeUsername(this.props.marketAddress, this.state.username)}>Change</Button>
         </NavigationBar>
         <p>{`Your balance: ${(this.props.balance).toFixed(this.props.decimals)}`}</p>
         <p>

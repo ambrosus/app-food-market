@@ -9,7 +9,6 @@ $label-color: #002c87;
 }
 
 :local(.label) {
-  display: table-cell;
   font-family: 'Muli', sans-serif;
   color: $label-color;
   font-size: 15px;
@@ -21,7 +20,6 @@ $label-color: #002c87;
 }
 
 :local(.value) {
-  display: table-cell;
   font-family: 'Muli', sans-serif;
   color: #002C87;
   border: 1px solid #002c87;

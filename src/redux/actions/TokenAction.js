@@ -11,7 +11,7 @@ async function getToken(marketAddress) {
 }
 
 export const chargeMyAccount = (marketAddress, amount) => async function (dispatch) {
-  let token = await getToken();
+  let token = await getToken(marketAddress);
   new TransactionBuilder(dispatch, token.chargeMyAccount.bind(token)).
     setTitle(`Charging account by ${amount} tokens`).
     setArguments(amount).

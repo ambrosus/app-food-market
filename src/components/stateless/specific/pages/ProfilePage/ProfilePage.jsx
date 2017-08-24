@@ -8,7 +8,7 @@ class ProfilePage extends Component {
 
   static propTypes = {
     balance: PropTypes.number,
-    token: PropTypes.object,
+    marketAddress: PropTypes.string,
   };
 
   componentDidMount() {
@@ -20,6 +20,11 @@ class ProfilePage extends Component {
       <div>
         <NavigationBar title='Profile'/>
         <p>{`Your balance: ${(this.props.balance).toFixed(this.props.decimals)}`}</p>
+        <p>
+          <Link className={styles.link} to="#"
+                onClick={() => this.props.chargeBalance(this.props.marketAddress)}>Charge
+          </Link>
+        </p>
         <p><Link className={styles.link} to='create-requirements'>Create quality requirements</Link></p>
       </div>
     );

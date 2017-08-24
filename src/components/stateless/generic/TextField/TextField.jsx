@@ -25,7 +25,7 @@ export default class TextField extends Component {
   };
 
   render() {
-    return (<span>
+    return (<span className={this.props.className}>
       <input ref="input"
              className={classNames(styles.input, this.props.className)}
              onChange={this.onChange.bind(this)}

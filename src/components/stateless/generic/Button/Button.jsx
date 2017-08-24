@@ -9,8 +9,7 @@ export default class Button extends Component {
   };
 
   render() {
-    return (<div onClick={this.props.enabled ? this.props.onClick : (event) => { console.log('canceling'); event.preventDefault() } }
-                 className={classnames(styles.button, this.props.className)}>
+    return (<div onClick={this.props.onClick} className={classnames(styles.button, this.props.className)}>
       {this.props.children}</div>);
   }
 };

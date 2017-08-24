@@ -58,7 +58,9 @@ class CreateOfferPage extends Component {
 
   onSaveClick() {
     let offer = this.state.form.values;
-    this.props.onAdd(offer, this.image, this.props.address);
+    if (!this.validateBeforeSubmit(offer)) {
+      this.props.onAdd(offer, this.image, this.props.address);
+    }
   };
 
   getCategories() {
@@ -69,20 +71,43 @@ class CreateOfferPage extends Component {
     return this.props.requirements.map((key) => ({ value: key }));
   }
 
+  validateBeforeSubmit(values) {
+    let errors = {};
+    let hasErrors = false;
+
+    for (let value in values) {
+      if (values.hasOwnProperty(value)) {
+        errors[value] = this.handleValidation(value, values[value]);
+        if (errors[value].length > 0) { hasErrors = true;}
+      }
+    }
+
+    let newErrors = Object.assign({}, this.state.form.errors, errors);
+    let newValues = Object.assign({}, this.state.form.values, values);
+    let newState = Object.assign({}, this.state, { form: { values: newValues, errors: newErrors } });
+    this.setState(newState);
+    return hasErrors;
+  }
+
   handleValidation(label, value) {
     let errors = [];
     switch (label) {
       case 'name':
-        if (value === '') {
+        if (value === null || value === '') {
           return [...errors, 'Cannot be empty'];
-        } else { return [];
+        } else {
+          return [];
         }
 
-      case 'pricePerPackage':
       case 'packageWeight':
+      case 'pricePerPackage':
+        if (value === null || value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else
         if (isNaN(value)) {
           return [...errors, 'It is not a number'];
-        } else return errors;
+        } else
+          return errors;
       default:
         return errors;
     }
@@ -125,7 +150,6 @@ class CreateOfferPage extends Component {
           <Button className={styles.cancelButton}
                   onClick={this.props.history.goBack}>Cancel</Button>
           <Button className={styles.saveButton}
-                  enabled={!this.state.form.hasErrors}
                   onClick={this.onSaveClick.bind(this)}>Save</Button>
         </NavigationBar>
         <div className={styles.top}>

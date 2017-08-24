@@ -17,6 +17,15 @@
   }
 }
 
+:local(.errorList) {
+  list-style: none;
+  padding: 0;
+}
+
+:local(.errorMessage) {
+  padding: 0;
+}
+
 :local(.showErrors) {
   display: block;
   color: red;

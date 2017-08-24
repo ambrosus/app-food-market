@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './InputField.scss';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import ErrorList from '../ErrorList/ErrorList';
 
 export default class InputField extends Component {
 
@@ -31,12 +31,7 @@ export default class InputField extends Component {
              type='text'
              onChange={this.onChange.bind(this)}
              className={styles.value} />
-        <ul className={classnames({
-          [styles.showErrors]: this.props.errors.length > 0,
-          [styles.hideErrors]: !this.props.errors,
-        })}>
-          { this.props.errors.map(error => (<li> {error} </li>)) }
-        </ul>
+        <ErrorList errors={this.props.errors} />
     </div>);
   }
 };

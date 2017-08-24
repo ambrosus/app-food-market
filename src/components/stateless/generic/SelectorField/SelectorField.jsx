@@ -13,29 +13,21 @@ export default class SelectorField extends Component {
   }
 
   static propTypes = {
+    placeholder: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     options: PropTypes.array.isRequired,
   };
 
   static defaultProps = {
-    onChange: () => console.log('onChange is not defined'),
     options: [],
   };
-
-  componentDidMount() {
-    if (this.props.options.length > 0) {
-      let state = {
-        value: this.props.options[0].value,
-      };
-      this.setState(state, this.props.onChange.bind(this, this.props.label, state));
-    }
-  }
 
   render() {
     return (<div>
       <select className={classnames(styles.select, this.props.className)}
               onChange={this.onChange.bind(this)}
               value={this.props.value}>
+        { <option defaultValue selected disabled>{ this.props.placeholder }</option> }
         {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
       </select>
     </div>);

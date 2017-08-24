@@ -177,6 +177,7 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
+                             placeholder="Select category"
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
@@ -192,6 +193,7 @@ class CreateOfferPage extends Component {
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
+                             placeholder="Select quality"
                              options={this.getRequirements()}
                              onChange={(label, state) => {
                                 this.onChange(label, state);

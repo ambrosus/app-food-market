@@ -29,6 +29,7 @@ class CreateOfferPage extends Component {
           packageWeight: [],
           pricePerPackage: [],
           requirement: [],
+          quality: [],
         },
         values: {
           name: null,
@@ -36,6 +37,7 @@ class CreateOfferPage extends Component {
           packageWeight: null,
           pricePerPackage: null,
           requirement: null,
+          quality: null,
         },
       },
     };
@@ -78,7 +80,7 @@ class CreateOfferPage extends Component {
     for (let value in values) {
       if (values.hasOwnProperty(value)) {
         errors[value] = this.handleValidation(value, values[value]);
-        if (errors[value].length > 0) { hasErrors = true;}
+        if (errors && errors[value].length > 0) { hasErrors = true;}
       }
     }
 
@@ -91,7 +93,24 @@ class CreateOfferPage extends Component {
 
   handleValidation(label, value) {
     let errors = [];
+    console.log(label, value);
     switch (label) {
+
+      case 'quality':
+        if (value === null || value === '') {
+          return ['Quality is not selected'];
+        } else {
+          return [];
+        }
+
+      case 'category':
+        if (value === null || value === '') {
+          return ['Category is not selected'];
+        } else {
+          return [];
+        }
+
+      break;
       case 'name':
         if (value === null || value === '') {
           return [...errors, 'Cannot be empty'];
@@ -99,6 +118,7 @@ class CreateOfferPage extends Component {
           return [];
         }
 
+      break;
       case 'packageWeight':
       case 'pricePerPackage':
         if (value === null || value === '') {
@@ -108,6 +128,7 @@ class CreateOfferPage extends Component {
           return [...errors, 'It is not a number'];
         } else
           return errors;
+      break;
       default:
         return errors;
     }
@@ -126,7 +147,7 @@ class CreateOfferPage extends Component {
   onChange(label, inputState) {
 
     let formState = Object.assign({}, this.state.form);
-    let errors  = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value)});
+    let errors = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value)});
     let values = Object.assign({}, this.state.form.values, { [label]: inputState.value });
 
     formState = Object.assign({}, formState, {
@@ -177,6 +198,7 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
+                             errors={this.state.form.errors.category}
                              placeholder="Select category"
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
@@ -195,11 +217,11 @@ class CreateOfferPage extends Component {
               <SelectorField className={styles.selector}
                              placeholder="Select quality"
                              options={this.getRequirements()}
+                             errors={this.state.form.errors.quality}
                              onChange={(label, state) => {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);
                               }}
-
                              label='quality' />
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>

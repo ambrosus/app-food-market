@@ -25,4 +25,4 @@ class ErrorList extends Component {
   }
 }
 
-export default ErrorList
+export default ErrorList;

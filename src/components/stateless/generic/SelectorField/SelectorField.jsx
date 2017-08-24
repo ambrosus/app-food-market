@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import styles from './SelectorField.scss';
+import ErrorList from '../ErrorList/ErrorList';
 
 export default class SelectorField extends Component {
 
@@ -21,6 +22,7 @@ export default class SelectorField extends Component {
 
   static defaultProps = {
     options: [],
+    errors:[],
   };
 
   onChange(event) {
@@ -38,6 +40,7 @@ export default class SelectorField extends Component {
         { <option defaultValue disabled>{ this.props.placeholder }</option> }
         {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
       </select>
+      <ErrorList errors={this.props.errors}/>
     </div>);
   }
 }

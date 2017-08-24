@@ -6,6 +6,7 @@
 }
 
 :local(.label) {
+  display: table-cell;
   font-family: 'Muli', sans-serif;
   color: #002c87;
   font-size: 15px;
@@ -35,6 +36,7 @@
 }
 
 :local(.value) {
+  display: table-cell;
   font-family: 'Muli', sans-serif;
   color: #002C87;
   border: 1px solid #002c87;

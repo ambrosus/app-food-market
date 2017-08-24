@@ -41,12 +41,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 120px;
-  margin: 15px 0;
+  min-height: 120px;
+  margin: 20px 0;
 }
 
 :local(.field) {
-  display: table-cell;
+  margin: 10px;
 }
 
 :local(.properties) {

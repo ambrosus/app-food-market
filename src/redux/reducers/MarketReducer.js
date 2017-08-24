@@ -4,6 +4,7 @@ const DEFAULT_STATE = {
   address: '',
   requirements: [],
   orders: [],
+  username: '',
 };
 
 const market = (
@@ -30,6 +31,8 @@ const market = (
       return { ...state, filter: {} };
     case 'FETCH_AGREEMENTS_SUCCESS':
       return { ...state, orders: action.agreements };
+    case 'FETCH_USERNAME_SUCCESS':
+      return { ...state, username: action.username };
     default:
       return state;
   }

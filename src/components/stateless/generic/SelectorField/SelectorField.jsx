@@ -23,21 +23,21 @@ export default class SelectorField extends Component {
     options: [],
   };
 
-  render() {
-    return (<div>
-      <select className={classnames(styles.select, this.props.className)}
-              onChange={this.onChange.bind(this)}
-              value={this.props.value}>
-        { <option defaultValue selected disabled>{ this.props.placeholder }</option> }
-        {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
-      </select>
-    </div>);
-  }
-
   onChange(event) {
     let state = {
       value: event.target.value,
     };
     this.setState(state, this.props.onChange.bind(this, this.props.label, state));
+  }
+
+  render() {
+    return (<div>
+      <select className={classnames(styles.select, this.props.className)}
+              onChange={this.onChange.bind(this)}
+              value={this.state.value || this.props.placeholder}>
+        { <option defaultValue disabled>{ this.props.placeholder }</option> }
+        {this.props.options.map((option, index) => <option key={index}>{option.value}</option>)}
+      </select>
+    </div>);
   }
 }

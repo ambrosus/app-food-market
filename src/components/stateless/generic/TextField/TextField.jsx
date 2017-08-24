@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import styles from './TextField.scss';
+import ErrorList from '../ErrorList/ErrorList';
 
 export default class TextField extends Component {
 
@@ -16,15 +17,22 @@ export default class TextField extends Component {
     className: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
-    value: PropTypes.string,
+    errors: PropTypes.arrayOf(PropTypes.string),
+  };
+
+  static defaultProps = {
+    errors: [],
   };
 
   render() {
-    return (<input ref="input"
+    return (<span className={this.props.className}>
+      <input ref="input"
              className={classNames(styles.input, this.props.className)}
              onChange={this.onChange.bind(this)}
              placeholder={this.props.placeholder}
-             value={this.props.value} />);
+             value={this.state.value}/>
+      <ErrorList errors={this.props.errors}/>
+    </span>);
   }
 
   onChange() {

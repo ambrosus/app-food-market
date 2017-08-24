@@ -1,8 +1,5 @@
 @import '../.././shared.scss';
 
-$placeholder-color: rgba(32, 171, 250, 0.42);
-$label-color: #002c87;
-
 :local(.row) {
   display: table-row;
   height: 60px;
@@ -10,13 +7,31 @@ $label-color: #002c87;
 
 :local(.label) {
   font-family: 'Muli', sans-serif;
-  color: $label-color;
+  color: #002c87;
   font-size: 15px;
   padding-right: 46px;
 
   &::after {
     content: ":"
   }
+}
+
+:local(.errorList) {
+  list-style: none;
+  padding: 0;
+}
+
+:local(.errorMessage) {
+  padding: 0;
+}
+
+:local(.showErrors) {
+  display: block;
+  color: red;
+}
+
+:local(.hideErrors) {
+  display:none;
 }
 
 :local(.value) {
@@ -31,6 +46,6 @@ $label-color: #002c87;
 
   &::placeholder {
     content: 'Fish';
-    color: $placeholder-color;
+    color: rgba(32, 171, 250, 0.42);
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './InputField.scss';
 import PropTypes from 'prop-types';
+import ErrorList from '../ErrorList/ErrorList';
 
 export default class InputField extends Component {
 
@@ -13,6 +14,11 @@ export default class InputField extends Component {
     text: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     label: PropTypes.string.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  };
+
+  static defaultProps = {
+    errors: [],
   };
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +41,7 @@ export default class InputField extends Component {
              value={this.state.value}
              onChange={this.onChange.bind(this)}
              className={styles.value} />
-      <span>{this.props.error}</span>
+        <ErrorList errors={this.props.errors} />
     </div>);
   }
 };

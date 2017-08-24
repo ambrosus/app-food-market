@@ -9,7 +9,6 @@ import AttributeValueFieldContainer from '../../containers/AttributeValueFieldCo
 import FileProcessor from 'react-file-processor';
 import Label from '../../../generic/Label/Label.jsx';
 import Button from '../../../generic/Button/Button.jsx';
-import { fetchAttributes } from '../../../../../redux/actions/AttributesAction';
 
 class CreateOfferPage extends Component {
 
@@ -20,13 +19,26 @@ class CreateOfferPage extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       form: {
-        name: null,
-        category: null,
-        packageWeight: null,
-        pricePerPackage: null,
-        quality: null,
+        hasErrors: null,
+        errors: {
+          name: [],
+          category: [],
+          packageWeight: [],
+          pricePerPackage: [],
+          requirement: [],
+          quality: [],
+        },
+        values: {
+          name: null,
+          category: null,
+          packageWeight: null,
+          pricePerPackage: null,
+          requirement: null,
+          quality: null,
+        },
       },
     };
   }
@@ -47,8 +59,10 @@ class CreateOfferPage extends Component {
   }
 
   onSaveClick() {
-    let offer = this.state.form;
-    this.props.onAdd(offer, this.image, this.props.address);
+    let offer = this.state.form.values;
+    if (!this.validateBeforeSubmit(offer)) {
+      this.props.onAdd(offer, this.image, this.props.address);
+    }
   };
 
   getCategories() {
@@ -59,11 +73,88 @@ class CreateOfferPage extends Component {
     return this.props.requirements.map((key) => ({ value: key }));
   }
 
-  onChange(label, state) {
-    let formState = Object.assign(this.state.form,
-      {
-        [label]: state.value,
-      });
+  validateBeforeSubmit(values) {
+    let errors = {};
+    let hasErrors = false;
+
+    for (let value in values) {
+      if (values.hasOwnProperty(value)) {
+        errors[value] = this.handleValidation(value, values[value]);
+        if (errors && errors[value].length > 0) { hasErrors = true;}
+      }
+    }
+
+    let newErrors = Object.assign({}, this.state.form.errors, errors);
+    let newValues = Object.assign({}, this.state.form.values, values);
+    let newState = Object.assign({}, this.state, { form: { values: newValues, errors: newErrors } });
+    this.setState(newState);
+    return hasErrors;
+  }
+
+  handleValidation(label, value) {
+    let errors = [];
+    console.log(label, value);
+    switch (label) {
+
+      case 'quality':
+        if (value === null || value === '') {
+          return ['Quality is not selected'];
+        } else {
+          return [];
+        }
+
+      case 'category':
+        if (value === null || value === '') {
+          return ['Category is not selected'];
+        } else {
+          return [];
+        }
+
+      break;
+      case 'name':
+        if (value === null || value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else {
+          return [];
+        }
+
+      break;
+      case 'packageWeight':
+      case 'pricePerPackage':
+        if (value === null || value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else
+        if (isNaN(value)) {
+          return [...errors, 'It is not a number'];
+        } else
+          return errors;
+      break;
+      default:
+        return errors;
+    }
+  }
+
+  hasErrors(errors) {
+    for (let error in errors) {
+      if (errors.hasOwnProperty(error)) {
+        if (errors[error].length > 0) return true;
+      }
+    }
+
+    return false;
+  }
+
+  onChange(label, inputState) {
+
+    let formState = Object.assign({}, this.state.form);
+    let errors = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value)});
+    let values = Object.assign({}, this.state.form.values, { [label]: inputState.value });
+
+    formState = Object.assign({}, formState, {
+      values: values,
+      errors: errors,
+      hasErrors: this.hasErrors(errors),
+    });
 
     this.setState({
       form: formState,
@@ -80,11 +171,14 @@ class CreateOfferPage extends Component {
           <Button className={styles.cancelButton}
                   onClick={this.props.history.goBack}>Cancel</Button>
           <Button className={styles.saveButton}
-                  onClick={() => this.onSaveClick()}>Save</Button>
+                  onClick={this.onSaveClick.bind(this)}>Save</Button>
         </NavigationBar>
         <div className={styles.top}>
           <Label className={styles.label} text='Name of object:'/>
-          <TextField label="name" onChange={this.onChange.bind(this)} className={styles.textField}/>
+          <TextField label="name"
+                     errors={this.state.form.errors.name}
+                     onChange={this.onChange.bind(this)}
+                     className={styles.textField}/>
           <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
@@ -104,20 +198,30 @@ class CreateOfferPage extends Component {
             <div className={styles.column}>
               <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
+                             errors={this.state.form.errors.category}
+                             placeholder="Select category"
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
               <div className={styles.table}>
-                <InputField text='Package weight (kg)' onChange={this.onChange.bind(this)} label='packageWeight'/>
-                <InputField text='Price per package (€)' onChange={this.onChange.bind(this)} label='pricePerPackage'/>
+                <InputField text='Package weight (kg)'
+                            errors={this.state.form.errors.packageWeight}
+                            onChange={this.onChange.bind(this)}
+                            label='packageWeight'/>
+                <InputField
+                            text='Price per package (€)'
+                            errors={this.state.form.errors.pricePerPackage}
+                            onChange={this.onChange.bind(this)}
+                            label='pricePerPackage'/>
               </div>
               <Label className={styles.label} text='Quality standard:'/>
               <SelectorField className={styles.selector}
+                             placeholder="Select quality"
                              options={this.getRequirements()}
+                             errors={this.state.form.errors.quality}
                              onChange={(label, state) => {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);
                               }}
-
                              label='quality' />
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>

@@ -1,0 +1,18 @@
+@import '../.././shared.scss';
+
+:local(.errorList) {
+  list-style: none;
+  padding: 0;
+}
+
+:local(.errorMessage) {
+  padding: 0;
+}
+
+:local(.showErrors) {
+  color: red;
+}
+
+:local(.hideErrors) {
+  display:none;
+}

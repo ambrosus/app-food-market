@@ -73,18 +73,21 @@ class MarketPage extends Component {
   }
 
   render() {
-    var filteredOffers = this.getFilteredRequirement(this.getFilteredCategories(this.props.offers));
+    let filteredOffers = this.getFilteredRequirement(this.getFilteredCategories(this.props.offers));
     return (
       <div>
         <NavigationBar title='Market'>
           <Label text='Quality:'/>
           <SelectorField className={styles.selector} options={this.getRequirements()}
-                         label='selectedRequirement' onChange={this.onChange.bind(this)}
+                         label='selectedRequirement'
+                         placeholder="Select quality"
+                         onChange={this.onChange.bind(this)}
                          value={this.state.selectedRequirement}/>
           <Label text='Categories:'/>
           <SelectorField className={styles.selector} options={this.getCategories()}
                          label='selectedCategory'
                          onChange={this.onChange.bind(this)}
+                         placeholder="Select category"
                          value={this.state.selectedCategory}/>
           <Link className='navigation__link' to='/create-offer'><Button
             className='navigation__create-offer-button'>

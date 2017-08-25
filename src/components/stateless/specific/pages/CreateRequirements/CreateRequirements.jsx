@@ -18,7 +18,11 @@ class CreateRequirements extends Component {
     this.state = {
       name: '',
       rows: [],
-      form: {},
+      form: {
+      },
+      errors: {
+        name: [],
+      },
     };
   };
 
@@ -50,7 +54,7 @@ class CreateRequirements extends Component {
 
   onRowChange(key, state) {
     this.setState({
-      form: Object.assign(this.state.form, { [key]: state }),
+      form: Object.assign(this.state.form, { [key]: state.form }),
     });
   }
 
@@ -64,10 +68,38 @@ class CreateRequirements extends Component {
     });
   }
 
-  onNameChange() {
-    this.setState({
-      name: this.refs.name.state.value,
+  onNameChange(label, state) {
+
+    let newErrors = {
+      [label]: this.handleValidation(label, state.value),
+    };
+
+    let newValues = {
+      [label]: state.value,
+    };
+
+    let errors = Object.assign({}, this.state.errors, newErrors);
+    let values = Object.assign({}, this.state, newValues);
+
+    let newState = Object.assign({}, this.state, values, {
+      errors: errors,
     });
+
+    this.setState(newState);
+  }
+
+  handleValidation(label, value) {
+    let errors = [];
+
+    switch (label) {
+      case 'name':
+        if (value === null || value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else return errors;
+        break;
+      default:
+        return errors;
+    }
   }
 
   render() {
@@ -80,11 +112,10 @@ class CreateRequirements extends Component {
       </NavigationBar>
       <Label className={styles.label} text='Quality standard name:'/>
       <TextField
-        ref="name"
+        label="name"
+        errors={this.state.errors.name}
         onChange={this.onNameChange.bind(this)}
-        className={styles.qualityStandard}
-        validate={this.props.handleValidation('name')}
-        errors={['Name cannot be empty']}/>
+        className={styles.qualityStandard} />
       <CreateRequirementsForm className={styles.form}>
         <Label text='Attributes:' className={styles.section}/>
         <div className={styles.list}>{ this.state.rows.map((row) => row) }</div>

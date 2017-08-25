@@ -8,13 +8,15 @@ class CreateRequirementsRow extends Component {
 
   constructor(props) {
     super(props);
-    this.options = [{ value: 'Range' }, { value: 'Boolean' }];
+    this.options = [{ value: 'Range' }];
     this.state = {
-      id: null,
-      decimals: null,
-      type: null,
-      min: null,
-      max: null,
+      form: {
+        id: null,
+        decimals: null,
+        type: null,
+        min: null,
+        max: null,
+      },
       errors: {
         id: [],
         decimals: [],
@@ -42,6 +44,26 @@ class CreateRequirementsRow extends Component {
         }
 
       break;
+      case 'type':
+        if (value === null || value === '') {
+          return ['Type is not selected'];
+        } else {
+          return [];
+        }
+
+      break;
+      case 'min':
+      case 'max':
+      case 'decimals':
+        if (value === null || value === '') {
+          return [...errors, 'Cannot be empty'];
+        } else
+        if (isNaN(value)) {
+          return [...errors, 'It is not a number'];
+        } else
+          return errors;
+
+      break;
       default:
         return errors;
     }
@@ -60,17 +82,14 @@ class CreateRequirementsRow extends Component {
                      errors={this.state.errors.type}
                      className={styles.selector}/>
       <TextField label="decimals"
-                 className={styles.selector}
                  errors={this.state.errors.decimals}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Decimals' />
       <TextField label="min"
-                 className={styles.selector}
                  errors={this.state.errors.min}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Min'/>
       <TextField label="max"
-                 className={styles.selector}
                  errors={this.state.errors.max}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Max'/>
@@ -83,11 +102,20 @@ class CreateRequirementsRow extends Component {
     let newErrors = {
       [label]: this.handleValidation(label, state.value),
     };
+
+    let newValues = {
+      [label]: state.value,
+    };
+
+    let values = Object.assign({}, this.state.form, newValues);
     let errors = Object.assign({}, this.state.errors, newErrors);
+
     let newState = Object.assign({}, this.state, {
       errors: errors,
+      form: values,
     });
-    this.setState(newState, this.props.onRowChange.bind(this, state));
+
+    this.setState(newState, this.props.onRowChange.bind(this, newState));
   }
 }
 

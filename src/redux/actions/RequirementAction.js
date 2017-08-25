@@ -2,11 +2,11 @@ import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import Ambrosus from 'ambrosus';
 import TransactionBuilder from '../../utils/transactionBuilder';
 
-export const requestCreateRequirement = (name, requirement) => ({
+export const requestCreateRequirement = (name, requirements) => ({
   type: 'CREATE_REQUIREMENT_REQUEST',
   data: {
     name: name,
-    requirement,
+    requirements: requirements,
   },
 });
 
@@ -26,7 +26,7 @@ export const failedCreateRequirement = (address) => ({
 });
 
 export const createRequirement = (name, requirements, marketAddress, history) => async function (dispatch) {
-  dispatch(requestCreateRequirement());
+  dispatch(requestCreateRequirement(name, requirements));
   await waitForAmbrosus();
   let requirementsRepository = new Ambrosus.RequirementsRepository();
 

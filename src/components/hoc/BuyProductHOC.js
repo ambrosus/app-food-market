@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
 import { showModal } from '../../redux/actions/ModalAction';
 import { fetchAttributes } from '../../redux/actions/AttributesAction';
+import { fetchMeasurements } from '../../redux/actions/MeasurementsAction';
 
 const mapStateToProps = state => ({
   offer: state.offer,
@@ -16,8 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(showModal('ConfirmBuyModal', { quantity }));
   },
 
-  getAttributes: (requirementsAddress) => {
-    dispatch(fetchAttributes(requirementsAddress));
+  getAttributes: (offer) => {
+    dispatch(fetchAttributes(offer.requirementsAddress));
+    dispatch(fetchMeasurements(offer.measurementsAddress));
   },
 });
 

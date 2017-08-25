@@ -61,7 +61,7 @@ class CreateOfferPage extends Component {
   onSaveClick() {
     let offer = this.state.form.values;
     if (!this.validateBeforeSubmit(offer)) {
-      this.props.onAdd(offer, this.image, this.props.address);
+      this.props.onAdd(offer, this.image, this.props.address, this.props.devices);
     }
   };
 

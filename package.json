@@ -39,13 +39,14 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "ambrosus": "^0.2.17",
+    "ambrosus": "git://github.com/ambrosus/Ambrosus.git#measurements",
     "classnames": "^2.2.5",
     "es6-promisify": "^5.0.0",
     "font-awesome": "^4.7.0",
     "ipfs": "^0.25.1",
     "ipfs-image-web-upload": "^1.0.4",
     "js-cookie": "^2.1.4",
+    "lodash": "^4.17.4",
     "normalize": "^0.3.1",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",

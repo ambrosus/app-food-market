@@ -31,7 +31,7 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
   let requirementsRepository = new Ambrosus.RequirementsRepository();
 
   new TransactionBuilder(dispatch, requirementsRepository.create.bind(requirementsRepository)).
-    setTitle('Transfer to ESCROW').
+    setTitle('Creating requirement').
     setArguments(name, marketAddress, requirements).
     onTxCallback((tx) => dispatch(responseCreateRequirement(tx))).
     onSuccessCallback((requirements) => {

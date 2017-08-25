@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductPage.scss';
 import cx from 'classnames';
+import { Link } from 'react-router-dom';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import Label from '../../../generic/Label/Label';
 import MeasurementList from '../../data/MeasurementList/MeasurementList';
@@ -24,7 +25,7 @@ class ProductPage extends Component {
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
-    this.props.getAttributes(this.props.offer.requirementsAddress);
+    this.props.getAttributes(this.props.offer);
   }
 
   attributesToValueField() {
@@ -56,8 +57,10 @@ class ProductPage extends Component {
         <div className={styles.typeColumn}>
           <Label className={styles.title} text={this.props.offer.name}/>
           <AttributeValueFieldContainer options={parameters} className={styles.info}/>
-          <Label className={styles.subtitle} text='Measurements'/>
-          <MeasurementList/>
+          <Link className={styles.link} to="create-measurements">
+            <Label className={styles.subtitle} text='Measurements'/>
+          </Link>
+          <MeasurementList measurements={this.props.offer.measurements}/>
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           {this.props.sidebar === 'summary' && <SummaryProduct offer={this.props.offer}

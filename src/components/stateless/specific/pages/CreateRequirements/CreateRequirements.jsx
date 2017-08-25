@@ -10,6 +10,7 @@ import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
 import utils from '../../../../../utils/utils';
 import TextField from '../../../generic/TextField/TextField';
+import _ from 'lodash';
 
 class CreateRequirements extends Component {
 
@@ -18,7 +19,7 @@ class CreateRequirements extends Component {
     this.state = {
       name: '',
       rows: [],
-      form: {
+      requirements: {
       },
       errors: {
         name: [],
@@ -36,7 +37,26 @@ class CreateRequirements extends Component {
   }
 
   onSave() {
-    this.props.onSave(this.state.name, utils.mapToArray(this.state.form), this.props.address);
+    if (this.getTotalNumberOfErrors() === 0) {
+      this.props.onSave(this.state.name, utils.mapToArray(this.state.requirements), this.props.address);
+    }
+  }
+
+  getTotalNumberOfErrors() {
+    let formErrors = _.chain(this.state.errors)
+      .values()
+      .flattenDeep()
+      .value();
+
+    let errors = _.chain(this.state.requirements)
+      .values()
+      .map((requirement)=>_.values(requirement.errors))
+      .flattenDeep()
+      .concat(formErrors)
+      .size()
+      .value();
+
+    return errors;
   }
 
   addRow() {
@@ -44,27 +64,27 @@ class CreateRequirements extends Component {
     let element = (<CreateRequirementsRow key={key}
                                           onRowChange={this.onRowChange.bind(this, key)}
                                           onRowRemove={this.onRowRemove.bind(this, key)} />);
-    let formClone = Object.assign({}, this.state.form);
+    let formClone = Object.assign({}, this.state.requirements);
     formClone[key] = {};
     this.setState({
       rows: [...this.state.rows, element],
-      form: formClone,
+      requirements: formClone,
     });
   }
 
   onRowChange(key, state) {
     this.setState({
-      form: Object.assign(this.state.form, { [key]: state.form }),
+      requirements: Object.assign(this.state.requirements, { [key]: state }),
     });
   }
 
   onRowRemove(key) {
     const filtered = this.state.rows.filter((row) => row.key !== key);
-    let formClone = Object.assign({}, this.state.form);
+    let formClone = Object.assign({}, this.state.requirements);
     delete formClone[key];
     this.setState({
       rows: [...filtered],
-      form: formClone,
+      requirements: formClone,
     });
   }
 

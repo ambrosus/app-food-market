@@ -10,7 +10,7 @@ class CreateRequirementsRow extends Component {
     super(props);
     this.options = [{ value: 'Range' }];
     this.state = {
-      form: {
+      values: {
         id: null,
         decimals: null,
         type: null,
@@ -107,12 +107,12 @@ class CreateRequirementsRow extends Component {
       [label]: state.value,
     };
 
-    let values = Object.assign({}, this.state.form, newValues);
+    let values = Object.assign({}, this.state.values, newValues);
     let errors = Object.assign({}, this.state.errors, newErrors);
 
     let newState = Object.assign({}, this.state, {
       errors: errors,
-      form: values,
+      values: values,
     });
 
     this.setState(newState, this.props.onRowChange.bind(this, newState));

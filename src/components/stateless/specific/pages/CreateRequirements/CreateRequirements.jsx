@@ -48,15 +48,13 @@ class CreateRequirements extends Component {
       .flattenDeep()
       .value();
 
-    let errors = _.chain(this.state.requirements)
+    return _.chain(this.state.requirements)
       .values()
       .map((requirement)=>_.values(requirement.errors))
       .flattenDeep()
       .concat(formErrors)
       .size()
       .value();
-
-    return errors;
   }
 
   addRow() {

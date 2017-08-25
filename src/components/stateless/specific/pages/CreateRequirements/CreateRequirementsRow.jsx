@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import styles from './CreateRequirementsRow.scss';
 import TextField from '../../../generic/TextField/TextField';
+import _ from 'lodash';
 
 class CreateRequirementsRow extends Component {
 
@@ -32,7 +33,18 @@ class CreateRequirementsRow extends Component {
     onRowChange: PropTypes.func,
   };
 
+  componentDidMount() {
+    let errors = _.chain(this.state.values)
+      .map((value, key) => ({ [key]: this.handleValidation(key, value) }))
+      .reduce((result, value) => _.merge(result, value))
+      .value();
+
+    let newState = Object.assign({}, this.state, { errors: errors });
+    this.setState(newState);
+  }
+
   handleValidation(label, value) {
+
     let errors = [];
 
     switch (label) {
@@ -96,6 +108,17 @@ class CreateRequirementsRow extends Component {
       <img className={styles.removeIcon} onClick={this.props.onRowRemove}
            src="./static/images/transaction-rejected.svg"/>
     </div>);
+  }
+
+  showValidation(label) {
+
+    let newErrors = {
+      [label]: this.handleValidation(label, this.state.values[label]),
+    };
+
+    let errors = Object.assign({}, this.state.errors, newErrors);
+
+    return errors;
   }
 
   onFieldChange(label, state) {

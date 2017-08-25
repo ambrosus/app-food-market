@@ -17,7 +17,7 @@ class CreateRequirements extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showValidation: false,
+      showValidation: true,
       name: '',
       rows: [],
       requirements: {
@@ -60,10 +60,6 @@ class CreateRequirements extends Component {
       .concat(formErrors)
       .size()
       .value();
-  }
-
-  validate() {
-    let newState = Object.assign({}, this.state, { name:  this.handleValidation('name', this.state.name) })
   }
 
   addRow() {

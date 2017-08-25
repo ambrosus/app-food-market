@@ -17,6 +17,7 @@ class CreateRequirements extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showValidation: false,
       name: '',
       rows: [],
       requirements: {
@@ -39,6 +40,10 @@ class CreateRequirements extends Component {
   onSave() {
     if (this.getTotalNumberOfErrors() === 0) {
       this.props.onSave(this.state.name, utils.mapToArray(this.state.requirements), this.props.address);
+    } else {
+      let newState = Object.assign({}, this.state, { showValidation: true });
+      console.log(newState);
+      this.setState(newState);
     }
   }
 
@@ -57,14 +62,19 @@ class CreateRequirements extends Component {
       .value();
   }
 
+  validate() {
+    let newState = Object.assign({}, this.state, { name:  this.handleValidation('name', this.state.name) })
+  }
+
   addRow() {
     let key = Date.now().toString();
     let element = (<CreateRequirementsRow key={key}
+                                          showValidation={this.state.showValidation}
                                           onRowChange={this.onRowChange.bind(this, key)}
                                           onRowRemove={this.onRowRemove.bind(this, key)} />);
     let formClone = Object.assign({}, this.state.requirements);
     formClone[key] = {};
-    this.setState({
+    this.setState({s
       rows: [...this.state.rows, element],
       requirements: formClone,
     });

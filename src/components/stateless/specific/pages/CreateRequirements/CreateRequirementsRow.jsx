@@ -28,12 +28,29 @@ class CreateRequirementsRow extends Component {
     };
   }
 
+  static defaultProps = {
+    showValidation: false,
+  };
+
   static propTypes = {
     onRowRemove: PropTypes.func,
     onRowChange: PropTypes.func,
+    showValidation: PropTypes.bool,
   };
 
+  componentWillReceiveProps(prev, next) {
+    if (next.showValidation) {
+      this.showValidations();
+    }
+  }
+
   componentDidMount() {
+    if (this.props.showValidation) {
+      this.showValidations();
+    }
+  }
+
+  showValidations() {
     let errors = _.chain(this.state.values)
       .map((value, key) => ({ [key]: this.handleValidation(key, value) }))
       .reduce((result, value) => _.merge(result, value))
@@ -41,6 +58,26 @@ class CreateRequirementsRow extends Component {
 
     let newState = Object.assign({}, this.state, { errors: errors });
     this.setState(newState);
+  }
+
+  onFieldChange(label, state) {
+    let newErrors = {
+      [label]: this.handleValidation(label, state.value),
+    };
+
+    let newValues = {
+      [label]: state.value,
+    };
+
+    let values = Object.assign({}, this.state.values, newValues);
+    let errors = Object.assign({}, this.state.errors, newErrors);
+
+    let newState = Object.assign({}, this.state, {
+      errors: errors,
+      values: values,
+    });
+
+    this.setState(newState, this.props.onRowChange.bind(this, newState));
   }
 
   handleValidation(label, value) {
@@ -108,37 +145,6 @@ class CreateRequirementsRow extends Component {
       <img className={styles.removeIcon} onClick={this.props.onRowRemove}
            src="./static/images/transaction-rejected.svg"/>
     </div>);
-  }
-
-  showValidation(label) {
-
-    let newErrors = {
-      [label]: this.handleValidation(label, this.state.values[label]),
-    };
-
-    let errors = Object.assign({}, this.state.errors, newErrors);
-
-    return errors;
-  }
-
-  onFieldChange(label, state) {
-    let newErrors = {
-      [label]: this.handleValidation(label, state.value),
-    };
-
-    let newValues = {
-      [label]: state.value,
-    };
-
-    let values = Object.assign({}, this.state.values, newValues);
-    let errors = Object.assign({}, this.state.errors, newErrors);
-
-    let newState = Object.assign({}, this.state, {
-      errors: errors,
-      values: values,
-    });
-
-    this.setState(newState, this.props.onRowChange.bind(this, newState));
   }
 }
 

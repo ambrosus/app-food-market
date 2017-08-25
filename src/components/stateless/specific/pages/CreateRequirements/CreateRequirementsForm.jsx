@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 
 class CreateRequirementsForm extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class CreateRequirementsForm extends Component {
   }
 
   render() {
-    return (<div className={this.props.className}>{this.props.children}</div>);
+    return (<div className={classnames(this.props.className)}>{this.props.children}</div>);
   }
 }
 

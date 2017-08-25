@@ -7,6 +7,9 @@
 }
 
 :local(.removeIcon) {
+  line-height: 26px;
+  max-height: 26px;
+  transform: translateY(30%);
   &:hover {
     cursor: pointer;
   }

@@ -6,10 +6,10 @@ import styles from './CreateRequirements.scss';
 import Label from '../../../generic/Label/Label';
 import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
-import ValidatedTextField from '../../../generic/ValidatedTextField/ValidatedTextField';
 import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
 import utils from '../../../../../utils/utils';
+import TextField from '../../../generic/TextField/TextField';
 
 class CreateRequirements extends Component {
 
@@ -79,13 +79,13 @@ class CreateRequirements extends Component {
                 onClick={this.onSave.bind(this)}>Save</Button>
       </NavigationBar>
       <Label className={styles.label} text='Quality standard name:'/>
-      <CreateRequirementsForm>
-        <ValidatedTextField
-          ref="name"
-          onChange={this.onNameChange.bind(this)}
-          className={styles.qualityStandard}
-          validate={this.props.handleValidation('name')}
-          error={this.props.getValidationMessages('name')}/>
+      <TextField
+        ref="name"
+        onChange={this.onNameChange.bind(this)}
+        className={styles.qualityStandard}
+        validate={this.props.handleValidation('name')}
+        errors={['Name cannot be empty']}/>
+      <CreateRequirementsForm className={styles.form}>
         <Label text='Attributes:' className={styles.section}/>
         <div className={styles.list}>{ this.state.rows.map((row) => row) }</div>
       </CreateRequirementsForm>

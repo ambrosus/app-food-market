@@ -55,7 +55,8 @@ export default class TransactionNotification extends Component {
           <div className={styles.time}>{this.props.notification.time}</div>
         </div>
         <div className={styles.type}>{this.props.notification.type}</div>
-        <a className={styles.address} href={`https://kovan.etherscan.io/tx/${this.props.notification.address}`} target="_blank">
+        <a className={styles.address} href={`https://kovan.etherscan.io/tx/${this.props.notification.address}`}
+target="_blank">
           {this.props.notification.address}
         </a>
       </div>

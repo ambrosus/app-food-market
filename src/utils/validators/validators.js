@@ -3,12 +3,7 @@ let Validator = function (value) {
   this.errors = [];
 };
 
-Validator.prototype.validate = function (value) {
-  return this;
-};
-
-Validator.prototype.setValue = function (value) {
-  this.value = value;
+Validator.prototype.validate = function () {
   return this;
 };
 

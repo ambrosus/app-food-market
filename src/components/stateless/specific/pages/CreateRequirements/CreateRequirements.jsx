@@ -74,7 +74,7 @@ class CreateRequirements extends Component {
                                           onRowRemove={this.onRowRemove.bind(this, key)} />);
     let formClone = Object.assign({}, this.state.requirements);
     formClone[key] = {};
-    this.setState({s
+    this.setState({
       rows: [...this.state.rows, element],
       requirements: formClone,
     });

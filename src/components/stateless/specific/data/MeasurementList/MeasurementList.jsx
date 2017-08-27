@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Section from './Section';
+import styles from './MeasurementList.scss';
 
 export default class MeasurementList extends Component {
 
@@ -32,7 +33,7 @@ export default class MeasurementList extends Component {
       { field: 'Weight', value: '20kg' },
     ];
 
-    return (<div>
+    return (<div className={styles.container}>
       <Section options={inspection} label='Inspection' date='18 Feb 2017'/>
       <Section options={loading} label='Loading' date='18 Feb 2017'/>
       <Section options={transport} label='Transport' date='18 Feb 2017'/>

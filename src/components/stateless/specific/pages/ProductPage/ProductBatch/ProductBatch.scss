@@ -12,6 +12,7 @@
 
 :local(.requirementsColumn) {
   @include column();
+  justify-content: space-around;
   flex: 1;
 }
 
@@ -42,8 +43,8 @@
 }
 
 :local(.subtitle) {
-  text-transform: uppercase;
-  margin-bottom: 30px;
+  font-size: 17px;
+  margin-bottom: 10px;
 }
 
 :local(.container) {

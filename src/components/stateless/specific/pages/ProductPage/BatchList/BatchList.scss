@@ -1,0 +1,16 @@
+:local(.table) {
+  width: 100%;
+  text-align: left;
+}
+
+:local(.header) {
+  background-color: #D2EEFE;
+}
+
+:local(.row) {
+  &:nth-child(even) {
+    background-color: #EFFAFF;
+  }
+  width: 100%;
+  text-align: left;
+}

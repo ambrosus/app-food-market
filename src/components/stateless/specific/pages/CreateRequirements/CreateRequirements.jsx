@@ -8,7 +8,6 @@ import validation from 'react-validation-mixin';
 import strategy from 'react-validatorjs-strategy';
 import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
-import utils from '../../../../../utils/utils';
 import TextField from '../../../generic/TextField/TextField';
 import _ from 'lodash';
 
@@ -39,10 +38,16 @@ class CreateRequirements extends Component {
 
   onSave() {
     if (this.getTotalNumberOfErrors() === 0) {
-      this.props.onSave(this.state.name, utils.mapToArray(this.state.requirements), this.props.address);
+
+      let requirements = _(this.state.requirements)
+        .values()
+        .map(requirement=>requirement.values)
+        .value();
+
+      this.props.onSave(this.state.name, requirements, this.props.address);
+
     } else {
       let newState = Object.assign({}, this.state, { showValidation: true });
-      console.log(newState);
       this.setState(newState);
     }
   }

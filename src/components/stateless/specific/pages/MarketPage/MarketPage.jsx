@@ -26,6 +26,8 @@ class MarketPage extends Component {
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
+    batchInfoAction: PropTypes.func.isRequired,
+    batchInfoPath: PropTypes.func.isRequired,
     getOptions: PropTypes.func.isRequired,
   };
 
@@ -82,6 +84,8 @@ class MarketPage extends Component {
     } else {
       return (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
+                            batchInfoAction={this.props.batchInfoAction}
+                            batchInfoPath={this.props.batchInfoPath}
                             products={filteredOffers}
                             getOptions={this.props.getOptions}/>);
     }

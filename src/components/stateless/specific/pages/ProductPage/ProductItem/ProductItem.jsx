@@ -16,6 +16,8 @@ export default class ProductItem extends Component {
     options: PropTypes.array.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
+    batchInfoAction: PropTypes.func.isRequired,
+    batchInfoPath: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -37,11 +39,18 @@ export default class ProductItem extends Component {
       <div className={styles.info}>
         <h1 className={styles.title}>{this.props.name}</h1>
         <AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>
-        <Link className={styles.link} to={this.props.moreDetailsPath}>
-          <Button onClick={()=>this.props.moreDetailsAction(this.props.offer)} className={styles.button}>
-            More details
-          </Button>
-        </Link>
+          <div className={styles.buttons} >
+            <Link className={styles.link} to={this.props.moreDetailsPath}>
+              <Button onClick={()=>this.props.moreDetailsAction(this.props.offer)} className={styles.button}>
+                More details
+              </Button>
+            </Link>
+            <Link className={styles.link} to={this.props.batchInfoPath}>
+              <Button onClick={()=>this.props.batchInfoAction(this.props.offer)} className={styles.button}>
+                Batch info
+              </Button>
+            </Link>
+          </div>
       </div>
     </article>);
   }

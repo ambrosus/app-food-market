@@ -24,17 +24,26 @@ class ProductBatch extends Component {
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
     this.props.getAttributes(this.props.offer.requirementsAddress, this.props.offer.measurementsAddress);
+  }
 
+  attributesToValueField() {
+    return this.props.requirements.map(attribute => {
+      const min = attribute.min.toFixed(attribute.decimals);
+      const max = attribute.max.toFixed(attribute.decimals);
+      return {
+        field: attribute.id,
+        value: `${min} – ${max}`,
+      };
+    });
   }
 
   render() {
 
     const parameters = [
-      { field: 'Product', value: 'Salmon Atlantic' },
-      { field: 'Origin', value: 'Norway' },
-      { field: 'Price per package', value: '70 €' },
-      { field: 'Per package', value: '2 kg.' },
-      { field: 'Per package', value: '35 € / kg.' },
+      { field: 'Product', value: this.props.offer.category },
+      { field: 'Price per package', value: `${this.props.offer.pricePerPackage} €` },
+      { field: 'Per package', value: `${this.props.offer.packageWeight} kg` },
+      { field: 'Per package', value: `${this.props.offer.pricePerUnit} €/kg` },
     ];
 
     const requirements = [
@@ -52,7 +61,7 @@ class ProductBatch extends Component {
           <Label className={styles.title} text={this.props.offer.name}/>
           <AttributeValueFieldContainer options={parameters}/>
           <Label className={styles.subtitle} text='Requirements:'/>
-          <AttributeValueFieldContainer options={requirements}/>
+          <AttributeValueFieldContainer options={this.attributesToValueField()}/>
         </div>
         <div className={styles.typeColumn}>
           <BatchList/>

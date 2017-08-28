@@ -21,7 +21,12 @@
 }
 
 :local(.link) {
+  margin-top: 20px;
   @include link();
+}
+
+:local(.batch) {
+  text-align: end;
 }
 
 :local(.summaryColumn) {

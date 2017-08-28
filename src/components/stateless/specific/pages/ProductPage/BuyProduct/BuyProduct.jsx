@@ -11,6 +11,9 @@ class BuyProduct extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      amount: 1,
+    };
   }
 
   static propTypes = {
@@ -54,6 +57,7 @@ class BuyProduct extends Component {
       <div>
         <InputField text='Packages'
                     label="amount"
+                    value={this.state.amount}
                     onChange={this.onAmountChange.bind(this)}/>
         <Button onClick={this.onBuy.bind(this)}>Buy product</Button>
       </div>

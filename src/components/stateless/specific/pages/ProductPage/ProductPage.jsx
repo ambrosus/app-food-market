@@ -57,10 +57,11 @@ class ProductPage extends Component {
         <div className={styles.typeColumn}>
           <Label className={styles.title} text={this.props.offer.name}/>
           <AttributeValueFieldContainer options={parameters} className={styles.info}/>
-          <Link className={styles.link} to="create-measurements">
-            <Label className={styles.subtitle} text='Measurements'/>
-          </Link>
+          <Label className={styles.subtitle} text='Measurements'/>
           <MeasurementList measurements={this.props.offer.measurements}/>
+          <Link className={styles.link} to="create-measurements">
+            Create measurements
+          </Link>
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           {this.props.sidebar === 'summary' && <SummaryProduct offer={this.props.offer}
@@ -73,6 +74,7 @@ class ProductPage extends Component {
                                                                         decimals={this.props.decimals}/>}
           {this.props.sidebar === 'buy' && <BuyProduct offer={this.props.offer} onBuy={this.props.onBuy}
                                                        decimals={this.props.decimals}/>}
+          <Link className={cx(styles.link, styles.batch)} to="product-batch">See batch info</Link>
         </div>
       </div>
     );

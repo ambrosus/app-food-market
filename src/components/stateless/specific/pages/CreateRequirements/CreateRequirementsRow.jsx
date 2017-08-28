@@ -44,7 +44,8 @@ class CreateRequirementsRow extends Component {
                           className={styles.selector}
                           onChange={this.onFieldChange.bind(this)}
                           placeholder='Max'/>
-      <img className={styles.removeIcon} onClick={this.props.onRowRemove} src="./static/images/transaction-rejected.svg"/>
+      <img className={styles.removeIcon} onClick={this.props.onRowRemove}
+           src="./static/images/transaction-rejected.svg"/>
     </div>);
   }
 

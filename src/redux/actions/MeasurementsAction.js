@@ -34,7 +34,6 @@ export const addMeasurements = (measurementsAddress, measurements, history) => a
 
 export const fetchMeasurements = (measurementsAddress) => async function (dispatch) {
   await waitForAmbrosus();
-  console.log(measurementsAddress)
   withIPFS(async (ipfs) => {
     let storage = await new Ambrosus.MeasurementRepository(ipfs).fromAddress(measurementsAddress);
     var measurements = await storage.doGetMeasurements(); // TODO validate

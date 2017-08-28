@@ -22,7 +22,7 @@ export default class SelectorField extends Component {
 
   static defaultProps = {
     options: [],
-    errors:[],
+    errors:  [],
   };
 
   onChange(event) {

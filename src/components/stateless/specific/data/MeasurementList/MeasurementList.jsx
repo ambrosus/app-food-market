@@ -27,7 +27,7 @@ export default class MeasurementList extends Component {
 
   render() {
     return (<div>
-      {this.formatMeasurements()}
+      { this.formatMeasurements() }
     </div>);
   }
 };

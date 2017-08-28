@@ -66,7 +66,7 @@ class CreateMeasurementsRow extends Component {
   }
 
   onFieldChange(label, inputState) {
-    let state = { ...this.state, [label]: inputState.value }
+    let state = { ...this.state, [label]: inputState.value };
     this.setState(state, this.props.onRowChange.bind(this, state));
   }
 }

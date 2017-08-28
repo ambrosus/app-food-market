@@ -18,6 +18,8 @@ import BuyProductHOC from './hoc/BuyProductHOC';
 import ApprovedOrderHOC from './hoc/ApprovedOrderHOC';
 import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
+import CreateMeasurements from './stateless/specific/pages/CreateMeasurements/CreateMeasurements';
+import CreateMeasurementsHOC from './hoc/CreateMeasurementsHOC';
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
@@ -38,6 +40,7 @@ export default class RootComponent extends Component {
               <Route exact path='/product-buy' component={BuyProductHOC}/>
               <Route exact path='/create-offer' component={CreateOfferHOC}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
+              <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>
               <ModalContainerHOC/>
             </PageContainer>
         </Router>

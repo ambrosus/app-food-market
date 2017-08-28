@@ -61,7 +61,7 @@ class CreateOfferPage extends Component {
   onSaveClick() {
     let offer = this.state.form.values;
     if (!this.validateBeforeSubmit(offer)) {
-      this.props.onAdd(offer, this.image, this.props.address);
+      this.props.onAdd(offer, this.image, this.props.address, this.props.devices);
     }
   };
 
@@ -147,7 +147,7 @@ class CreateOfferPage extends Component {
   onChange(label, inputState) {
 
     let formState = Object.assign({}, this.state.form);
-    let errors = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value)});
+    let errors = Object.assign({}, this.state.form.errors, { [label]: this.handleValidation(label, inputState.value) });
     let values = Object.assign({}, this.state.form.values, { [label]: inputState.value });
 
     formState = Object.assign({}, formState, {
@@ -224,6 +224,7 @@ class CreateOfferPage extends Component {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);
                               }}
+
                              label='quality' />
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>

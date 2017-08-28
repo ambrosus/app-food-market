@@ -17,7 +17,7 @@ export default class ProductItem extends Component {
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
     batchInfoAction: PropTypes.func.isRequired,
-    batchInfoPath: PropTypes.func.isRequired,
+    batchInfoPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {

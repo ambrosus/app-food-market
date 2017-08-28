@@ -1,10 +1,18 @@
 :local(.table) {
+  border: 1px solid #D2EEFE;
+  padding: 0;
   width: 100%;
+  cursor: pointer;
   text-align: left;
 }
 
 :local(.header) {
+  cursor:auto !important;
   background-color: #D2EEFE;
+}
+
+:local(.cell) {
+  border: 0;
 }
 
 :local(.row) {

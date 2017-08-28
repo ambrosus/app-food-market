@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
 import { fetchAttributes } from '../../redux/actions/AttributesAction';
+import { fetchMeasurements } from '../../redux/actions/MeasurementsAction';
 
 const mapStateToProps = state => ({
   offer: state.offer,
@@ -10,8 +11,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getAttributes: (requirementsAddress) => {
-    dispatch(fetchAttributes(requirementsAddress));
+  getAttributes: (offer) => {
+    dispatch(fetchAttributes(offer.requirementsAddress));
+    dispatch(fetchMeasurements(offer.measurementsAddress));
   },
 });
 

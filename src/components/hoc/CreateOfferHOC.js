@@ -21,11 +21,12 @@ const mapStateToProps = (state) => ({
   requirements: state.market.requirements,
   qualities: state.market.qualities,
   attributesValueField: attributesToValueField(state.requirementsAttributes),
+  devices: state.market.devices,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onAdd: (offer, image, marketAddress) => {
-    dispatch(createOffer(offer, image, marketAddress, ownProps.history));
+  onAdd: (offer, image, marketAddress, devices) => {
+    dispatch(createOffer(offer, image, marketAddress, devices, ownProps.history));
   },
 
   fetchAttributes: (requirementsName, marketAddress) => {

@@ -1,47 +1,32 @@
 import React, { Component } from 'react';
 import Section from './Section';
-import styles from './MeasurementList.scss';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 export default class MeasurementList extends Component {
 
-  constructor(props) {
-    super(props);
+  static propTypes = {
+    measurements: PropTypes.array,
+  };
+
+  static defaultProps = {
+    measurements: [],
+  };
+
+  formatMeasurements() {
+    return _(this.props.measurements).groupBy('event_id').
+      map((value, key) => ({ key, value, date: _.minBy(value, 'timestamp').timestamp })).
+      sort('date').
+      map(
+        gr => <Section key={gr.key}
+                       options={gr.value.map(group => ({ field: group.attribute_id, value: group.value }))}
+                       label={gr.key}
+                       date={new Date(gr.date).toLocaleString()}/>).value();
   }
 
   render() {
-
-    const inspection = [
-      {
-        field: 'Origin',
-        value: 'Norway',
-      },
-      {
-        field: 'Type',
-        value: 'Free',
-      },
-      {
-        field: 'Method of fishing',
-        value: 'Line',
-      },
-    ];
-
-    const loading = [
-      { field: 'Weight', value: '20kg' },
-    ];
-
-    const transport = [
-      { field: 'Temperature', value: '3.1 C (11:12)' },
-    ];
-
-    const unloading = [
-      { field: 'Weight', value: '20kg' },
-    ];
-
-    return (<div className={styles.container}>
-      <Section options={inspection} label='Inspection' date='18 Feb 2017'/>
-      <Section options={loading} label='Loading' date='18 Feb 2017'/>
-      <Section options={transport} label='Transport' date='18 Feb 2017'/>
-      <Section options={unloading} label='Unloading' date='18 Feb 2017'/>
+    return (<div>
+      { this.formatMeasurements() }
     </div>);
   }
 };

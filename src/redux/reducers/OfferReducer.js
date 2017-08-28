@@ -14,6 +14,8 @@ const offer = (state = defaultState, action) => {
       return action.offer;
     case 'RESET_SELECTED':
       return defaultState;
+    case 'FETCH_MEASUREMENTS_SUCCESS':
+      return { ...state, measurements: action.measurements };
     default:
       return state;
   }

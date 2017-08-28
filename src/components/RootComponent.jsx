@@ -17,6 +17,7 @@ import BuyProductHOC from './hoc/BuyProductHOC';
 import ApprovedOrderHOC from './hoc/ApprovedOrderHOC';
 import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
+import CreateMeasurementsHOC from './hoc/CreateMeasurementsHOC';
 import ProductBatchHOC from './hoc/ProductBatchHOC';
 
 require('./RootComponent.scss');
@@ -40,6 +41,7 @@ export default class RootComponent extends Component {
               <Route exact path='/product-batch' component={ProductBatchHOC}/>
               <Route exact path='/create-offer' component={CreateOfferHOC}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
+              <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>
               <ModalContainerHOC/>
             </PageContainer>
         </Router>

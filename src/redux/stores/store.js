@@ -14,21 +14,21 @@ const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna'];
 const categories = (state = CATEGORIES, action) => state;
 
 const store = createStore(combineReducers({
-        ambrosus,
-        transactions,
-        requirementsAttributes,
-        market,
-        modal,
-        offer,
-        categories,
-        token,
-      }),
+    ambrosus,
+    transactions,
+    requirementsAttributes,
+    market,
+    modal,
+    offer,
+    categories,
+    token,
+  }),
 
-    compose(applyMiddleware(thunk), autoRehydrate(),
-        window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f
-    ));
+  compose(applyMiddleware(thunk), autoRehydrate(),
+    window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f,
+  ));
 
-persistStore(store);
+persistStore(store, { blacklist: ['modal'] });
 store.dispatch(initializeBlockchain());
 
 export default store;

@@ -20,6 +20,10 @@
   flex: 2;
 }
 
+:local(.link) {
+  @include link();
+}
+
 :local(.summaryColumn) {
   @include column();
   flex: 1;

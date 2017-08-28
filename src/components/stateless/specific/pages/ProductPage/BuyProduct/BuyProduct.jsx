@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './BuyProduct.scss';
 import Label from '../../../../generic/Label/Label';
 import AttributeValueFieldContainer
-from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+  from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import InputField from '../../../../generic/InputField/InputField';
 import Button from '../../../../generic/Button/Button';
 
@@ -34,9 +34,18 @@ class BuyProduct extends Component {
 
   render() {
     const summary = [
-      { field: 'Price', value: `€ ${this.props.offer.pricePerUnit.toFixed(this.props.decimals)} /kg` },
-      { field: 'Price per package', value: `€${this.props.offer.pricePerPackage.toFixed(this.props.decimals)}` },
-      { field: 'Per package', value: `${this.props.offer.packageWeight.toFixed(this.props.decimals)} kg` },
+      {
+        field: 'Price',
+        value: `€ ${this.props.offer.pricePerUnit && this.props.offer.pricePerUnit.toFixed(this.props.decimals)} /kg`,
+      },
+      {
+        field: 'Price per package',
+        value: `€${this.props.offer.pricePerPackage.toFixed(this.props.decimals)}`,
+      },
+      {
+        field: 'Per package',
+        value: `${this.props.offer.packageWeight.toFixed(this.props.decimals)} kg`,
+      },
     ];
 
     return (<div>

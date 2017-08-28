@@ -4,6 +4,11 @@ const DEFAULT_STATE = {
   address: '',
   requirements: [],
   orders: [],
+  devices: [
+    '0x123f681646d4a755815f9cb19e1acc8565a0c2ac',
+    '0xe99356bde974bbe08721d77712168fa070aa8da4',
+    '0xc2d7cf95645d33006175b78989035c7c9061d3f9',
+  ], // Example devices for demo purposes
   username: '',
 };
 

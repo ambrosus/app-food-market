@@ -1,5 +1,6 @@
 import {
-  statusAddFailedTransaction, statusAddPendingTransaction,
+  statusAddFailedTransaction,
+  statusAddPendingTransaction,
   statusAddSuccessTransaction,
 } from '../redux/actions/TransactionStatusAction';
 import { hideModal, showModal } from '../redux/actions/ModalAction';
@@ -11,9 +12,12 @@ export default class TransactionBuilder {
     this.promise = promise;
     this.title = title || '';
     this.arguments = [];
-    this.txCallback = () => {};// jscs:ignore requirePaddingNewLinesAfterBlocks
-    this.successCallback = () => {};// jscs:ignore requirePaddingNewLinesAfterBlocks
+    this.txCallback = () => {};
+
+    this.successCallback = () => {};
+
     this.failCallback = () => {};
+
   }
 
   setPromise(promise) {

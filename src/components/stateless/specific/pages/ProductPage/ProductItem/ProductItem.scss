@@ -58,6 +58,13 @@
   @include link();
 }
 
+:local(.buttons) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 87px;
+}
+
 :local(.productValue) {
   color: #002C87;
   font-size: 15px;

@@ -93,7 +93,6 @@ class CreateOfferPage extends Component {
 
   handleValidation(label, value) {
     let errors = [];
-    console.log(label, value);
     switch (label) {
 
       case 'quality':

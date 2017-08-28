@@ -10,6 +10,8 @@ class ProductContainer extends Component {
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
     getOptions: PropTypes.func.isRequired,
+    batchInfoAction: PropTypes.func.isRequired,
+    batchInfoPath: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -27,6 +29,8 @@ class ProductContainer extends Component {
             category={offer.category}
             imageHash={offer.imageHash}
             options={this.props.getOptions(offer)}
+            batchInfoAction={this.props.batchInfoAction.bind(this, offer)}
+            batchInfoPath={this.props.batchInfoPath}
             moreDetailsPath={this.props.moreDetailsPath}
             moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)}
       </div>

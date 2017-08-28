@@ -26,6 +26,8 @@ class MarketPage extends Component {
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
+    batchInfoAction: PropTypes.func.isRequired,
+    batchInfoPath: PropTypes.string.isRequired,
     getOptions: PropTypes.func.isRequired,
   };
 
@@ -78,16 +80,18 @@ class MarketPage extends Component {
       return (<p>There are no offers on the market yet. {' '}
             <Link to='/create-offer'>Create</Link> the first offer.</p>);
     } else if (filteredOffers.length === 0)  {
-      return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>)
+      return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>);
     } else {
       return (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
                             moreDetailsAction={this.props.moreDetailsAction}
+                            batchInfoAction={this.props.batchInfoAction}
+                            batchInfoPath={this.props.batchInfoPath}
                             products={filteredOffers}
                             getOptions={this.props.getOptions}/>);
-    }    
+    }
   }
 
-  render() {    
+  render() {
     return (
       <div>
         <NavigationBar title='Market'>

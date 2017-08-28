@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import React, { Component } from 'react';
-import HeaderContainer from './stateless/specific/containers/HeaderContainer/HeaderContainer';
-import PageContainer from './stateless/specific/containers/PageContainer/PageContainer';
-
 import { Provider } from 'react-redux';
 import store from '../redux/stores/store';
 import { BrowserHistory } from 'react-history';
 
+import HeaderContainer from './stateless/specific/containers/HeaderContainer/HeaderContainer';
+import PageContainer from './stateless/specific/containers/PageContainer/PageContainer';
 import ModalContainerHOC from './hoc/ModalContainerHOC';
 import CreateMarketContainerHOC from './hoc/CreateMarketContainer';
 import ProfileHOC from './hoc/ProfileHOC';
@@ -18,8 +17,9 @@ import BuyProductHOC from './hoc/BuyProductHOC';
 import ApprovedOrderHOC from './hoc/ApprovedOrderHOC';
 import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
-import CreateMeasurements from './stateless/specific/pages/CreateMeasurements/CreateMeasurements';
 import CreateMeasurementsHOC from './hoc/CreateMeasurementsHOC';
+import ProductBatchHOC from './hoc/ProductBatchHOC';
+
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
@@ -38,6 +38,7 @@ export default class RootComponent extends Component {
               <Route exact path='/product-info' component={OrderSummaryHOC}/>
               <Route exact path='/approved' component={ApprovedOrderHOC}/>
               <Route exact path='/product-buy' component={BuyProductHOC}/>
+              <Route exact path='/product-batch' component={ProductBatchHOC}/>
               <Route exact path='/create-offer' component={CreateOfferHOC}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
               <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>

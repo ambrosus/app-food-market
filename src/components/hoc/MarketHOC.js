@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
   marketAddress: state.market.address,
   offers: state.market.offers,
   moreDetailsPath: '/product-buy',
+  batchInfoPath: '/product-batch',
   getOptions: (offer) => [
     {
       field: 'Price',
@@ -22,6 +23,10 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
 
   moreDetailsAction: (offer) => {
+    dispatch(selectOffer(offer));
+  },
+
+  batchInfoAction: (offer) => {
     dispatch(selectOffer(offer));
   },
 

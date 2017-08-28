@@ -22,7 +22,7 @@ class ProductContainer extends Component {
       <div className={styles.container}>
         {this.props.products.map((offer, index) =>
           <ProductItem
-            key={index}
+            key={offer.address}
             name={offer.name}
             category={offer.category}
             imageHash={offer.imageHash}

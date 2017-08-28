@@ -9,6 +9,7 @@ const DEFAULT_STATE = {
     '0xe99356bde974bbe08721d77712168fa070aa8da4',
     '0xc2d7cf95645d33006175b78989035c7c9061d3f9',
   ], // Example devices for demo purposes
+  username: '',
 };
 
 const market = (
@@ -35,6 +36,8 @@ const market = (
       return { ...state, filter: {} };
     case 'FETCH_AGREEMENTS_SUCCESS':
       return { ...state, orders: action.agreements };
+    case 'FETCH_USERNAME_SUCCESS':
+      return { ...state, username: action.username };
     default:
       return state;
   }

@@ -68,12 +68,26 @@ class MarketPage extends Component {
     if (this.state.selectedRequirement === 'All') {
       return offers;
     } else {
-      return offers.filter(offer => offer.requirement === this.state.selectedRequirement);
+      return offers.filter(offer => offer.quality === this.state.selectedRequirement);
     }
   }
 
-  render() {
+  renderProductArea() {
     let filteredOffers = this.getFilteredRequirement(this.getFilteredCategories(this.props.offers));
+    if (this.props.offers.length === 0)  {
+      return (<p>There are no offers on the market yet. {' '}
+            <Link to='/create-offer'>Create</Link> the first offer.</p>);
+    } else if (filteredOffers.length === 0)  {
+      return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>)
+    } else {
+      return (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
+                            moreDetailsAction={this.props.moreDetailsAction}
+                            products={filteredOffers}
+                            getOptions={this.props.getOptions}/>);
+    }    
+  }
+
+  render() {    
     return (
       <div>
         <NavigationBar title='Market'>
@@ -94,13 +108,7 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        { filteredOffers.length > 0 ?
-          (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
-                            moreDetailsAction={this.props.moreDetailsAction}
-                            products={filteredOffers}
-                            getOptions={this.props.getOptions}/>)  :
-          (<p>There are no offers meeting criteria. Change filter settings or {' '}
-            <Link to='/create-offer'>create</Link> new offer first.</p>) }
+        { this.renderProductArea() }
       </div>
     );
   }

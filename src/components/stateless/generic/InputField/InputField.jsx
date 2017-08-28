@@ -5,6 +5,11 @@ import ErrorList from '../ErrorList/ErrorList';
 
 export default class InputField extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { value: props.value };
+  }
+
   static propTypes = {
     text: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
@@ -16,6 +21,10 @@ export default class InputField extends Component {
     errors: [],
   };
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ value: nextProps.value });
+  }
+
   onChange() {
     let state = {
       value: this.refs.input.value,
@@ -24,14 +33,17 @@ export default class InputField extends Component {
   }
 
   render() {
-    return (<div className={styles.row}>
-      <span className={styles.label}>{this.props.text}</span>
-      <input ref="input"
-             placeholder={this.props.placeholder}
-             type='text'
-             onChange={this.onChange.bind(this)}
-             className={styles.value} />
-        <ErrorList errors={this.props.errors} />
+    return (<div>
+      <div className={styles.row}>
+        <span className={styles.label}>{this.props.text}</span>
+        <input ref="input"
+               placeholder={this.props.placeholder}
+               type='text'
+               value={this.state.value}
+               onChange={this.onChange.bind(this)}
+               className={styles.value} />
+      </div>
+      <ErrorList errors={this.props.errors} />
     </div>);
   }
 };

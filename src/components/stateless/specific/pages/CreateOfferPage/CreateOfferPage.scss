@@ -38,13 +38,15 @@
 }
 
 :local(.table) {
-  display: table;
-  width: 100%;
-  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 120px;
+  margin: 20px 0;
 }
 
 :local(.field) {
-  display: table-cell;
+  margin: 10px;
 }
 
 :local(.properties) {

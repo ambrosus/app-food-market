@@ -15,12 +15,11 @@ export default class MeasurementList extends Component {
 
   formatMeasurements() {
     return _(this.props.measurements).groupBy('event_id').
-      map((value, key) => ({ key: key, values: value })).
-      map(gr => ({ ...gr, date: _.minBy(gr.values, 'timestamp').timestamp })).
-      sort((a, b) => a.date > b.date).
+      map((value, key) => ({ key, value, date: _.minBy(value, 'timestamp').timestamp })).
+      sort('date').
       map(
         gr => <Section key={gr.key}
-                       options={gr.values.map(group => ({ field: group.attribute_id, value: group.value }))}
+                       options={gr.value.map(group => ({ field: group.attribute_id, value: group.value }))}
                        label={gr.key}
                        date={new Date(gr.date).toLocaleString()}/>).value();
   }

@@ -3,7 +3,7 @@ import IPFS from 'ipfs';
 let ipfs = null;
 
 export const withIPFS = (callback) => {
-  if (ipfs == null) {
+  if (ipfs === null) {
     ipfs = new IPFS();
   }
 

@@ -43,9 +43,9 @@ export default class BatchList extends Component {
       <div className={styles.typeColumn} ref="asdf">
         <table className={styles.table} >
           <tr className={classnames(styles.row, styles.header)}>
-            <th>Batch</th>
-            <th>Arrival date</th>
-            <th>Status</th>
+            <th className={styles.cell}>Batch</th>
+            <th className={styles.cell}>Arrival date</th>
+            <th className={styles.cell}>Status</th>
           </tr>
           <tbody>
           { rows.map((row)=>(<tr key={row.number} onClick={this.onRowClick.bind(this, row.number)}

@@ -1,24 +1,36 @@
 :local(.table) {
-  border: 1px solid #D2EEFE;
-  padding: 0;
   width: 100%;
   cursor: pointer;
   text-align: left;
+  border-collapse: collapse;
 }
 
 :local(.header) {
+  padding-left: 10px;
   cursor:auto !important;
   background-color: #D2EEFE;
+
+  &:hover {
+    border: 0 !important
+  }
 }
 
 :local(.cell) {
   border: 0;
+  padding: 10px 10px;
 }
 
 :local(.row) {
+  border-collapse: collapse;
+
+  &:hover {
+    background-color: #D2EEFE !important;
+  }
+
   &:nth-child(even) {
     background-color: #EFFAFF;
   }
+
   width: 100%;
   text-align: left;
 }

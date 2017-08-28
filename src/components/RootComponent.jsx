@@ -28,7 +28,7 @@ export default class RootComponent extends Component {
       <Provider store={store}>
         <Router history={BrowserHistory}>
             <PageContainer>
-              <HeaderContainer/>
+              <Route component={HeaderContainer}/>
               <Route exact path='/' component={WelcomeHOC}/>
               <Route exact path='/create-market' component={CreateMarketContainerHOC}/>
               <Route exact path='/market' component={FilteredMarketHOC}/>

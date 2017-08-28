@@ -12,7 +12,7 @@ export default class HeaderContainer extends Component {
         <img className={styles.logo} src='/static/images/logotype.png'/>
       </Link>
       <TransactionStatusHOC/>
-      <ContextMenu/>
+      <ContextMenu location={this.props.location.pathname}/>
       <hr className={styles.line}/>
       <Breadcrumbs className={styles.breadcrumbs}/>
     </div>);

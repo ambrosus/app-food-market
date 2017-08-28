@@ -8,6 +8,10 @@
   text-decoration: none;
 }
 
+:local(.active) {
+  color: #20abfa;
+}
+
 :local(.element) {
   font-family: 'Muli', sans-serif;
   font-weight: bold;

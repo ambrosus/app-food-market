@@ -65,6 +65,7 @@ export default class TransactionBuilder {
     }).catch((err) => {
       console.error(err);
       this.dispatch(statusAddFailedTransaction({
+        address: this.tx,
         caption: this.title,
         errorMessage: err,
       }));

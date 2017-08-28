@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductBatch.scss';
 import cx from 'classnames';
-import AttributeValueFieldContainer from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
+import AttributeValueFieldContainer
+  from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import Label from '../../../../generic/Label/Label';
 import { loadImage } from '../../../../../../utils/loadFromIPFS';
 import MeasurementList from '../../../data/MeasurementList/MeasurementList';
@@ -22,7 +23,8 @@ class ProductBatch extends Component {
 
   componentDidMount() {
     loadImage(this.refs.image, this.props.offer.imageHash);
-    this.props.getAttributes(this.props.offer.requirementsAddress);
+    this.props.getAttributes(this.props.offer.requirementsAddress, this.props.offer.measurementsAddress);
+
   }
 
   render() {
@@ -48,16 +50,16 @@ class ProductBatch extends Component {
           <img className={styles.image} src='./static/images/placeholder.png'
                srcSet='./static/images/placeholder.png 2x' ref='image'/>
           <Label className={styles.title} text={this.props.offer.name}/>
-          <AttributeValueFieldContainer options={parameters} />
+          <AttributeValueFieldContainer options={parameters}/>
           <Label className={styles.subtitle} text='Requirements:'/>
-          <AttributeValueFieldContainer options={requirements} />
+          <AttributeValueFieldContainer options={requirements}/>
         </div>
         <div className={styles.typeColumn}>
           <BatchList/>
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           <Label className={styles.title} text={'Batch 423'}/>
-          <MeasurementList/>
+          <MeasurementList measurements={this.props.offer.measurements}/>
         </div>
       </div>
     );

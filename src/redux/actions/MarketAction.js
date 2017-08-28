@@ -56,13 +56,11 @@ export const createMarket = (history) => async function (dispatch) {
   await waitForAmbrosus();
   let marketRepository = new Ambrosus.MarketRepository();
   new TransactionBuilder(dispatch, marketRepository.create.bind(marketRepository)).
-    setTitle('Creating market').
-    setArguments(INITIAL_TOKENS).
-    onTxCallback((tx) => dispatch(createMarketResponse(transactionHash))).
-    onSuccessCallback((market) => dispatch(createMarketSuccess({
+  setTitle('Creating market')
+    .onTxCallback((tx) => dispatch(createMarketResponse(tx)))
+    .onSuccessCallback((market) => dispatch(createMarketSuccess({
       address: market.marketContract.address,
-    }))).
-    send();
+    }))).send();
 };
 
 export const getAllOffers = (address) => async function (dispatch) {

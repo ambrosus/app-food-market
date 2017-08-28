@@ -4,6 +4,10 @@ import styles from './MeasurementList.scss';
 
 export default class MeasurementList extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
 
     const inspection = [

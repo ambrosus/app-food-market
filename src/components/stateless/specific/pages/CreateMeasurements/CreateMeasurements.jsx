@@ -5,23 +5,38 @@ import Button from '../../../generic/Button/Button';
 import styles from '../CreateRequirements/CreateRequirements.scss';
 import utils from '../../../../../utils/utils';
 import CreateMeasurementsRow from './CreateMeasurementsRow';
+import ReactFileReader from 'react-file-reader';
+import Label from '../../../generic/Label/Label';
 
 class CreateMeasurements extends Component {
+
+  static propTypes = {
+    measurementsAddress: PropTypes.string.isRequired,
+    onSave: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
+    uploadCSV: PropTypes.func,
+    deviceList: PropTypes.array,
+    defaultForm: PropTypes.array,
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
       rows: [],
       form: {},
     };
   };
 
-  static propTypes = {
-    measurementsAddress: PropTypes.string.isRequired,
-    onSave: PropTypes.func.isRequired,
-    deviceList: PropTypes.array,
-  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.defaultForm) {
+      this.fillDefault(nextProps.defaultForm);
+      this.props.reset();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   onCancel() {
     this.props.history.goBack();
@@ -31,12 +46,33 @@ class CreateMeasurements extends Component {
     this.props.onSave(this.props.measurementsAddress, utils.mapToArray(this.state.form));
   }
 
+  handleFiles(files) {
+    this.props.uploadCSV(files[0]);
+  };
+
+  fillDefault(defaultForm) {
+    let rows = [];
+    let form = {};
+    for (let formRow of defaultForm) {
+      let key = Date.now().toString() + Math.random() + formRow.toString();
+      let element = (<CreateMeasurementsRow key={key}
+                                            {...formRow}
+                                            deviceList={this.props.deviceList}
+                                            onRowChange={this.onRowChange.bind(this, key)}
+                                            onRowRemove={this.onRowRemove.bind(this, key)}/>);
+      form[key] = formRow;
+      rows = [...rows, element];
+    }
+
+    this.setState({ rows, form });
+  }
+
   addRow() {
     let key = Date.now().toString();
     let element = (<CreateMeasurementsRow key={key}
                                           deviceList={this.props.deviceList}
                                           onRowChange={this.onRowChange.bind(this, key)}
-                                          onRowRemove={this.onRowRemove.bind(this, key)} />);
+                                          onRowRemove={this.onRowRemove.bind(this, key)}/>);
     let formClone = Object.assign({}, this.state.form);
     formClone[key] = {};
     this.setState({
@@ -68,8 +104,12 @@ class CreateMeasurements extends Component {
                 onClick={this.onCancel.bind(this)}>Cancel</Button>
         <Button className={styles.saveButton}
                 onClick={this.onSave.bind(this)}>Save</Button>
+        <ReactFileReader handleFiles={this.handleFiles.bind(this)} fileTypes={'.csv'}>
+          <Label className={styles.link} text="Upload csv data"/>
+        </ReactFileReader>
+
       </NavigationBar>
-      <div className={styles.list}>{ this.state.rows.map((row) => row) }</div>
+      <div className={styles.list}>{this.state.rows.map((row) => row)}</div>
       <Button onClick={this.addRow.bind(this)} className={styles.addRequirement}>Add measurement</Button>
     </div>);
   }

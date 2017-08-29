@@ -21,6 +21,13 @@
   flex: 2;
 }
 
+:local(.link) {
+  @include link();
+  display: block;
+  margin-top: 20px;
+  text-align: end;
+}
+
 :local(.summaryColumn) {
   @include column();
   flex: 1;
@@ -35,6 +42,7 @@
   font-size: 28px;
   font-weight: 100;
   padding-bottom: 12px;
+  margin-bottom: 15px;
   border-bottom: 1px solid rgba(0, 44, 135, 0.2);
 }
 

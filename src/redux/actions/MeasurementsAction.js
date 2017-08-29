@@ -22,12 +22,11 @@ export const addMeasurements = (measurementsAddress, measurements, history) => a
       ));
     }
 
-    new TransactionBuilder(dispatch, storage.updateHash.bind(storage)).
-      setTitle('Updating measurements').
-      onSuccessCallback(() => {
+    new TransactionBuilder(dispatch, storage.updateHash.bind(storage)).setTitle('Updating measurements')
+      .onSuccessCallback(() => {
         history.push('market');
-      }).
-      send();
+      })
+      .send();
 
   });
 };
@@ -41,3 +40,6 @@ export const fetchMeasurements = (measurementsAddress) => async function (dispat
   });
 };
 
+export const setDefaultMeasurementsForm = (defaultForm) => ({ type: 'SET_DEFAULT_MEASUREMENTS', default: defaultForm });
+
+export const resetDefaultMeasurementsForm = () => ({ type: 'RESET_DEFAULT_MEASUREMETNS' });

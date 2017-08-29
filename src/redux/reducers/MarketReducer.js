@@ -38,6 +38,10 @@ const market = (
       return { ...state, orders: action.agreements };
     case 'FETCH_USERNAME_SUCCESS':
       return { ...state, username: action.username };
+    case 'SET_DEFAULT_MEASUREMENTS':
+      return { ...state, defaultMeasurements: action.default };
+    case 'RESET_DEFAULT_MEASUREMENTS':
+      return { ...state, defaultMeasurements: null };
     default:
       return state;
   }

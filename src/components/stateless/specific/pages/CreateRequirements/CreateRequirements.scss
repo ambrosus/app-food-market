@@ -35,6 +35,10 @@
   margin: 10px 0;
 }
 
+:local(.link) {
+  cursor: pointer;
+}
+
 :local(.label) {
   @include font();
   font-size: 16px;

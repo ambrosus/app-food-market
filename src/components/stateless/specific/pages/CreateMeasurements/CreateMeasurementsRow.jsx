@@ -9,12 +9,12 @@ class CreateMeasurementsRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
-      value: null,
-      event: null,
-      farmerId: null,
-      batchId: null,
-      device: null,
+      id: this.props.id,
+      value: this.props.value,
+      event: this.props.event,
+      farmerId: this.props.farmerId,
+      batchId: this.props.batchId,
+      device: this.props.device,
     };
   }
 
@@ -29,6 +29,15 @@ class CreateMeasurementsRow extends Component {
   };
 
   render() {
+
+    const events = [
+      { value: 'Inspection' },
+      { value: 'Loading' },
+      { value: 'Transport' },
+      { value: 'Unloading' },
+      { value: 'Arrival' },
+    ];
+
     return (<div className={styles.row}>
       <TextField label="id"
                  placeholder='ID'
@@ -39,11 +48,12 @@ class CreateMeasurementsRow extends Component {
                  value={this.state.value}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Value'/>
-      <TextField label="event"
-                 className={styles.selector}
-                 value={this.state.event}
-                 onChange={this.onFieldChange.bind(this)}
-                 placeholder='Event'/>
+      <SelectorField label="event"
+                     className={styles.selector}
+                     value={this.state.event}
+                     onChange={this.onFieldChange.bind(this)}
+                     placeholder='Event'
+                     options={events}/>
       <TextField label="farmerId"
                  className={styles.selector}
                  value={this.state.farmerId}

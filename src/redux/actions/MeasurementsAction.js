@@ -22,12 +22,11 @@ export const addMeasurements = (measurementsAddress, measurements, history) => a
       ));
     }
 
-    new TransactionBuilder(dispatch, storage.updateHash.bind(storage)).
-      setTitle('Updating measurements').
-      onSuccessCallback(() => {
+    new TransactionBuilder(dispatch, storage.updateHash.bind(storage)).setTitle('Updating measurements')
+      .onSuccessCallback(() => {
         history.push('market');
-      }).
-      send();
+      })
+      .send();
 
   });
 };
@@ -36,8 +35,11 @@ export const fetchMeasurements = (measurementsAddress) => async function (dispat
   await waitForAmbrosus();
   withIPFS(async (ipfs) => {
     let storage = await new Ambrosus.MeasurementRepository(ipfs).fromAddress(measurementsAddress);
-    var measurements = await storage.doGetMeasurements(); // TODO validate
+    let measurements = await storage.doGetMeasurements(); // TODO validate
     dispatch({ type: 'FETCH_MEASUREMENTS_SUCCESS', measurements });
   });
 };
 
+export const fillMeasurementForm = (defaultForm) => ({ type: 'SET_MEASUREMENTS_FORM', form: defaultForm });
+
+export const resetMeasurementForm = () => ({ type: 'RESET_MEASUREMENTS_FORM' });

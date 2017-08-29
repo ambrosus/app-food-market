@@ -8,9 +8,7 @@ export default class TextField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: '',
-    };
+    this.state = { value: props.value };
   }
 
   static propTypes = {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProductBatch.scss';
 import cx from 'classnames';
+import { Link } from 'react-router-dom';
 import AttributeValueFieldContainer
   from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import Label from '../../../../generic/Label/Label';
@@ -10,6 +11,13 @@ import MeasurementList from '../../../data/MeasurementList/MeasurementList';
 import BatchList from '../BatchList/BatchList';
 
 class ProductBatch extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      batch: '',
+    };
+  }
 
   static defaultProps = {
     sidebar: 'summary',
@@ -37,6 +45,16 @@ class ProductBatch extends Component {
     });
   }
 
+  selectBatch(batchId) {
+    this.setState({
+      batch: batchId,
+    });
+  }
+
+  filterBatch() {
+    return _.filter(this.props.offer.measurements, measurement => measurement.batch_id === this.state.batch);
+  }
+
   render() {
 
     const parameters = [
@@ -44,14 +62,6 @@ class ProductBatch extends Component {
       { field: 'Price per package', value: `${this.props.offer.pricePerPackage} €` },
       { field: 'Per package', value: `${this.props.offer.packageWeight} kg` },
       { field: 'Per package', value: `${this.props.offer.pricePerUnit} €/kg` },
-    ];
-
-    const requirements = [
-      { field: 'Anti-Biotics Free', value: 'Yes' },
-      { field: 'Method of fishing', value: 'Line' },
-      { field: 'Fresh/Frozen', value: 'Fresh' },
-      { field: 'Wild/Aquaculture', value: 'Wild.' },
-      { field: 'Temperature', value: '0-4 °C' },
     ];
 
     return (<div className={styles.container}>
@@ -64,11 +74,21 @@ class ProductBatch extends Component {
           <AttributeValueFieldContainer options={this.attributesToValueField()}/>
         </div>
         <div className={styles.typeColumn}>
-          <BatchList/>
+          <BatchList measurements={this.props.offer.measurements} onSelect={this.selectBatch.bind(this)}/>
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
-          <Label className={styles.title} text={'Batch 423'}/>
-          <MeasurementList measurements={this.props.offer.measurements}/>
+          {
+            this.state.batch ? (<div>
+              <Label className={styles.title} text={`Batch ${this.state.batch}`}/>
+              <MeasurementList measurements={this.filterBatch()}/>
+              <Link className={styles.link} to="create-measurements"
+                    onClick={() => this.props.selectBatch(this.state.batch)}>
+                New measurement
+              </Link>
+            </div>) : (
+                <Label className={styles.title} text={'Select batch'}/>
+            )
+          }
         </div>
       </div>
     );

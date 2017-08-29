@@ -8,9 +8,7 @@ export default class SelectorField extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      value: null,
-    };
+    this.state = { value: props.value };
   }
 
   static propTypes = {

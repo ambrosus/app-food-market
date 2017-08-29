@@ -74,7 +74,7 @@ class ProductBatch extends Component {
           <AttributeValueFieldContainer options={this.attributesToValueField()}/>
         </div>
         <div className={styles.typeColumn}>
-          <BatchList measurements={this.props.offer.measurements} onSelect1={this.selectBatch.bind(this)}/>
+          <BatchList measurements={this.props.offer.measurements} onSelect={this.selectBatch.bind(this)}/>
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           {

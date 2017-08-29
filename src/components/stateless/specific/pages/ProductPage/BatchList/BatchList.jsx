@@ -18,7 +18,7 @@ export default class BatchList extends Component {
       .map(
         gr => (
           <tr key={gr.key}
-              onClick={() => this.props.onSelect1(gr.key)}
+              onClick={() => this.props.onSelect(gr.key)}
               className={styles.row}>
             <td className={styles.cell}>{gr.key}</td>
             <td className={styles.cell}>{gr.arrival
@@ -31,32 +31,8 @@ export default class BatchList extends Component {
 
   render() {
 
-    const rows = [
-      {
-        number: 423,
-        deliveryDate: '11-08-2017',
-        deliveryStatus: 'OK',
-      }, {
-        number: 424,
-        deliveryDate: '12-08-2017',
-        deliveryStatus: 'OK',
-      }, {
-        number: 425,
-        deliveryDate: '13-08-2017',
-        deliveryStatus: 'OK',
-      }, {
-        number: 426,
-        deliveryDate: '14-08-2017',
-        deliveryStatus: 'OK',
-      }, {
-        number: 427,
-        deliveryDate: '15-08-2017',
-        deliveryStatus: 'OK',
-      },
-    ];
-
     return (
-      <div className={styles.typeColumn} ref="asdf">
+      <div className={styles.typeColumn}>
         <table className={styles.table}>
           <tbody>
           <tr className={classnames(styles.row, styles.header)}>

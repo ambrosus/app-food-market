@@ -11,22 +11,29 @@ export default class BatchList extends Component {
 
   static defaultProps = {};
 
-  formatMeasurements() {
+  renderMeasurements() {
     return _(this.props.measurements)
       .groupBy('batch_id')
-      .map((value, key) => ({ key, value, arrival: _.find(value, (v) => v.event_id === 'Arrival') }))
+      .map((measurements, batchId) => ({
+        batchId,
+        arrival: _.find(measurements, (m) => m.event_id === 'Arrival'),
+      }))
       .map(
-        gr => (
-          <tr key={gr.key}
-              onClick={() => this.props.onSelect(gr.key)}
+        batch => (
+          <tr key={batch.batchId}
+              onClick={() => this.props.onSelect(batch.batchId)}
               className={styles.row}>
-            <td className={styles.cell}>{gr.key}</td>
-            <td className={styles.cell}>{gr.arrival
-              ? new Date(gr.arrival.timestamp).toLocaleString()
-              : 'Shipping'}</td>
-            <td className={styles.cell}>{gr.arrival ? 'OK' : ''}</td>
+            <td className={styles.cell}>{batch.batchId}</td>
+            <td className={styles.cell}>{this.formatArrivalDate(batch)}</td>
+            <td className={styles.cell}>{batch.arrival ? 'OK' : ''}</td>
           </tr>))
       .value();
+  }
+
+  formatArrivalDate(batch) {
+    return batch.arrival
+      ? new Date(batch.arrival.timestamp).toLocaleString()
+      : 'Shipping';
   }
 
   render() {
@@ -40,7 +47,7 @@ export default class BatchList extends Component {
             <th className={styles.cell}>Arrival date</th>
             <th className={styles.cell}>Status</th>
           </tr>
-          {this.formatMeasurements()}
+          {this.renderMeasurements()}
           </tbody>
         </table>
       </div>);

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { showModal } from '../../redux/actions/ModalAction';
 import { fetchAttributes } from '../../redux/actions/AttributesAction';
 import ProductBatch from '../stateless/specific/pages/ProductPage/ProductBatch/ProductBatch';
-import { fetchMeasurements, setDefaultMeasurementsForm } from '../../redux/actions/MeasurementsAction';
+import { fetchMeasurements, fillMeasurementForm } from '../../redux/actions/MeasurementsAction';
 
 const mapStateToProps = state => ({
   offer: state.offer,
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   selectBatch: (batchId) => {
-    dispatch(setDefaultMeasurementsForm([{ batchId: batchId }]));
+    dispatch(fillMeasurementForm([{ batchId: batchId }]));
   },
 });
 

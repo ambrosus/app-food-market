@@ -35,11 +35,11 @@ export const fetchMeasurements = (measurementsAddress) => async function (dispat
   await waitForAmbrosus();
   withIPFS(async (ipfs) => {
     let storage = await new Ambrosus.MeasurementRepository(ipfs).fromAddress(measurementsAddress);
-    var measurements = await storage.doGetMeasurements(); // TODO validate
+    let measurements = await storage.doGetMeasurements(); // TODO validate
     dispatch({ type: 'FETCH_MEASUREMENTS_SUCCESS', measurements });
   });
 };
 
-export const setDefaultMeasurementsForm = (defaultForm) => ({ type: 'SET_DEFAULT_MEASUREMENTS', default: defaultForm });
+export const fillMeasurementForm = (defaultForm) => ({ type: 'SET_MEASUREMENTS_FORM', form: defaultForm });
 
-export const resetDefaultMeasurementsForm = () => ({ type: 'RESET_DEFAULT_MEASUREMETNS' });
+export const resetMeasurementForm = () => ({ type: 'RESET_MEASUREMENTS_FORM' });

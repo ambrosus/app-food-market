@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import Papa from 'papaparse';
 import CreateMeasurements from '../stateless/specific/pages/CreateMeasurements/CreateMeasurements';
 import {
-  addMeasurements, resetDefaultMeasurementsForm,
-  setDefaultMeasurementsForm,
+  addMeasurements, resetMeasurementForm,
+  fillMeasurementForm,
 } from '../../redux/actions/MeasurementsAction';
 
 const mapStateToProps = (state) => ({
   measurementsAddress: state.offer.measurementsAddress,
   deviceList: state.market.devices,
-  defaultForm: state.market.defaultMeasurements,
+  measurementsForm: state.market.measurementsForm,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -30,13 +30,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
           batchId: row[4],
           device: row[5],
         }));
-        dispatch(setDefaultMeasurementsForm(form));
+        dispatch(fillMeasurementForm(form));
       },
     });
   },
 
   reset: () => {
-    dispatch(resetDefaultMeasurementsForm());
+    dispatch(resetMeasurementForm());
   },
 });
 

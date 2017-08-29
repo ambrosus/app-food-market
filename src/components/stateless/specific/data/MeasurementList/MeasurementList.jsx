@@ -14,19 +14,21 @@ export default class MeasurementList extends Component {
   };
 
   formatMeasurements() {
-    return _(this.props.measurements).groupBy('event_id').
-      map((value, key) => ({ key, value, date: _.minBy(value, 'timestamp').timestamp })).
-      sort('date').
-      map(
-        gr => <Section key={gr.key}
-                       options={gr.value.map(group => ({ field: group.attribute_id, value: group.value }))}
-                       label={gr.key}
-                       date={new Date(gr.date).toLocaleString()}/>).value();
+    return _(this.props.measurements)
+      .groupBy('event_id')
+      .map((measurements, eventId) => ({ eventId, measurements, date: _.minBy(measurements, 'timestamp').timestamp }))
+      .sort('date')
+      .map(
+        event => <Section key={event.eventId}
+                          options={event.measurements.map(group => ({ field: group.attribute_id, value: group.value }))}
+                          label={event.eventId}
+                          date={new Date(event.date).toLocaleString()}/>)
+      .value();
   }
 
   render() {
     return (<div>
-      { this.formatMeasurements() }
+      {this.formatMeasurements()}
     </div>);
   }
 };

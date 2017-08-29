@@ -102,9 +102,9 @@ class CreateMeasurements extends Component {
 
   render() {
     return (<div>
-      <NavigationBar title='Create requirements'>
+      <NavigationBar title='Create measurements'>
         <ReactFileReader handleFiles={this.uploadCSV.bind(this)} fileTypes={'.csv'}>
-          <Button>Upload csv data</Button>
+          <Button className={styles.cancelButton}>Upload csv data</Button>
         </ReactFileReader>
         <Button className={styles.cancelButton}
                 onClick={this.onCancel.bind(this)}>Cancel</Button>

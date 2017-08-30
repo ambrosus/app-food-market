@@ -59,7 +59,7 @@ class BuyProduct extends Component {
                     label="amount"
                     value={this.state.amount}
                     onChange={this.onAmountChange.bind(this)}/>
-        <Button onClick={this.onBuy.bind(this)}>Buy product</Button>
+        <Button className={styles.button} onClick={this.onBuy.bind(this)}>Buy product</Button>
       </div>
     </div>);
   }

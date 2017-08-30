@@ -61,7 +61,7 @@ class ProductBatch extends Component {
       { field: 'Product', value: this.props.offer.category },
       { field: 'Price per package', value: `${this.props.offer.pricePerPackage} €` },
       { field: 'Per package', value: `${this.props.offer.packageWeight} kg` },
-      { field: 'Per package', value: `${this.props.offer.pricePerUnit} €/kg` },
+      { field: 'Per package', value: `${this.props.offer.pricePerUnit.toFixed(2)} €/kg` },
     ];
 
     return (<div className={styles.container}>

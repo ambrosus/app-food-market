@@ -32,7 +32,7 @@ class WelcomePage extends Component {
   render() {
     return (
       <div className={styles.page}>
-        <img className={styles.logo} src="./static/images/ambrosus.png"/>
+        <img className={styles.logo} src="./static/images/ambrosus-animated.gif"/>
         <div className={styles.container}>
           <Label className={styles.header} text='Welcome'/>
           <div>

@@ -10,6 +10,7 @@ export default class TransactionsStatus extends Component {
   static propTypes = {
     notifications: PropTypes.array.isRequired,
     stats: PropTypes.object,
+    markAsRead: PropTypes.func,
   };
 
   static defaultProps = {
@@ -51,10 +52,9 @@ export default class TransactionsStatus extends Component {
            className={styles.container}>
         <div className={styles.icon}/>
         <div className={classnames(styles.hidden, { [styles.expanded]: this.state.expanded })}>
-          {this.props.notifications.length > 0 ?
-            <ScrollArea className={styles.scrollableArea}>
-              {this.renderNotifications()}
-            </ScrollArea> : <div>Empty</div>}
+          {this.props.notifications.length > 0 ? <ScrollArea className={styles.scrollableArea}>
+            {this.renderNotifications()}
+          </ScrollArea> : <div>Empty</div>}
         </div>
         <div className={classnames(styles.tooltip, {
           [styles.tooltipVisible]: this.state.tooltip,
@@ -79,6 +79,6 @@ export default class TransactionsStatus extends Component {
 
   renderNotifications() {
     return (this.props.notifications.map((notification, index) => <TransactionNotification
-      notification={notification} key={index}/>));
+      notification={notification} key={index} onClick={() => this.props.markAsRead(notification.address)}/>));
   }
 }

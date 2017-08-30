@@ -39,3 +39,8 @@ export const statusAddFailedTransaction = ({ address, caption, errorMessage, tim
     errorMessage: errorMessage,
   },
 });
+
+export const readNotification = (address) => ({
+  type: 'READ_NOTIFICATION',
+  address,
+});

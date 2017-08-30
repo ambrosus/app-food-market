@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TransactionNotification.scss';
 import classnames from 'classnames';
+import moment from 'moment';
 
 export default class TransactionNotification extends Component {
 
@@ -52,7 +53,7 @@ export default class TransactionNotification extends Component {
               [styles.pending]: this.props.notification.status === TransactionNotification.PENDING,
               [styles.notApproved]: this.props.notification.status === TransactionNotification.FAILED,
             })}>{this.props.notification.status}</span></div>
-          <div className={styles.time}>{this.props.notification.time}</div>
+          <div className={styles.time}>{moment(this.props.notification.time).fromNow()}</div>
         </div>
         <div className={styles.type}>{this.props.notification.type}</div>
         <a className={styles.address} href={`https://kovan.etherscan.io/tx/${this.props.notification.address}`}

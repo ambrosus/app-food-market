@@ -3,3 +3,7 @@
 :local(.breadcrumbs) {
   @include font();
 }
+
+:local(.link) {
+  @include link();
+}

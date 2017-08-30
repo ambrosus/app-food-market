@@ -34,7 +34,6 @@ export default class RootComponent extends Component {
               <Route exact path='/market' component={FilteredMarketHOC}/>
               <Route exact path='/orders' component={MyOrdersHOC}/>
               <Route exact path='/profile' component={ProfileHOC}/>
-              <Route exact path='/product' component={OrderSummaryHOC}/>
               <Route exact path='/product-info' component={OrderSummaryHOC}/>
               <Route exact path='/approved' component={ApprovedOrderHOC}/>
               <Route exact path='/product-buy' component={BuyProductHOC}/>

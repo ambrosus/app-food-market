@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ContextMenu from '../../navigation/ContextMenu/ContextMenu';
 import { Link } from 'react-router-dom';
-import Breadcrumbs from '../../navigation/Breadcrumbs/Breadcrumbs';
 import styles from './HeaderContainer.scss';
 import TransactionStatusHOC from '../../../../hoc/TransactionStatusHOC';
+import BreadcrumbsHOC from '../../../../hoc/BreadcrumbsHOC';
 
 export default class HeaderContainer extends Component {
   render() {
@@ -15,7 +15,7 @@ export default class HeaderContainer extends Component {
         <TransactionStatusHOC/>
         <ContextMenu location={this.props.location.pathname}/>
         <hr className={styles.line}/>
-        <Breadcrumbs className={styles.breadcrumbs}/>
+        <BreadcrumbsHOC className={styles.breadcrumbs} location={this.props.location.pathname}/>
       </div>
     ) : (
       <div className={styles.header}>

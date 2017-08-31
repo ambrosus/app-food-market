@@ -13,6 +13,21 @@ import { autoRehydrate, persistStore } from 'redux-persist';
 const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna'];
 const categories = (state = CATEGORIES, action) => state;
 
+const BREADCRUMBS = {
+  '/': { name: 'Ambrosus' },
+  '/market': { name: 'Market', parent: '/' },
+  '/profile': { name: 'Profile', parent: '/' },
+  '/orders': { name: 'My orders', parent: '/' },
+  '/product-info': { name: 'Order summary', parent: '/orders' },
+  '/approved': { name: 'Order status', parent: '/orders' },
+  '/product-buy': { name: 'Product info', parent: '/market' },
+  '/create-offer': { name: 'Create offer', parent: '/market' },
+  '/create-requirements': { name: 'Create requirements', parent: '/profile' },
+  '/create-measurements': { name: 'Create measurements', parent: '/product-buy' },
+};
+
+const breadcrumbs = (state = BREADCRUMBS, action) => state;
+
 const store = createStore(combineReducers({
     ambrosus,
     transactions,
@@ -22,13 +37,14 @@ const store = createStore(combineReducers({
     offer,
     categories,
     token,
+    breadcrumbs,
   }),
 
   compose(applyMiddleware(thunk), autoRehydrate(),
     window.devToolsExtension ? window.devToolsExtension({ shouldHotReload: false }) : f => f,
   ));
 
-persistStore(store, { blacklist: ['modal'] });
+persistStore(store, { blacklist: ['modal', 'breadcrumbs'] });
 store.dispatch(initializeBlockchain());
 
 export default store;

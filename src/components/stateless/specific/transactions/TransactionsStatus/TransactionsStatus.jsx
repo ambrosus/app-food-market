@@ -26,14 +26,13 @@ export default class TransactionsStatus extends Component {
     this.state = {
       expanded: false,
     };
-    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  handleClickOutside(event) {
+  handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.hide();
     }
-  }
+  };
 
   toggle() {
     if (this.state.expanded) {

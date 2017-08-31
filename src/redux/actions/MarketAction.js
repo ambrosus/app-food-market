@@ -49,8 +49,6 @@ export const resetFilter = () => ({
   type: 'FILTER_RESET',
 });
 
-const INITIAL_TOKENS = 1000000;
-
 export const createMarket = (history) => async function (dispatch) {
   dispatch(requestNewMarket());
   await waitForAmbrosus();

@@ -26,11 +26,31 @@ export default class TransactionsStatus extends Component {
     this.state = {
       expanded: false,
     };
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.hide();
+    }
   }
 
   toggle() {
+    if (this.state.expanded) {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+    } else {
+      document.addEventListener('mousedown', this.handleClickOutside);
+    }
+
     this.setState({
       expanded: !this.state.expanded,
+    });
+  }
+
+  hide() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+    this.setState({
+      expanded: false,
     });
   }
 
@@ -48,9 +68,11 @@ export default class TransactionsStatus extends Component {
 
   render() {
     return (
-      <div onMouseEnter={this.over.bind(this)} onMouseLeave={this.out.bind(this)} onClick={this.toggle.bind(this)}
-           className={styles.container}>
-        <div className={styles.icon}/>
+      <div onMouseEnter={this.over.bind(this)} onMouseLeave={this.out.bind(this)}
+           className={styles.container} ref={(div) => this.wrapperRef = div} >
+        <div className={styles.iconWrapper} onClick={this.toggle.bind(this)}>
+          <div className={styles.icon} />
+        </div>
         <div className={classnames(styles.hidden, { [styles.expanded]: this.state.expanded })}>
           {this.props.notifications.length > 0 ? <ScrollArea className={styles.scrollableArea}>
             {this.renderNotifications()}
@@ -58,7 +80,7 @@ export default class TransactionsStatus extends Component {
         </div>
         <div className={classnames(styles.tooltip, {
           [styles.tooltipVisible]: this.state.tooltip,
-        })}>
+        })} onClick={this.toggle.bind(this)}>
           <div className={styles.iconContainer}>
             <div className={styles.pendingIcon}>
               <div

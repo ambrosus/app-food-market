@@ -2,16 +2,13 @@ import { connect } from 'react-redux';
 import Breadcrumbs from '../stateless/specific/navigation/Breadcrumbs/Breadcrumbs';
 
 const selectBreadcrumbs = (pages, location) => {
-  if (!pages[location])
-    return [];
-  let page = pages[location];
-  page.to = location;
-  let breadcrumbs = [page];
-  while (page.parent) {
-    location = page.parent;
-    page = pages[page.parent];
+  let page;
+  let breadcrumbs = [];
+  while (pages[location]) {
+    page = pages[location];
     page.to = location;
     breadcrumbs = [page, ...breadcrumbs];
+    location = page.parent;
   }
 
   return breadcrumbs;

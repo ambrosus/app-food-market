@@ -7,7 +7,6 @@ import styles from './Breadcrumbs.scss';
 export default class Breadcrumbs extends Component {
 
   render() {
-    console.log(this.props.breadcrumbs);
     return (<div className={cx(styles.breadcrumbs, this.props.className)}>
       {
         _(this.props.breadcrumbs)

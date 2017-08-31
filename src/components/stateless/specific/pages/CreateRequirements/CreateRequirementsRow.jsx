@@ -12,11 +12,11 @@ class CreateRequirementsRow extends Component {
     this.options = [{ value: 'Range' }];
     this.state = {
       values: {
-        id: null,
-        decimals: null,
-        type: null,
-        min: null,
-        max: null,
+        id: props.id,
+        decimals: props.decimals,
+        type: props.type,
+        min: props.min,
+        max: props.max,
       },
       errors: {
         id: [],
@@ -122,23 +122,28 @@ class CreateRequirementsRow extends Component {
     return (<div className={styles.row}>
       <TextField label="id"
                  placeholder='ID'
+                 value={this.state.values.id}
                  errors={this.state.errors.id}
                  onChange={this.onFieldChange.bind(this)} />
       <SelectorField label="type"
                      onChange={this.onFieldChange.bind(this)}
                      options={this.options}
+                     value={this.state.values.type}
                      placeholder="Type"
                      errors={this.state.errors.type}
                      className={styles.selector}/>
       <TextField label="decimals"
                  errors={this.state.errors.decimals}
+                 value={this.state.values.decimals}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Decimals' />
       <TextField label="min"
+                 value={this.state.values.min}
                  errors={this.state.errors.min}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Min'/>
       <TextField label="max"
+                 value={this.state.values.min}
                  errors={this.state.errors.max}
                  onChange={this.onFieldChange.bind(this)}
                  placeholder='Max'/>

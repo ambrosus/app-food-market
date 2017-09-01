@@ -29,6 +29,12 @@ const createMarketResponse = (marketContract) => ({
   address: marketContract.address,
 });
 
+export const setMarket = (address) => ({
+  type: 'SET_MARKET',
+  address
+});
+
+
 export const createMarketSuccess = ({ address }) => ({
   type: 'CREATE_MARKET_SUCCESS',
   address,

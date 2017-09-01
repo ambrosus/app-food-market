@@ -11,6 +11,13 @@
   border-bottom: 0;
 }
 
+:local(.iconWrapper) {
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 :local(.icon) {
   background: url('/static/images/blockchain.svg') no-repeat;
   margin: 0 auto;

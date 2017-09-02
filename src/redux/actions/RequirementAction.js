@@ -40,3 +40,7 @@ export const createRequirement = (name, requirements, marketAddress, history) =>
     }).
     send();
 };
+
+export const fillRequirementForm = (defaultForm) => ({ type: 'SET_REQUIREMENTS_FORM', form: defaultForm });
+
+export const resetRequirementForm = () => ({ type: 'RESET_REQUIREMENTS_FORM' });

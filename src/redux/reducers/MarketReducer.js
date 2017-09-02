@@ -42,6 +42,10 @@ const market = (
       return { ...state, username: action.username };
     case 'SET_MEASUREMENTS_FORM':
       return { ...state, measurementsForm: action.form };
+    case 'SET_REQUIREMENTS_FORM':
+      return { ...state, requirementsForm: action.form };
+    case 'RESET_REQUIREMENTS_FORM':
+      return { ...state, requirementsForm: null };
     case 'RESET_MEASUREMENTS_FORM':
       return { ...state, measurementsForm: null };
     default:

@@ -10,6 +10,7 @@ import CreateRequirementsForm from './CreateRequirementsForm';
 import CreateRequirementsRow from './CreateRequirementsRow';
 import TextField from '../../../generic/TextField/TextField';
 import _ from 'lodash';
+import ReactFileReader from 'react-file-reader';
 
 class CreateRequirements extends Component {
 
@@ -32,6 +33,20 @@ class CreateRequirements extends Component {
     onSave: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    if (this.props.requirementsForm) {
+      this.fillRequirementsForm(this.props.requirementsForm);
+      this.props.reset();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.requirementsForm) {
+      this.fillRequirementsForm(nextProps.requirementsForm);
+      this.props.reset();
+    }
+  }
+
   onCancel() {
     this.props.history.goBack();
   }
@@ -50,6 +65,28 @@ class CreateRequirements extends Component {
       let newState = Object.assign({}, this.state, { showValidation: true });
       this.setState(newState);
     }
+  }
+
+  uploadCSV(files) {
+    this.props.uploadCSV(files[0]);
+  };
+
+  fillRequirementsForm(defaultForm) {
+    let rows = [];
+    let form = {};
+    for (let formRow of defaultForm) {
+      let key = _.uniqueId();
+      let element = (<CreateRequirementsRow key={key}
+                                            {...formRow}
+                                            deviceList={this.props.deviceList}
+                                            showValidation={true}
+                                            onRowChange={this.onRowChange.bind(this, key)}
+                                            onRowRemove={this.onRowRemove.bind(this, key)}/>);
+      form[key] = formRow;
+      rows = [...rows, element];
+    }
+
+    this.setState({ rows, form });
   }
 
   getTotalNumberOfErrors() {
@@ -134,6 +171,9 @@ class CreateRequirements extends Component {
   render() {
     return (<div>
       <NavigationBar title='Create requirements'>
+        <ReactFileReader handleFiles={this.uploadCSV.bind(this)} fileTypes={'.csv'}>
+          <Button className={styles.cancelButton}>Upload csv data</Button>
+        </ReactFileReader>
         <Button className={styles.cancelButton}
                 onClick={this.onCancel.bind(this)}>Cancel</Button>
         <Button className={styles.saveButton}

@@ -19,7 +19,7 @@ class WelcomePage extends Component {
     };
   }
 
-  onAddressChange(label, inputState) {
+  onAddressChange(label, inputState) {    
     this.setState({
       [label]: inputState.value,
     });

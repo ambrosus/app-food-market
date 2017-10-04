@@ -69,7 +69,6 @@ export default class TransactionsStatus extends Component {
   }
 
   render() {
-    console.log(this.props.stats)
     return (
       <div onMouseEnter={this.over.bind(this)} onMouseLeave={this.out.bind(this)}
            className={styles.container} ref={(div) => this.wrapperRef = div}>

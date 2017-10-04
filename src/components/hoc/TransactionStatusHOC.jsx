@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import TransactionsStatus from '../stateless/specific/transactions/TransactionsStatus/TransactionsStatus';
-import { readNotification } from '../../redux/actions/TransactionStatusAction';
+import { readAll, readNotification } from '../../redux/actions/TransactionStatusAction';
 import _ from 'lodash';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   markAsRead: (address) => dispatch(readNotification(address)),
+  readAll: () => dispatch(readAll()),
 });
 
 const TransactionStatusHOC = connect(

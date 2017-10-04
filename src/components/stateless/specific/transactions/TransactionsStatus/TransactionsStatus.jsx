@@ -37,6 +37,7 @@ export default class TransactionsStatus extends Component {
 
   toggle() {
     if (this.state.expanded) {
+      this.props.readAll();
       document.removeEventListener('mousedown', this.handleClickOutside);
     } else {
       document.addEventListener('mousedown', this.handleClickOutside);
@@ -48,6 +49,7 @@ export default class TransactionsStatus extends Component {
   }
 
   hide() {
+    this.props.readAll();
     document.removeEventListener('mousedown', this.handleClickOutside);
     this.setState({
       expanded: false,
@@ -67,33 +69,40 @@ export default class TransactionsStatus extends Component {
   }
 
   render() {
+    console.log(this.props.stats)
     return (
       <div onMouseEnter={this.over.bind(this)} onMouseLeave={this.out.bind(this)}
-           className={styles.container} ref={(div) => this.wrapperRef = div} >
+           className={styles.container} ref={(div) => this.wrapperRef = div}>
         <div className={styles.iconWrapper} onClick={this.toggle.bind(this)}>
-          <div className={styles.icon} />
+          <div className={styles.icon}/>
         </div>
         <div className={classnames(styles.hidden, { [styles.expanded]: this.state.expanded })}>
           {this.props.notifications.length > 0 ? <ScrollArea className={styles.scrollableArea}>
             {this.renderNotifications()}
-          </ScrollArea> : <div>Empty</div>}
+          </ScrollArea> : <div/>}
         </div>
         <div className={classnames(styles.tooltip, {
-          [styles.tooltipVisible]: this.state.tooltip,
+          [styles.tooltipVisible]: true,
         })} onClick={this.toggle.bind(this)}>
           <div className={styles.iconContainer}>
-            <div className={styles.pendingIcon}>
-              <div
-                className={classnames(styles.indicator, styles.indicatorPending)}>{this.props.stats.pending}</div>
+            {this.props.stats.pending > 0 && (
+              <div className={styles.pendingIcon}>
+                <div
+                  className={classnames(styles.indicator, styles.indicatorPending)}>{this.props.stats.pending}</div>
             </div>
+            )}
+            {this.props.stats.approved > 0 && (
             <div className={styles.approvedIcon}>
               <div
                 className={classnames(styles.indicator, styles.indicatorApproved)}>{this.props.stats.approved}</div>
             </div>
-            <div className={styles.notApprovedIcon}>
+            )}
+            {this.props.stats.failed > 0 && (
+              <div className={styles.notApprovedIcon}>
               <div
                 className={classnames(styles.indicator, styles.indicatorNotApproved)}>{this.props.stats.failed}</div>
             </div>
+            )}
           </div>
         </div>
       </div>);

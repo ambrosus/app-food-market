@@ -43,7 +43,7 @@
     "classnames": "^2.2.5",
     "es6-promisify": "^5.0.0",
     "font-awesome": "^4.7.0",
-    "ipfs": "^0.25.2",
+    "ipfs": "^0.25.4",
     "ipfs-image-web-upload": "^1.0.4",
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",

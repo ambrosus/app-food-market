@@ -1,3 +1,5 @@
+
+
 const transactionsStatus = (state = {
   list: [],
   stats: {
@@ -15,7 +17,7 @@ const transactionsStatus = (state = {
         stats: {
           approved: state.stats.approved + 1,
           failed: state.stats.failed,
-          pending: state.stats.pending - 1,
+          pending: Math.max(state.stats.pending - 1, 0),
         },
       };
       break;
@@ -27,7 +29,7 @@ const transactionsStatus = (state = {
         stats: {
           approved: state.stats.approved,
           failed: state.stats.failed + 1,
-          pending: state.stats.pending - 1,
+          pending: Math.max(state.stats.pending - 1, 0),
         },
       };
       break;
@@ -47,6 +49,18 @@ const transactionsStatus = (state = {
           ...notification, isRead: true,
         } : notification),
       };
+    case 'READ_ALL':
+      return {
+        ...state,
+        list: state.list.map(notification => notification.status !== 'pending' ? {
+          ...notification, isRead: true,
+        } : notification),
+        stats: {
+          approved: 0,
+          failed: 0,
+          pending: state.stats.pending
+        }
+      }
     default:
       return state;
   }

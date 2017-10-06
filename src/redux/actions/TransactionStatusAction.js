@@ -44,3 +44,7 @@ export const readNotification = (address) => ({
   type: 'READ_NOTIFICATION',
   address,
 });
+
+export const readAll = () => ({
+  type: 'READ_ALL',
+});

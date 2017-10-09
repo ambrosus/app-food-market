@@ -4,7 +4,14 @@ let ipfs = null;
 
 export const withIPFS = (callback) => {
   if (ipfs === null) {
-    ipfs = new IPFS();
+    ipfs = new IPFS({
+      config: {
+        Addresses: {
+          Swarm: [],
+          Gateway: 'https://ipfs.infura.io',
+        },
+      },
+    });
   }
 
   if (ipfs.isOnline())

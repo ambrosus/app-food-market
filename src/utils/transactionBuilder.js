@@ -4,6 +4,7 @@ import {
   statusAddSuccessTransaction,
 } from '../redux/actions/TransactionStatusAction';
 import { hideModal, showModal } from '../redux/actions/ModalAction';
+import { hasWeb3 } from './blockchainEvents';
 
 export default class TransactionBuilder {
 
@@ -51,6 +52,11 @@ export default class TransactionBuilder {
   }
 
   send() {
+    if (!hasWeb3()) {
+      this.dispatch(showModal('ErrorModal', { title: 'You need browser supporting Web3 to do this', reason: '' }));
+      return;
+    }
+
     this.dispatch(showModal('TransactionProgressModal', { title: this.title }));
     this.promise(...this.arguments, (tx) => {
       this.tx = tx;

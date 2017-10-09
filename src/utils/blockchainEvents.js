@@ -23,3 +23,5 @@ export const transactionMined = (tx, waitTime = TRANSACTION_WAIT_TIME, maxRetrie
   });
 };
 
+export const hasWeb3 = () => web3.eth.accounts.length > 0;
+

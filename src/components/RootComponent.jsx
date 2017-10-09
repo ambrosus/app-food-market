@@ -19,14 +19,17 @@ import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
 import CreateMeasurementsHOC from './hoc/CreateMeasurementsHOC';
 import ProductBatchHOC from './hoc/ProductBatchHOC';
+import Web3Component from './stateless/specific/Web3Component';
 
 require('./RootComponent.scss');
 
 export default class RootComponent extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router history={BrowserHistory}>
+      <div>
+        <Web3Component/>
+        <Provider store={store}>
+          <Router history={BrowserHistory}>
             <PageContainer>
               <Route component={HeaderContainer}/>
               <Route exact path='/' component={WelcomeHOC}/>
@@ -43,7 +46,8 @@ export default class RootComponent extends Component {
               <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>
               <ModalContainerHOC/>
             </PageContainer>
-        </Router>
-      </Provider>);
+          </Router>
+        </Provider>
+      </div>);
   }
 };

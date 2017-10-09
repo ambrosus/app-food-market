@@ -1,21 +1,11 @@
-import IPFS from 'ipfs';
+var ipfsAPI = require('ipfs-api');
 
 let ipfs = null;
 
 export const withIPFS = (callback) => {
   if (ipfs === null) {
-    ipfs = new IPFS({
-      config: {
-        Addresses: {
-          Swarm: [],
-          Gateway: 'https://ipfs.infura.io',
-        },
-      },
-    });
+    ipfs = ipfsAPI('ipfs.infura.io', '5001', { protocol: 'https' });
   }
 
-  if (ipfs.isOnline())
-    callback(ipfs);
-  else
-    ipfs.on('ready', () => callback(ipfs));
+  callback(ipfs);
 };

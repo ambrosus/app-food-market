@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         app: './src/app.js',
         index: './src/index.html',
+        404: './src/404.html',
       },
 
     output: {

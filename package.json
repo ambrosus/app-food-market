@@ -39,13 +39,13 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "ambrosus": "^0.2.19",
+    "ambrosus": "^0.2.20",
     "classnames": "^2.2.5",
     "es6-promisify": "^5.0.0",
     "font-awesome": "^4.7.0",
     "ipfs": "^0.25.4",
     "ipfs-api": "^14.3.5",
-    "ipfs-image-web-upload": "^1.0.4",
+    "ipfs-image-web-upload": "^1.0.5",
     "js-cookie": "^2.1.4",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",

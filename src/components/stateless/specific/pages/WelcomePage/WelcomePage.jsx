@@ -19,7 +19,7 @@ class WelcomePage extends Component {
     };
   }
 
-  onAddressChange(label, inputState) {    
+  onAddressChange(label, inputState) {
     this.setState({
       [label]: inputState.value,
     });
@@ -47,13 +47,13 @@ class WelcomePage extends Component {
             </div>
           </div>
           <span className={styles.text}>or</span>
-          <Button className={styles.newAccount}>
-            <Link className={styles.link} to="/create-market">Create new market</Link>
+          <Button className={styles.newAccount} onClick={this.props.createMarket}>
+            <Link className={styles.link} to="/market">Create new market</Link>
           </Button>
         </div>
         <Link to='/market'>
           <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
-        </Link>        
+        </Link>
       </div>);
   }
 }

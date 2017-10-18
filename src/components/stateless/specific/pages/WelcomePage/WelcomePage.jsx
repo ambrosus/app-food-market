@@ -15,7 +15,7 @@ class WelcomePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: '',
+      address: '0x4bf9a0cdfeaa638620e96e356593bc2ab395f10a',
     };
   }
 

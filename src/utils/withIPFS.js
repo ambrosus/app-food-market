@@ -4,7 +4,7 @@ let ipfs = null;
 
 export const withIPFS = (callback) => {
   if (ipfs === null) {
-    ipfs = ipfsAPI('ipfs.infura.io', '5001', { protocol: 'https' });
+    ipfs = ipfsAPI({ host: 'gateway.ipfs.io', port: '443', protocol: 'https' });
   }
 
   callback(ipfs);

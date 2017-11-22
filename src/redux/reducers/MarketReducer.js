@@ -23,9 +23,15 @@ const market = (
     case 'FETCH_REQUIREMENT_RESPONSE':
       return { ...state, requirements: action.requirements };
     case 'SET_MARKET':
-      return { ...state, address: action.address };
+      return state.address === action.address
+        ? state
+        : {
+          ...DEFAULT_STATE,
+          username: state.username,
+          address: action.address,
+        };
     case 'CREATE_MARKET_REQUEST':
-      return { ...state, status: 'About to create market...' };
+      return { ...DEFAULT_STATE, username: state.username, status: 'About to create market...' };
     case 'CREATE_MARKET_RESPONSE':
       return { ...state, status: 'Loading' };
     case 'CREATE_MARKET_SUCCESS':

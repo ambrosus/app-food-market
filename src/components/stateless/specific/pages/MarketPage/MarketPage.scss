@@ -12,6 +12,15 @@ $create-offer-button-text-color: #ffffff;
   width: 170px;
 }
 
+:local(.spinnerWrapper) {
+  margin-top: 50px;
+  text-align: center;
+
+  & > img {
+    display: inline-block;
+  }
+}
+
 .navigation {
 
   &__link {

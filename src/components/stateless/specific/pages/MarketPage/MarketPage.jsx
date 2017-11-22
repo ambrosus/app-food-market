@@ -76,19 +76,25 @@ class MarketPage extends Component {
 
   renderProductArea() {
     let filteredOffers = this.getFilteredRequirement(this.getFilteredCategories(this.props.offers));
-    if (this.props.offers.length === 0)  {
+    if (this.props.offers.length === 0) {
       return (<p>There are no offers on the market yet. {' '}
-            <Link to='/create-offer'>Create</Link> the first offer.</p>);
-    } else if (filteredOffers.length === 0)  {
+        <Link to='/create-offer'>Create</Link> the first offer.</p>);
+    } else if (filteredOffers.length === 0) {
       return (<p>There are no offers meeting criteria. Change filter criteria to see offers.</p>);
     } else {
       return (<ProductContainer moreDetailsPath={this.props.moreDetailsPath}
-                            moreDetailsAction={this.props.moreDetailsAction}
-                            batchInfoAction={this.props.batchInfoAction}
-                            batchInfoPath={this.props.batchInfoPath}
-                            products={filteredOffers}
-                            getOptions={this.props.getOptions}/>);
+                                moreDetailsAction={this.props.moreDetailsAction}
+                                batchInfoAction={this.props.batchInfoAction}
+                                batchInfoPath={this.props.batchInfoPath}
+                                products={filteredOffers}
+                                getOptions={this.props.getOptions}/>);
     }
+  }
+
+  renderLoading() {
+    return (<div className={styles.spinnerWrapper}>
+      <img src='./static/images/spinner.svg'/>
+    </div>);
   }
 
   render() {
@@ -112,10 +118,13 @@ class MarketPage extends Component {
             <span className='icon-basket-loaded button-icon-default'/>Create an offer</Button>
           </Link>
         </NavigationBar>
-        { this.renderProductArea() }
+        {this.props.status === 'Loading' && this.props.offers.length === 0
+          ? this.renderLoading()
+          : this.renderProductArea()}
       </div>
     );
   }
+
 }
 
 export default MarketPage;

@@ -5,9 +5,9 @@ import offer from '../../redux/reducers/OfferReducer';
 
 const mapStateToProps = (state, ownProps) => ({
   marketAddress: state.market.address,
-  offers: state.market.offers,
   moreDetailsPath: '/product-buy',
   batchInfoPath: '/product-batch',
+  status: state.market.status,
   getOptions: (offer) => [
     {
       field: 'Price',

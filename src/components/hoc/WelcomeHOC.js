@@ -9,8 +9,7 @@ const mapStateToProps = (state, ownProps) => state.market;
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onGoClick: (address) => {
-    var a = setMarket(address);
-    dispatch(a);
+    dispatch(setMarket(address));
     ownProps.history.push('market');
   },
   createMarket: () => {

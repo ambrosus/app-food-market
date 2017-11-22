@@ -31,7 +31,7 @@ const createMarketResponse = (marketContract) => ({
 
 export const setMarket = (address) => ({
   type: 'SET_MARKET',
-  address
+  address,
 });
 
 

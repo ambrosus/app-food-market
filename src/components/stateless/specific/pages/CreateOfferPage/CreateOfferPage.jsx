@@ -73,6 +73,11 @@ class CreateOfferPage extends Component {
     return this.props.requirements.map((key) => ({ value: key }));
   }
 
+  getOrigin() {
+    return [{'value': 'China'}, {'value': 'Hong Kong'},
+    {'value' : 'Tanzania'}, {'value': 'United States'}];
+  }
+
   validateBeforeSubmit(values) {
     let errors = {};
     let hasErrors = false;
@@ -173,12 +178,13 @@ class CreateOfferPage extends Component {
                   onClick={this.onSaveClick.bind(this)}>Save</Button>
         </NavigationBar>
         <div className={styles.top}>
-          <Label className={styles.label} text='Name of object:'/>
+          <Label className={styles.label} text='Offer name:'/>
           <TextField label="name"
                      errors={this.state.form.errors.name}
                      onChange={this.onChange.bind(this)}
                      className={styles.textField}/>
-          <div className={styles.container}>
+
+	    <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
                 ref='myFileInput'
@@ -195,20 +201,31 @@ class CreateOfferPage extends Component {
               </FileProcessor>
             </div>
             <div className={styles.column}>
-              <Label className={styles.label} text='Category:'/>
+	     <div className={styles.table}>
+	                   <Label className={styles.label} text='Category:'/>
               <SelectorField className={styles.selector}
                              errors={this.state.form.errors.category}
                              placeholder="Select category"
                              onChange={this.onChange.bind(this)}
                              options={this.getCategories()} label='category'/>
-              <div className={styles.table}>
-                <InputField text='Package weight (kg)'
+
+	      <Label className={styles.label} text='Origin:'/>
+              <SelectorField className={styles.selector}
+                             placeholder="Select origin"
+                             options={this.getOrigin()}
+                             onChange={(label, state) => {
+                                this.onChange(label, state);
+                                this.getAttributes(state.value);
+                              }}
+                             label='origin' />
+
+                <InputField text='Quantity (kg)'
                             className={styles.field}
                             errors={this.state.form.errors.packageWeight}
                             onChange={this.onChange.bind(this)}
                             label='packageWeight'/>
                 <InputField
-                            text='Price per package (€)'
+                            text='Unit Price (€)'
                             className={styles.field}
                             errors={this.state.form.errors.pricePerPackage}
                             onChange={this.onChange.bind(this)}
@@ -228,6 +245,17 @@ class CreateOfferPage extends Component {
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>
           </div>
+	      <Label className={styles.label} text='Description:'/>
+	      <TextField text='Description'
+	      		  className={styles.textField}
+			  onChange={this.onChange.bind(this)}
+			  />
+	      <Label className={styles.label} text='Attachment:'/>
+	      <TextField text='Attachments'
+	      		  className={styles.textField}
+			  onChange={this.onChange.bind(this)}
+			  />
+
         </div>
       </div>
     );

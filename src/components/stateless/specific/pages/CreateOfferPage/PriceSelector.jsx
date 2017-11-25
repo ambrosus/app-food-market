@@ -7,7 +7,7 @@ export default class QuantitySelector extends Component {
   }
 
   render() {
-  return (<InputField text='Unit Price (€)'
+  return (<InputField text='Price per unit quantity (€)'
                             className={this.props.className}
                             errors={this.props.errors}
                             onChange={this.props.onChange}

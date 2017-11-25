@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Label from '../../../generic/Label/Label';
 import InputField from '../../../generic/InputField/InputField';
+import SelectorField from '../../../generic/SelectorField/SelectorField';
 
 export default class QualitySelector extends Component {
 

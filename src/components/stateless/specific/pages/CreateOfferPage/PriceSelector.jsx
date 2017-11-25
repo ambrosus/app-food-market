@@ -18,21 +18,10 @@ export default class QuantitySelector extends Component {
   };
 
   render() {
-  return (
-  <span>
-                 <InputField text='Unit Price (€)'
-                            className='PriceSelector'
+  return (<InputField text='Unit Price (€)'
+                            className={this.props.className}
                             errors={this.props.errors}
-                            onChange={this.onChange.bind(this)}
-                            label='packageWeight'/>
-
-    </span>);
-  }
-
-  onChange() {
-    let state = {
-      value: this.refs.input.value,
-    };
-    this.setState(state, this.props.onChange.bind(this, this.props.label, state));
+                            onChange={this.props.onChange}
+                            label='packageWeight'/>);
   }
 };

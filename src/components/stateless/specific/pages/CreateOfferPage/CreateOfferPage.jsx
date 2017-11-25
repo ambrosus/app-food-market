@@ -202,16 +202,20 @@ class CreateOfferPage extends Component {
               </FileProcessor>
             </div>
             <div className={styles.column}>
-	     <div className={styles.table}>
+	     
 	     <CategorySelector categories={this.getCategories()} />
 	     <OriginSelector />
-	     <QualitySelector
-	     errors={this.state.form.errors.packageWeight} />
+	     <div className={styles.table}>
+	     <QuantitySelector
+	     className={styles.field}
+	     errors={this.state.form.errors.packageWeight}
+	     onChange={this.onChange.bind(this)} />
               <PriceSelector
+	      className={styles.field}
               errors={this.state.form.errors.pricePerPackage}
               onChange={this.onChange.bind(this)} />
               </div>
-	      <QuantitySelector 
+	      <QualitySelector 
                              options={this.getRequirements()}
                              errors={this.state.form.errors.quality}
                              onChange={(label, state) => {

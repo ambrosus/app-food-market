@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './CreateOfferPage.scss';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import TextField from '../../../generic/TextField/TextField';
+import TextArea from '../../../generic/TextArea/TextArea';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import FileProcessor from 'react-file-processor';
-import Label from '../../../generic/Label/Label.jsx';
-import Button from '../../../generic/Button/Button.jsx';
+import Label from '../../../generic/Label/Label';
+import Button from '../../../generic/Button/Button';
+import CategorySelector from './CategorySelector';
+import OriginSelector from './OriginSelector';
+import QuantitySelector from './QuantitySelector';
+import PriceSelector from './PriceSelector.jsx';
+import QualitySelector from './QualitySelector';
 
 class CreateOfferPage extends Component {
 
@@ -71,11 +77,6 @@ class CreateOfferPage extends Component {
 
   getRequirements() {
     return this.props.requirements.map((key) => ({ value: key }));
-  }
-
-  getOrigin() {
-    return [{'value': 'China'}, {'value': 'Hong Kong'},
-    {'value' : 'Tanzania'}, {'value': 'United States'}];
   }
 
   validateBeforeSubmit(values) {
@@ -202,38 +203,15 @@ class CreateOfferPage extends Component {
             </div>
             <div className={styles.column}>
 	     <div className={styles.table}>
-	                   <Label className={styles.label} text='Category:'/>
-              <SelectorField className={styles.selector}
-                             errors={this.state.form.errors.category}
-                             placeholder="Select category"
-                             onChange={this.onChange.bind(this)}
-                             options={this.getCategories()} label='category'/>
-
-	      <Label className={styles.label} text='Origin:'/>
-              <SelectorField className={styles.selector}
-                             placeholder="Select origin"
-                             options={this.getOrigin()}
-                             onChange={(label, state) => {
-                                this.onChange(label, state);
-                                this.getAttributes(state.value);
-                              }}
-                             label='origin' />
-
-                <InputField text='Quantity (kg)'
-                            className={styles.field}
-                            errors={this.state.form.errors.packageWeight}
-                            onChange={this.onChange.bind(this)}
-                            label='packageWeight'/>
-                <InputField
-                            text='Unit Price (€)'
-                            className={styles.field}
-                            errors={this.state.form.errors.pricePerPackage}
-                            onChange={this.onChange.bind(this)}
-                            label='pricePerPackage'/>
+	     <CategorySelector categories={this.getCategories()} />
+	     <OriginSelector />
+	     <QualitySelector
+	     errors={this.state.form.errors.packageWeight} />
+              <PriceSelector
+              errors={this.state.form.errors.pricePerPackage}
+              onChange={this.onChange.bind(this)} />
               </div>
-              <Label className={styles.label} text='Quality standard:'/>
-              <SelectorField className={styles.selector}
-                             placeholder="Select quality"
+	      <QuantitySelector 
                              options={this.getRequirements()}
                              errors={this.state.form.errors.quality}
                              onChange={(label, state) => {
@@ -246,13 +224,13 @@ class CreateOfferPage extends Component {
             </div>
           </div>
 	      <Label className={styles.label} text='Description:'/>
-	      <TextField text='Description'
-	      		  className={styles.textField}
+	      <TextArea text='Description'
+	      		  className={styles.textArea}
 			  onChange={this.onChange.bind(this)}
 			  />
-	      <Label className={styles.label} text='Attachment:'/>
-	      <TextField text='Attachments'
-	      		  className={styles.textField}
+	      <Label className={styles.label} text='Attachments:'/>
+	      <TextArea text='Attachments'
+	      		  className={styles.textArea}
 			  onChange={this.onChange.bind(this)}
 			  />
 

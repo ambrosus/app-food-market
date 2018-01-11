@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
 
     entry: {
-        app: './src/app.js',
+        app: ['babel-polyfill', './src/app.js'],
         index: './src/index.html',
         404: './src/404.html',
       },
@@ -31,26 +31,31 @@ module.exports = {
         rules: [
             {
                 test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
+                exclude: /node_modules/,
                 loader: 'url-loader?limit=10000',
               },
             {
                 test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/,
+                exclude: /node_modules/,
                 loader: 'file-loader?=name=/public/fonts/[name].[ext]',
               },
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
+                exclude: /node_modules/,
                 loader: 'file-loader?name=/static/images/[name].[ext]',
               },
             {
                 test: /\.html$/,
+                exclude: /node_modules/,
                 loader: 'file-loader?name=[name].[ext]',
               },
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                exclude: /node_modules\/(?!(ambrosus|ipfs-image-web-upload)\/).*/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react', 'stage-1'],
+                    presets: ['es2015', 'react', 'stage-0'],
+                    plugins: ['transform-es3-member-expression-literals'],
                   },
               },
             {

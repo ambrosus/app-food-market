@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { MAX_OFFERS_AMOUNT } from '../../../../../constants';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import Button from '../../../generic/Button/Button';
 import Label from '../../../generic/Label/Label';
+import PaginationMenu from '../../../generic/PaginationMenu/PaginationMenu';
 import styles from './MarketPage.scss';
 import ProductContainer from '../../containers/ProductContainer/ProductContainer';
 
@@ -23,21 +25,26 @@ class MarketPage extends Component {
     categories: PropTypes.array,
     requirements: PropTypes.array,
     offers: PropTypes.array.isRequired,
+    offersAmount: PropTypes.number.isRequired,
     fetchOffers: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
     batchInfoAction: PropTypes.func.isRequired,
     batchInfoPath: PropTypes.string.isRequired,
     getOptions: PropTypes.func.isRequired,
+    paginationPage: PropTypes.number.isRequired,
+    paginationAction: PropTypes.func.isRequired,
   };
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.marketAddress && nextProps.marketAddress) {
+    const { marketAddress, paginationPage } = this.props;
+    if (!marketAddress && nextProps.marketAddress || paginationPage !== nextProps.paginationPage) {
       this.props.fetchOffers(nextProps.marketAddress);
     }
   }
 
   componentWillMount() {
+    this.props.paginationAction(0);
     if (this.props.marketAddress) {
       this.props.fetchOffers(this.props.marketAddress);
     }
@@ -97,6 +104,15 @@ class MarketPage extends Component {
     </div>);
   }
 
+  renderPagination() {
+    const { offersAmount, paginationPage, paginationAction } = this.props;
+    const pagesAmount = Math.ceil(offersAmount / MAX_OFFERS_AMOUNT);
+    return (<PaginationMenu itemsAmount={offersAmount}
+                            pagesAmount={pagesAmount}
+                            paginationPage={paginationPage}
+                            paginationAction={paginationAction}/>);
+  }
+
   render() {
     return (
       <div>
@@ -121,6 +137,7 @@ class MarketPage extends Component {
         {this.props.status === 'Loading' && this.props.offers.length === 0
           ? this.renderLoading()
           : this.renderProductArea()}
+        {this.renderPagination()}
       </div>
     );
   }

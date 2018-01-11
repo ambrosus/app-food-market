@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { selectOffer } from '../../redux/actions/OfferAction.js';
+import { setPaginationPage } from '../../redux/actions/PaginationAction';
 import MarketPage from '../stateless/specific/pages/MarketPage/MarketPage';
 import offer from '../../redux/reducers/OfferReducer';
 
 const mapStateToProps = (state, ownProps) => ({
   marketAddress: state.market.address,
+  paginationPage: state.market.paginationPage,
   moreDetailsPath: '/product-buy',
   batchInfoPath: '/product-batch',
   status: state.market.status,
@@ -30,6 +32,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(selectOffer(offer));
   },
 
+  paginationAction: (page) => {
+    dispatch(setPaginationPage(page));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketPage);

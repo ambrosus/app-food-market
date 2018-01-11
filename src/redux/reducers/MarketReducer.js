@@ -10,6 +10,9 @@ const DEFAULT_STATE = {
     '0xc2d7cf95645d33006175b78989035c7c9061d3f9',
   ], // Example devices for demo purposes
   username: '',
+  ordersAmount: 0,
+  offersAmount: 0,
+  paginationPage: 0,
 };
 
 const market = (
@@ -43,13 +46,15 @@ const market = (
     case 'FILTER_RESET':
       return { ...state, filter: {} };
     case 'FETCH_AGREEMENTS_SUCCESS':
-      return { ...state, orders: action.agreements };
+      return { ...state, orders: action.orders, ordersAmount: action.ordersAmount };
     case 'FETCH_USERNAME_SUCCESS':
       return { ...state, username: action.username };
     case 'SET_MEASUREMENTS_FORM':
       return { ...state, measurementsForm: action.form };
     case 'RESET_MEASUREMENTS_FORM':
       return { ...state, measurementsForm: null };
+    case 'SET_PAGINATION_PAGE':
+      return { ...state, paginationPage: action.paginationPage };
     default:
       return state;
   }

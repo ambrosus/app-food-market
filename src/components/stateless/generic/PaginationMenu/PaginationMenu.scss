@@ -1,0 +1,33 @@
+
+:local(.PaginationMenu) {
+  margin-top: 50px;
+  text-align: center;
+}
+
+:local(.tab) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  min-width: 38px;
+  min-height: 38px;
+  font-size: 15px;
+  border: 1px solid #e0e0e0;
+  transition: background 0.4s ease;
+
+  &.active {
+    background: #EEEDF0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:not(:last-child) {
+    border-right: none;
+  }
+
+  &:first-child, &:last-child {
+    font-size: 12px;
+  }
+}

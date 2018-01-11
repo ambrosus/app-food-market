@@ -73,10 +73,12 @@
 
 :local(.horizontalContainer) {
   display: flex;
-  height: 276px;
+  height: 274px;
+  max-width: 100%;
   flex-direction: column;
   justify-content: center;
   align-content: space-between;
+  overflow: hidden;
 }
 
 :local(.container) {

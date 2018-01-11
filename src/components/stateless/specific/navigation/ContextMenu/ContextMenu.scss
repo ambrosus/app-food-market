@@ -19,7 +19,10 @@
   color: #002C87;
   display: inline;
   margin-right: 50px;
+  padding-bottom: 15px;
   text-transform: uppercase;
+  border-bottom: 5px solid transparent;
+  transition: border-color 0.4s ease;
 
   &:last-child {
     margin-right: 0;
@@ -28,7 +31,6 @@
   &:hover {
     cursor: pointer;
     color: #20abfa;
-    padding-bottom: 15px;
     border-bottom: 5px solid #20ABFA;
   }
 

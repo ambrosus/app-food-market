@@ -17,7 +17,7 @@ export default class MeasurementList extends Component {
     return _(this.props.measurements)
       .groupBy('event_id')
       .map((measurements, eventId) => ({ eventId, measurements, date: _.minBy(measurements, 'timestamp').timestamp }))
-      .sort('date')
+      .sort((a, b) => b.date > a.date)
       .map(
         event => <Section key={event.eventId}
                           options={event.measurements.map(group => ({ field: group.attribute_id, value: group.value }))}

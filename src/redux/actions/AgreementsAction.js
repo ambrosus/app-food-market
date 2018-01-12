@@ -21,7 +21,7 @@ for (let i = 0; i < 45; i++) {
     origin: '',
     category: 'Salmon',
     seller: `0x0056bd78b3c0d85e0ceb4a7634368845a21d${Math.random()}ea38`,
-    imageHash: imagesList[Math.floor(Math.random() * imagesLength - 1)],
+    imageHash: imagesList[Math.floor(Math.random() * (imagesLength - 1))],
     status: 'finished',
     packageWeight: 2,
     pricePerPackage: 200,

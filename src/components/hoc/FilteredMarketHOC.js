@@ -5,7 +5,6 @@ import { getAllOffers, getAllRequirements, gotoMarket } from '../../redux/action
 import { fetchUsername } from '../../redux/actions/ProfileAction';
 import { MAX_OFFERS_AMOUNT } from './../../constants';
 
-
 const mapStateToProps = (state) => {
   const { paginationPage, offers, requirements } = state.market;
   const startIndex = paginationPage * MAX_OFFERS_AMOUNT;
@@ -15,7 +14,7 @@ const mapStateToProps = (state) => {
     offersAmount: offers.length,
     categories: ['All', ...state.categories],
     requirements: ['All', ...requirements],
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

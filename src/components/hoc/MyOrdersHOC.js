@@ -4,7 +4,6 @@ import { fetchMyAgreements } from '../../redux/actions/AgreementsAction';
 import { setPaginationPage } from '../../redux/actions/PaginationAction';
 import OrdersPage from '../stateless/specific/pages/OrdersPage/OrdersPage';
 
-
 const mergeAgreementWithOffer = (agreements) => (
   agreements.map((agreement) => Object.assign(agreement, { ...agreement.offer, address: agreement.address }))
 );
@@ -25,7 +24,7 @@ const mapStateToProps = (state) => {
         value: `€${(offer.pricePerPackage * offer.quantity).toFixed(state.token.decimals)}`,
       },
     ],
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({

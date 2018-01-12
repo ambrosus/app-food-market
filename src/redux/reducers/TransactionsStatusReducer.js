@@ -58,9 +58,9 @@ const transactionsStatus = (state = {
         stats: {
           approved: 0,
           failed: 0,
-          pending: state.stats.pending
-        }
-      }
+          pending: state.stats.pending,
+        },
+      };
     default:
       return state;
   }

@@ -9,6 +9,7 @@ const doInitWeb3 = () => {
 export const ambrosus = (state = null, action) => {
     switch (action.type) {
     case 'INIT_AMBROSUS':
+
       //doInitWeb3();
       Ambrosus.setProvider(web3.currentProvider);
       return Ambrosus;

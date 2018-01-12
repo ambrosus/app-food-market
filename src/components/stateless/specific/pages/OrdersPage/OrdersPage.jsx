@@ -4,6 +4,7 @@ import { MAX_TRADES_AMOUNT } from '../../../../../constants';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import ProductContainer from '../../containers/ProductContainer/ProductContainer';
 import PaginationMenu from '../../../generic/PaginationMenu/PaginationMenu';
+import styles from './OrdersPage.scss';
 
 class OrdersPage extends Component {
 
@@ -65,7 +66,9 @@ class OrdersPage extends Component {
     return (
       <div>
         <NavigationBar title='Orders'/>
-        <div>{this.props.orders.length > 0 ? this.renderOrders() : this.renderEmpty()}</div>
+        <div className={styles.ordersList}>
+          {this.props.orders.length > 0 ? this.renderOrders() : this.renderEmpty()}
+        </div>
         {this.renderPagination()}
       </div>
     );

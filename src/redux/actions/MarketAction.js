@@ -34,7 +34,6 @@ export const setMarket = (address) => ({
   address,
 });
 
-
 export const createMarketSuccess = ({ address }) => ({
   type: 'CREATE_MARKET_SUCCESS',
   address,

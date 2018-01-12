@@ -107,8 +107,7 @@ class MarketPage extends Component {
   renderPagination() {
     const { offersAmount, paginationPage, paginationAction } = this.props;
     const pagesAmount = Math.ceil(offersAmount / MAX_OFFERS_AMOUNT);
-    return (<PaginationMenu itemsAmount={offersAmount}
-                            pagesAmount={pagesAmount}
+    return (<PaginationMenu pagesAmount={pagesAmount}
                             paginationPage={paginationPage}
                             paginationAction={paginationAction}/>);
   }

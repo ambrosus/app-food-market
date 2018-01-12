@@ -56,8 +56,7 @@ class OrdersPage extends Component {
   renderPagination() {
     const { ordersAmount, paginationPage, paginationAction } = this.props;
     const pagesAmount = Math.ceil(ordersAmount / MAX_TRADES_AMOUNT);
-    return (<PaginationMenu itemsAmount={ordersAmount}
-                            pagesAmount={pagesAmount}
+    return (<PaginationMenu pagesAmount={pagesAmount}
                             paginationPage={paginationPage}
                             paginationAction={paginationAction}/>);
   }

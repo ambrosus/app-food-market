@@ -3,25 +3,38 @@ import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
 import { MAX_TRADES_AMOUNT } from '../../constants';
 
 const TRADES_LIST = [];
-const imagesList = [
-  'QmaKvEfCut6mpVXywUKy7Mq1za5XYYLoVPMDRm6rffGaCj',
-  'QmR8hNEGvUMjgCtm7YX2fivV3v2aZnYhVeD7Ms1TWZHVDB',
-  'QmaKvEfCut6mpVXywUKy7Mq1za5XYYLoVPMDRm6rffGaCj',
-  'QmSkifJ8ZRry8c3AxcSFCEhcYM26yqRkoebAvphW7nx9fz',
-  'QmW9Te6vi1nNvnxAV7SDm7FiJWj9rphjyMJnYH947GY5Za',
-  'QmVPMUYVooLw9XRgEWFnKZLyaZeWBM18EX7X3g6hrQBDqB',
-  'QmborzJi5VeSRVccFHMhfPYzXUxysSLPTEft2ijDTt3ApC',
-  'QmWmGgwY7EhvzwRW3Fctrx4dQ2HoFP8mGQDYVFufqasRwo',
+const IMAGES_LIST = [
+  'QmT6Po7e6DRZf1BHxXm7GLudrEvsf7tzBBibTGZ87caCGw',
+  'QmbfQ6fhMfRYUVZy5aQGsrqgVLnYhPQTxmK7Y8DRoJwz1R',
+  'QmSmSaoWAfbZHons4tCGL1QpEqTVR9xAs4rGBEfdyYaEFw',
+  'QmWAQfnF8WqsvafzYSNMmD8Z512mrV5z2kcD2uLvCx8Fs7',
+  'QmXhQr2UXUL2Wo38TuKPSUCMBFeuzb5yfGeAu4mZ7Y8ead',
+  'QmVv6kNDgwSYw6Xk6dpv1uQLrAWDYy5fYb3NiFS3XEJCk7',
+  'QmS23P1FkGpFAfwJRXzvrKaWo8DvCavEBYz6YYsHGmZr7N',
 ];
-const imagesLength = imagesList.length;
+const NAMES_LIST = [
+  'Colombian Supremo',
+  'City Roast Colombian Supremo',
+  'Ethiopian Yirgacheffe',
+  'Italian Roast Espresso',
+  'Dark Sumatra Mandheling',
+  'Breakfast Blend',
+  'Kenya AA',
+  'Ethiopian Yirgacheffe',
+  'French Roast',
+  'Dark Brazilian Santos',
+  'Dark Brazilian Santos',
+];
+const IMAGES_LENGTH = IMAGES_LIST.length;
+const NAMES_LENGTH = NAMES_LIST.length;
 
 for (let i = 0; i < 45; i++) {
   TRADES_LIST.push({
-    name: 'Salmon',
+    name: NAMES_LIST[Math.floor(Math.random() * (NAMES_LENGTH - 1))],
     origin: '',
-    category: 'Salmon',
+    category: 'Coffee',
     seller: `0x0056bd78b3c0d85e0ceb4a7634368845a21d${Math.random()}ea38`,
-    imageHash: imagesList[Math.floor(Math.random() * (imagesLength - 1))],
+    imageHash: IMAGES_LIST[Math.floor(Math.random() * (IMAGES_LENGTH - 1))],
     status: 'finished',
     packageWeight: 2,
     pricePerPackage: 200,
@@ -30,7 +43,7 @@ for (let i = 0; i < 45; i++) {
     validatorAddress: '0x0000000000000000000000000000000000000000',
     address: `0x0000000000000000000000${Math.random()}000000000000000000`,
     pricePerUnit: 100,
-    quantity: Math.random() * (100 - 20) + 20,
+    quantity: Math.random() * (20 - 2) + 20,
     quality: 'High',
   });
 };
@@ -41,7 +54,7 @@ export const fetchMyAgreements = (marketAddress) => async function (dispatch, ge
   let profile = await new Ambrosus.ProfileRepository().getMyProfileFromMarket(marketAddress);
   let profileAddress = profile.getAddress();
 
-  // TODO: gromick - remove mocked data
+  // TODO: remove mocked data
   // let agreements = await new Ambrosus.AgreementRepository(marketAddress).getUserAgreements(profileAddress);
   const startIndex = paginationPage * MAX_TRADES_AMOUNT;
   const endIndex = startIndex + MAX_TRADES_AMOUNT;

@@ -21,4 +21,8 @@
 
 :local(.requirements) {
   margin-bottom: 50px;
+  > div {
+    display: flex;
+    justify-content: space-between;
+  }
 }

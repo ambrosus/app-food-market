@@ -32,10 +32,18 @@ class SummaryApprovedProduct extends Component {
   }
 
   render() {
+    const { offer, address } = this.props;
     return (<div>
-      <Label className={styles.title} text={`Order ${this.props.offer.status.toLowerCase()}`}/>
+      <Label className={styles.title} text={`Order ${offer.status.toLowerCase()}`}/>
       <AttributeValueFieldContainer options={this.summary()} className={styles.requirements}/>
-      <Link to="product-buy">
+      {
+        offer.status !== 'finished' && offer.customer !== address
+          ? <Link to="orders" className={styles.button}>
+            <Button className={styles.approvePayment}>Finish</Button>
+          </Link>
+          : null
+      }
+      <Link to="product-buy" className={styles.button}>
         <Button className={styles.approvePayment}>Reorder</Button>
       </Link>
     </div>);

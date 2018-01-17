@@ -21,6 +21,7 @@ class ProductPage extends Component {
   static propTypes = {
     offer: PropTypes.object.isRequired,
     sidebar: PropTypes.string.isRequired,
+    address: PropTypes.string,
     requirements: PropTypes.array.isRequired,
     getAttributes: PropTypes.func.isRequired,
     getStatements: PropTypes.func,
@@ -45,21 +46,10 @@ class ProductPage extends Component {
     });
   }
 
-  renderStatements = pathname => {
-    if (pathname !== '/approved') return null;
+  renderStatements = () => {
     return (<div className={styles.statements}>
       <Label className={styles.subtitle} text='Statements'/>
-      <StatementsList options={[{
-        "dt": "2018-01-11T18:35:54.008Z",
-        "data": "Hello world!",
-        "tradeId": 0,
-        "statementId": "0x16876d429d9c9d038e16a2b2104c7e771a7ed2e22a69b66fac2d192af95ab39e"
-      }, {
-        "dt": "2018-01-11T18:48:18.975Z",
-        "data": "Hello world2!",
-        "tradeId": 0,
-        "statementId": "0x39543f828e4e52fd00ba389742c66ce94b5cdbac11c63887de3aa4b89ad4df7b"
-      }]}
+      <StatementsList options={this.props.statements}
                       className={styles.requirements}/>
 
       <Link className={styles.link} to="create-statements">
@@ -69,20 +59,21 @@ class ProductPage extends Component {
   };
 
   render() {
-    const {offer, approve, reject, history, match, decimals, reorder, onBuy, sidebar} = this.props;
+    const { offer, approve, reject, history, match, decimals, reorder, onBuy, sidebar, address } = this.props;
+    const pathname = match.path;
     const parameters = [
       { field: 'Category', value: offer.category },
       { field: 'Seller', value: offer.seller },
     ];
+    if (pathname === '/approved') parameters.push({ field: 'Customer', value: offer.customer });
     return (<div className={styles.container}>
         <div className={styles.requirementsColumn}>
           <img className={styles.image} src='./static/images/placeholder.png'
                srcSet='./static/images/placeholder.png 2x' ref='image'/>
           <Label className={styles.subtitle} text='Requirements'/>
-          <Label text={this.props.offer.quality}/>
+          <Label text={offer.quality}/>
           <AttributeValueFieldContainer options={this.attributesToValueField()}
                                         className={styles.requirements}/>
-          {this.renderStatements(match.path)}
         </div>
         <div className={styles.typeColumn}>
           <Label className={styles.title} text={offer.name}/>
@@ -92,6 +83,7 @@ class ProductPage extends Component {
           <Link className={styles.link} to="create-measurements">
             Create measurements
           </Link>
+          {pathname === '/approved' ? this.renderStatements() : null}
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           {sidebar === 'summary' && <SummaryProduct offer={offer}
@@ -99,7 +91,8 @@ class ProductPage extends Component {
                                                     onReimburse={reject}
                                                     history={history}
                                                     decimals={decimals}/>}
-          {sidebar === 'progress' && <SummaryApprovedProduct offer={this.props.offer}
+          {sidebar === 'progress' && <SummaryApprovedProduct offer={offer}
+                                                             address={address}
                                                              onReorder={reorder}
                                                              decimals={decimals}/>}
           {sidebar === 'buy' && <BuyProduct offer={offer}

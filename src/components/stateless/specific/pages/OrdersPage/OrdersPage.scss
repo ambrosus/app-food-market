@@ -1,9 +1,3 @@
-
 :local(.ordersList) {
   min-height: 55vh;
-  > div {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
 }

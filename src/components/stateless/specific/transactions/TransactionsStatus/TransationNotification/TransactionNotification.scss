@@ -3,6 +3,7 @@
 :local(.notification) {
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid rgba(0, 44, 135, 0.19);
   width: 337px;
@@ -11,11 +12,9 @@
 }
 
 :local(.typeIcon) {
-  width: 39px;
-  height: 39px;
-  position: relative;
-  top: 18px;
-  left: 8px;
+  width: 23px;
+  height: 23px;
+  margin-top: 5px;
 }
 
 :local(.typeApproved) {

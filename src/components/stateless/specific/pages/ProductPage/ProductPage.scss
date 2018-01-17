@@ -66,3 +66,7 @@
   display: inline-block;
   padding-bottom: 40px;
 }
+
+:local(.statements) p {
+  margin: 3px 0 15px 0;
+}

@@ -47,7 +47,7 @@ class ProductPage extends Component {
 
   renderStatements = pathname => {
     if (pathname !== '/approved') return null;
-    return (<div>
+    return (<div className={styles.statements}>
       <Label className={styles.subtitle} text='Statements'/>
       <StatementsList options={[{
         "dt": "2018-01-11T18:35:54.008Z",

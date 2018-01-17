@@ -8,8 +8,8 @@ import {
 
 const defaultState = {
   list: [],
-  createdLength: 0,
   isLoading: false,
+  error: null,
 };
 
 const statements = (state = defaultState, action) => {
@@ -21,11 +21,11 @@ const statements = (state = defaultState, action) => {
     case LOAD_STATEMENTS_FAIL:
       return { ...state, isLoading: false };
     case CREATE_STATEMENT_REQUEST:
-      return { ...state, createdLength: state.createdLength + 1 };
+      return { ...state, isLoading: true };
     case CREATE_STATEMENT_SUCCESS:
-      return { ...state, statements: action.statements, createdLength: state.createdLength - 1 };
+      return { ...state, statements: action.statements, isLoading: false };
     case CREATE_STATEMENT_FAIL:
-      return { ...state, createdLength: action.createdLength };
+      return { ...state, error: action.error, isLoading: false };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import apiFactory from './index';
 
 export default apiFactory({
-  apiPrefix: 'http://localhost:9000',
+  apiPrefix: 'https://amb.482.solutions',
 });

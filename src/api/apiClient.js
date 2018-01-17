@@ -29,7 +29,6 @@ export default class ApiClient {
     };
     if (method === 'POST') init.body = JSON.stringify(body);
     try {
-      console.log('+++', `${this.prefix}/${urlWithQuery}`);
       const response = await fetch(`${this.prefix}/${urlWithQuery}`, init);
       if (response.status >= 400) {
         throw new Error(`Bad response from server. Status code: ${response.status}`);

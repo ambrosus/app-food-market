@@ -9,10 +9,10 @@ const mapToArray = (object) => {
   return result;
 };
 
-export const getSignature = async (address, message) => {
-  return address && message
-    ? await web3.eth_sign(address, web3.sha3(message))
-    : message;
+export const getSignature = async (address, string) => {
+  if (!address || !string) return 'wrongData';
+  const signature = await web3.eth.sign(address, web3.sha3(string), (err, res) => res || err);
+  return signature ? signature : 'wrongData';
 };
 
 export default {

@@ -27,6 +27,7 @@ export default class CreateStatement extends Component {
     this.state.statements
       .filter(statement => !!statement.value)
       .map(statement => this.props.onSave(this.props.tradeId, statement.value));
+    this.props.history.goBack();
   };
 
   addStatement = () => {

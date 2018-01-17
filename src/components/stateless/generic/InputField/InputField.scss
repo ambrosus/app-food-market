@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   height: 40px;
+  overflow: hidden;
 }
 
 :local(.label) {
@@ -48,6 +49,7 @@
   line-height: 40px;
   outline: none;
   padding-left: 10px;
+  overflow: hidden;
 
   &::placeholder {
     content: 'Fish';

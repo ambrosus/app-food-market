@@ -30,6 +30,7 @@ const NAMES_LENGTH = NAMES_LIST.length;
 
 for (let i = 0; i < 45; i++) {
   TRADES_LIST.push({
+    id: `${Math.random()}`,
     name: NAMES_LIST[Math.floor(Math.random() * (NAMES_LENGTH - 1))],
     origin: '',
     category: 'Coffee',

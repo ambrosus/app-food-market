@@ -13,29 +13,42 @@ export default class TextField extends Component {
 
   static propTypes = {
     className: PropTypes.string,
+    type: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     errors: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
+    type  : 'input',
     errors: [],
   };
 
   render() {
-    return (<span className={this.props.className}>
-      <input ref="input"
-             className={classNames(styles.input, this.props.className)}
-             onChange={this.onChange.bind(this)}
-             placeholder={this.props.placeholder}
-             value={this.state.value}/>
-      <ErrorList errors={this.props.errors}/>
+    const { className, placeholder, type, errors } = this.props;
+    return (<span className={className}>
+      {
+        type === 'input'
+          ? <input ref="field"
+                   className={classNames(styles.input, className)}
+                   onChange={this.onChange.bind(this)}
+                   placeholder={placeholder}
+                   value={this.state.value}/>
+          : <textarea
+              ref='field'
+              className={classNames(styles.input, className)}
+              onChange={this.onChange.bind(this)}
+              placeholder={placeholder}
+              maxLength={400}
+              value={this.state.value}/>
+      }
+      <ErrorList errors={errors}/>
     </span>);
   }
 
   onChange() {
-    let state = {
-      value: this.refs.input.value,
+    const state = {
+      value: this.refs.field.value,
     };
     this.setState(state, this.props.onChange.bind(this, this.props.label, state));
   }

@@ -7,6 +7,7 @@ import { ambrosus, initWeb3 } from '../reducers/InitializeReducer.js';
 import market from '../reducers/MarketReducer.js';
 import offer from '../reducers/OfferReducer.js';
 import token from '../reducers/TokenReducer.js';
+import statements from '../reducers/StatementsReducer.js';
 import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
 import { autoRehydrate, persistStore } from 'redux-persist';
 
@@ -24,6 +25,7 @@ const BREADCRUMBS = {
   '/create-offer': { name: 'Create offer', parent: '/market' },
   '/create-requirements': { name: 'Create requirements', parent: '/profile' },
   '/create-measurements': { name: 'Create measurements', parent: '/product-buy' },
+  '/create-statements': { name: 'Create statements', parent: '/approved' },
 };
 
 const breadcrumbs = (state = BREADCRUMBS, action) => state;
@@ -38,6 +40,7 @@ const store = createStore(combineReducers({
     categories,
     token,
     breadcrumbs,
+    statements,
   }),
 
   compose(applyMiddleware(thunk), autoRehydrate(),

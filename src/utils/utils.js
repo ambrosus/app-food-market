@@ -9,6 +9,12 @@ const mapToArray = (object) => {
   return result;
 };
 
+export const getSignature = async (address, message) => {
+  return address && message
+    ? await web3.eth_sign(address, web3.sha3(message))
+    : message;
+};
+
 export default {
-  mapToArray: mapToArray,
+  mapToArray,
 };

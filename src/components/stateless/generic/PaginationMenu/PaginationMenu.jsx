@@ -28,8 +28,8 @@ export default class PaginationMenu extends PureComponent {
       ? <div className={styles.PaginationMenu}>
         <div className={styles.tab} onClick={this.handleTabClick.bind(null, paginationPage - 1)}>&lt;&lt;</div>
         {tabsList.map((tab, index) => <div className={`${styles.tab} ${index === paginationPage ? 'active' : ''}`}
-                                              key={index}
-                                              onClick={this.handleTabClick.bind(null, index)}>
+                                           key={index}
+                                           onClick={this.handleTabClick.bind(null, index)}>
                                             {index + 1}
                                           </div>)}
         <div className={styles.tab} onClick={this.handleTabClick.bind(null, paginationPage + 1)}>&gt;&gt;</div>

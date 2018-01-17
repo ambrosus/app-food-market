@@ -12,6 +12,7 @@ import ProfileHOC from './hoc/ProfileHOC';
 import WelcomeHOC from './hoc/WelcomeHOC.js';
 import CreateOfferHOC from './hoc/CreateOfferHOC';
 import CreateRequirementsHOC from '../components/hoc/CreateRequirementsHOC';
+import CreateStatementsHOC from '../components/hoc/CreateStatementsHOC';
 import OrderSummaryHOC from './hoc/OrderSummaryHOC';
 import BuyProductHOC from './hoc/BuyProductHOC';
 import ApprovedOrderHOC from './hoc/ApprovedOrderHOC';
@@ -44,6 +45,7 @@ export default class RootComponent extends Component {
               <Route exact path='/create-offer' component={CreateOfferHOC}/>
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
               <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>
+              <Route exact path='/create-statements' component={CreateStatementsHOC}/>
               <ModalContainerHOC/>
             </PageContainer>
           </Router>

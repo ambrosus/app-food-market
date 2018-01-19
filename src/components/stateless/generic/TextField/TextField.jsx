@@ -14,22 +14,25 @@ export default class TextField extends Component {
   static propTypes = {
     className: PropTypes.string,
     type: PropTypes.string,
+    inputType: PropTypes.string,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     errors: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
-    type  : 'input',
+    type: 'input',
+    inputType: 'input',
     errors: [],
   };
 
   render() {
-    const { className, placeholder, type, errors } = this.props;
+    const { className, placeholder, type, inputType, errors } = this.props;
     return (<span className={className}>
       {
         type === 'input'
           ? <input ref="field"
+                   type={inputType}
                    className={classNames(styles.input, className)}
                    onChange={this.onChange.bind(this)}
                    placeholder={placeholder}

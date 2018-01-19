@@ -73,7 +73,7 @@
     "redux-thunk": "^2.2.0",
     "simple-line-icons": "^2.4.1",
     "timeout-as-promise": "^1.0.0",
-    "web3": "^0.18.4",
+    "web3": "^0.20.4",
     "webrtcsupport": "^2.2.0"
   }
 }

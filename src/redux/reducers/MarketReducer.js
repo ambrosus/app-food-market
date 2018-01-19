@@ -3,14 +3,14 @@ const DEFAULT_STATE = {
   status: 'No market',
   address: '',
   requirements: [],
-  orders: [],
+  trades: [],
   devices: [
     '0x123f681646d4a755815f9cb19e1acc8565a0c2ac',
     '0xe99356bde974bbe08721d77712168fa070aa8da4',
     '0xc2d7cf95645d33006175b78989035c7c9061d3f9',
   ], // Example devices for demo purposes
   username: '',
-  ordersAmount: 0,
+  tradesAmount: 0,
   offersAmount: 0,
   paginationPage: 0,
 };
@@ -25,6 +25,8 @@ const market = (
       return { ...state, offers: action.offers, status: null };
     case 'FETCH_REQUIREMENT_RESPONSE':
       return { ...state, requirements: action.requirements };
+    case 'FETCH_TRADES_SUCCESS':
+      return { ...state, trades: action.trades, tradesAmount: action.tradesAmount };
     case 'SET_MARKET':
       return state.address === action.address
         ? state
@@ -45,8 +47,6 @@ const market = (
       return { ...state, filter: { ...state.filter, [action.key]: action.value } };
     case 'FILTER_RESET':
       return { ...state, filter: {} };
-    case 'FETCH_AGREEMENTS_SUCCESS':
-      return { ...state, orders: action.orders, ordersAmount: action.ordersAmount };
     case 'FETCH_USERNAME_SUCCESS':
       return { ...state, username: action.username };
     case 'SET_MEASUREMENTS_FORM':

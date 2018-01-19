@@ -1,19 +1,21 @@
 import { connect } from 'react-redux';
 import { selectOffer } from '../../redux/actions/OfferAction.js';
-import { fetchMyAgreements } from '../../redux/actions/AgreementsAction';
+import { fetchTrades } from '../../redux/actions/TradesAction';
 import { setPaginationPage } from '../../redux/actions/PaginationAction';
 import OrdersPage from '../stateless/specific/pages/OrdersPage/OrdersPage';
 
-const mergeAgreementWithOffer = (agreements) => (
-  agreements.map((agreement) => Object.assign(agreement, { ...agreement.offer, address: agreement.address }))
-);
+const mergeTradesWithAssets = (trades) => {
+  // TODO: merge trades with assets
+  return trades;
+  // agreements.map((agreement) => Object.assign(agreement, { ...agreement.offer, address: agreement.address }))
+};
 
 const mapStateToProps = (state) => {
-  const { paginationPage, orders, ordersAmount, address } = state.market;
+  const { paginationPage, trades, tradesAmount, address } = state.market;
   return {
     marketAddress: address,
-    orders: mergeAgreementWithOffer(orders),
-    ordersAmount: ordersAmount,
+    trades: mergeTradesWithAssets(trades),
+    tradesAmount: tradesAmount,
     paginationPage: paginationPage,
     getOptions: (offer) => [
       {
@@ -28,8 +30,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchOrders: (marketAddress) => {
-    dispatch(fetchMyAgreements(marketAddress));
+  fetchTrades: (marketAddress) => {
+    dispatch(fetchTrades(marketAddress));
   },
 
   moreDetailsAction: (offer) => {

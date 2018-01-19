@@ -13,29 +13,29 @@ class OrdersPage extends Component {
   }
 
   static propTypes = {
-    orders: PropTypes.array,
-    ordersAmount: PropTypes.number.isRequired,
+    trades: PropTypes.array,
+    tradesAmount: PropTypes.number.isRequired,
     marketAddress: PropTypes.string.isRequired,
-    fetchOrders: PropTypes.func.isRequired,
+    fetchTrades: PropTypes.func.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     paginationPage: PropTypes.number.isRequired,
     paginationAction: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    orders: [],
+    trades: [],
   };
 
   componentWillReceiveProps(nextProps) {
     const { marketAddress, paginationPage } = this.props;
     if (!marketAddress && nextProps.marketAddress || paginationPage !== nextProps.paginationPage) {
-      this.props.fetchOrders(nextProps.marketAddress);
+      this.props.fetchTrades(nextProps.marketAddress);
     }
   }
 
   componentDidMount() {
     if (this.props.marketAddress)
-      this.props.fetchOrders(this.props.marketAddress);
+      this.props.fetchTrades(this.props.marketAddress);
   }
 
   componentWillUnmount() {
@@ -46,17 +46,17 @@ class OrdersPage extends Component {
     return (<p>You didn't buy anything yet</p>);
   }
 
-  renderOrders() {
-    const { moreDetailsAction, orders, getOptions } = this.props;
-    return (<ProductContainer products={orders}
+  renderTrades() {
+    const { moreDetailsAction, trades, getOptions } = this.props;
+    return (<ProductContainer products={trades}
                               moreDetailsPath={'/product-info'}
                               moreDetailsAction={moreDetailsAction}
                               getOptions={getOptions}/>);
   }
 
   renderPagination() {
-    const { ordersAmount, paginationPage, paginationAction } = this.props;
-    const pagesAmount = Math.ceil(ordersAmount / MAX_TRADES_AMOUNT);
+    const { tradesAmount, paginationPage, paginationAction } = this.props;
+    const pagesAmount = Math.ceil(tradesAmount / MAX_TRADES_AMOUNT);
     return (<PaginationMenu pagesAmount={pagesAmount}
                             paginationPage={paginationPage}
                             paginationAction={paginationAction}/>);
@@ -67,7 +67,7 @@ class OrdersPage extends Component {
       <div>
         <NavigationBar title='Orders'/>
         <div className={styles.ordersList}>
-          {this.props.orders.length > 0 ? this.renderOrders() : this.renderEmpty()}
+          {this.props.trades.length > 0 ? this.renderTrades() : this.renderEmpty()}
         </div>
         {this.renderPagination()}
       </div>

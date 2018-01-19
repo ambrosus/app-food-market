@@ -1,0 +1,257 @@
+[
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "trades",
+		"outputs": [
+			{
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"name": "assetId",
+				"type": "string"
+			},
+			{
+				"name": "done",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getTradesCount",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"name": "addr",
+				"type": "address"
+			}
+		],
+		"name": "getPermission",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "statementId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "fileId",
+				"type": "uint256"
+			}
+		],
+		"name": "File",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "NewTrade",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "participantAddr",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "p",
+				"type": "uint8"
+			}
+		],
+		"name": "Permission",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"name": "statementId",
+				"type": "uint256"
+			}
+		],
+		"name": "Statement",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"name": "fileId",
+				"type": "uint256"
+			}
+		],
+		"name": "addStatement",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tradeId",
+				"type": "uint256"
+			}
+		],
+		"name": "finishTrade",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"name": "participantAddr",
+				"type": "address"
+			},
+			{
+				"name": "p",
+				"type": "uint8"
+			}
+		],
+		"name": "setPermission",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "assetId",
+				"type": "string"
+			}
+		],
+		"name": "makeTrade",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"name": "linkedTradeId",
+				"type": "uint256"
+			}
+		],
+		"name": "linkTrade",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "tradeId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"name": "linkedTradeId",
+				"type": "uint256"
+			}
+		],
+		"name": "linkedTrade",
+		"type": "event"
+	}
+]

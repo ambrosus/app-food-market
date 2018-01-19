@@ -27,15 +27,15 @@ class OrdersPage extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    // TODO: change fetchTrades conditions
     const { marketAddress, paginationPage } = this.props;
     if (!marketAddress && nextProps.marketAddress || paginationPage !== nextProps.paginationPage) {
-      this.props.fetchTrades(nextProps.marketAddress);
+      this.props.fetchTrades();
     }
   }
 
   componentDidMount() {
-    if (this.props.marketAddress)
-      this.props.fetchTrades(this.props.marketAddress);
+    this.props.fetchTrades();
   }
 
   componentWillUnmount() {

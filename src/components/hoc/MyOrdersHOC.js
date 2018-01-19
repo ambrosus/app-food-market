@@ -30,8 +30,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTrades: (marketAddress) => {
-    dispatch(fetchTrades(marketAddress));
+  fetchTrades: () => {
+    dispatch(fetchTrades());
   },
 
   moreDetailsAction: (offer) => {

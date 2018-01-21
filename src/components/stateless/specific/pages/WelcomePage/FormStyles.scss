@@ -1,0 +1,93 @@
+@import '../../../shared.scss';
+
+:local(.formWrapper) {
+  width: 100%;
+  height: 100%;
+}
+
+:local(.header) {
+  @include font();
+  color: #011c74;
+  font-size: 47px;
+  font-weight: 700;
+  margin: 0 auto;
+}
+
+:local(.container){
+  @include font();
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 520px;
+  height: 467px;
+  border-radius: 3px;
+  background-color: #fafbff;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  padding: 40px 40px;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+:local(.link) {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+:local(.label) {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+:local(.newMarket), :local(.login), :local(.signIn) {
+  @include font();
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 2px;
+  background-color: #002c87;
+  transition: background 0.4s ease;
+  &:hover {
+    background: rgba(0, 44, 135, 0.9);
+  }
+}
+
+:local(.row) {
+  display: flex;
+  margin-top: 10px;
+}
+
+:local(.button) {
+  flex: 1;
+  border-radius: 2px;
+}
+
+:local(.field) {
+  flex: 8;
+}
+
+:local(.text) {
+  @include font();
+  font-size: 20px;
+  color: #011c74;
+  font-weight: 700;
+  margin: 0 auto 23px auto;
+}
+
+:local(.signInLink), :local(.loginLink) {
+  @include font();
+  font-size: 16px;
+  color: #011c74;
+  margin: 0 auto;
+  > span {
+    font-weight: 700;
+    padding: 5px;
+    transition: color 0.3s ease;
+    &:hover {
+      color: #6953A8;
+      cursor: pointer;
+    }
+  }
+}

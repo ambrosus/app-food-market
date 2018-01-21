@@ -1,57 +1,56 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './WelcomePage.scss';
-import Label from '../../../generic/Label/Label';
-import TextField from '../../../generic/TextField/TextField';
-import Button from '../../../generic/Button/Button';
 import Link from 'react-router-dom/es/Link';
 import PropTypes from 'prop-types';
+import MarketForm from './MarketForm';
+import AuthorizeForm from './AuthorizeForm';
+import FadeTransition from '../../../generic/Transition/FadeTransition';
 
-class WelcomePage extends Component {
+class WelcomePage extends PureComponent {
 
   static propTypes = {
-    onGoClick: PropTypes.func,
+    createAccount: PropTypes.func.isRequired,
+    getToken: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    goToMarket: PropTypes.func.isRequired,
+    createMarket: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      address: '0x4bf9a0cdfeaa638620e96e356593bc2ab395f10a',
+      isAuthorized: false,
     };
   }
 
-  onAddressChange(label, inputState) {
-    this.setState({
-      [label]: inputState.value,
-    });
-  }
+  goToMarket = address => {
+    this.props.goToMarket(address);
+  };
 
-  onClick() {
-    this.props.onGoClick(this.state.address);
-  }
+  login = () => {
+    this.setState({ isAuthorized: true });
+    this.props.login();
+  };
+
+  createAccount = (email, token) => {
+    this.setState({ isAuthorized: true });
+    this.props.createAccount(email, token);
+  };
 
   render() {
+    const { isAuthorized } = this.state;
+    const { goToMarket, createAccount, login } = this;
+    const { getToken } = this.props;
     return (
       <div className={styles.page}>
         <img className={styles.logo} src="./static/images/ambrosus-animated.gif"/>
-        <div className={styles.container}>
-          <Label className={styles.header} text='Welcome'/>
-          <div>
-            <Label className={styles.label} text='Go to existing market:'/>
-            <div className={styles.row}>
-              <TextField onChange={this.onAddressChange.bind(this)}
-                         label="address"
-                         placeholder="contact address"
-                         value={this.state.address}
-                         className={styles.field}/>
-              <Button className={styles.button} onClick={this.onClick.bind(this)}>Go</Button>
-            </div>
-          </div>
-          <span className={styles.text}>or</span>
-          <Button className={styles.newAccount} onClick={this.props.createMarket}>
-            <Link className={styles.link} to="/market">Create new market</Link>
-          </Button>
-        </div>
-        <Link to='/market'>
+        <FadeTransition>
+          {isAuthorized
+            ? <MarketForm goToMarket={goToMarket} />
+            : <AuthorizeForm login={login} getToken={getToken} createAccount={createAccount} />
+          }
+        </FadeTransition>
+        <Link to={isAuthorized ? '/market' : '/' }>
           <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
         </Link>
       </div>);

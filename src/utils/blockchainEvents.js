@@ -1,4 +1,4 @@
-const abi = require("./abi.json");
+const abi = require('./abi.json');
 const WEB3_WAIT_TIME = 500;
 const WEB3_RETRIES = 20;
 
@@ -38,7 +38,7 @@ export async function getTrades(provider, contractAddress, limit, offset) {
     totalCount = await contract.methods.getTradesCount().call();
   } catch (error) {
     return {
-      status: 0
+      status: 0,
     };
   }
 
@@ -48,11 +48,11 @@ export async function getTrades(provider, contractAddress, limit, offset) {
       trades.push({
         seller: trade['creator'],
         status: (trade['done'] ? 'finished' : 'not_finished'),
-        asset_id: trade['assetID']
+        asset_id: trade['assetID'],
       });
     } catch (error) {
       return {
-        status: 0
+        status: 0,
       };
     }
   }
@@ -62,14 +62,13 @@ export async function getTrades(provider, contractAddress, limit, offset) {
     data: trades,
     meta: {
       totalCount: totalCount,
-      filteredCount: i
-    }
+      filteredCount: i,
+    },
   };
 };
 
-export async function finishTrade(provider, contractAddress, currentUser, tradeId) {
+export async function finishTrade (provider, contractAddress, currentUser, tradeId) {
   let contract = new provider.eth.Contract(abi, contractAddress);
   await contract.methods.finishTrade(tradeId).send({ from: currentUser });
 };
-
 

@@ -1,4 +1,4 @@
-import api from '../../api/apiFactory';
+import api from '../../api';
 import { getSignature } from '../../utils/utils.js';
 export const LOAD_STATEMENTS_REQUEST   = 'LOAD_STATEMENTS_REQUEST';
 export const LOAD_STATEMENTS_SUCCESS   = 'LOAD_STATEMENTS_SUCCESS';

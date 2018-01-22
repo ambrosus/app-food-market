@@ -9,10 +9,16 @@ const mapToArray = (object) => {
   return result;
 };
 
-export const getSignature = async (address, string) => {
+export const getStringForSign = body => JSON.stringify(body).toLowerCase();
+
+export const getSignature = (address, string) => {
   if (!address || !string) return 'wrongData';
-  const signature = await web3.eth.sign(address, web3.sha3(string), (err, res) => res || err);
-  return signature ? signature : 'wrongData';
+  return new Promise (function (resolve, reject) {
+    web3.eth.sign(address, web3.sha3(string), function (error, result) {
+      if (error) reject(error);
+      else resolve(result);
+    });
+  });
 };
 
 export default {

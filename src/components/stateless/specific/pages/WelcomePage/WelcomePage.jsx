@@ -9,9 +9,8 @@ import FadeTransition from '../../../generic/Transition/FadeTransition';
 class WelcomePage extends PureComponent {
 
   static propTypes = {
-    createAccount: PropTypes.func.isRequired,
     getToken: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
+    createAccount: PropTypes.func.isRequired,
     goToMarket: PropTypes.func.isRequired,
     createMarket: PropTypes.func.isRequired,
   };
@@ -19,7 +18,8 @@ class WelcomePage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthorized: false,
+      isMarketModal: false,
+      errorText: ''
     };
   }
 
@@ -27,30 +27,37 @@ class WelcomePage extends PureComponent {
     this.props.goToMarket(address);
   };
 
-  login = () => {
-    this.setState({ isAuthorized: true });
-    this.props.login();
+  createAccount = async (email, token) => {
+    const isUserCreated = await this.props.createAccount(email, token);
+    if (isUserCreated) this.setState({ isMarketModal: true });
+    else this.setState({ errorText: 'Token is invalid' });
   };
 
-  createAccount = (email, token) => {
-    this.setState({ isAuthorized: true });
-    this.props.createAccount(email, token);
+  clearError = () => this.setState({ errorText: '' });
+
+  toggleMarketModal = () => {
+    const [ account ] = web3.eth.accounts;
+    if (account) this.setState({ errorText: '', isMarketModal: !this.state.isMarketModal });
+    else this.setState({ errorText: 'You haven`t got an account, please sign in' });
   };
 
   render() {
-    const { isAuthorized } = this.state;
-    const { goToMarket, createAccount, login } = this;
-    const { getToken } = this.props;
+    const { isMarketModal, errorText } = this.state;
+    const { goToMarket, toggleMarketModal, createAccount, clearError } = this;
     return (
       <div className={styles.page}>
         <img className={styles.logo} src="./static/images/ambrosus-animated.gif"/>
         <FadeTransition>
-          {isAuthorized
-            ? <MarketForm goToMarket={goToMarket} />
-            : <AuthorizeForm login={login} getToken={getToken} createAccount={createAccount} />
+          {isMarketModal
+            ? <MarketForm goToMarket={goToMarket} toggleMarketModal={toggleMarketModal} />
+            : <AuthorizeForm errorText={errorText}
+                             clearError={clearError}
+                             getToken={this.props.getToken}
+                             toggleMarketModal={toggleMarketModal}
+                             createAccount={createAccount} />
           }
         </FadeTransition>
-        <Link to={isAuthorized ? '/market' : '/' }>
+        <Link to={isMarketModal ? '/market' : '/' }>
           <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
         </Link>
       </div>);

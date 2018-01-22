@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 export default class MarketForm extends PureComponent {
 
   static propTypes = {
-    goToMarket: PropTypes.func,
+    toggleMarketModal: PropTypes.func.isRequired,
+    goToMarket: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -27,7 +28,6 @@ export default class MarketForm extends PureComponent {
     const { address } = this.state;
     if (address.replace(/\s+/g, '')) this.props.goToMarket(address);
   };
-
 
   render() {
     return (
@@ -48,6 +48,9 @@ export default class MarketForm extends PureComponent {
         <Button className={styles.newMarket} onClick={this.login}>
           <Link className={styles.link} to="/market">Create new market</Link>
         </Button>
+        <span className={styles.signInLink}>
+          You haven`t got an account? &rarr; <span onClick={this.props.toggleMarketModal}>Create account</span>
+        </span>
       </div>);
   }
 }

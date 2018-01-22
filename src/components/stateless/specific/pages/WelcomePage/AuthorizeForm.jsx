@@ -10,7 +10,6 @@ const REG_EXPS = {
 };
 
 const INITIAL_STATE = {
-  isSignInForm: true,
   isToken: false,
   token: '',
   email: '',
@@ -20,17 +19,17 @@ const INITIAL_STATE = {
 export default class AuthorizeForm extends PureComponent {
 
   static propTypes = {
+    errorText: PropTypes.string.isRequired,
+    clearError: PropTypes.func.isRequired,
     getToken: PropTypes.func.isRequired,
+    toggleMarketModal: PropTypes.func.isRequired,
     createAccount: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-
-  toggleSignInForm = () => this.setState({ ...INITIAL_STATE, isSignInForm: !this.state.isSignInForm });
 
   getToken = () => {
     const { email, isEmailValid } = this.state;
@@ -47,6 +46,9 @@ export default class AuthorizeForm extends PureComponent {
   };
 
   onFieldChange = (name, value) => {
+    const { errorText, clearError } = this.props;
+    if (errorText) clearError();
+
     if (!this.state.isEmailValid && name === 'email') {
       const isEmailValid = this.validateField(name, value);
       this.setState({ isEmailValid, [name]: value });
@@ -55,27 +57,16 @@ export default class AuthorizeForm extends PureComponent {
 
   validateField = (name, value) => REG_EXPS[name].test(value);
 
-  renderLoginForm = () => {
-    return (<div className={styles.container}>
-      <Label className={styles.header} text='Login' />
-      <Button className={styles.login} onClick={this.props.login}>
-        OK
-      </Button>
-      <span className={styles.signInLink}>
-        Dont` have an account? &rarr; <span onClick={this.toggleSignInForm}>Sign in</span>
-      </span>
-    </div>)
-  };
-
-  renderSignInForm = () => {
+  render() {
     const { email, token, isEmailValid, isToken } = this.state;
-    return (<div className={styles.container}>
-      <Label className={styles.header} text='Sign In' />
+    return (<div className={styles.formWrapper}>
+      <div className={styles.container}>
+        <Label className={styles.header} text='Sign In' />
         <div className={styles.row}>
           {isToken
             ? <TextField onChange={this.onFieldChange}
                          key='token'
-                         placeholder='Token'
+                         placeholder='Enter your token'
                          label='token'
                          value={token}
                          className={styles.field} />
@@ -88,18 +79,14 @@ export default class AuthorizeForm extends PureComponent {
                          className={styles.field} />
           }
         </div>
-      <Button className={styles.signIn} onClick={isToken ? this.createAccount : this.getToken}>
-        {isToken ? 'Create account' : 'Get token'}
-      </Button>
-      <span className={styles.loginLink}>
-        You have an account? &rarr; <span onClick={this.toggleSignInForm}>Login</span>
-      </span>
-    </div>)
-  };
-
-  render() {
-    return (<div className={styles.formWrapper}>
-      {this.state.isSignInForm ? this.renderSignInForm() : this.renderLoginForm()}
+        <div className={styles.errorField}>{this.props.errorText}</div>
+        <Button className={styles.signIn} onClick={isToken ? this.createAccount : this.getToken}>
+          {isToken ? 'Create account' : 'Get token'}
+        </Button>
+        <span className={styles.marketLink}>
+          You have an account? &rarr; <span onClick={this.props.toggleMarketModal}>Choose market</span>
+        </span>
+      </div>
     </div>);
   }
 }

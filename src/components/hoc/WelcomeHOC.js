@@ -12,15 +12,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     api.authorize.getToken(email);
   },
 
-  createAccount: (email, token) => {
-    api.authorize.createAccount(email, token);
+  createAccount: async (email, token) => {
+    const response = await api.authorize.createAccount(email, token);
+    console.log(`Authorization response:`, response);
+    return response;
   },
 
-  login: () => {
-    console.log('LOGIN');
-  },
-
-  goToMarket: (address) => {
+  goToMarket: address => {
     dispatch(setMarket(address));
     ownProps.history.push('market');
   },

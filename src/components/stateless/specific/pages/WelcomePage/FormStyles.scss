@@ -3,6 +3,9 @@
 :local(.formWrapper) {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 :local(.header) {
@@ -16,18 +19,14 @@
 :local(.container){
   @include font();
   display: flex;
-  box-sizing: border-box;
   flex-direction: column;
   justify-content: space-around;
   width: 520px;
   height: 467px;
   border-radius: 3px;
   background-color: #fafbff;
-  position: relative;
-  left: 50%;
-  top: 50%;
+  margin: 0 auto;
   padding: 40px 40px;
-  transform: translateX(-50%) translateY(-50%);
 }
 
 :local(.link) {
@@ -41,7 +40,11 @@
   font-weight: bold;
 }
 
-:local(.newMarket), :local(.login), :local(.signIn) {
+:local(.errorField) {
+  color: red;
+}
+
+:local(.newMarket), :local(.signIn) {
   @include font();
   color: #ffffff;
   font-size: 22px;
@@ -76,7 +79,7 @@
   margin: 0 auto 23px auto;
 }
 
-:local(.signInLink), :local(.loginLink) {
+:local(.signInLink), :local(.marketLink) {
   @include font();
   font-size: 16px;
   color: #011c74;

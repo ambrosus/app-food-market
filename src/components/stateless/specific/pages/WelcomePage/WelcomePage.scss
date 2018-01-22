@@ -3,7 +3,8 @@
 :local(.page) {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
+  justify-content: space-between;
   background-color: #002a85;
   width:100%;
   height:100%;
@@ -18,17 +19,14 @@
 }
 
 :local(.logo) {
-  display: block;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 20px;
+  width: 180px;
+  margin: 20px auto 0 auto;
+  will-change: opacity;
+  transform: translateZ(0);
+  background: transparent;
 }
 
 :local(.smallLogo) {
   display: block;
-  position: absolute;
-  left: 50%;
-  bottom: 10%;
-  transform: translateX(-50%);
+  margin: 0 auto 60px auto;
 }

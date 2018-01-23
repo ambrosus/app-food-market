@@ -29,7 +29,7 @@ export default class TextField extends Component {
   onChange = e => {
     const { onChange, label } = this.props;
     const { value } = e.target;
-    this.setState({ value }, onChange(label, value));
+    this.setState({ value }, onChange(label, { value }));
   };
 
   render() {

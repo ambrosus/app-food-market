@@ -45,14 +45,14 @@ export default class AuthorizeForm extends PureComponent {
     this.props.createAccount(email, token);
   };
 
-  onFieldChange = (name, value) => {
+  onFieldChange = (name, inputState) => {
     const { errorText, clearError } = this.props;
     if (errorText) clearError();
 
     if (!this.state.isEmailValid && name === 'email') {
-      const isEmailValid = this.validateField(name, value);
-      this.setState({ isEmailValid, [name]: value });
-    } else this.setState({ [name]: value });
+      const isEmailValid = this.validateField(name, inputState.value);
+      this.setState({ isEmailValid, [name]: inputState.value });
+    } else this.setState({ [name]: inputState.value });
   };
 
   validateField = (name, value) => REG_EXPS[name].test(value);

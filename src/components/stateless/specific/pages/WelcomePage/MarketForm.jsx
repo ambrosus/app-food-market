@@ -49,7 +49,7 @@ export default class MarketForm extends PureComponent {
           <Link className={styles.link} to="/market">Create new market</Link>
         </Button>
         <span className={styles.signInLink}>
-          You haven`t got an account? &rarr; <span onClick={this.props.toggleMarketModal}>Create account</span>
+          Want to create new account &rarr; <span onClick={this.props.toggleMarketModal}>Create account</span>
         </span>
       </div>);
   }

@@ -42,7 +42,7 @@ export default class ApiClient {
 
       const data = await response.json();
 
-      if (data && data.status === 1) return data;
+      if (data) return data;
       throw data.error;
     } catch (err) {
       console.warn('Unhandled exeption', err);

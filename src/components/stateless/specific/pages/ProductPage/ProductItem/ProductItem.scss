@@ -3,6 +3,7 @@
 :local(.product) {
   position: relative;
   width: 263px;
+  min-height: 429px;
   border-radius: 2px;
   background: white;
   overflow: hidden;
@@ -48,6 +49,7 @@
   color: #002c87;
   font-family: 'Muli', sans-serif;
   font-size: 22px;
+  min-height: 28px;
   font-weight: 400;
 }
 

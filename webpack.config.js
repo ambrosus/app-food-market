@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const UglifyEsPlugin = require('uglify-es-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -79,7 +78,4 @@ module.exports = {
               },
         ],
       },
-    plugins: [
-      new UglifyEsPlugin()
-    ]
   };

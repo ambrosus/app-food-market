@@ -26,8 +26,18 @@ export const transactionMined = (tx, waitTime = TRANSACTION_WAIT_TIME, maxRetrie
 
 export const hasWeb3 = () => web3.eth.accounts.length > 0;
 
+const getTradesCount = async (contract) => {
+  return new Promise (function (resolve, reject) {
+    contract.getTradesCount(function (error, result) {
+      if (error) reject(error);
+      else resolve(result);
+    });
+  });
+};
+
 export async function getTrades(provider, contractAddress, limit, offset) {
-  let contract = new provider.eth.Contract(abi, contractAddress);
+  const MyContract = provider.eth.contract(abi);
+  const contract = await MyContract.at(contractAddress);
   let trades = [];
 
   let i;
@@ -35,7 +45,7 @@ export async function getTrades(provider, contractAddress, limit, offset) {
   let totalCount;
 
   try {
-    totalCount = await contract.methods.getTradesCount().call();
+    totalCount = await getTradesCount(contract).data;
   } catch (error) {
     return {
       status: 0,
@@ -44,7 +54,7 @@ export async function getTrades(provider, contractAddress, limit, offset) {
 
   for (i = 0; (i < limit) && (offset + i < totalCount); ++i) {
     try {
-      let trade = await contract.methods.trades(offset + i).call();
+      let trade = contract.trades(offset + i).call();
       trades.push({
         seller: trade['creator'],
         status: (trade['done'] ? 'finished' : 'not_finished'),

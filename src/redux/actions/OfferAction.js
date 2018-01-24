@@ -2,6 +2,7 @@ import IPFSUploader from 'ipfs-image-web-upload';
 import Ambrosus from 'ambrosus';
 import { showModal, hideModal } from './ModalAction.js';
 import { withIPFS } from '../../utils/withIPFS.js';
+import api from '../../api';
 import TransactionBuilder from '../../utils/transactionBuilder';
 
 const uploadToIPFS = async (ipfs, image) => {
@@ -24,6 +25,7 @@ export const resetSelectedOffer = () => ({
 });
 
 export const createOffer = (offer, image, marketAddress, deviceList, history) => async function (dispatch) {
+  await api.assets.createAsset(offer);
   withIPFS(async (ipfs) => {
     if (image) {
       dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));

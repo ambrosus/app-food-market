@@ -47,6 +47,7 @@
     "ipfs-api": "^14.3.5",
     "ipfs-image-web-upload": "^1.0.5",
     "js-cookie": "^2.1.4",
+    "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalize": "^0.3.1",

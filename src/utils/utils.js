@@ -1,3 +1,5 @@
+import stringify from 'json-stable-stringify';
+
 const mapToArray = (object) => {
   let result = [];
   for (let key in object) {
@@ -9,7 +11,7 @@ const mapToArray = (object) => {
   return result;
 };
 
-export const getStringForSign = body => JSON.stringify(body).toLowerCase();
+export const getStringForSign = body => stringify(body, { space: '' }).toLowerCase();
 
 export const getSignature = (address, string) => {
   if (!address || !string) return 'wrongData';

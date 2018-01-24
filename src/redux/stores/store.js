@@ -11,8 +11,9 @@ import statements from '../reducers/StatementsReducer.js';
 import requirementsAttributes from '../reducers/RequirementsAttributesReducer.js';
 import { autoRehydrate, persistStore } from 'redux-persist';
 
-const CATEGORIES = ['Anchovies', 'Markel', 'Salmon', 'Tuna'];
+const CATEGORIES = ['Arabica', 'Robusta', 'Hybrids'];
 const categories = (state = CATEGORIES, action) => state;
+
 
 const BREADCRUMBS = {
   '/': { name: 'Ambrosus' },

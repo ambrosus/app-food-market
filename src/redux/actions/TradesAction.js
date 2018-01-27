@@ -50,13 +50,11 @@ const getTradesList = async (event, user) => {
 async function getTrades(contractAddress, limit, offset) {
   const MyContract = web3.eth.contract(abi);
   const contract = await MyContract.at(contractAddress);
-  const trades = [];
-  // const totalCount = await getTradesCount(contract);
+  const totalCount = await getTradesCount(contract);
   if (!totalCount) return { status: 0 };
   const [user] = web3.eth.accounts;
   const event = contract.allEvents({ fromBlock: 0, toBlock: 'latest' });
-  const tradesList = await getTradesList(event, user, contract);
-
+  const tradesList = await getTradesList(event, user);
   const list = await Promise.all(tradesList.map(async trade => {
     const tradeData = await getTradeData(contract, trade.id);
     if (!trade) return;

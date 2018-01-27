@@ -11,10 +11,10 @@ export const CREATE_STATEMENT_FAIL     = 'CREATE_STATEMENT_FAIL';
 
 export function loadStatements(tradeId) {
   return async (dispatch, getState) => {
-    const { address } = getState().market;
+    const [user] = web3.eth.accounts;
     dispatch({ type: LOAD_STATEMENTS_REQUEST });
     try {
-      const signature = await getSignature(address, tradeId);
+      const signature = await getSignature(user, tradeId);
       const statements = await api.statements.list(tradeId, signature);
       dispatch({ type: LOAD_STATEMENTS_SUCCESS, statements });
     } catch (error) {
@@ -41,7 +41,6 @@ export async function addStatement(tradeId, fileId) {
   const [user] = web3.eth.accounts;
   const MyContract = web3.eth.contract(abi);
   const contract = await MyContract.at(CONTRACT_ADDRESS);
-
   return new Promise(function (resolve, reject) {
     contract.addStatement(tradeId, fileId, { from: web3.eth.accounts[0] }, (err, res) => {
       if (err) reject(err);

@@ -2,7 +2,8 @@ import api from '../../api';
 import abi from './abi.json';
 import { getSignature } from '../../utils/utils.js';
 import { CONTRACT_ADDRESS } from './../../constants';
-export const LOAD_STATEMENTS_REQUEST   = 'LOAD_STATEMENTS_REQUEST';
+import { hideModal, showModal } from '../actions/ModalAction';
+
 export const LOAD_STATEMENTS_SUCCESS   = 'LOAD_STATEMENTS_SUCCESS';
 export const LOAD_STATEMENTS_FAIL      = 'LOAD_STATEMENTS_FAIL';
 export const CREATE_STATEMENT_REQUEST  = 'CREATE_STATEMENT_REQUEST';
@@ -13,13 +14,15 @@ export const CLEAR_STATEMENTS          = 'CLEAR_STATEMENTS';
 export function loadStatements(tradeId) {
   return async (dispatch, getState) => {
     const [user] = web3.eth.accounts;
-    dispatch({ type: LOAD_STATEMENTS_REQUEST });
+    dispatch(showModal('TransactionProgressModal', { title: 'Statements loading' }));
     try {
       const signature = await getSignature(user, tradeId);
       const statements = await api.statements.list(tradeId, signature);
       dispatch({ type: LOAD_STATEMENTS_SUCCESS, statements });
+      dispatch(hideModal());
     } catch (error) {
       dispatch({ type: LOAD_STATEMENTS_FAIL, error });
+      dispatch(hideModal());
     }
   };
 }

@@ -9,26 +9,23 @@ import {
 
 const defaultState = {
   list: [],
-  isLoading: false,
   error: null,
 };
 
 const statements = (state = defaultState, action) => {
   switch (action.type) {
-    case LOAD_STATEMENTS_REQUEST:
-      return { ...state, isLoading: true };
     case LOAD_STATEMENTS_SUCCESS:
-      return { ...state, list: action.statements, isLoading: false };
+      return { ...state, list: action.statements, };
     case LOAD_STATEMENTS_FAIL:
       return { ...state, isLoading: false };
     case CREATE_STATEMENT_REQUEST:
       return { ...state, isLoading: true };
     case CREATE_STATEMENT_SUCCESS:
-      return { ...state, list: action.statements, isLoading: false };
+      return { ...state, list: action.statements, };
     case CREATE_STATEMENT_FAIL:
-      return { ...state, error: action.error, isLoading: false };
+      return { ...state, error: action.error, };
     case CLEAR_STATEMENTS:
-      return { ...state, list: [], error: null, isLoading: false };
+      return { ...state, list: [], error: null, };
     default:
       return state;
   }

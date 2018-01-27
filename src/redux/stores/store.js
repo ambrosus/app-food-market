@@ -26,7 +26,7 @@ const BREADCRUMBS = {
   '/create-offer': { name: 'Create offer', parent: '/market' },
   '/create-requirements': { name: 'Create requirements', parent: '/profile' },
   '/create-measurements': { name: 'Create measurements', parent: '/product-buy' },
-  '/create-statements': { name: 'Create statements', parent: '/approved' },
+  '/create-statements': { name: 'Create statements', parent: '/product-info' },
 };
 
 const breadcrumbs = (state = BREADCRUMBS, action) => state;

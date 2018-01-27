@@ -1,4 +1,3 @@
-const abi = require('./abi.json');
 const WEB3_WAIT_TIME = 500;
 const WEB3_RETRIES = 20;
 
@@ -26,59 +25,4 @@ export const transactionMined = (tx, waitTime = TRANSACTION_WAIT_TIME, maxRetrie
 
 export const hasWeb3 = () => web3.eth.accounts.length > 0;
 
-const getTradesCount = async (contract) => {
-  return new Promise (function (resolve, reject) {
-    contract.getTradesCount(function (error, result) {
-      if (error) reject(error);
-      else resolve(result);
-    });
-  });
-};
-
-export async function getTrades(provider, contractAddress, limit, offset) {
-  const MyContract = provider.eth.contract(abi);
-  const contract = await MyContract.at(contractAddress);
-  let trades = [];
-
-  let i;
-  let error = false;
-  let totalCount;
-
-  try {
-    totalCount = await getTradesCount(contract).data;
-  } catch (error) {
-    return {
-      status: 0,
-    };
-  }
-
-  for (i = 0; (i < limit) && (offset + i < totalCount); ++i) {
-    try {
-      let trade = contract.trades(offset + i).call();
-      trades.push({
-        seller: trade['creator'],
-        status: (trade['done'] ? 'finished' : 'not_finished'),
-        asset_id: trade['assetID'],
-      });
-    } catch (error) {
-      return {
-        status: 0,
-      };
-    }
-  }
-
-  return {
-    status: 1,
-    data: trades,
-    meta: {
-      totalCount: totalCount,
-      filteredCount: i,
-    },
-  };
-};
-
-export async function finishTrade (provider, contractAddress, currentUser, tradeId) {
-  let contract = new provider.eth.Contract(abi, contractAddress);
-  await contract.methods.finishTrade(tradeId).send({ from: currentUser });
-};
 

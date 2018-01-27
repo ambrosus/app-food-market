@@ -8,6 +8,7 @@ export const LOAD_STATEMENTS_FAIL      = 'LOAD_STATEMENTS_FAIL';
 export const CREATE_STATEMENT_REQUEST  = 'CREATE_STATEMENT_REQUEST';
 export const CREATE_STATEMENT_SUCCESS  = 'CREATE_STATEMENT_SUCCESS';
 export const CREATE_STATEMENT_FAIL     = 'CREATE_STATEMENT_FAIL';
+export const CLEAR_STATEMENTS          = 'CLEAR_STATEMENTS';
 
 export function loadStatements(tradeId) {
   return async (dispatch, getState) => {
@@ -21,6 +22,12 @@ export function loadStatements(tradeId) {
       dispatch({ type: LOAD_STATEMENTS_FAIL, error });
     }
   };
+}
+
+export function clearStatements() {
+  return {
+    type: CLEAR_STATEMENTS,
+  }
 }
 
 export function createStatement(tradeId, statement, statementId) {

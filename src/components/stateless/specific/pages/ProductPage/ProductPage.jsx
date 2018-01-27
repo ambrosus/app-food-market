@@ -25,6 +25,7 @@ class ProductPage extends Component {
     finishTrade: PropTypes.func,
     getAttributes: PropTypes.func.isRequired,
     getStatements: PropTypes.func,
+    clearStatements: PropTypes.func,
     statements: PropTypes.array,
   };
 
@@ -33,6 +34,11 @@ class ProductPage extends Component {
     loadImage(this.refs.image, offer.imageHash);
     getAttributes(offer);
     if (['/product-info', '/approved'].includes(match.path)) getStatements(offer.id);
+  }
+
+  componentWillUnmount() {
+    const { clearStatements, match } = this.props;
+    if (['/product-info', '/approved'].includes(match.path)) clearStatements();
   }
 
   attributesToValueField() {

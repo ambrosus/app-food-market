@@ -3,7 +3,8 @@ import {
   LOAD_STATEMENTS_SUCCESS,
   LOAD_STATEMENTS_FAIL,
   CREATE_STATEMENT_REQUEST,
-  CREATE_STATEMENT_SUCCESS, CREATE_STATEMENT_FAIL
+  CREATE_STATEMENT_SUCCESS, CREATE_STATEMENT_FAIL,
+  CLEAR_STATEMENTS
 } from './../actions/StatementsAction';
 
 const defaultState = {
@@ -26,6 +27,8 @@ const statements = (state = defaultState, action) => {
       return { ...state, list: action.statements, isLoading: false };
     case CREATE_STATEMENT_FAIL:
       return { ...state, error: action.error, isLoading: false };
+    case CLEAR_STATEMENTS:
+      return { ...state, list: [], error: null, isLoading: false };
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
 import { fetchAttributes } from '../../redux/actions/AttributesAction';
 import { fetchMeasurements } from '../../redux/actions/MeasurementsAction';
-import { loadStatements } from '../../redux/actions/StatementsAction';
+import { loadStatements, clearStatements } from '../../redux/actions/StatementsAction';
 
 const mapStateToProps = state => ({
   offer: state.offer,
@@ -19,6 +19,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   getStatements: tradeId => dispatch(loadStatements(tradeId)),
+
+  clearStatements: () => dispatch(clearStatements()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

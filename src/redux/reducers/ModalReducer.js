@@ -4,7 +4,7 @@ const modal = (defaultState = {}, action) => {
       return { name: action.name, args: action.args };
     case 'MODAL_HIDE':
       return {};
-    case: 'CLEAR_STATEMENTS':
+    case 'CLEAR_STATEMENTS':
       return {};
   }
     return defaultState;

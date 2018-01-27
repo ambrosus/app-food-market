@@ -59,7 +59,6 @@ class ProductPage extends Component {
   };
 
   render() {
-    console.log('!!!!!!!!!!', this.props);
     const { offer, approve, finishTrade, reject, history, match, decimals, reorder, onBuy, sidebar } = this.props;
     const pathname = match.path;
     const parameters = [

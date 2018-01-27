@@ -2,7 +2,7 @@ const DEFAULT_STATE = {
   offers: [],
   status: 'No market',
   address: '',
-  requirements: ['High', 'Low'],
+  requirements: ['Low','High'],
   trades: [],
   devices: [
     '0x123f681646d4a755815f9cb19e1acc8565a0c2ac',

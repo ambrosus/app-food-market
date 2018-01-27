@@ -5,7 +5,7 @@ import { CONTRACT_ADDRESS, MAX_TRADES_AMOUNT } from './../../constants';
 export const fetchTrades = () => async function (dispatch, getState) {
   const { paginationPage, offers : assets } = getState().market;
   try {
-    const response = await getTrades(web3, CONTRACT_ADDRESS, MAX_TRADES_AMOUNT, paginationPage);
+    const response = await getTrades(CONTRACT_ADDRESS, MAX_TRADES_AMOUNT, paginationPage);
     if (response.status) {
       const trades = response.data.map(trade => {
         const tradeAsset = assets.find(asset => asset.address === trade.assetAddress) || {};
@@ -47,11 +47,11 @@ const getTradesList = async (event, user) => {
   });
 };
 
-async function getTrades(provider, contractAddress, limit, offset) {
-  const MyContract = provider.eth.contract(abi);
+async function getTrades(contractAddress, limit, offset) {
+  const MyContract = web3.eth.contract(abi);
   const contract = await MyContract.at(contractAddress);
   const trades = [];
-  const totalCount = await getTradesCount(contract);
+  // const totalCount = await getTradesCount(contract);
   if (!totalCount) return { status: 0 };
   const [user] = web3.eth.accounts;
   const event = contract.allEvents({ fromBlock: 0, toBlock: 'latest' });
@@ -72,7 +72,7 @@ async function getTrades(provider, contractAddress, limit, offset) {
     status: 1,
     data: list.slice(limit * offset, (offset + 1) * limit),
     meta: {
-      totalCount: totalCount,
+      totalCount: list.length,
     },
   };
 };

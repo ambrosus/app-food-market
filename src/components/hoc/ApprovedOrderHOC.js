@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
   sidebar: 'progress',
   requirements: state.requirementsAttributes,
   decimals: state.token.decimals,
-  address: state.market.address,
   statements: state.statements.list,
 });
 

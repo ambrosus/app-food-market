@@ -1,13 +1,23 @@
 import Ambrosus from 'ambrosus';
 import TransactionBuilder from '../../utils/transactionBuilder';
+import { CONTRACT_ADDRESS } from '../../constants';
+import { hideModal, showModal } from '../actions/ModalAction';
+import abi from './abi.json';
 
 export const buy = (marketAddress, offer, quantity, history) => async (dispatch) => {
-  let agreement = new Ambrosus.AgreementRepository(marketAddress);
-  new TransactionBuilder(dispatch, agreement.initiateAgreement.bind(agreement)).
-    setTitle('Transfer to ESCROW').
-    setArguments(offer.address, quantity).
-    onSuccessCallback(()=>history.push('orders')).
-    send();
+  const MyContract = web3.eth.contract(abi);
+  const contract = await MyContract.at(CONTRACT_ADDRESS);
+  const [creator] = web3.eth.accounts;
+  const transactionParams = {
+    from: creator,
+    gas: 300000,
+    to: offer.seller,
+  };
+  dispatch(showModal('TransactionProgressModal', { title: 'Transaction approval' }));
+  await contract.makeTrade(offer.address, transactionParams, function (err, res) {
+    if (err) dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
+    else dispatch(hideModal());
+  });
 };
 
 export const approve = (agreementAddress, history) => async (dispatch) => {

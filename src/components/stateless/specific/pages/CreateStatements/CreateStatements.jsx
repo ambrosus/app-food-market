@@ -23,10 +23,10 @@ export default class CreateStatement extends Component {
     this.props.history.goBack();
   };
 
-  onSave = () => {
-    this.state.statements
+  onSave = async () => {
+    await Promise.all(this.state.statements
       .filter(statement => !!statement.value)
-      .map(statement => this.props.onSave(this.props.tradeId, statement.value));
+      .map(statement => this.props.onSave(this.props.tradeId, statement.value)));
     this.props.history.goBack();
   };
 

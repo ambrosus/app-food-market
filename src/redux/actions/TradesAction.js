@@ -1,64 +1,88 @@
-import { getTrades } from './../../utils/blockchainEvents';
-import { CONTRACT_ADDRESS, MAX_TRADES_AMOUNT } from './../../constants';
 import Ambrosus from 'ambrosus';
-import { waitForAmbrosus } from '../../utils/waitForAmbrosus';
-
-const TRADES_LIST = [];
-const IMAGES_LIST = [
-  'QmT6Po7e6DRZf1BHxXm7GLudrEvsf7tzBBibTGZ87caCGw',
-  'QmbfQ6fhMfRYUVZy5aQGsrqgVLnYhPQTxmK7Y8DRoJwz1R',
-  'QmSmSaoWAfbZHons4tCGL1QpEqTVR9xAs4rGBEfdyYaEFw',
-  'QmWAQfnF8WqsvafzYSNMmD8Z512mrV5z2kcD2uLvCx8Fs7',
-  'QmXhQr2UXUL2Wo38TuKPSUCMBFeuzb5yfGeAu4mZ7Y8ead',
-  'QmVv6kNDgwSYw6Xk6dpv1uQLrAWDYy5fYb3NiFS3XEJCk7',
-  'QmS23P1FkGpFAfwJRXzvrKaWo8DvCavEBYz6YYsHGmZr7N',
-];
-const NAMES_LIST = [
-  'Colombian Supremo',
-  'City Roast Colombian Supremo',
-  'Ethiopian Yirgacheffe',
-  'Italian Roast Espresso',
-  'Dark Sumatra Mandheling',
-  'Breakfast Blend',
-  'Kenya AA',
-  'Ethiopian Yirgacheffe',
-  'French Roast',
-  'Dark Brazilian Santos',
-  'Dark Brazilian Santos',
-];
-const IMAGES_LENGTH = IMAGES_LIST.length;
-const NAMES_LENGTH = NAMES_LIST.length;
-
-for (let i = 0; i < 45; i++) {
-  TRADES_LIST.push({
-    id: i,
-    name: NAMES_LIST[Math.floor(Math.random() * (NAMES_LENGTH - 1))],
-    origin: '',
-    category: 'Coffee',
-    seller: `0x0056bd78b3c0d85e0ceb4a7634368845a21d${Math.random()}ea38`,
-    customer: '0x4bf9a0cdfeaa638620e96e356593bc2ab395f10a222',
-    imageHash: IMAGES_LIST[Math.floor(Math.random() * (IMAGES_LENGTH - 1))],
-    status: (Math.random() * (10 - 1) + 1) > 5 ? 'finished' : 'pending',
-    packageWeight: Math.round(Math.random() * (200 - 60) + 60),
-    pricePerPackage: parseFloat((Math.random() * (200 - 60) + 60), 2),
-    measurementsAddress: '0xe3fa9f8dc84c3f1629d94f6b969b197920cea712',
-    requirementsAddress: '0xe18bd8f3674b3903eeb5c0331319e12f83fb519b',
-    validatorAddress: '0x0000000000000000000000000000000000000000',
-    address: `0x0000000000000000000000${Math.random()}000000000000000000`,
-    pricePerUnit: 100,
-    quantity: Math.round(Math.random() * (20 - 2) + 20),
-    quality: 'High',
-  });
-};
+import abi from './abi.json';
+import { CONTRACT_ADDRESS, MAX_TRADES_AMOUNT } from './../../constants';
 
 export const fetchTrades = () => async function (dispatch, getState) {
-  const { paginationPage } = getState().market;
+  const { paginationPage, offers : assets } = getState().market;
   try {
-    //  const response = await getTrades(web3, CONTRACT_ADDRESS, MAX_TRADES_AMOUNT, paginationPage);
-    dispatch({ type: 'FETCH_TRADES_SUCCESS', trades: TRADES_LIST, tradesAmount: TRADES_LIST.length });
-
-    // TODO: dispatch({ type: 'FETCH_TRADES_SUCCESS', trades, tradesAmount });
+    const response = await getTrades(web3, CONTRACT_ADDRESS, MAX_TRADES_AMOUNT, paginationPage);
+    if (response.status) {
+      const trades = response.data.map(trade => {
+        const tradeAsset = assets.find(asset => asset.address === trade.assetAddress) || {};
+        return { ...trade, ...tradeAsset, quantity: 1 };
+      });
+      dispatch({ type: 'FETCH_TRADES_SUCCESS', trades, tradesAmount: response.meta.totalCount });
+    }
   } catch (err) {
     console.warn('FETCH_TRADES_FAILED', err);
   }
+};
+
+const getTradesCount = async (contract) => {
+  return new Promise(function (resolve, reject) {
+    contract.getTradesCount((err, res) => {
+      if (err) reject(null);
+      else resolve(+res.valueOf());
+    });
+  });
+};
+
+const getTradeData = async (contract, index) => {
+  return new Promise(function (resolve, reject) {
+    contract.trades.call(index, (err, res) => {
+      if (err) reject(null);
+      else resolve(res);
+    });
+  });
+};
+
+const getTradesList = async (event, user) => {
+  return new Promise(function (resolve, reject) {
+    event.get((err, res) => {
+      if (err) reject([]);
+      else resolve(res
+        .filter(resItem => resItem.event === 'Permission' && resItem.args.participantAddr === user)
+        .map(restItem => ({ id: restItem.args.tradeId })));
+    });
+  });
+};
+
+async function getTrades(provider, contractAddress, limit, offset) {
+  const MyContract = provider.eth.contract(abi);
+  const contract = await MyContract.at(contractAddress);
+  const trades = [];
+  const totalCount = await getTradesCount(contract);
+  if (!totalCount) return { status: 0 };
+  const [user] = web3.eth.accounts;
+  const event = contract.allEvents({ fromBlock: 0, toBlock: 'latest' });
+  const tradesList = await getTradesList(event, user, contract);
+
+  const list = await Promise.all(tradesList.map(async trade => {
+    const tradeData = await getTradeData(contract, trade.id);
+    if (!trade) return;
+    return {
+      id: trade.id.valueOf(),
+      customer: tradeData[0],
+      assetAddress: tradeData[1],
+      status: tradeData[2],
+    };
+  }));
+
+  return {
+    status: 1,
+    data: list.slice(limit * offset, (offset + 1) * limit),
+    meta: {
+      totalCount: totalCount,
+    },
+  };
+};
+
+export async function finishTrade(tradeId) {
+  const [user] = web3.eth.accounts;
+  const MyContract = web3.eth.contract(abi);
+  const contract = await MyContract.at(CONTRACT_ADDRESS);
+  await contract.finishTrade(tradeId, { from: user }, (err, res) => {
+    if (!err) console.log('res', res);
+    else console.log('err', err);
+  });
 };

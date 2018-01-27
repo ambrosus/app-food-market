@@ -24,3 +24,8 @@
   margin-top: 20px;
   margin-bottom: 30px;
 }
+
+:local(.buttonsContainer) > div {
+  display: block;
+  margin-bottom: 20px;
+}

@@ -21,8 +21,8 @@ class ProductPage extends Component {
   static propTypes = {
     offer: PropTypes.object.isRequired,
     sidebar: PropTypes.string.isRequired,
-    address: PropTypes.string,
     requirements: PropTypes.array.isRequired,
+    finishTrade: PropTypes.func,
     getAttributes: PropTypes.func.isRequired,
     getStatements: PropTypes.func,
     statements: PropTypes.array,
@@ -31,8 +31,8 @@ class ProductPage extends Component {
   componentDidMount() {
     const { getStatements, getAttributes, offer, match } = this.props;
     loadImage(this.refs.image, offer.imageHash);
-    getAttributes(this.props.offer);
-    if (match.path === '/approved') getStatements(this.props.offer.id);
+    getAttributes(offer);
+    if (['/product-info', '/approved'].includes(match.path)) getStatements(offer.id);
   }
 
   attributesToValueField() {
@@ -46,26 +46,28 @@ class ProductPage extends Component {
     });
   }
 
-  renderStatements = () => {
+  renderStatements = pathname => {
     return (<div className={styles.statements}>
       <Label className={styles.subtitle} text='Statements'/>
       <StatementsList options={this.props.statements}
                       className={styles.requirements}/>
-
-      <Link className={styles.link} to="create-statements">
-        Create statements
-      </Link>
+      {pathname !== '/approved' ? (<Link className={styles.link} to="create-statements">
+                                    Create statements
+                                  </Link>) : null
+      }
     </div>)
   };
 
   render() {
-    const { offer, approve, reject, history, match, decimals, reorder, onBuy, sidebar, address } = this.props;
+    console.log('!!!!!!!!!!', this.props);
+    const { offer, approve, finishTrade, reject, history, match, decimals, reorder, onBuy, sidebar } = this.props;
     const pathname = match.path;
     const parameters = [
       { field: 'Category', value: offer.category },
       { field: 'Seller', value: offer.seller },
     ];
-    if (pathname === '/approved') parameters.push({ field: 'Customer', value: offer.customer });
+    const isTradePage = ['/product-info', '/approved'].includes(pathname);
+    if (isTradePage) parameters.push({ field: 'Customer', value: offer.customer });
     return (<div className={styles.container}>
         <div className={styles.requirementsColumn}>
           <img className={styles.image} src='./static/images/placeholder.png'
@@ -83,16 +85,16 @@ class ProductPage extends Component {
           <Link className={styles.link} to="create-measurements">
             Create measurements
           </Link>
-          {pathname === '/approved' ? this.renderStatements() : null}
+          {isTradePage ? this.renderStatements(pathname) : null}
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>
           {sidebar === 'summary' && <SummaryProduct offer={offer}
                                                     onApprove={approve}
+                                                    onFinish={finishTrade}
                                                     onReimburse={reject}
                                                     history={history}
                                                     decimals={decimals}/>}
           {sidebar === 'progress' && <SummaryApprovedProduct offer={offer}
-                                                             address={address}
                                                              onReorder={reorder}
                                                              decimals={decimals}/>}
           {sidebar === 'buy' && <BuyProduct offer={offer}

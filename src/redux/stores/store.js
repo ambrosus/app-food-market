@@ -14,7 +14,6 @@ import { autoRehydrate, persistStore } from 'redux-persist';
 const CATEGORIES = ['Arabica', 'Robusta', 'Hybrids'];
 const categories = (state = CATEGORIES, action) => state;
 
-
 const BREADCRUMBS = {
   '/': { name: 'Ambrosus' },
   '/market': { name: 'Market', parent: '/' },

@@ -5,11 +5,12 @@ import Label from '../../../../generic/Label/Label';
 import AttributeValueFieldContainer
   from '../../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import Button from '../../../../generic/Button/Button';
+import { Link } from 'react-router-dom';
 
 class SummaryProduct extends Component {
 
   componentDidMount() {
-    if (this.props.offer.status && this.props.offer.status !== 'In progress') {
+    if (this.props.offer.status) {
       this.props.history.replace('approved');
     }
   }
@@ -21,6 +22,7 @@ class SummaryProduct extends Component {
       packageWeight: PropTypes.number,
     }),
     onApprove: PropTypes.func,
+    onFinish: PropTypes.func,
     onReimburse: PropTypes.func,
     decimals: PropTypes.number.isRequired,
   };
@@ -31,6 +33,12 @@ class SummaryProduct extends Component {
       pricePerPackage: 50,
       packageWeight: 10,
     },
+  };
+
+  finishTrade = async () => {
+    const { onFinish, offer } = this.props;
+    await onFinish(offer.id);
+    this.props.history.push('/orders');
   };
 
   summary() {
@@ -47,13 +55,22 @@ class SummaryProduct extends Component {
   }
 
   render() {
+    const { offer } = this.props;
+    const [ user ] = web3.eth.accounts;
     return (<div>
       <Label className={styles.title} text='Summary'/>
       <AttributeValueFieldContainer options={this.summary()} className={styles.requirements}/>
-      <Button className={styles.approvePayment}
-              onClick={() => this.props.onApprove(this.props.offer.address)}>Approve payment</Button>
-      <Button className={styles.reimburse}
-              onClick={() => this.props.onReimburse(this.props.offer.address)}>Reimbursed</Button>
+      <div className={styles.buttonsContainer}>
+        {!offer.status && offer.seller === user ? (<Button className={styles.approvePayment}
+                                                           onClick={this.finishTrade}>
+          Finish
+        </Button>) : null}
+        {offer.seller === user
+          ? (<Button className={styles.button}
+                     onClick={() => this.props.onApprove(this.props.offer.address)}>Approve payment</Button>) : null}
+        <Button className={styles.reimburse}
+                onClick={() => this.props.onReimburse(this.props.offer.address)}>Reimbursed</Button>
+      </div>
     </div>);
   }
 }

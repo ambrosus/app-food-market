@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStatement } from '../../redux/actions/StatementsAction.js';
+import { addStatement, createStatement } from '../../redux/actions/StatementsAction';
 import CreateStatements from '../stateless/specific/pages/CreateStatements/CreateStatements';
 import {
   addMeasurements, resetMeasurementForm,
@@ -13,8 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSave: (tradeId, statement) => {
-    dispatch(createStatement(tradeId, statement));
+  onSave: async function (tradeId, statement) {
+    const statementId = await addStatement(tradeId, 0);
+    if (statementId) await dispatch(createStatement(tradeId, statement));
   },
 });
 

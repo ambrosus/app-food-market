@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   sidebar: 'buy',
   requirements: state.requirementsAttributes,
   decimals: state.token.decimals,
+  statements: state.statements.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,15 +4,11 @@ import { fetchTrades } from '../../redux/actions/TradesAction';
 import { setPaginationPage } from '../../redux/actions/PaginationAction';
 import OrdersPage from '../stateless/specific/pages/OrdersPage/OrdersPage';
 
-const mergeTradesWithAssets = trades => trades;
-
-// TODO: merge trades with assets
-
 const mapStateToProps = (state) => {
   const { paginationPage, trades, tradesAmount, address } = state.market;
   return {
     marketAddress: address,
-    trades: mergeTradesWithAssets(trades),
+    trades,
     tradesAmount: tradesAmount,
     paginationPage: paginationPage,
     getOptions: (offer) => [

@@ -17,13 +17,13 @@ const statements = (state = defaultState, action) => {
     case LOAD_STATEMENTS_REQUEST:
       return { ...state, isLoading: true };
     case LOAD_STATEMENTS_SUCCESS:
-      return { ...state, statements: action.statements, isLoading: false };
+      return { ...state, list: action.statements, isLoading: false };
     case LOAD_STATEMENTS_FAIL:
       return { ...state, isLoading: false };
     case CREATE_STATEMENT_REQUEST:
       return { ...state, isLoading: true };
     case CREATE_STATEMENT_SUCCESS:
-      return { ...state, statements: action.statements, isLoading: false };
+      return { ...state, list: action.statements, isLoading: false };
     case CREATE_STATEMENT_FAIL:
       return { ...state, error: action.error, isLoading: false };
     default:

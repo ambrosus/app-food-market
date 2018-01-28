@@ -33,12 +33,12 @@ export function clearStatements() {
   }
 }
 
-export function createStatement(tradeId, statement, statementId) {
+export function createStatement(tradeId, statement) {
   return async (dispatch, getState) => {
     const [user] = web3.eth.accounts;
     dispatch({ type: CREATE_STATEMENT_REQUEST });
     try {
-      const signature = await getSignature(user, statementId);
+      const signature = await getSignature(user, tradeId);
       const statements = await api.statements.create({ tradeId, statement, signature });
       dispatch({ type: CREATE_STATEMENT_SUCCESS, statements });
     } catch (error) {

@@ -94,3 +94,12 @@
     }
   }
 }
+
+:local(.tipRow) {
+  word-break: break-all;
+  font-size: 18px;
+  line-height: 25px;
+  > a {
+    text-decoration: underline;
+  }
+}

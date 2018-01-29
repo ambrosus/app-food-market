@@ -30,7 +30,7 @@ export function loadStatements(tradeId) {
 export function clearStatements() {
   return {
     type: CLEAR_STATEMENTS,
-  }
+  };
 }
 
 export function createStatement(tradeId, statement) {

@@ -22,8 +22,10 @@ export default class AuthorizeForm extends PureComponent {
     errorText: PropTypes.string.isRequired,
     clearError: PropTypes.func.isRequired,
     getToken: PropTypes.func.isRequired,
+    confirmAccountCreation: PropTypes.func.isRequired,
     toggleMarketModal: PropTypes.func.isRequired,
     createAccount: PropTypes.func.isRequired,
+    createdSecret: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -57,36 +59,55 @@ export default class AuthorizeForm extends PureComponent {
 
   validateField = (name, value) => REG_EXPS[name].test(value);
 
-  render() {
-    const { email, token, isEmailValid, isToken } = this.state;
-    return (<div className={styles.formWrapper}>
-      <div className={styles.container}>
-        <Label className={styles.header} text='Sign In' />
-        <div className={styles.row}>
-          {isToken
-            ? <TextField onChange={this.onFieldChange}
-                         key='token'
-                         placeholder='Enter your token'
-                         label='token'
-                         value={token}
-                         className={styles.field} />
-            : <TextField onChange={this.onFieldChange}
-                         key='email'
-                         placeholder='Enter your email'
-                         label='email'
-                         value={email}
-                         errors={isEmailValid ? [] : [ 'Email is invalid' ]}
-                         className={styles.field} />
-          }
-        </div>
-        <div className={styles.errorField}>{this.props.errorText}</div>
-        <Button className={styles.signIn} onClick={isToken ? this.createAccount : this.getToken}>
-          {isToken ? 'Create account' : 'Get token'}
-        </Button>
-        <span className={styles.marketLink}>
-          You have an account? &rarr; <span onClick={this.props.toggleMarketModal}>Choose market</span>
-        </span>
+  renderCreateAccountTip = () => {
+    const {createdSecret, confirmAccountCreation} = this.props;
+    return (<div className={styles.container}>
+      <Label className={styles.header} text='Account creation' />
+      <div className={styles.tipRow}><b>1) Copy your secret:</b><br/>{createdSecret}</div>
+      <div className={styles.tipRow}><b>2) Import new account in metamask:</b><br/>
+        <a href='http://metamask.consensyssupport.happyfox.com/kb/article/7-importing-accounts' target='_blank'>
+          How to do?
+        </a>
       </div>
+      <div className={styles.errorField}>{this.props.errorText}</div>
+      <Button className={styles.signIn} onClick={confirmAccountCreation}>Next</Button>
+    </div>)
+  };
+
+  renderSignInForm = () => {
+    const { email, token, isEmailValid, isToken } = this.state;
+    return (<div className={styles.container}>
+      <Label className={styles.header} text='Sign In' />
+      <div className={styles.row}>
+        {isToken
+          ? <TextField onChange={this.onFieldChange}
+                       key='token'
+                       placeholder='Enter your token'
+                       label='token'
+                       value={token}
+                       className={styles.field} />
+          : <TextField onChange={this.onFieldChange}
+                       key='email'
+                       placeholder='Enter your email'
+                       label='email'
+                       value={email}
+                       errors={isEmailValid ? [] : [ 'Email is invalid' ]}
+                       className={styles.field} />
+        }
+      </div>
+      <div className={styles.errorField}>{this.props.errorText}</div>
+      <Button className={styles.signIn} onClick={isToken ? this.createAccount : this.getToken}>
+        {isToken ? 'Create account' : 'Get token'}
+      </Button>
+      <span className={styles.marketLink}>
+        You have an account? &rarr; <span onClick={this.props.toggleMarketModal}>Choose market</span>
+      </span>
+    </div>)
+  };
+
+  render() {
+    return (<div className={styles.formWrapper}>
+      {this.props.createdSecret ? this.renderCreateAccountTip() : this.renderSignInForm()}
     </div>);
   }
 }

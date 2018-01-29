@@ -19,17 +19,23 @@ class WelcomePage extends PureComponent {
     super(props);
     this.state = {
       isMarketModal: false,
+      createdSecret: '',
       errorText: ''
     };
   }
+
+  confirmAccountCreation = () => {
+    if (web3.eth.accounts[0]) this.setState({ isMarketModal: true, errorText: '' });
+    else this.setState({ errorText: 'You haven\'t import your account' });
+  };
 
   goToMarket = address => {
     this.props.goToMarket(address);
   };
 
   createAccount = async (email, token) => {
-    const isUserCreated = await this.props.createAccount(email, token);
-    if (isUserCreated) this.setState({ isMarketModal: true });
+    const response = await this.props.createAccount(email, token);
+    if (response) this.setState({ createdSecret: response.secret });
     else this.setState({ errorText: 'Token is invalid' });
   };
 
@@ -42,7 +48,7 @@ class WelcomePage extends PureComponent {
   };
 
   render() {
-    const { isMarketModal, errorText } = this.state;
+    const { isMarketModal, createdSecret, errorText } = this.state;
     const { goToMarket, toggleMarketModal, createAccount, clearError } = this;
     return (
       <div className={styles.page}>
@@ -53,7 +59,9 @@ class WelcomePage extends PureComponent {
             : <AuthorizeForm errorText={errorText}
                              clearError={clearError}
                              getToken={this.props.getToken}
+                             confirmAccountCreation={this.confirmAccountCreation}
                              toggleMarketModal={toggleMarketModal}
+                             createdSecret={createdSecret}
                              createAccount={createAccount} />
           }
         </FadeTransition>

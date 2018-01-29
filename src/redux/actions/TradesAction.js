@@ -65,7 +65,7 @@ async function getTrades(contractAddress, limit, offset) {
       status: tradeData[2],
     };
   }));
-  
+
   return {
     status: 1,
     data: list.slice(limit * offset, (offset + 1) * limit),

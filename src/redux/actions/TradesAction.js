@@ -83,4 +83,5 @@ export async function finishTrade(tradeId) {
     if (!err) console.log('Trade has been finished.', res);
     else console.warn('Trade hasn`t been finished. Error: ', err);
   });
+  localStorage.clear();
 };

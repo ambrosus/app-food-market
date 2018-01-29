@@ -18,6 +18,7 @@ export const buy = (marketAddress, offer, quantity, history) => async (dispatch)
     if (err) dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
     else dispatch(hideModal());
   });
+  localStorage.clear();
 };
 
 export const approve = (agreementAddress, history) => async (dispatch) => {

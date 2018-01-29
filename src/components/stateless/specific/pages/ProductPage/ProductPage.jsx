@@ -87,9 +87,10 @@ class ProductPage extends Component {
           <AttributeValueFieldContainer options={parameters} className={styles.info}/>
           <Label className={styles.subtitle} text='Measurements'/>
           <MeasurementList measurements={offer.measurements}/>
-          <Link className={styles.link} to="create-measurements">
+          {pathname !== '/approved' ? (<Link className={styles.link} to="create-measurements">
             Create measurements
-          </Link>
+          </Link>) : null
+          }
           {isTradePage ? this.renderStatements(pathname) : null}
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>

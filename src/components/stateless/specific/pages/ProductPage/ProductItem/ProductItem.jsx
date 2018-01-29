@@ -10,9 +10,9 @@ import AttributeValueFieldContainer from
 export default class ProductItem extends Component {
 
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    imageHash: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    category: PropTypes.string,
+    imageHash: PropTypes.string,
     options: PropTypes.array.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
@@ -20,6 +20,8 @@ export default class ProductItem extends Component {
 
   static defaultProps = {
     image: '/static/images/placeholder.png',
+    name: '',
+    category: '',
     moreDetailsAction: () => {
       console.warn('Warning: More details action is not defined');
     },
@@ -27,7 +29,8 @@ export default class ProductItem extends Component {
   };
 
   componentDidMount() {
-    loadImage(this.refs.image, this.props.imageHash);
+    const {imageHash} = this.props;
+    if (imageHash) loadImage(this.refs.image, imageHash);
   }
 
   render() {

@@ -65,7 +65,7 @@ async function getTrades(contractAddress, limit, offset) {
       status: tradeData[2],
     };
   }));
-
+  
   return {
     status: 1,
     data: list.slice(limit * offset, (offset + 1) * limit),
@@ -80,7 +80,7 @@ export async function finishTrade(tradeId) {
   const MyContract = web3.eth.contract(abi);
   const contract = await MyContract.at(CONTRACT_ADDRESS);
   await contract.finishTrade(tradeId, { from: user }, (err, res) => {
-    if (!err) console.log('res', res);
-    else console.log('err', err);
+    if (!err) console.log('Trade has been finished.', res);
+    else console.warn('Trade hasn`t been finished. Error: ', err);
   });
 };

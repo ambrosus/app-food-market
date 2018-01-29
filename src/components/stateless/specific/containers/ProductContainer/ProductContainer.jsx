@@ -18,17 +18,20 @@ class ProductContainer extends Component {
   };
 
   render() {
+    const {products} = this.props;
     return (
       <div className={styles.container}>
-        {this.props.products.map((offer, index) =>
-          <ProductItem
-            key={offer.address + index}
-            name={offer.name}
-            category={offer.category}
-            imageHash={offer.imageHash}
-            options={this.props.getOptions(offer)}
-            moreDetailsPath={this.props.moreDetailsPath}
-            moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)}
+        {products && products.length
+          ? this.props.products.map((offer, index) =>
+            <ProductItem
+              key={`${index} ${offer.address}`}
+              name={offer.name}
+              category={offer.category}
+              imageHash={offer.imageHash}
+              options={this.props.getOptions(offer)}
+              moreDetailsPath={this.props.moreDetailsPath}
+              moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)
+          : null}
       </div>
     );
   }

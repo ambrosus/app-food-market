@@ -1,23 +1,18 @@
 import Ambrosus from 'ambrosus';
 import TransactionBuilder from '../../utils/transactionBuilder';
-import { CONTRACT_ADDRESS } from '../../constants';
 import { hideModal, showModal } from '../actions/ModalAction';
-import abi from './abi.json';
+import contractClient from '../../utils/contractClient';
 
 export const buy = (marketAddress, offer, quantity, history) => async (dispatch) => {
-  const MyContract = web3.eth.contract(abi);
-  const contract = await MyContract.at(CONTRACT_ADDRESS);
-  const [creator] = web3.eth.accounts;
-  const transactionParams = {
-    from: creator,
-    gas: 300000,
-    to: offer.seller,
-  };
+  const contract = contractClient.getInstance();
+  const [user] = web3.eth.accounts;
+  const transactionParams = { from: user, gas: 300000, to: offer.seller };
   dispatch(showModal('TransactionProgressModal', { title: 'Transaction approval' }));
   await contract.makeTrade(offer.address, transactionParams, function (err, res) {
     if (err) dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
     else dispatch(hideModal());
   });
+
   localStorage.clear();
 };
 

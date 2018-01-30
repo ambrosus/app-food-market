@@ -53,13 +53,18 @@ class ProductPage extends Component {
   }
 
   renderStatements = pathname => {
+    const isApprovePage = pathname === '/approved';
     return (<div className={styles.statements}>
       <Label className={styles.subtitle} text='Statements'/>
       <StatementsList options={this.props.statements}
                       className={styles.requirements}/>
-      {pathname !== '/approved' ? (<Link className={styles.link} to="create-statements">
+      {!isApprovePage ? (<Link className={styles.link} to="create-statements">
                                     Create statements
                                   </Link>) : null
+      }
+      {!isApprovePage ? (<Link className={styles.link} to="add-participants">
+        Add statements participant
+      </Link>) : null
       }
     </div>)
   };

@@ -20,6 +20,7 @@ import FilteredMarketHOC from './hoc/FilteredMarketHOC';
 import MyOrdersHOC from './hoc/MyOrdersHOC';
 import CreateMeasurementsHOC from './hoc/CreateMeasurementsHOC';
 import ProductBatchHOC from './hoc/ProductBatchHOC';
+import AddParticipantsHOC from './hoc/AddParticipantsHOC';
 import Web3Component from './stateless/specific/Web3Component';
 
 require('./RootComponent.scss');
@@ -46,6 +47,7 @@ export default class RootComponent extends Component {
               <Route exact path='/create-requirements' component={CreateRequirementsHOC}/>
               <Route exact path='/create-measurements' component={CreateMeasurementsHOC}/>
               <Route exact path='/create-statements' component={CreateStatementsHOC}/>
+              <Route exact path='/add-participants' component={AddParticipantsHOC}/>
               <ModalContainerHOC/>
             </PageContainer>
           </Router>

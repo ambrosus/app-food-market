@@ -8,13 +8,15 @@ class Section extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    from: PropTypes.string.isRequired,
   };
 
   render() {
-    const {date, text} = this.props;
+    const {date, text, from} = this.props;
     return (<div className={styles.listItem}>
-      <Label className={styles.date} text={date}/>
-      <p className={styles.text}>{text}</p>
+      <Label className={styles.dateField} text={date}/>
+      <p className={styles.fromField}>From: {from}</p>
+      <p>{text}</p>
     </div>);
   }
 }

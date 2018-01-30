@@ -4,11 +4,7 @@
 
 }
 
-:local(.date) {
+:local(.dateField), :local(.fromField) {
   font-size: 12px;
   color: rgba(0, 44, 135, 0.4);;
-}
-
-:local(.text) {
-
 }

@@ -23,6 +23,16 @@ export const getSignature = (address, string) => {
   });
 };
 
+export function promisify(context, method, ...args) {
+  return new Promise((resolve, reject) => {
+    context[method](...args, (err, res) => {
+      if (err) reject(null);
+      else resolve(res);
+    });
+  });
+};
+
 export default {
   mapToArray,
 };
+

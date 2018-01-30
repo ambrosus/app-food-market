@@ -4,24 +4,23 @@ import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import Button from '../../../generic/Button/Button';
 import styles from './CreateStatements.scss';
 import CreateStatementRow from './CreateStatementRow';
-import _ from 'lodash';
+import uniqueId from 'lodash/uniqueId';
 
 export default class CreateStatement extends Component {
 
   static propTypes = {
     onSave: PropTypes.func.isRequired,
+    tradeId: PropTypes.string.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      statements: [{ id: _.uniqueId(), value: '' }]
+      statements: [{ id: uniqueId(), value: '' }]
     };
   };
 
-  onCancel = () => {
-    this.props.history.goBack();
-  };
+  onCancel = () => this.props.history.goBack();
 
   onSave = async () => {
     await Promise.all(this.state.statements
@@ -31,7 +30,7 @@ export default class CreateStatement extends Component {
   };
 
   addStatement = () => {
-    const statement = {id: _.uniqueId(), value: ''};
+    const statement = {id: uniqueId(), value: ''};
     this.setState({statements: [ ...this.state.statements, statement ]});
   };
 
@@ -50,7 +49,6 @@ export default class CreateStatement extends Component {
   renderStatement = statement => {
     return <CreateStatementRow key={statement.id}
                                {...statement}
-                               deviceList={this.props.deviceList}
                                onRowChange={this.onChangeStatement}
                                onRowRemove={this.onRemoveStatement}/>
   };

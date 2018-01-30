@@ -19,11 +19,12 @@ export default class StatementsList extends Component {
     return _(this.props.options)
       .sort((a, b) => new Date(b.dt) > new Date(a.dt))
       .map(
-        item => <Section key={item.dt}
+        item => <Section key={item.statementId}
+                         from={item.from}
                          text={item.data}
                          date={new Date(item.dt).toLocaleString()}/>)
       .value();
-  }
+  };
 
   render() {
     return (<div>

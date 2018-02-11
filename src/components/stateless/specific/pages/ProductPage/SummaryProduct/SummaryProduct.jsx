@@ -37,7 +37,7 @@ class SummaryProduct extends Component {
 
   finishTrade = async () => {
     const { onFinish, offer } = this.props;
-    await onFinish(offer.id);
+    await onFinish(offer.id, offer.origin);
     this.props.history.push('/orders');
   };
 

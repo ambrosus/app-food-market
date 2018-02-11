@@ -11,7 +11,7 @@ const mapToArray = (object) => {
   return result;
 };
 
-export const getStringForSign = body => stringify(body, { space: '' }).toLowerCase();
+export const getStringForSign = body => stringify(body, { space: '' });
 
 export const getSignature = (address, string) => {
   if (!address || !string) return 'wrongData';
@@ -30,6 +30,13 @@ export function promisify(context, method, ...args) {
       else resolve(res);
     });
   });
+};
+
+// temporary method
+export function getSecret(key) {
+  return key === '0xf4c738e05deaea760db1d35684959e9e5db36fdb'
+    ? '0x168d401aa593b23457d77ba3a5e4d4b21920e840705f3efe9481871053fe0619'     // main account secret
+    : '0xadc3782cc637b0b72e22fe539a9d047b91be3d2262c70f996ef6cdb2278bf4fd';    // additional account secret'
 };
 
 export default {

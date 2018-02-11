@@ -94,8 +94,7 @@ class ProductPage extends Component {
           <MeasurementList measurements={offer.measurements}/>
           {pathname !== '/approved' ? (<Link className={styles.link} to="create-measurements">
             Create measurements
-          </Link>) : null
-          }
+          </Link>) : null}
           {isTradePage ? this.renderStatements(pathname) : null}
         </div>
         <div className={cx(styles.column, styles.summaryColumn)}>

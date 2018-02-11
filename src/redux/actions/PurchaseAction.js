@@ -2,10 +2,16 @@ import Ambrosus from 'ambrosus';
 import TransactionBuilder from '../../utils/transactionBuilder';
 import { hideModal, showModal } from '../actions/ModalAction';
 import contractClient from '../../utils/contractClient';
+import api from '../../api';
 
 export const buy = (marketAddress, offer, quantity, history) => async (dispatch) => {
-  const contract = contractClient.getInstance();
   const [user] = web3.eth.accounts;
+  const response = await api.events.createEvent(offer.origin, 'createTrade', user);
+  if (!response) {
+    dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
+    return;
+  }
+  const contract = contractClient.getInstance();
   const transactionParams = { from: user, gas: 300000, to: offer.seller };
   dispatch(showModal('TransactionProgressModal', { title: 'Transaction approval' }));
   await contract.makeTrade(offer.address, transactionParams, function (err, res) {

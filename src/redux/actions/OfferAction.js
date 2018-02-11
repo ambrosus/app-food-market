@@ -25,7 +25,13 @@ export const resetSelectedOffer = () => ({
 });
 
 export const createOffer = (offer, image, marketAddress, deviceList, history) => async function (dispatch) {
-  await api.assets.createAsset(offer);
+  const response = await api.assets.createAsset(offer);
+  if (!response) {
+    dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
+    return;
+  }
+
+  offer.origin = createdAsset.id;
   withIPFS(async (ipfs) => {
     if (image) {
       dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
@@ -37,7 +43,6 @@ export const createOffer = (offer, image, marketAddress, deviceList, history) =>
     dispatch(hideModal('TransactionProgressModal'));
     dispatch(doCreateOffer(offer, marketAddress, deviceList, ipfsMap.getOwnHash(), history));
   });
-
 };
 
 export const doCreateOffer = (offer, address, deviceList, ipfsHash, history) => async function (dispatch) {

@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(approve(agreementAddress, ownProps.history));
   },
 
-  finishTrade: async (tradeId) => {
-    await finishTrade(tradeId);
+  finishTrade: async (tradeId, assetId) => {
+    await finishTrade(tradeId, assetId);
   },
 
   reject: (agreementAddress) => {

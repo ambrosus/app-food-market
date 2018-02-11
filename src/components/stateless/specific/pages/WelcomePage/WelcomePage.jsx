@@ -55,14 +55,16 @@ class WelcomePage extends PureComponent {
         <img className={styles.logo} src="./static/images/ambrosus-animated.gif"/>
         <FadeTransition>
           {isMarketModal
-            ? <MarketForm goToMarket={goToMarket} toggleMarketModal={toggleMarketModal} />
+            ? <MarketForm goToMarket={goToMarket}
+                          toggleMarketModal={toggleMarketModal}
+                          createMarket={this.props.createMarket}/>
             : <AuthorizeForm errorText={errorText}
                              clearError={clearError}
                              getToken={this.props.getToken}
                              confirmAccountCreation={this.confirmAccountCreation}
                              toggleMarketModal={toggleMarketModal}
                              createdSecret={createdSecret}
-                             createAccount={createAccount} />
+                             createAccount={createAccount}/>
           }
         </FadeTransition>
         <Link to={isMarketModal ? '/market' : '/' }>

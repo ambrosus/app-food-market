@@ -11,6 +11,7 @@ export default class MarketForm extends PureComponent {
   static propTypes = {
     toggleMarketModal: PropTypes.func.isRequired,
     goToMarket: PropTypes.func.isRequired,
+    createMarket: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -19,6 +20,7 @@ export default class MarketForm extends PureComponent {
       address: '0x4bf9a0cdfeaa638620e96e356593bc2ab395f10a',
     };
   }
+
 
   onAddressChange = (label, inputState) => {
     this.setState({ [label]: inputState.value });
@@ -45,7 +47,7 @@ export default class MarketForm extends PureComponent {
           </div>
         </div>
         <span className={styles.text}>or</span>
-        <Button className={styles.newMarket} onClick={this.login}>
+        <Button className={styles.newMarket} onClick={this.props.createMarket}>
           <Link className={styles.link} to="/market">Create new market</Link>
         </Button>
         <span className={styles.signInLink}>

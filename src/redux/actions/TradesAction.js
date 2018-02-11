@@ -2,6 +2,8 @@ import Ambrosus from 'ambrosus';
 import { MAX_TRADES_AMOUNT } from './../../constants';
 import contractClient from '../../utils/contractClient';
 import { promisify } from '../../utils/utils';
+import { showModal } from '../actions/ModalAction';
+import api from '../../api';
 
 export const fetchTrades = () => async function (dispatch, getState) {
   const { paginationPage, offers : assets } = getState().market;
@@ -9,7 +11,7 @@ export const fetchTrades = () => async function (dispatch, getState) {
     const response = await getTradesList(MAX_TRADES_AMOUNT, paginationPage);
     if (response.status) {
       const trades = response.data.map(trade => {
-        const traradesdeAsset = assets.find(asset => asset.address === trade.assetAddress) || {};
+        const tradeAsset = assets.find(asset => asset.address === trade.assetAddress) || {};
         return { ...trade, ...tradeAsset, quantity: 1 };
       });
       dispatch({ type: 'FETCH_TRADES_SUCCESS', trades, tradesAmount: response.meta.totalCount });
@@ -19,7 +21,7 @@ export const fetchTrades = () => async function (dispatch, getState) {
   }
 };
 
-const getTradeData = async (contract, index) => {
+const getTradeData = (contract, index) => {
   return new Promise((resolve, reject) => {
     contract.trades.call(index, (err, res) => {
       if (err) reject([]);
@@ -52,8 +54,11 @@ async function getTradesList(limit, offset) {
   };
 };
 
-export async function finishTrade(tradeId) {
+export async function finishTrade(tradeId, assetId) {
+  console.log('finish');
   const [user] = web3.eth.accounts;
+  const response = await api.events.createEvent(assetId, 'finishTrade', user);
+  if (!tradeId || !response) return;
   await contractClient.run('finishTrade', tradeId, { from: user });
   localStorage.clear();
 };

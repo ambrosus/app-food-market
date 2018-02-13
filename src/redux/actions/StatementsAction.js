@@ -4,67 +4,66 @@ import { hideModal, showModal } from '../actions/ModalAction';
 import contractClient from '../../utils/contractClient';
 import { promisify } from '../../utils/utils';
 
-export const LOAD_STATEMENTS_SUCCESS   = 'LOAD_STATEMENTS_SUCCESS';
-export const LOAD_STATEMENTS_FAIL      = 'LOAD_STATEMENTS_FAIL';
-export const CREATE_STATEMENT_REQUEST  = 'CREATE_STATEMENT_REQUEST';
-export const CREATE_STATEMENT_SUCCESS  = 'CREATE_STATEMENT_SUCCESS';
-export const CREATE_STATEMENT_FAIL     = 'CREATE_STATEMENT_FAIL';
-export const CLEAR_STATEMENTS          = 'CLEAR_STATEMENTS';
-
 export function loadStatements(tradeId) {
   return async (dispatch, getState) => {
     if (!tradeId) {
-      dispatch({ type: LOAD_STATEMENTS_FAIL, error: 'tradeId is undefined' });
+      dispatch(showModal('ErrorModal', { reason: 'Trade id is undefined' }));
       return;
     }
 
+    dispatch(showModal('TransactionProgressModal', { title: 'Statements loading' }));
     const contract = contractClient.getInstance();
     const event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
     const eventsList = await promisify(event, 'get') || [];
-    const statementsList = eventsList.map(event => {
-      const { statementId, from } = event.args;
-      return { statementId: statementId.valueOf(), from };
-    });
-    dispatch(showModal('TransactionProgressModal', { title: 'Statements loading' }));
+    const statementsList = eventsList.map(e => ({
+      statementId: e.args.statementId.valueOf(),
+      statementType: e.args.statementType.valueOf(),
+      from: e.args.from,
+    }));
     try {
+      const [user] = web3.eth.accounts;
       const signature = await getSignature(user, tradeId);
-      const statements = await api.statements.list(tradeId, signature);
-      const statementsList =  statementsList.map(statement => {
-        const statementData = statements ? statements.find(s => s.statementId === statement.statementId) : {};
-        return { ...statementData, ...statement };
-      });
-      dispatch({ type: LOAD_STATEMENTS_SUCCESS, statements: statementsList });
+      const statementsFromBE = await api.statements.list(tradeId, signature);
+      let statements = [];
+      if (statementsFromBE.length) {
+        statements =  statementsFromBE.map(statement => {
+          const statementData = statementsList.find(s => s.statementId === statement.statementId);
+          return { ...statement, ...statementData };
+        });
+      }
+
+      dispatch({ type: 'FETCH_STATEMENTS_SUCCESS', statements });
       dispatch(hideModal());
-    } catch (error) {
-      dispatch({ type: LOAD_STATEMENTS_FAIL, error });
-      dispatch(hideModal());
+    } catch (err) {
+      console.warn('FETCH_STATEMENTS_FAILED', err);
+      dispatch(showModal('ErrorModal', { reason: err }));
     }
   };
 };
 
-export function clearStatements() {
-  return {
-    type: CLEAR_STATEMENTS,
-  };
-};
-
-export function createStatement(tradeId, statement) {
+export function createStatement(tradeId, statement, statementId) {
   return async (dispatch, getState) => {
     const [user] = web3.eth.accounts;
-    dispatch({ type: CREATE_STATEMENT_REQUEST });
     try {
       const signature = await getSignature(user, tradeId);
-      const statements = await api.statements.create({ tradeId, statement, signature });
-      dispatch({ type: CREATE_STATEMENT_SUCCESS, statements });
-    } catch (error) {
-      dispatch({ type: CREATE_STATEMENT_FAIL, error });
+      const statements = await api.statements.create({ tradeId, statement, signature, statementId });
+      dispatch({ type: 'CREATE_STATEMENT_SUCCESS', statements });
+    } catch (err) {
+      console.warn('CREATE_STATEMENT_FAILED', err);
+      dispatch(showModal('ErrorModal', { reason: err }));
     }
   };
 };
 
-export async function addStatement(tradeId, fileId) {
+export async function getStatementId(tradeId, isFile) {
   const [user] = web3.eth.accounts;
-  return await contractClient.run('addStatement', tradeId, fileId, { from: user });
+  const type = isFile ? 1 : 0;
+  const contract = contractClient.getInstance();
+  await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
+  const  event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
+  const eventsList = await promisify(event, 'get') || [];
+  const lastEvent = eventsList[eventsList.length - 1];
+  return lastEvent ? lastEvent.args.statementId.valueOf() : null;
 };
 
 export async function addParticipant(tradeId, participantAddress) {

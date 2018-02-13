@@ -25,35 +25,26 @@ export const resetSelectedOffer = () => ({
 });
 
 export const createOffer = (offer, image, marketAddress, deviceList, history) => async function (dispatch) {
-  const response = await api.assets.createAsset(offer);
-  if (!response) {
+  const responseCreate = await api.assets.createAsset(offer);
+  if (!responseCreate) {
     dispatch(showModal('ErrorModal', { reason: 'Transaction has been failed' }));
     return;
   }
-
-  offer.origin = createdAsset.id;
-  withIPFS(async (ipfs) => {
-    if (image) {
-      dispatch(showModal('TransactionProgressModal', { title: 'Uploading image' }));
-      offer.imageHash = await uploadToIPFS(ipfs, image);
-    }
-
-    dispatch(showModal('TransactionProgressModal', { title: 'Creating measurements storage' }));
-    let ipfsMap = await Ambrosus.IPFSMap.create(ipfs);
-    dispatch(hideModal('TransactionProgressModal'));
-    dispatch(doCreateOffer(offer, marketAddress, deviceList, ipfsMap.getOwnHash(), history));
-  });
+  const statementId =  responseCreate.id;
+  offer.origin = statementId;
+  const responseUpload = await api.files.uploadFile(statementId, image, 'asset');
+  dispatch(doCreateOffer(offer, marketAddress, deviceList, history));
 };
 
-export const doCreateOffer = (offer, address, deviceList, ipfsHash, history) => async function (dispatch) {
+export const doCreateOffer = (offer, address, deviceList, history) => async function (dispatch) {
   const offerRepo = new Ambrosus.OfferRepository(Ambrosus.OfferContract);
+  const ipfsHash = 'QmVv6kNDgwSYw6Xk6dpv1uQLrAWDYy5fYb3NiFS3XEJCk7';
   let market = await new Ambrosus.MarketRepository().fromAddress(address);
   if (offer.quality) {
     let requirementsRepository = new Ambrosus.RequirementsRepository();
-    let requirements = await requirementsRepository.findQualityByName(offer.quality, market);
+    let requirements = await requirementsRepository.findQualityByName(offer.quality, market, ipfsHash);
     offer.requirementsAddress = requirements.getAddress();
   }
-
   new TransactionBuilder(dispatch, offerRepo.save.bind(offerRepo)).
     setTitle('Creating offer').
     setArguments(address, { ...offer, seller: web3.eth.accounts[0] }, deviceList, ipfsHash).

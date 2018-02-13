@@ -47,7 +47,7 @@ class CreateOfferPage extends Component {
     this.refs.myFileInput.chooseFile();
   }
 
-  onFileSelect(e, files) {
+  onFileSelect = (e, files) => {
     if (!files[0]) return;
     this.image = files[0];
     let reader = new FileReader();
@@ -61,7 +61,7 @@ class CreateOfferPage extends Component {
   onSaveClick() {
     let offer = this.state.form.values;
     if (!this.validateBeforeSubmit(offer)) {
-      this.props.onAdd(offer, this.image, this.props.address, this.props.devices);
+      this.props.onAdd(offer, this.refs.image.src, this.props.address, this.props.devices);
     }
   };
 
@@ -223,7 +223,6 @@ class CreateOfferPage extends Component {
                                 this.onChange(label, state);
                                 this.getAttributes(state.value);
                               }}
-
                              label='quality' />
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>

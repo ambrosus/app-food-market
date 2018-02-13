@@ -21,7 +21,6 @@ export default class MarketForm extends PureComponent {
     };
   }
 
-
   onAddressChange = (label, inputState) => {
     this.setState({ [label]: inputState.value });
   };
@@ -39,8 +38,8 @@ export default class MarketForm extends PureComponent {
           <Label className={styles.label} text='Go to existing market:'/>
           <div className={styles.row}>
             <TextField onChange={this.onAddressChange}
-                       label="address"
-                       placeholder="contact address"
+                       label='address'
+                       placeholder='Contact address'
                        value={this.state.address}
                        className={styles.field}/>
             <Button className={styles.button} onClick={this.goToMarket}>Go</Button>
@@ -48,7 +47,7 @@ export default class MarketForm extends PureComponent {
         </div>
         <span className={styles.text}>or</span>
         <Button className={styles.newMarket} onClick={this.props.createMarket}>
-          <Link className={styles.link} to="/market">Create new market</Link>
+          <Link className={styles.link} to='/market'>Create new market</Link>
         </Button>
         <span className={styles.signInLink}>
           Want to create new account &rarr; <span onClick={this.props.toggleMarketModal}>Create account</span>

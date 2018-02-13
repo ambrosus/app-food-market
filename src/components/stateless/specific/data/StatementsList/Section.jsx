@@ -6,17 +6,28 @@ import Label from '../../../generic/Label/Label';
 class Section extends Component {
 
   static propTypes = {
-    text: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    from: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    data: PropTypes.string,
+    date: PropTypes.string,
+    from: PropTypes.string,
+    type: PropTypes.string,
   };
 
+  static defaultProps = {
+    date: '',
+    type: '1',
+    from: '',
+  }
+
   render() {
-    const {date, text, from} = this.props;
+    const {date, data, type, from, id} = this.props;
+    const isFile = type === '0';
+    const [fullDate] = date.split('T').join(' ').split('.');
     return (<div className={styles.listItem}>
-      <Label className={styles.dateField} text={date}/>
+      <Label className={styles.dateField} text={fullDate.slice(0, -3)}/>
       <p className={styles.fromField}>From: {from}</p>
-      <p>{text}</p>
+      {isFile ? <p className={styles.fileName}>File name: {data}</p> : <p>Message: {data}</p>}
+      {isFile && id ? <a className={styles.downloadLink} href={`https://amb.482.solutions/files/statement/${id}`} download={data}>download file</a> : null}
     </div>);
   }
 }

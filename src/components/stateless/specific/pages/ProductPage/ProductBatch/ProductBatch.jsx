@@ -81,7 +81,7 @@ class ProductBatch extends Component {
             this.state.batch ? (<div>
               <Label className={styles.title} text={`Batch ${this.state.batch}`}/>
               <MeasurementList measurements={this.filterBatch()}/>
-              <Link className={styles.link} to="create-measurements"
+              <Link className={styles.link} to='create-measurements'
                     onClick={() => this.props.selectBatch(this.state.batch)}>
                 New measurement
               </Link>

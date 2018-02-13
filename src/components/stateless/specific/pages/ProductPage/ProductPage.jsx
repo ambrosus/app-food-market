@@ -7,7 +7,6 @@ import AttributeValueFieldContainer from '../../containers/AttributeValueFieldCo
 import Label from '../../../generic/Label/Label';
 import MeasurementList from '../../data/MeasurementList/MeasurementList';
 import StatementsList from '../../data/StatementsList/StatementsList';
-import { loadImage } from '../../../../../utils/loadFromIPFS';
 import BuyProduct from './BuyProduct/BuyProduct';
 import SummaryApprovedProduct from './SummaryApprovedProduct/SummaryApprovedProduct';
 import SummaryProduct from './SummaryProduct/SummaryProduct';
@@ -23,22 +22,35 @@ class ProductPage extends Component {
     sidebar: PropTypes.string.isRequired,
     requirements: PropTypes.array.isRequired,
     finishTrade: PropTypes.func,
+    loadImage: PropTypes.func,
     getAttributes: PropTypes.func.isRequired,
     getStatements: PropTypes.func,
-    clearStatements: PropTypes.func,
-    statements: PropTypes.array,
+    getTradeInfo: PropTypes.func,
   };
 
   componentDidMount() {
-    const { getStatements, getAttributes, offer, match } = this.props;
-    loadImage(this.refs.image, offer.imageHash);
+    const { getStatements, getTradeInfo, getAttributes, offer, match } = this.props;
     getAttributes(offer);
-    if (['/product-info', '/approved'].includes(match.path)) getStatements(offer.id);
+    if (['/product-info', '/approved'].includes(match.path)) {
+      getStatements(offer.id);
+      getTradeInfo();
+      this.interval = setInterval(() => getTradeInfo(), 1000);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { offer, match } = this.props;
+    const { offer: newOffer } = nextProps;
+    if (newOffer.id !== offer.id) {
+      this.props.getAttributes(newOffer);
+      if (['/product-info', '/approved'].includes(match.path)) {
+        nextProps.getStatements(newOffer.id);
+      }
+    }
   }
 
   componentWillUnmount() {
-    const { clearStatements, match } = this.props;
-    if (['/product-info', '/approved'].includes(match.path)) clearStatements();
+    clearTimeout(this.interval);
   }
 
   attributesToValueField() {
@@ -56,32 +68,42 @@ class ProductPage extends Component {
     const isApprovePage = pathname === '/approved';
     return (<div className={styles.statements}>
       <Label className={styles.subtitle} text='Statements'/>
-      <StatementsList options={this.props.statements}
+      <StatementsList options={this.props.offer.statements}
                       className={styles.requirements}/>
       {!isApprovePage ? (<Link className={styles.link} to="create-statements">
                                     Create statements
-                                  </Link>) : null
-      }
+                         </Link>) : null}
       {!isApprovePage ? (<Link className={styles.link} to="add-participants">
-        Add statements participant
-      </Link>) : null
-      }
+                           Add statements participant
+                         </Link>) : null}
     </div>)
   };
 
   render() {
-    const { offer, approve, finishTrade, reject, history, match, decimals, reorder, onBuy, sidebar } = this.props;
+    const { offer, approve, finishTrade, linkTrade, reject, history, match,
+      setActiveTrade, decimals, reorder, onBuy, sidebar } = this.props;
+    const { customer, seller, category, participants } = offer;
     const pathname = match.path;
     const parameters = [
-      { field: 'Category', value: offer.category },
-      { field: 'Seller', value: offer.seller },
+      { field: 'Category', value: category },
+      { field: 'Seller', value: seller },
     ];
     const isTradePage = ['/product-info', '/approved'].includes(pathname);
-    if (isTradePage) parameters.push({ field: 'Customer', value: offer.customer });
+    if (isTradePage) {
+      parameters.push({ field: 'Customer', value: customer });
+      if (participants.length > 1) {
+        participants
+          .filter(participant => ![seller, customer].includes(participant))
+          .forEach((participant, index) => {
+            parameters.push({ field: `${index + 3} participant`, value: participant })
+          })
+      }
+    }
     return (<div className={styles.container}>
         <div className={styles.requirementsColumn}>
-          <img className={styles.image} src='./static/images/placeholder.png'
-               srcSet='./static/images/placeholder.png 2x' ref='image'/>
+          <img className={styles.image} src={offer.origin
+            ? `https://amb.482.solutions/files/asset/${offer.origin}`
+            : './static/images/placeholder.png'}/>
           <Label className={styles.subtitle} text='Requirements'/>
           <Label text={offer.quality}/>
           <AttributeValueFieldContainer options={this.attributesToValueField()}
@@ -101,7 +123,9 @@ class ProductPage extends Component {
           {sidebar === 'summary' && <SummaryProduct offer={offer}
                                                     onApprove={approve}
                                                     onFinish={finishTrade}
+                                                    onLinkTrade={linkTrade}
                                                     onReimburse={reject}
+                                                    setActiveTrade={setActiveTrade}
                                                     history={history}
                                                     decimals={decimals}/>}
           {sidebar === 'progress' && <SummaryApprovedProduct offer={offer}
@@ -118,4 +142,3 @@ class ProductPage extends Component {
 }
 
 export default ProductPage;
-

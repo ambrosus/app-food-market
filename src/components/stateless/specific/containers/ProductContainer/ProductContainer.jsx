@@ -25,9 +25,8 @@ class ProductContainer extends Component {
           ? this.props.products.map((offer, index) =>
             <ProductItem
               key={`${index} ${offer.address}`}
-              name={offer.name}
               category={offer.category}
-              imageHash={offer.imageHash}
+              offer={offer}
               options={this.props.getOptions(offer)}
               moreDetailsPath={this.props.moreDetailsPath}
               moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)

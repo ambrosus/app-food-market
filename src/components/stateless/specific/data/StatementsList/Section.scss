@@ -1,10 +1,29 @@
 @import '../../../shared';
 
-:local(.listItem) {
-
-}
-
 :local(.dateField), :local(.fromField) {
   font-size: 12px;
   color: rgba(0, 44, 135, 0.4);;
+}
+
+:local(.fromField) {
+  margin: 3px 0 5px 0;
+}
+
+:local(.listItem) {
+  border-bottom: 1px solid rgba(0, 44, 135, 0.1);
+  padding-bottom: 10px;
+}
+
+:local(.fileName) {
+  display: inline-block;
+  margin: 3px 15px 10px 0;
+}
+
+:local(.downloadLink) {
+  background: #20ABFA;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 3px;
+  margin-top: 0;
 }

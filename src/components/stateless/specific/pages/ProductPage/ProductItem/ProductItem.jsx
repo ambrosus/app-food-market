@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../../../generic/Button/Button';
-import { loadImage } from '../../../../../../utils/loadFromIPFS';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.scss';
 import AttributeValueFieldContainer from
@@ -10,9 +9,8 @@ import AttributeValueFieldContainer from
 export default class ProductItem extends Component {
 
   static propTypes = {
-    name: PropTypes.string,
+    offer: PropTypes.object.isRequired,
     category: PropTypes.string,
-    imageHash: PropTypes.string,
     options: PropTypes.array.isRequired,
     moreDetailsAction: PropTypes.func.isRequired,
     moreDetailsPath: PropTypes.string.isRequired,
@@ -25,23 +23,22 @@ export default class ProductItem extends Component {
     moreDetailsAction: () => {
       console.warn('Warning: More details action is not defined');
     },
-
   };
 
-  componentDidMount() {
-    const {imageHash} = this.props;
-    if (imageHash) loadImage(this.refs.image, imageHash);
-  }
 
   render() {
+    const { offer, options, category, moreDetailsPath, moreDetailsAction } = this.props;
+    const { origin, name } = offer;
     return (<article className={styles.product}>
-      <img src={this.props.image} width='263' height='180' ref='image'/>
-      <span className={styles.category}>{this.props.category}</span>
+      <img src={origin ? `https://amb.482.solutions/files/asset/${origin}` : '/static/images/placeholder.png'}
+           width='263'
+           height='180'/>
+      <span className={styles.category}>{category}</span>
       <div className={styles.info}>
-        <h1 className={styles.title}>{this.props.name}</h1>
-        <AttributeValueFieldContainer className={styles.fieldsContainer} options={this.props.options}/>
-        <Link className={styles.link} to={this.props.moreDetailsPath}>
-          <Button onClick={() => this.props.moreDetailsAction(this.props.offer)} className={styles.button}>
+        <h1 className={styles.title}>{name}</h1>
+        <AttributeValueFieldContainer className={styles.fieldsContainer} options={options}/>
+        <Link className={styles.link} to={moreDetailsPath}>
+          <Button onClick={() => moreDetailsAction(offer)} className={styles.button}>
             More details
           </Button>
         </Link>

@@ -2,7 +2,7 @@ import Base from '../Base.js';
 import { getSecret } from '../../utils/utils';
 
 export default class EventsApi extends Base {
-  async createEvent(assetId, type, creator) {
+  createEvent(assetId, type, creator) {
     if (!assetId) return null;
     const secret = getSecret(creator);
     const body = {

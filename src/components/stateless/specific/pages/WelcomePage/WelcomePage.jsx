@@ -67,7 +67,7 @@ class WelcomePage extends PureComponent {
                              createAccount={createAccount}/>
           }
         </FadeTransition>
-        <Link to={isMarketModal ? '/market' : '/' }>
+        <Link to={isMarketModal ? '/market' : '/' } className={styles.smallLogoLink}>
           <img className={styles.smallLogo} src="./static/images/ambrosus-small.png"/>
         </Link>
       </div>);

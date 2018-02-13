@@ -76,7 +76,7 @@ export const getAllOffers = (address) => async function (dispatch) {
   const marketRepo = new Ambrosus.MarketRepository(Ambrosus.MarketContract);
   const market = await marketRepo.fromAddress(address);
   let offers = await offerRepo.getAllFromMarket(market);
-  dispatch(receiveAllOffers(offers.slice(10)));
+  dispatch(receiveAllOffers(offers));
 };
 
 export const getAllRequirements = (address) => async function (dispatch) {

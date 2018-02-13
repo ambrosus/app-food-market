@@ -29,3 +29,38 @@
   display: block;
   margin-bottom: 20px;
 }
+
+:local(.linkTradeBtn) {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  padding: 0;
+}
+
+:local(.tradeIdField) {
+  display: inline-block;
+  vertical-align: top;
+  width: 60%;
+  input {
+    width: 100%;
+  }
+}
+
+:local(.linkedTrades) {
+  margin-bottom: 20px;
+}
+
+:local(.tradeLink) {
+  margin: 15px 0;
+  > span {
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+:local(.linkTradesTitle) {
+  color: rgba(0, 44, 135, 0.4);
+  font-size: 13px;
+}

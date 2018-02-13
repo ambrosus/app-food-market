@@ -3,13 +3,13 @@ import ProductPage from '../stateless/specific/pages/ProductPage/ProductPage';
 import { fetchAttributes } from '../../redux/actions/AttributesAction';
 import { fetchMeasurements } from '../../redux/actions/MeasurementsAction';
 import { loadStatements, clearStatements } from '../../redux/actions/StatementsAction';
+import { loadTradeInfo } from '../../redux/actions/TradesAction';
 
 const mapStateToProps = state => ({
   offer: state.offer,
   sidebar: 'progress',
   requirements: state.requirementsAttributes,
   decimals: state.token.decimals,
-  statements: state.statements.list,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   getStatements: tradeId => dispatch(loadStatements(tradeId)),
 
-  clearStatements: () => dispatch(clearStatements()),
+  getTradeInfo: () => dispatch(loadTradeInfo()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

@@ -33,13 +33,15 @@
   background-color: #F1FAFF;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
   transform: translateX(-50%) translateY(-50%);
   position: fixed;
   left: 50%;
   top: 50%;
   width: 580px;
+  height: 580px;
   padding: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 :local(.description) {

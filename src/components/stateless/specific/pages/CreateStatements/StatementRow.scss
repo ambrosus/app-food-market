@@ -22,3 +22,24 @@
   justify-content: space-between;
   margin: 10px 0;
 }
+
+:local(.fileIcon) {
+  display: inline-block;
+  height: 140px;
+  width: auto;
+  transform: translateX(-18px);
+}
+
+:local(.fileDescription) {
+  width: 600px;
+}
+
+:local(.statementInfo) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+:local(.descriptionField) {
+  margin-bottom: 10px;
+}

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Section from './Section';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
-
 
 export default class StatementsList extends Component {
 
@@ -15,20 +13,19 @@ export default class StatementsList extends Component {
   };
 
 
-  formatStatements = () => {
-    return _(this.props.options)
-      .sort((a, b) => new Date(b.dt) > new Date(a.dt))
-      .map(
-        item => <Section key={item.statementId}
-                         from={item.from}
-                         text={item.data}
-                         date={new Date(item.dt).toLocaleString()}/>)
-      .value();
+  renderStatements = options => {
+    return options.map(item => <Section key={item.statementId}
+                                        id={item.statementId}
+                                        from={item.from}
+                                        data={item.data}
+                                        type={item.statementType}
+                                        date={item.dt}/>);
   };
 
   render() {
+    const { options } = this.props;
     return (<div>
-      {this.formatStatements()}
+      {options.length ? this.renderStatements(options) : null}
     </div>);
   }
 };

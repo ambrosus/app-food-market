@@ -26,6 +26,11 @@ export default class TextField extends Component {
     errors: [],
   };
 
+  componentWillReceiveProps(nextProps) {
+    const {value} = nextProps;
+    if (this.props.value !== value) this.setState({ value });
+  }
+
   onChange = e => {
     const { onChange, label } = this.props;
     const { value } = e.target;
@@ -34,7 +39,7 @@ export default class TextField extends Component {
 
   render() {
     const { className, placeholder, type, inputType, errors } = this.props;
-    return (<span className={className}>
+    return (<div>
       {
         type === 'input'
           ? <input className={classNames(styles.input, className)}
@@ -49,6 +54,6 @@ export default class TextField extends Component {
                       value={this.state.value} />
       }
       <ErrorList errors={errors}/>
-    </span>);
+    </div>);
   }
 };

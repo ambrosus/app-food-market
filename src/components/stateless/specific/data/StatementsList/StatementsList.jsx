@@ -14,7 +14,7 @@ export default class StatementsList extends Component {
 
 
   renderStatements = options => {
-    return options.map(item => <Section key={item.statementId}
+    return options.map((item, i) => <Section key={i + item.statementId}
                                         id={item.statementId}
                                         from={item.from}
                                         data={item.data}

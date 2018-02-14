@@ -22,14 +22,16 @@ class ProductContainer extends Component {
     return (
       <div className={styles.container}>
         {products && products.length
-          ? this.props.products.map((offer, index) =>
-            <ProductItem
-              key={`${index} ${offer.address}`}
-              category={offer.category}
-              offer={offer}
-              options={this.props.getOptions(offer)}
-              moreDetailsPath={this.props.moreDetailsPath}
-              moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)
+          ? this.props.products
+            .filter(offer => offer.name)
+            .map((offer, index) =>
+              <ProductItem
+                key={`${index} ${offer.address}`}
+                category={offer.category}
+                offer={offer}
+                options={this.props.getOptions(offer)}
+                moreDetailsPath={this.props.moreDetailsPath}
+                moreDetailsAction={this.props.moreDetailsAction.bind(this, offer)} />)
           : null}
       </div>
     );

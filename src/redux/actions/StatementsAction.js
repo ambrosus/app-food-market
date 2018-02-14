@@ -45,8 +45,7 @@ export function createStatement(tradeId, statement, statementId) {
     const [user] = web3.eth.accounts;
     try {
       const signature = await getSignature(user, tradeId);
-      const statements = await api.statements.create({ tradeId, statement, signature, statementId });
-      dispatch({ type: 'CREATE_STATEMENT_SUCCESS', statements });
+      await api.statements.create({ tradeId, statement, signature, statementId });
     } catch (err) {
       console.warn('CREATE_STATEMENT_FAILED', err);
       dispatch(showModal('ErrorModal', { reason: err }));
@@ -60,9 +59,9 @@ export async function getStatementId(tradeId, isFile) {
   const contract = contractClient.getInstance();
   await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
   const  event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
-  const eventsList = await promisify(event, 'get') || [];
+  const eventsList = await await promisify(event, 'get') || [];
   const lastEvent = eventsList[eventsList.length - 1];
-  return lastEvent ? lastEvent.args.statementId.valueOf() : null;
+  return lastEvent ? +lastEvent.args.statementId.valueOf() + 1 : null;
 };
 
 export async function addParticipant(tradeId, participantAddress) {

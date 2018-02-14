@@ -11,7 +11,7 @@ export default class FilesApi extends Base {
       [`${itemType}Id`]: id,
       file: fileData,
       signature,
-      'content-type': mimeType,
+      contentType: mimeType,
     });
   }
 }

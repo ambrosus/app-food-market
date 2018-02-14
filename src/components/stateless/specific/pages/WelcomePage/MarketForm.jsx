@@ -17,7 +17,7 @@ export default class MarketForm extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      address: '0x4bf9a0cdfeaa638620e96e356593bc2ab395f10a',
+      address: '0xc562862d7b6074d572f49bfdcd44a25bc4d31634',
     };
   }
 

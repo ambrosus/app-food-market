@@ -38,6 +38,7 @@
   border: 0;
   background-color: rgba(32, 171, 250, 0.2);
   height: 100vh;
+  flex-wrap: unset;
 }
 
 :local(.title) {

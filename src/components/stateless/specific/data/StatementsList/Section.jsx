@@ -15,13 +15,13 @@ class Section extends Component {
 
   static defaultProps = {
     date: '',
-    type: '1',
+    type: '0',
     from: '',
   }
 
   render() {
     const {date, data, type, from, id} = this.props;
-    const isFile = type === '0';
+    const isFile = type === '1';
     const [fullDate] = date.split('T').join(' ').split('.');
     return (<div className={styles.listItem}>
       <Label className={styles.dateField} text={fullDate.slice(0, -3)}/>

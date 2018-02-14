@@ -57,7 +57,7 @@ export default class CreateStatement extends Component {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   };
 
-  imageLoadHandler = e => {
+  loadHandler = e => {
     const dataUrl = e.target.result;
     const { name, size } = this.file;
     const formatSize = this.getFormatBytes(size);
@@ -81,7 +81,7 @@ export default class CreateStatement extends Component {
       return;
     }
     reader.readAsDataURL(this.file);
-    reader.onload = this.imageLoadHandler;
+    reader.onload = this.loadHandler;
     reader.onerror = err => showModal('ErrorModal', err);
     e.target.value = null;
   };

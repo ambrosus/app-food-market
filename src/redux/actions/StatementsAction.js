@@ -26,12 +26,11 @@ export function loadStatements(tradeId) {
       const statementsFromBE = await api.statements.list(tradeId, signature);
       let statements = [];
       if (statementsFromBE.length) {
-        statements =  statementsFromBE.map(statement => {
+        statementsFromBE.forEach(statement => {
           const statementData = statementsList.find(s => s.statementId === statement.statementId);
-          return { ...statement, ...statementData };
+          if (statementData) statements.push({ ...statement, ...statementData });
         });
       }
-
       dispatch({ type: 'FETCH_STATEMENTS_SUCCESS', statements });
       dispatch(hideModal());
     } catch (err) {

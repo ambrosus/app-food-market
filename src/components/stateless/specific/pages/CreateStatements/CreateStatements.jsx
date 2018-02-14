@@ -60,16 +60,7 @@ export default class CreateStatement extends Component {
     const { showModal } = this.props;
     showModal('TransactionProgressModal', 'File uploading');
     this.file = e.target.files[0];
-    const { size, type } = this.file;
-    const allowedExtensions = ['png', 'jpeg', 'csv', 'pdf', 'docs'];
-    const isAllowedSize = size / 1024 < 10000;
-    const isAllowedExtension = allowedExtensions.some(extension => new RegExp(`${extension}$`).test(type));
     const reader = new FileReader();
-    if (!isAllowedSize || !isAllowedExtension) {
-      const errorText = !isAllowedSize ? 'File size should be less than 10Mb' : 'You couldn\'t upload this file type';
-      showModal('ErrorModal', errorText);
-      return;
-    }
     reader.readAsDataURL(this.file);
     reader.onload = this.loadHandler;
     reader.onerror = err => showModal('ErrorModal', err);
@@ -90,9 +81,7 @@ export default class CreateStatement extends Component {
       <NavigationBar title='Create statements'>
         <div className={styles.uploadFileWrapper}>
           <span>Upload file</span>
-          <input className={styles.uploadFile}
-                 type='file' onChange={this.onFileUpload}
-                 accept='image/jpeg,image/png,application/pdf,application/msword,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel' />
+          <input className={styles.uploadFile} type='file' onChange={this.onFileUpload}/>
         </div>
         <Button className={styles.cancelButton}
                 onClick={this.onCancel}>Cancel</Button>

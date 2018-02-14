@@ -46,11 +46,16 @@ async function getTradesList(limit, offset) {
       return { id, customer, assetAddress, status };
     }));
 
+  const isTestData = [
+    '0x60c34f96cebdcc161c7ca3cacb42c1f0a88d77c6',
+    '0xc2465857254404ff1e4edb4d9086b8d72e2fda32'
+  ].includes(web3.eth.accounts[0]);
+
   return {
     status: 1,
-    data: list.slice(7),                          // remove 7 test trades
+    data: isTestData ? list.slice(7) : list,                                           // remove 7 test trades
     meta: {
-      totalCount: tradesFromWeb3.length - 7,      // remove 7 test trades
+      totalCount: isTestData ? tradesFromWeb3.length - 7 : tradesFromWeb3.length,      // remove 7 test trades
     },
   };
 };

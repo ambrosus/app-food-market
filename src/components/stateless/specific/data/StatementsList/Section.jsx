@@ -27,7 +27,9 @@ class Section extends Component {
       <Label className={styles.dateField} text={fullDate.slice(0, -3)}/>
       <p className={styles.fromField}>From: {from}</p>
       {isFile ? <p className={styles.fileName}>File name: {data}</p> : <p>Message: {data}</p>}
-      {isFile && id ? <a className={styles.downloadLink} href={`https://amb.482.solutions/files/statement/${id}`} download={data}>download file</a> : null}
+      {isFile && id ? <a className={styles.downloadLink}
+                         href={`https://amb.482.solutions/files/statement/${id}`}
+                         download={data}>download file</a> : null}
     </div>);
   }
 }

@@ -12,7 +12,7 @@ export default class CreateStatementRow extends Component {
   };
 
   render() {
-    const { type, value, size } = this.props;
+    const { type, value, size, onRowRemove } = this.props;
     return (<div className={styles.row}>
       <div className={styles.statementInfo}>
         {type === 'file' ? <svg className={styles.fileIcon} version='1' xmlns='http://www.w3.org/2000/svg' width='2133.333' height='2133.333' viewBox='0 0 1600 1600'>
@@ -33,17 +33,12 @@ export default class CreateStatementRow extends Component {
                        placeholder='Enter your statement...'/>}
       </div>
       <img className={styles.removeIcon}
-           onClick={this.onFieldRemove}
+           onClick={onRowRemove}
            src='./static/images/transaction-rejected.svg'/>
     </div>);
   }
 
-  onFieldRemove = () => {
-    const {onRowRemove, id} = this.props;
-    onRowRemove(id);
-  };
-
   onFieldChange = (label, inputState) => {
-    this.props.onRowChange(this.props.id, inputState);
+    this.props.onRowChange(inputState);
   };
 }

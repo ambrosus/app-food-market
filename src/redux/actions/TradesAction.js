@@ -48,9 +48,9 @@ async function getTradesList(limit, offset) {
 
   return {
     status: 1,
-    data: list,
+    data: list.slice(7),                          // remove 7 test trades
     meta: {
-      totalCount: tradesFromWeb3.length,
+      totalCount: tradesFromWeb3.length - 7,      // remove 7 test trades
     },
   };
 };

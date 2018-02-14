@@ -18,34 +18,24 @@ export default class CreateStatement extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      statements: [ ]
+      statementData: {id: 1, type: 'text', value: ''}
     };
   };
 
   onCancel = () => this.props.history.goBack();
 
   onSave = async () => {
-    await Promise.all(this.state.statements
-      .filter(statement => !!statement.value)
-      .map(statement => this.props.onSave(this.props.tradeId, statement)));
-    this.props.history.push('product-info');
+    const { statementData } = this.state;
+    if (!statementData.value) return;
+    this.props.onSave(this.props.tradeId, statementData, this.props.history)
   };
 
-  addStatement = () => {
-    const statement = {id: uniqueId(), type: 'text', value: ''};
-    this.setState({statements: [ ...this.state.statements, statement ]});
+  onChangeStatement = data => {
+    this.setState({statementData: { ...this.state.statementData, ...data} });
   };
 
-  onChangeStatement = (id, statementData) => {
-    const statements = this.state.statements.map(statement => statement.id === id
-      ? {...statement, ...statementData}
-      : statement);
-    this.setState({statements});
-  };
-
-  onRemoveStatement = id => {
-    const statements = this.state.statements.filter(statement => statement.id !== id);
-    this.setState({statements});
+  onRemoveStatement = () => {
+    this.setState({statementData: null});
   };
 
   getFormatBytes = (bytes, decimals) => {
@@ -61,8 +51,8 @@ export default class CreateStatement extends Component {
     const dataUrl = e.target.result;
     const { name, size } = this.file;
     const formatSize = this.getFormatBytes(size);
-    const statement = {id: uniqueId(), type: 'file', fileData: dataUrl, size: formatSize, value: name};
-    this.setState({ statements: [ ...this.state.statements, statement ] });
+    const statement = {id: 1, type: 'file', fileData: dataUrl, size: formatSize, value: name};
+    this.setState({ statementData: statement });
     this.props.hideModal();
   };
 
@@ -86,9 +76,11 @@ export default class CreateStatement extends Component {
     e.target.value = null;
   };
 
-  renderStatement = statement => {
-    return <StatementRow key={statement.id}
-                         {...statement}
+  renderStatement = () => {
+    const { statementData } = this.state;
+    if (!statementData) return null;
+    return <StatementRow key={statementData.id}
+                         {...statementData}
                          onRowChange={this.onChangeStatement}
                          onRowRemove={this.onRemoveStatement}/>
   };
@@ -107,8 +99,7 @@ export default class CreateStatement extends Component {
         <Button className={styles.saveButton}
                 onClick={this.onSave}>Save</Button>
       </NavigationBar>
-      <div className={styles.list}>{this.state.statements.map(statement => this.renderStatement(statement))}</div>
-      <Button onClick={this.addStatement} className={styles.addStatement}>Add statement</Button>
+      <div className={styles.list}>{this.renderStatement()}</div>
     </div>);
   }
 }

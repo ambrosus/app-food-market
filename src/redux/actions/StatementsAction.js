@@ -53,15 +53,32 @@ export function createStatement(tradeId, statement, statementId) {
   };
 };
 
-export async function getStatementId(tradeId, isFile) {
-  const [user] = web3.eth.accounts;
-  const type = isFile ? 1 : 0;
-  const contract = contractClient.getInstance();
-  await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
-  const  event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
-  const eventsList = await promisify(event, 'get') || [];
-  const lastEvent = eventsList[eventsList.length - 1];
-  return lastEvent ? lastEvent.args.statementId.valueOf() : null;
+export function addStatement(tradeId, isFile, statement, fileData, history) {
+  return async(dispatch) => {
+    dispatch(showModal('TransactionProgressModal', { title: 'Statement creation' }));
+    const [user] = web3.eth.accounts;
+    const type = isFile ? 1 : 0;
+    const contract = contractClient.getInstance();
+    await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
+    const  event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
+    const event1 = contract.Statement({ tradeId });
+    let isEventCreated = false;
+    event1.watch(async (err, res) => {
+      if (err) dispatch(showModal('ErrorModal', { reason: err }));
+      else {
+        if (!isEventCreated) {
+          const statementId = res.args.statementId.valueOf();
+          if (isFile) {
+            const response = await api.files.uploadFile(statementId, fileData, 'statement');
+            if (!response) return  dispatch(showModal('ErrorModal', { reason: 'File is too big' }));
+          }
+          await dispatch(createStatement(tradeId, statement, statementId));
+          history.push('product-info');
+        }
+        isEventCreated  = true;
+      }
+    });
+  }
 };
 
 export async function addParticipant(tradeId, participantAddress) {

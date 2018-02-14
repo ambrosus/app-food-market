@@ -60,10 +60,9 @@ export function addStatement(tradeId, isFile, statement, fileData, history) {
     const type = isFile ? 1 : 0;
     const contract = contractClient.getInstance();
     await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
-    const  event = contract.Statement({ tradeId }, { fromBlock: 0, toBlock: 'latest' });
-    const event1 = contract.Statement({ tradeId });
+    const event = contract.Statement({ tradeId });
     let isEventCreated = false;
-    event1.watch(async (err, res) => {
+    event.watch(async (err, res) => {
       if (err) dispatch(showModal('ErrorModal', { reason: err }));
       else {
         if (!isEventCreated) {

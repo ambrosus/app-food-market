@@ -61,20 +61,17 @@ export function addStatement(tradeId, isFile, statement, fileData, history) {
     const contract = contractClient.getInstance();
     await contractClient.run('addStatement', tradeId, type, { from: user, gas: 70000 });
     const event = contract.Statement({ tradeId });
-    let isEventCreated = false;
     event.watch(async (err, res) => {
       if (err) dispatch(showModal('ErrorModal', { reason: err }));
       else {
-        if (!isEventCreated) {
-          const statementId = res.args.statementId.valueOf();
-          if (isFile) {
-            const response = await api.files.uploadFile(statementId, fileData, 'statement');
-            if (!response) return  dispatch(showModal('ErrorModal', { reason: 'File is too big' }));
-          }
-          await dispatch(createStatement(tradeId, statement, statementId));
-          history.push('product-info');
+        const statementId = res.args.statementId.valueOf();
+        if (isFile) {
+          const response = await api.files.uploadFile(statementId, fileData, 'statement');
+          if (!response) return  dispatch(showModal('ErrorModal', { reason: 'File is too big' }));
         }
-        isEventCreated  = true;
+        await dispatch(createStatement(tradeId, statement, statementId));
+        history.push('product-info');
+        event.stopWatching();
       }
     });
   }

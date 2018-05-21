@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import styles from './CreateOfferPage.scss';
 import NavigationBar from '../../navigation/NavigationBar/NavigationBar';
 import TextField from '../../../generic/TextField/TextField';
+import TextArea from '../../../generic/TextArea/TextArea';
 import SelectorField from '../../../generic/SelectorField/SelectorField';
 import InputField from '../../../generic/InputField/InputField';
 import AttributeValueFieldContainer from '../../containers/AttributeValueFieldContainer/AttributeValueFieldContainer';
 import FileProcessor from 'react-file-processor';
-import Label from '../../../generic/Label/Label.jsx';
-import Button from '../../../generic/Button/Button.jsx';
+import Label from '../../../generic/Label/Label';
+import Button from '../../../generic/Button/Button';
+import CategorySelector from './CategorySelector';
+import OriginSelector from './OriginSelector';
+import QuantitySelector from './QuantitySelector';
+import PriceSelector from './PriceSelector.jsx';
+import QualitySelector from './QualitySelector';
 
 class CreateOfferPage extends Component {
 
@@ -173,12 +179,13 @@ class CreateOfferPage extends Component {
                   onClick={this.onSaveClick.bind(this)}>Save</Button>
         </NavigationBar>
         <div className={styles.top}>
-          <Label className={styles.label} text='Name of object:'/>
+          <Label className={styles.label} text='Offer name:'/>
           <TextField label="name"
                      errors={this.state.form.errors.name}
                      onChange={this.onChange.bind(this)}
                      className={styles.textField}/>
-          <div className={styles.container}>
+
+	    <div className={styles.container}>
             <div className={styles.column}>
               <FileProcessor
                 ref='myFileInput'
@@ -195,28 +202,20 @@ class CreateOfferPage extends Component {
               </FileProcessor>
             </div>
             <div className={styles.column}>
-              <Label className={styles.label} text='Category:'/>
-              <SelectorField className={styles.selector}
-                             errors={this.state.form.errors.category}
-                             placeholder="Select category"
-                             onChange={this.onChange.bind(this)}
-                             options={this.getCategories()} label='category'/>
-              <div className={styles.table}>
-                <InputField text='Package weight (kg)'
-                            className={styles.field}
-                            errors={this.state.form.errors.packageWeight}
-                            onChange={this.onChange.bind(this)}
-                            label='packageWeight'/>
-                <InputField
-                            text='Price per package (€)'
-                            className={styles.field}
-                            errors={this.state.form.errors.pricePerPackage}
-                            onChange={this.onChange.bind(this)}
-                            label='pricePerPackage'/>
+	     
+	     <CategorySelector categories={this.getCategories()} />
+	     <OriginSelector />
+	     <div className={styles.table}>
+	     <QuantitySelector
+	     className={styles.field}
+	     errors={this.state.form.errors.packageWeight}
+	     onChange={this.onChange.bind(this)} />
+              <PriceSelector
+	      className={styles.field}
+              errors={this.state.form.errors.pricePerPackage}
+              onChange={this.onChange.bind(this)} />
               </div>
-              <Label className={styles.label} text='Quality standard:'/>
-              <SelectorField className={styles.selector}
-                             placeholder="Select quality"
+	      <QualitySelector 
                              options={this.getRequirements()}
                              errors={this.state.form.errors.quality}
                              onChange={(label, state) => {
@@ -228,6 +227,17 @@ class CreateOfferPage extends Component {
               <AttributeValueFieldContainer options={this.props.attributesValueField} className={styles.properties}/>
             </div>
           </div>
+	      <Label className={styles.label} text='Description:'/>
+	      <TextArea text='Description'
+	      		  className={styles.textArea}
+			  onChange={this.onChange.bind(this)}
+			  />
+	      <Label className={styles.label} text='Attachments:'/>
+	      <TextArea text='Attachments'
+	      		  className={styles.textArea}
+			  onChange={this.onChange.bind(this)}
+			  />
+
         </div>
       </div>
     );
